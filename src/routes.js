@@ -15,7 +15,6 @@
 
 */
 
-
 //examples
 import Buttons from "views/pages/examples/components/Buttons.js";
 import Calendar from "views/pages/examples/components/Calendar.js";
@@ -30,33 +29,27 @@ import Pricing from "views/pages/examples/pages/Pricing.js";
 import Profile from "views/pages/examples/pages/Profile.js";
 import Icons from "views/pages/examples/components/Icons.js";
 
-
 //final pages
-import CreateEmployeePage from "views/demo/CreateEmployeePage.js"
-import EmployeesPage from "views/demo/EmployeesPage.js"
-import EmployeeDetailsPage from "views/demo/EmployeeDetailsPage.js";
 
-import CreateGroupPage from "views/demo/CreateGroupPage.js"
-import GroupsPage from "views/demo/GroupsPage.js"
-import GroupDetailsPage from "views/demo/GroupDetailsPage.js"
+import CreateGroupPage from "views/demo/CreateGroupPage.js";
+import GroupsPage from "views/demo/GroupsPage.js";
+import GroupDetailsPage from "views/demo/GroupDetailsPage.js";
 
-import ChartsPage from "views/demo/ChartsPage.js"
-import WorldOverviewPage from "views/demo/WorldOverviewPage.js"
+import ChartsPage from "views/demo/ChartsPage.js";
+import WorldOverviewPage from "views/demo/WorldOverviewPage.js";
 
+import CreateGroupView from "views/pages/groups/CreateGroupView.js";
+import GroupsView from "views/pages/groups/GroupsView.js";
+import GroupDetailsView from "views/pages/groups/GroupDetailsView.js";
 
-import CreateEmployeeView from "views/pages/users/CreateEmployeeView.js"
-import EmployeesView from "views/pages/users/EmployeesView.js"
-import EmployeeDetailsView from "views/pages/users/EmployeeDetailsView.js";
-
-import CreateGroupView from "views/pages/groups/CreateGroupView.js"
-import GroupsView from "views/pages/groups/GroupsView.js"
-import GroupDetailsView from "views/pages/groups/GroupDetailsView.js"
-
-import ChartsView from "views/pages/dashboards/ChartsView.js"
-import WorldOverviewView from "views/pages/dashboards/WorldOverviewView.js"
-
+import ChartsView from "views/pages/dashboards/ChartsView.js";
+import WorldOverviewView from "views/pages/dashboards/WorldOverviewView.js";
+import CreateEmployeePage from "views/pages/users/CreateEmployeePage";
+import EmployeesPage from "views/pages/users/EmployeesPage";
+import EmployeeDetailsPage from "views/pages/users/EmployeeDetailsPage";
 
 const routes = [
+  /* Users */
   {
     collapse: true,
     name: "Users",
@@ -67,18 +60,19 @@ const routes = [
         path: "/create-employee",
         name: "Create Employee",
         miniName: "CE",
-        component: CreateEmployeeView,
+        component: CreateEmployeePage,
         layout: "/admin",
       },
       {
         path: "/search-employees",
         name: "Search Employee",
         miniName: "SE",
-        component: EmployeesView,
+        component: EmployeesPage,
         layout: "/admin",
       },
     ],
   },
+  /* Groups */
   {
     collapse: true,
     name: "Groups",
@@ -98,9 +92,10 @@ const routes = [
         miniName: "SC",
         component: GroupsView,
         layout: "/admin",
-      }
-    ]
+      },
+    ],
   },
+  /* Dashboard */
   {
     collapse: true,
     name: "Dashboard",
@@ -123,7 +118,7 @@ const routes = [
       },
     ],
   },
-  /* */
+  /* Finalized */
   {
     collapse: true,
     name: "Finalized",
@@ -171,24 +166,25 @@ const routes = [
         miniName: "WV",
         component: WorldOverviewPage,
         layout: "/admin",
-      }
+      },
     ],
   },
-  /* */
+  /* Details Routes*/
   {
-    collapse: false,  
-    global:true, 
+    collapse: false,
+    global: true,
     path: "/users/employee-details/:id",
     component: EmployeeDetailsPage,
-    layout: "/admin"
+    layout: "/admin",
   },
   {
-    collapse: false,  
-    global:true, 
-    path: "/groups/group-details/:id",           
+    collapse: false,
+    global: true,
+    path: "/groups/group-details/:id",
     component: GroupDetailsPage,
-    layout: "/admin"
-  },  
+    layout: "/admin",
+  },
+  /* Examples */
   {
     collapse: true,
     name: "Examples",
@@ -281,7 +277,7 @@ const routes = [
         layout: "/admin",
       },
     ],
-  }
+  },
 ];
 
 export default routes;
