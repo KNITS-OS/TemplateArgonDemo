@@ -15,7 +15,6 @@
 
 */
 import GradientEmptyHeader from "components/Headers/GradientEmptyHeader.js";
-import { groups } from "mock-data/groups.js";
 import { employeesFromIds } from "mock-data/groupUtils.js";
 import React, { useState } from "react";
 import BootstrapTable from "react-bootstrap-table-next";
@@ -40,12 +39,14 @@ import { pagination } from "utils/tableUtils.js";
 // core components
 import { useHistory } from "react-router";
 import AddMemberPanel from "./AddMemberPanel";
+import { useSelector } from "react-redux";
 
 const { SearchBar } = Search;
 
 const GroupDetailsPage = () => {
   let { id } = useParams(); //see in routes path: "/users/employee-details/:id",
   const history = useHistory();
+  const groups = useSelector(state => state.groups);
   let currentGroup = groups.find(group => group.id === parseInt(id));
 
   const [group, setGroup] = useState(currentGroup);

@@ -14,9 +14,8 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import { categoriesData } from "mock-data/categories.js";
-import { employeesData } from "mock-data/employees.js";
 import React from "react";
+import { useSelector } from "react-redux";
 // core components
 import Select from "react-select";
 // reactstrap components
@@ -30,15 +29,24 @@ import {
 } from "reactstrap";
 
 function AddMemberPanel(props) {
+  const employeesData = useSelector(state => state.employees);
+
   const employees = employeesData.map(employee => {
     return { value: employee.id, label: employee.internationalName };
   });
-  const businessUnits = categoriesData.businessUnits.map(businessUnit => {
-    return { value: businessUnit.id, label: businessUnit.name };
+
+  const getBusinessUnits = useSelector(state => {
+    return state.categories.businessUnits.map(bunit => {
+      return { value: bunit.id, label: bunit.name };
+    });
   });
-  const countries = categoriesData.countryListAllIsoData.map(country => {
-    return { value: country.code, label: country.name };
+
+  const getCountries = useSelector(state => {
+    return state.categories.countryListAllIsoData.map(country => {
+      return { value: country.code3, label: country.name };
+    });
   });
+
   const jobTitles = [
     { value: 1, label: "product manager" },
     { value: 2, label: "qa engineer" },
@@ -81,7 +89,7 @@ function AddMemberPanel(props) {
                   </label>
                   <Select
                     onChange={props.onchangeCountry}
-                    options={countries}
+                    options={getCountries}
                     // getOptionValue={(option) => option.value}
                     // getOptionLabel={(option) => option.name}
                   />
@@ -94,7 +102,7 @@ function AddMemberPanel(props) {
                   </label>
                   <Select
                     onChange={props.onchangeBunit}
-                    options={businessUnits}
+                    options={getBusinessUnits}
                   />
                 </FormGroup>
               </Col>

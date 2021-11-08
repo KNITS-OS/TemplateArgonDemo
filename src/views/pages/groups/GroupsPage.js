@@ -16,11 +16,11 @@
 */
 // core components
 import SimpleHeader from "components/Headers/SimpleHeader.js";
-import { groups } from "mock-data/groups.js";
 import React from "react";
 // react component for creating dynamic tables
 import BootstrapTable from "react-bootstrap-table-next";
 import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
+import { useSelector } from "react-redux";
 import { useHistory } from "react-router";
 // reactstrap components
 import { Button, Card, CardHeader, Container, Row } from "reactstrap";
@@ -30,6 +30,8 @@ const { SearchBar } = Search;
 
 function GroupsPage() {
   const history = useHistory();
+
+  const groups = useSelector(state => state.groups);
 
   const groupDetails = e => {
     var { id } = e.target;

@@ -17,13 +17,12 @@
 
 // core components
 import GradientEmptyHeader from "components/Headers/GradientEmptyHeader.js";
-import { categoriesData } from "mock-data/categories.js";
-import { employeesData as employees } from "mock-data/employees.js";
 import React, { useState } from "react";
 // react component for creating dynamic tables
 import BootstrapTable from "react-bootstrap-table-next";
 import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
 import ReactDatetime from "react-datetime";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
 import Select from "react-select";
 import makeAnimated from "react-select/animated";
@@ -39,6 +38,8 @@ import {
   Input,
   Row,
 } from "reactstrap";
+import { searchEmployees } from "redux/actions/employees";
+import { deleteUser } from "redux/actions/employees";
 import { pagination } from "utils/tableUtils";
 
 const { SearchBar } = Search;
@@ -51,17 +52,20 @@ const EmployeesPage = () => {
   const [searchCountry, setSearchCountry] = useState("");
   const [searchHiringDate, setSearchHiringDate] = useState(null);
 
-  const getBusinessUnits = categoriesData.businessUnits.map(
-    businessUnit => {
-      return { value: businessUnit.id, label: businessUnit.name };
-    },
-  );
+  const dispatch = useDispatch();
+  const employees = useSelector(state => state.employees);
 
-  const getCountries = categoriesData.countryListAllIsoData.map(
-    country => {
-      return { value: country.code, label: country.name };
-    },
-  );
+  const getBusinessUnits = useSelector(state => {
+    return state.categories.businessUnits.map(bunit => {
+      return { value: bunit.id, label: bunit.name };
+    });
+  });
+
+  const getCountries = useSelector(state => {
+    return state.categories.countryListAllIsoData.map(country => {
+      return { value: country.code3, label: country.name };
+    });
+  });
 
   const findByAllParameters = () => {
     let filters = {
@@ -70,7 +74,7 @@ const EmployeesPage = () => {
       countryIsoCode3: searchCountry,
       hiringDate: searchHiringDate,
     };
-    console.log("filters: ", filters);
+    dispatch(searchEmployees(filters));
   };
 
   const goToEmployeeDetails = e => {
@@ -80,12 +84,7 @@ const EmployeesPage = () => {
 
   const removeEmployee = e => {
     var { id } = e.target;
-    let empIndex = employees.findIndex(emp => emp.id !== parseInt(id));
-    console.log(employees[empIndex]);
-    console.log(employees.length);
-    employees = employees.splice(id, 1);
-    console.log(employees.length);
-
+    dispatch(deleteUser(id));
     //history.push('/admin/users/employee-details/'+id);
   };
 

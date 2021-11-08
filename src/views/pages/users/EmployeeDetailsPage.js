@@ -16,8 +16,8 @@
 */
 // core components
 import GradientEmptyHeader from "components/Headers/GradientEmptyHeader.js";
-import { employeesData as employees } from "mock-data/employees.js";
 import React from "react";
+import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 // reactstrap components
 import {
@@ -34,8 +34,10 @@ import {
 
 const EmployeeDetailsPage = () => {
   let { id } = useParams(); //see in routes path: "/users/employee-details/:id",
+  const employees = useSelector(state => state.employees);
 
-  const getEmployee = () => employees.find(emp => emp.id === parseInt(id));
+  const getEmployee = () =>
+    employees.find(employee => employee.id === parseInt(id));
 
   const {
     firstName,
