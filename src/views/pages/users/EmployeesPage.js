@@ -120,7 +120,7 @@ const EmployeesPage = () => {
 
   return (
     <>
-      <GradientEmptyHeader name="Employees" />
+      <GradientEmptyHeader />
       <Container className="mt--6" fluid>
         <Row>
           <div className="col">

@@ -51,7 +51,7 @@ const EmployeeDetailsPage = () => {
 
   return (
     <>
-      <GradientEmptyHeader name="Employees" />
+      <GradientEmptyHeader />
       <Container className="mt--6" fluid>
         <Row>
           <Col className="order-xl-1" xl="12">
