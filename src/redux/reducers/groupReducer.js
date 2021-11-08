@@ -4,9 +4,8 @@ import {
   DEACTIVATE_GROUP,
   UPDATE_GROUP,
 } from "../actions/types";
-import { groups as groupsData } from "../../mock-data/groups";
 
-const groupReducer = (groups = groupsData, action) => {
+const groupReducer = (groups = [], action) => {
   const { type, payload } = action;
 
   switch (type) {

@@ -7,7 +7,6 @@ import {
 
 const employeesReducer = (employees = [], action) => {
   const { type, payload } = action;
-
   switch (type) {
     case CREATE_EMPLOYEE:
       console.log(payload);

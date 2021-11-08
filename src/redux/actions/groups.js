@@ -1,4 +1,4 @@
-import groupService from "redux/services/groupService";
+import groupServices from "redux/services/groupService";
 import {
   CREATE_GROUP,
   RETRIEVE_GROUPS,
@@ -11,12 +11,11 @@ import {
 
 export const createGroup = (name, description) => async dispatch => {
   try {
-    const res = await groupService.create({ name, description });
+    const res = await groupServices.create({ name, description });
     dispatch({
       type: CREATE_GROUP,
       payload: res.data,
     });
-    //console.log(res.data)
     return Promise.resolve(res.data);
   } catch (err) {
     console.log(err);
@@ -31,11 +30,11 @@ export const retrieveGroups = () => async dispatch => {
       payload: RETRIEVE_GROUPS,
     });
 
-    const res = await groupService.getAll();
+    const { data } = await groupServices.getAll("*");
 
     dispatch({
       type: RETRIEVE_GROUPS,
-      payload: res.data,
+      payload: data,
     });
   } catch (err) {
     dispatch({
@@ -47,7 +46,7 @@ export const retrieveGroups = () => async dispatch => {
 
 export const addGroupMember = (id, data) => async dispatch => {
   try {
-    const res = await groupService.update(id, data);
+    const res = await groupServices.update(id, data);
     dispatch({
       type: ADD_CAREMEMBER_TO_GROUP,
       payload: data,
@@ -61,7 +60,7 @@ export const addGroupMember = (id, data) => async dispatch => {
 
 export const deactivateGroup = id => async dispatch => {
   try {
-    await groupService.update(id);
+    await groupServices.update(id);
     dispatch({
       type: DEACTIVATE_GROUP,
       payload: { id },
@@ -73,7 +72,7 @@ export const deactivateGroup = id => async dispatch => {
 
 export const removeGroupMember = (id, data) => async dispatch => {
   try {
-    await groupService.update(id, data);
+    await groupServices.update(id, data);
 
     dispatch({
       type: REMOVE_CAREMEMBER_FROM_GROUP,

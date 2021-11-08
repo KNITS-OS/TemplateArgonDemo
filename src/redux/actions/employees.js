@@ -1,11 +1,11 @@
-import employeeService from "redux/services/employeeService";
+import { searchWithFilters } from "redux/services/queries";
 import {
-  API_CALL_ERROR,
-  API_CALL_START,
   CREATE_EMPLOYEE,
+  UPDATE_EMPLOYEE,
   DELETE_EMPLOYEE,
   SEARCH_EMPLOYEES,
-  UPDATE_EMPLOYEE,
+  API_CALL_ERROR,
+  API_CALL_START,
 } from "./types";
 
 export const createUser = data => {
@@ -13,7 +13,7 @@ export const createUser = data => {
   return { type: CREATE_EMPLOYEE, payload: data };
 };
 
-export const searchEmployees = filters => dispatch => {
+export const searchEmployees = filters => async dispatch => {
   try {
     const queryParams = new URLSearchParams(filters);
 
@@ -22,11 +22,16 @@ export const searchEmployees = filters => dispatch => {
       payload: SEARCH_EMPLOYEES,
     });
 
-    const res = employeeService.searchEmployees(queryParams);
+    // search
+    const { data } = await searchWithFilters(
+      queryParams,
+      "*",
+      "employees",
+    );
 
     dispatch({
       type: SEARCH_EMPLOYEES,
-      payload: res.data,
+      payload: data,
     });
   } catch (err) {
     dispatch({

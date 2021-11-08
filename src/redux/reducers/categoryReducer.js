@@ -3,6 +3,7 @@ import { LOAD_CATEGORIES } from "redux/actions/types";
 
 const categoryReducer = (categories = categoriesData, action) => {
   const { type, payload } = action;
+
   switch (type) {
     case LOAD_CATEGORIES:
       return [payload];
