@@ -14,46 +14,53 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React from "react";
-
-// reactstrap components
-import {
-  Button,
-  Card,
-  CardHeader,
-  CardBody,
-  FormGroup,
-  Form,
-  Input,
-  Container,
-  Row,
-  Col,
-} from "reactstrap";
-
-import {useParams} from "react-router-dom";
-import {employeesData as employees } from "mock-data/employees.js";
-
 // core components
 import GradientEmptyHeader from "components/Headers/GradientEmptyHeader.js";
+import { employeesData as employees } from "mock-data/employees.js";
+import React from "react";
+import { useParams } from "react-router-dom";
+// reactstrap components
+import {
+  Card,
+  CardBody,
+  CardHeader,
+  Col,
+  Container,
+  Form,
+  FormGroup,
+  Input,
+  Row,
+} from "reactstrap";
 
-function EmployeeDetailsPage(props) {
-
+const EmployeeDetailsPage = () => {
   let { id } = useParams(); //see in routes path: "/users/employee-details/:id",
- // const importedEmployees =employees;
-  let employee=employees.find(emp => emp.id===parseInt(id));
- 
+
+  const getEmployee = () => employees.find(emp => emp.id === parseInt(id));
+
+  const {
+    firstName,
+    lastName,
+    internationalName,
+    email,
+    title,
+    companyCode,
+    businessUnit,
+    costCenter,
+    managementGroup,
+  } = getEmployee();
+
   return (
     <>
-      <GradientEmptyHeader name="Employees"  />
-      <Container className="mt--6" fluid>    
-        <Row>     
+      <GradientEmptyHeader name="Employees" />
+      <Container className="mt--6" fluid>
+        <Row>
           <Col className="order-xl-1" xl="12">
             <Card>
               <CardHeader>
                 <Row className="align-items-center">
                   <Col xs="8">
                     <h3 className="mb-0">Employee Details</h3>
-                  </Col>                
+                  </Col>
                 </Row>
                 {/* <Row className="align-items-center py-4">              
                   <Col lg="12" xs="7" className="text-right">
@@ -77,11 +84,11 @@ function EmployeeDetailsPage(props) {
                 </Row> */}
               </CardHeader>
               <CardBody>
-              <Form>
+                <Form>
                   <h6 className="heading-small text-muted mb-4">
                     User information
                   </h6>
-                  <div className="pl-lg-4">                    
+                  <div className="pl-lg-4">
                     <Row>
                       <Col lg="6">
                         <FormGroup>
@@ -91,10 +98,10 @@ function EmployeeDetailsPage(props) {
                           >
                             First name
                           </label>
-                          <Input                            
+                          <Input
                             id="input-first-name"
-                            value={employee.firstName}
-                            type="text"                           
+                            value={firstName}
+                            type="text"
                           />
                         </FormGroup>
                       </Col>
@@ -106,16 +113,15 @@ function EmployeeDetailsPage(props) {
                           >
                             Last name
                           </label>
-                          <Input                           
+                          <Input
                             id="input-last-name"
-                            value={employee.lastName}                           
+                            value={lastName}
                             type="text"
                           />
                         </FormGroup>
                       </Col>
                     </Row>
 
-                    
                     <Row>
                       <Col lg="6">
                         <FormGroup>
@@ -125,10 +131,10 @@ function EmployeeDetailsPage(props) {
                           >
                             International Name
                           </label>
-                          <Input                           
+                          <Input
                             id="input-username"
-                            value={employee.internationalName}                            
-                            type="text"                         
+                            value={internationalName}
+                            type="text"
                           />
                         </FormGroup>
                       </Col>
@@ -142,14 +148,12 @@ function EmployeeDetailsPage(props) {
                           </label>
                           <Input
                             id="input-email"
-                            value={employee.email}                           
+                            value={email}
                             type="email"
                           />
                         </FormGroup>
                       </Col>
                     </Row>
-                   
-
                   </div>
                   <hr className="my-4" />
 
@@ -227,75 +231,85 @@ function EmployeeDetailsPage(props) {
                   </div>
                   <hr className="my-4" />
 
-                  <h6 className="heading-small text-muted mb-4">Company Data</h6>
+                  <h6 className="heading-small text-muted mb-4">
+                    Company Data
+                  </h6>
                   <div className="pl-lg-4">
-                  <Row>
+                    <Row>
                       <Col lg="4">
-                          <FormGroup>
-                          <label className="form-control-label">Title</label>
-                          <Input
-                                id="title"
-                                value={employee.title}                               
-                                type="text"
-                              />
-                          </FormGroup>
-                        </Col>
-
-                        <Col lg="4">
                         <FormGroup>
-                          <label className="form-control-label">Company Phone</label>
-                          <Input
-                                id="companyPhone"
-                                value="+372 77645322"                                
-                                type="text"
-                              />
-                          </FormGroup>
-                        </Col>
-                        <Col lg="4">
-                        <FormGroup>
-                          <label className="form-control-label">Company Code</label>
-                          <Input
-                                id="input-postal-code"
-                                value={employee.companyCode}                               
-                                type="text"
-                              />
-                          </FormGroup>
-                        </Col>
-                        </Row>
-                   
-                        <Row>
-                        <Col lg="4">
-                            <FormGroup>
-                            <label className="form-control-label">Business Unit</label>
-                            <Input
-                                  id="input-postal-code"
-                                  value={employee.businessUnit}                                 
-                                  type="text"
-                                />
-                            </FormGroup>
-                          </Col>
+                          <label className="form-control-label">
+                            Title
+                          </label>
+                          <Input id="title" value={title} type="text" />
+                        </FormGroup>
+                      </Col>
 
-                          <Col lg="4">
-                          <FormGroup>
-                            <label className="form-control-label">Cost Center</label>
-                            <Input
-                                  id="input-postal-code"
-                                  value={employee.costCenter}                                  
-                                  type="text"
-                                />
-                            </FormGroup>
-                          </Col>
-                          <Col lg="4">
-                          <FormGroup>
-                            <label className="form-control-label">Management Group</label>
-                            <Input
-                                  id="input-postal-code"
-                                  value={employee.managementGroup}                                 
-                                  type="text"
-                                />
-                            </FormGroup>
-                          </Col>
-                        </Row>
+                      <Col lg="4">
+                        <FormGroup>
+                          <label className="form-control-label">
+                            Company Phone
+                          </label>
+                          <Input
+                            id="companyPhone"
+                            value="+372 77645322"
+                            type="text"
+                          />
+                        </FormGroup>
+                      </Col>
+                      <Col lg="4">
+                        <FormGroup>
+                          <label className="form-control-label">
+                            Company Code
+                          </label>
+                          <Input
+                            id="input-postal-code"
+                            value={companyCode}
+                            type="text"
+                          />
+                        </FormGroup>
+                      </Col>
+                    </Row>
+
+                    <Row>
+                      <Col lg="4">
+                        <FormGroup>
+                          <label className="form-control-label">
+                            Business Unit
+                          </label>
+                          <Input
+                            id="input-postal-code"
+                            value={businessUnit}
+                            type="text"
+                          />
+                        </FormGroup>
+                      </Col>
+
+                      <Col lg="4">
+                        <FormGroup>
+                          <label className="form-control-label">
+                            Cost Center
+                          </label>
+                          <Input
+                            id="input-postal-code"
+                            value={costCenter}
+                            type="text"
+                          />
+                        </FormGroup>
+                      </Col>
+                      <Col lg="4">
+                        <FormGroup>
+                          <label className="form-control-label">
+                            Management Group
+                          </label>
+                          <Input
+                            id="input-postal-code"
+                            value={managementGroup}
+                            type="text"
+                          />
+                        </FormGroup>
+                      </Col>
+                    </Row>
                   </div>
                 </Form>
               </CardBody>
@@ -305,6 +319,6 @@ function EmployeeDetailsPage(props) {
       </Container>
     </>
   );
-}
+};
 
 export default EmployeeDetailsPage;
