@@ -16,22 +16,18 @@
 */
 import React from "react";
 
-// reactstrap components
-import { Button, Container, Row, Col } from "reactstrap";
-
 function GradientEmptyHeader() {
   return (
     <>
       <div
         className="header pb-6 d-flex align-items-center"
         style={{
-          minHeight: "150px",         
+          minHeight: "150px",
           backgroundSize: "cover",
           backgroundPosition: "center top",
         }}
       >
         <span className="mask bg-gradient-info opacity-8" />
-
       </div>
     </>
   );
