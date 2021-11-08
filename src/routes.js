@@ -30,23 +30,18 @@ import Profile from "views/pages/examples/pages/Profile.js";
 import Icons from "views/pages/examples/components/Icons.js";
 
 //final pages
-
-import CreateGroupPage from "views/demo/CreateGroupPage.js";
-import GroupsPage from "views/demo/GroupsPage.js";
-import GroupDetailsPage from "views/demo/GroupDetailsPage.js";
-
 import ChartsPage from "views/demo/ChartsPage.js";
 import WorldOverviewPage from "views/demo/WorldOverviewPage.js";
-
-import CreateGroupView from "views/pages/groups/CreateGroupView.js";
-import GroupsView from "views/pages/groups/GroupsView.js";
-import GroupDetailsView from "views/pages/groups/GroupDetailsView.js";
-
 import ChartsView from "views/pages/dashboards/ChartsView.js";
 import WorldOverviewView from "views/pages/dashboards/WorldOverviewView.js";
+
 import CreateEmployeePage from "views/pages/users/CreateEmployeePage";
 import EmployeesPage from "views/pages/users/EmployeesPage";
 import EmployeeDetailsPage from "views/pages/users/EmployeeDetailsPage";
+
+import CreateGroupPage from "views/pages/groups/CreateGroupPage";
+import GroupsPage from "views/pages/groups/GroupsPage";
+import GroupDetailsPage from "views/pages/groups/GroupDetailsPage";
 
 const routes = [
   /* Users */
@@ -83,14 +78,14 @@ const routes = [
         path: "/create-group",
         name: "Create Group",
         miniName: "CG",
-        component: CreateGroupView,
+        component: CreateGroupPage,
         layout: "/admin",
       },
       {
         path: "/search-groups",
         name: "Search Groups",
         miniName: "SC",
-        component: GroupsView,
+        component: GroupsPage,
         layout: "/admin",
       },
     ],

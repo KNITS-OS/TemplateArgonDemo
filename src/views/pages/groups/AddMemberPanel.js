@@ -14,133 +14,108 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React, {useState, useEffect,PropTypes} from "react";
-
+import { categoriesData } from "mock-data/categories.js";
+import { employeesData } from "mock-data/employees.js";
+import React from "react";
+// core components
+import Select from "react-select";
 // reactstrap components
 import {
-  Button,
   Card,
-  CardHeader,
   CardBody,
-  CardImg,
-  CardTitle,
-  FormGroup,
-  Form,
-  Input,
-  ListGroupItem,
-  ListGroup,
-  Progress,
-  Container,
-  Row,
+  CardHeader,
   Col,
+  FormGroup,
+  Row,
 } from "reactstrap";
-// core components
-
-import Select from 'react-select';
-import { categoriesData  } from "mock-data/categories.js";
-import { employeesData  } from "mock-data/employees.js";
-
 
 function AddMemberPanel(props) {
-  
-
-  const employees =employeesData.map(employee => {return {"value": employee.id, "label":employee.internationalName}});
-  const businessUnits =categoriesData.businessUnits.map(businessUnit => {return {"value": businessUnit.id, "label":businessUnit.name}});
-  const countries =categoriesData.countryListAllIsoData.map(country => {return {"value": country.code, "label":country.name}});
-  const jobTitles =[
-    {"value": 1,'label':'product manager'},
-    {"value": 2,'label':'qa engineer'},
-    {"value": 3,'label':'hr consultant'},
-    {"value": 4,'label':'office manager'},
-    {"value": 5,'label':'sales representative'},
-    {"value": 6,'label':'logistics consultant'}
-  ]
+  const employees = employeesData.map(employee => {
+    return { value: employee.id, label: employee.internationalName };
+  });
+  const businessUnits = categoriesData.businessUnits.map(businessUnit => {
+    return { value: businessUnit.id, label: businessUnit.name };
+  });
+  const countries = categoriesData.countryListAllIsoData.map(country => {
+    return { value: country.code, label: country.name };
+  });
+  const jobTitles = [
+    { value: 1, label: "product manager" },
+    { value: 2, label: "qa engineer" },
+    { value: 3, label: "hr consultant" },
+    { value: 4, label: "office manager" },
+    { value: 5, label: "sales representative" },
+    { value: 6, label: "logistics consultant" },
+  ];
 
   return (
-           <Card>
-              <CardHeader>
-                <Row className="align-items-center">
-                  <Col xs="8">
-                    <h3 className="mb-0">Add Members</h3>
-                  </Col>                
-                </Row>
-              </CardHeader>
-              <CardBody>
-                    <Row>
-                       <Col xl="12">
-                       <Row>
-                        <Col xl="2">
-                            <FormGroup>
-                                <label
-                                  className="form-control-label"
-                                  htmlFor="members"
-                                >
-                                  Job Title
-                                </label>
-                                <Select                                  
-                                    onChange={props.onchangeRole}
-                                    options={jobTitles}
-                                    // getOptionValue={(option) => option.value}
-                                    // getOptionLabel={(option) => option.value}
-                                />
-
-                            </FormGroup>
-                        </Col> 
-                        <Col xl="2">
-                        <FormGroup>
-                            <label
-                              className="form-control-label"
-                              htmlFor="members"
-                            >
-                              Country
-                            </label>
-                            <Select                                  
-                                    onChange={props.onchangeCountry}
-                                    options={countries}
-                                    // getOptionValue={(option) => option.value}
-                                    // getOptionLabel={(option) => option.name}
-                                />
-
-                            </FormGroup>
-                        </Col>   
-                        <Col xl="2">
-                        <FormGroup>
-                            <label
-                              className="form-control-label"
-                              htmlFor="members"
-                            >
-                              Business Unit
-                            </label>
-                            <Select                                 
-                                    onChange={props.onchangeBunit}
-                                    options={businessUnits}                                
-                                />
-
-                            </FormGroup>
-                        </Col>  
-                        <Col sm="6">
-                          <FormGroup>
-                            <label
-                              className="form-control-label"
-                              htmlFor="members"
-                            >
-                              Add members
-                            </label>
-                              <Select
-                                    isMulti                                 
-                                    onChange={props.onSelectCareMember}
-                                    options={employees}                                
-                              />
-
-                            </FormGroup>
-                        </Col> 
-                       </Row>
-                       </Col>                                                         
-                    </Row>
-                    </CardBody>
-            </Card>
+    <Card>
+      <CardHeader>
+        <Row className="align-items-center">
+          <Col xs="8">
+            <h3 className="mb-0">Add Members</h3>
+          </Col>
+        </Row>
+      </CardHeader>
+      <CardBody>
+        <Row>
+          <Col xl="12">
+            <Row>
+              <Col xl="2">
+                <FormGroup>
+                  <label className="form-control-label" htmlFor="members">
+                    Job Title
+                  </label>
+                  <Select
+                    onChange={props.onchangeRole}
+                    options={jobTitles}
+                    // getOptionValue={(option) => option.value}
+                    // getOptionLabel={(option) => option.value}
+                  />
+                </FormGroup>
+              </Col>
+              <Col xl="2">
+                <FormGroup>
+                  <label className="form-control-label" htmlFor="members">
+                    Country
+                  </label>
+                  <Select
+                    onChange={props.onchangeCountry}
+                    options={countries}
+                    // getOptionValue={(option) => option.value}
+                    // getOptionLabel={(option) => option.name}
+                  />
+                </FormGroup>
+              </Col>
+              <Col xl="2">
+                <FormGroup>
+                  <label className="form-control-label" htmlFor="members">
+                    Business Unit
+                  </label>
+                  <Select
+                    onChange={props.onchangeBunit}
+                    options={businessUnits}
+                  />
+                </FormGroup>
+              </Col>
+              <Col sm="6">
+                <FormGroup>
+                  <label className="form-control-label" htmlFor="members">
+                    Add members
+                  </label>
+                  <Select
+                    isMulti
+                    onChange={props.onSelectCareMember}
+                    options={employees}
+                  />
+                </FormGroup>
+              </Col>
+            </Row>
+          </Col>
+        </Row>
+      </CardBody>
+    </Card>
   );
 }
 
 export default AddMemberPanel;
-
