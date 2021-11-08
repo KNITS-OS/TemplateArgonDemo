@@ -20,10 +20,11 @@ import React from "react";
 // react component for creating dynamic tables
 import BootstrapTable from "react-bootstrap-table-next";
 import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
 // reactstrap components
-import { Button, Card, CardHeader, Container, Row } from "reactstrap";
+import { Button, Card, CardHeader, Col, Container, Row } from "reactstrap";
+import { retrieveGroups } from "redux/actions/groups";
 import { pagination } from "utils/tableUtils";
 
 const { SearchBar } = Search;
@@ -32,6 +33,12 @@ function GroupsPage() {
   const history = useHistory();
 
   const groups = useSelector(state => state.groups);
+
+  const dispatch = useDispatch();
+
+  const findGroups = () => {
+    dispatch(retrieveGroups());
+  };
 
   const groupDetails = e => {
     var { id } = e.target;
@@ -106,18 +113,36 @@ function GroupsPage() {
               >
                 {props => (
                   <div className="py-4 table-responsive">
-                    <div
-                      id="datatable-basic_filter"
-                      className="dataTables_filter px-4 pb-1"
-                    >
-                      <label>
-                        Search:
-                        <SearchBar
-                          className="form-control-sm"
-                          {...props.searchProps}
-                        />
-                      </label>
-                    </div>
+                    <Row>
+                      <Col>
+                        <div
+                          id="datatable-basic_filter"
+                          className="dataTables_filter px-4 pb-1"
+                        >
+                          <label>
+                            Search:
+                            <SearchBar
+                              className="form-control-sm"
+                              {...props.searchProps}
+                            />
+                          </label>
+                        </div>
+                      </Col>
+                      <Col
+                        md="2"
+                        style={{
+                          display: "flex",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <button
+                          className="btn btn-info"
+                          onClick={findGroups}
+                        >
+                          Find
+                        </button>
+                      </Col>
+                    </Row>
                     <BootstrapTable
                       {...props.baseProps}
                       bootstrap4={true}
