@@ -38,8 +38,8 @@ import {
 } from "reactstrap";
 import { pagination } from "utils/tableUtils.js";
 // core components
-import AddMemberPanel from "./AddMemberPanel.js";
 import { useHistory } from "react-router";
+import AddMemberPanel from "./AddMemberPanel";
 
 const { SearchBar } = Search;
 

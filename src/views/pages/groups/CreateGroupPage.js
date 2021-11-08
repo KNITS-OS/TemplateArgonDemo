@@ -30,7 +30,7 @@ import {
   Input,
   Row,
 } from "reactstrap";
-import AddMemberPanel from "views/demo/AddMemberPanel";
+import AddMemberPanel from "./AddMemberPanel";
 
 const CreateGroupPage = () => {
   // const initialGroupState = {
