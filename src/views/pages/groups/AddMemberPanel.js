@@ -14,31 +14,20 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React, { useState, useEffect, PropTypes } from "react";
-
-// reactstrap components
-import {
-  Button,
-  Card,
-  CardHeader,
-  CardBody,
-  CardImg,
-  CardTitle,
-  FormGroup,
-  Form,
-  Input,
-  ListGroupItem,
-  ListGroup,
-  Progress,
-  Container,
-  Row,
-  Col,
-} from "reactstrap";
-// core components
-
-import Select from "react-select";
 import { categoriesData } from "mock-data/categories.js";
 import { employeesData } from "mock-data/employees.js";
+import React from "react";
+// core components
+import Select from "react-select";
+// reactstrap components
+import {
+  Card,
+  CardBody,
+  CardHeader,
+  Col,
+  FormGroup,
+  Row,
+} from "reactstrap";
 
 function AddMemberPanel(props) {
   const employees = employeesData.map(employee => {
