@@ -37,7 +37,7 @@ let mapData = {
   US: 2920,
 };
 
-function Vector() {
+function WorldOverviewPage() {
   return (
     <>
       <SimpleHeader name="Vector maps" parentName="Maps" />
@@ -144,4 +144,4 @@ function Vector() {
   );
 }
 
-export default Vector;
+export default WorldOverviewPage;

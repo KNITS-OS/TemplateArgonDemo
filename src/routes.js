@@ -30,11 +30,6 @@ import Profile from "views/pages/examples/pages/Profile.js";
 import Icons from "views/pages/examples/components/Icons.js";
 
 //final pages
-import ChartsPage from "views/demo/ChartsPage.js";
-import WorldOverviewPage from "views/demo/WorldOverviewPage.js";
-import ChartsView from "views/pages/dashboards/ChartsView.js";
-import WorldOverviewView from "views/pages/dashboards/WorldOverviewView.js";
-
 import CreateEmployeePage from "views/pages/users/CreateEmployeePage";
 import EmployeesPage from "views/pages/users/EmployeesPage";
 import EmployeeDetailsPage from "views/pages/users/EmployeeDetailsPage";
@@ -42,6 +37,9 @@ import EmployeeDetailsPage from "views/pages/users/EmployeeDetailsPage";
 import CreateGroupPage from "views/pages/groups/CreateGroupPage";
 import GroupsPage from "views/pages/groups/GroupsPage";
 import GroupDetailsPage from "views/pages/groups/GroupDetailsPage";
+
+import ChartsPage from "views/pages/dashboards/ChartsPage";
+import WorldOverviewPage from "views/pages/dashboards/WorldOverviewPage";
 
 const routes = [
   /* Users */
@@ -101,14 +99,14 @@ const routes = [
         path: "/statistics",
         name: "Charts",
         miniName: "NB",
-        component: ChartsView,
+        component: ChartsPage,
         layout: "/admin",
       },
       {
         path: "/world-view",
         name: "World Overview",
         miniName: "WV",
-        component: WorldOverviewView,
+        component: WorldOverviewPage,
         layout: "/admin",
       },
     ],

@@ -20,7 +20,14 @@ import Chart from "chart.js";
 // react plugin used to create charts
 import { Line, Bar, Doughnut, Pie } from "react-chartjs-2";
 // reactstrap components
-import { Card, CardHeader, CardBody, Container, Row, Col } from "reactstrap";
+import {
+  Card,
+  CardHeader,
+  CardBody,
+  Container,
+  Row,
+  Col,
+} from "reactstrap";
 // core components
 import CardsHeader from "components/Headers/CardsHeader.js";
 
