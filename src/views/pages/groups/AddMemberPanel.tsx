@@ -28,18 +28,19 @@ import {
   FormGroup,
   Row,
 } from "reactstrap";
+import { ISelectOption } from "../../../types/types";
 
 interface Props {
-  onchangeRole: () => {};
-  onchangeCountry: () => {};
-  onchangeBunit: () => {};
-  onSelectCareMember: () => {};
+  onChangeRole: (e: ISelectOption) => void;
+  onChangeCountry: (e: ISelectOption) => void;
+  onChangeBunit: (e: ISelectOption) => void;
+  onSelectCareMember: (e: ISelectOption) => void;
 }
 
 const AddMemberPanel = ({
-  onchangeRole,
-  onchangeCountry,
-  onchangeBunit,
+  onChangeRole,
+  onChangeCountry,
+  onChangeBunit,
   onSelectCareMember,
 }: Props) => {
   const employees = employeesData.map(employee => {
@@ -79,7 +80,7 @@ const AddMemberPanel = ({
                     Job Title
                   </label>
                   <Select
-                    onChange={onchangeRole}
+                    onChange={onChangeRole}
                     options={jobTitles}
                     // getOptionValue={(option) => option.value}
                     // getOptionLabel={(option) => option.value}
@@ -92,7 +93,7 @@ const AddMemberPanel = ({
                     Country
                   </label>
                   <Select
-                    onChange={onchangeCountry}
+                    onChange={onChangeCountry}
                     options={countries}
                     // getOptionValue={(option) => option.value}
                     // getOptionLabel={(option) => option.name}
@@ -105,7 +106,7 @@ const AddMemberPanel = ({
                     Business Unit
                   </label>
                   <Select
-                    onChange={onchangeBunit}
+                    onChange={onChangeBunit}
                     options={businessUnits}
                   />
                 </FormGroup>

@@ -44,7 +44,10 @@ const CreateGroupPage = () => {
 
   const [groupName, setGroupName] = useState("");
   const [groupDescription, setGroupDescription] = useState("");
-  const saveGroup = e => {
+
+  const saveGroup = (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+  ) => {
     e.preventDefault();
   };
 
@@ -236,9 +239,9 @@ const CreateGroupPage = () => {
                         {/* <MembersTableComps data={group.members} /> */}
                         <Collapse isOpen={addMembersCollapse}>
                           <AddMemberPanel
-                            onchangeRole={e => console.log(e)}
-                            onchangeCountry={e => console.log(e)}
-                            onchangeBunit={e => console.log(e)}
+                            onChangeRole={e => console.log(e)}
+                            onChangeCountry={e => console.log(e)}
+                            onChangeBunit={e => console.log(e)}
                             onSelectCareMember={e => console.log(e)}
                           />
                         </Collapse>
@@ -339,7 +342,7 @@ const CreateGroupPage = () => {
 
                   <div className="pl-lg-4">
                     <button
-                      onClick={saveGroup}
+                      onClick={e => saveGroup(e)}
                       className="btn btn-success"
                     >
                       Submit

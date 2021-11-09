@@ -19,13 +19,16 @@
 import GradientEmptyHeader from "components/Headers/GradientEmptyHeader";
 import { categoriesData } from "mock-data/categories";
 import { employeesData as employees } from "mock-data/employees";
-import React, { useState } from "react";
+import { useState } from "react";
 // react component for creating dynamic tables
 import BootstrapTable from "react-bootstrap-table-next";
 import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
 import ReactDatetime from "react-datetime";
 import { useHistory } from "react-router";
+
+// @ts-ignore
 import Select from "react-select";
+// @ts-ignore
 import makeAnimated from "react-select/animated";
 // reactstrap components
 import {
@@ -73,23 +76,24 @@ const EmployeesPage = () => {
     console.log("filters: ", filters);
   };
 
-  const goToEmployeeDetails = e => {
+  const goToEmployeeDetails = (e: any) => {
     var { id } = e.target;
     history.push(`/admin/users/employee-details/${id}`);
   };
 
-  const removeEmployee = e => {
+  const removeEmployee = (e: any) => {
     var { id } = e.target;
     let empIndex = employees.findIndex(emp => emp.id !== parseInt(id));
     console.log(employees[empIndex]);
     console.log(employees.length);
-    employees = employees.splice(id, 1);
     console.log(employees.length);
+    // @ts-ignore
+    employees = employees.splice(id, 1);
 
     //history.push('/admin/users/employee-details/'+id);
   };
 
-  const formatActionButtonCell = (cell, row) => {
+  const formatActionButtonCell = (cell: any, row: any) => {
     return (
       <>
         <Button
@@ -162,7 +166,7 @@ const EmployeesPage = () => {
                         id="businessUnits"
                         components={makeAnimated()}
                         options={getBusinessUnits}
-                        onChange={item =>
+                        onChange={(item: any) =>
                           setSearchBusinessUnit(item.value)
                         }
                       />
@@ -180,7 +184,9 @@ const EmployeesPage = () => {
                         id="country"
                         components={makeAnimated()}
                         options={getCountries}
-                        onChange={item => setSearchCountry(item.value)}
+                        onChange={(item: any) =>
+                          setSearchCountry(item.value)
+                        }
                       />
                     </FormGroup>
                   </Col>
@@ -196,7 +202,7 @@ const EmployeesPage = () => {
                         inputProps={{
                           placeholder: "Hire date",
                         }}
-                        onChange={dateAsMoment =>
+                        onChange={(dateAsMoment: any) =>
                           setSearchHiringDate(
                             dateAsMoment.format("D-MM-YYYY"),
                           )
@@ -246,7 +252,7 @@ const EmployeesPage = () => {
                   {
                     dataField: "firstName",
                     text: "firstName",
-                    sort: "First Name",
+                    sort: true,
                   },
                   {
                     dataField: "lastName",
@@ -306,7 +312,6 @@ const EmployeesPage = () => {
                       bootstrap4={true}
                       pagination={pagination}
                       bordered={false}
-                      deleteRow={true}
                     />
                   </div>
                 )}

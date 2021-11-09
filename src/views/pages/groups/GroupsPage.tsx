@@ -17,7 +17,6 @@
 // core components
 import SimpleHeader from "components/Headers/SimpleHeader";
 import { groups } from "mock-data/groups";
-import React from "react";
 // react component for creating dynamic tables
 import BootstrapTable from "react-bootstrap-table-next";
 import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
@@ -28,15 +27,15 @@ import { pagination } from "utils/tableUtils";
 
 const { SearchBar } = Search;
 
-function GroupsPage() {
+const GroupsPage = () => {
   const history = useHistory();
 
-  const groupDetails = e => {
+  const groupDetails = (e: any) => {
     var { id } = e.target;
     history.push(`/admin/groups/group-details/${id}`);
   };
 
-  const formatActionButtonCell = (cell, row) => {
+  const formatActionButtonCell = (cell: any, row: any) => {
     return (
       <>
         <Button
@@ -131,6 +130,6 @@ function GroupsPage() {
       </Container>
     </>
   );
-}
+};
 
 export default GroupsPage;

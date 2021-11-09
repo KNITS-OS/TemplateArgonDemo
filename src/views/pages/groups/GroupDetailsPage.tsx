@@ -17,7 +17,7 @@
 import GradientEmptyHeader from "components/Headers/GradientEmptyHeader";
 import { groups } from "mock-data/groups";
 import { employeesFromIds } from "mock-data/groupUtils";
-import React, { useState } from "react";
+import { useState } from "react";
 import BootstrapTable from "react-bootstrap-table-next";
 import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
 import { useParams } from "react-router-dom";
@@ -43,8 +43,12 @@ import AddMemberPanel from "./AddMemberPanel";
 
 const { SearchBar } = Search;
 
+interface RouteParams {
+  id: string;
+}
+
 const GroupDetailsPage = () => {
-  let { id } = useParams(); //see in routes path: "/users/employee-details/:id",
+  let { id } = useParams<RouteParams>(); //see in routes path: "/users/employee-details/:id",
   const history = useHistory();
   let currentGroup = groups.find(group => group.id === parseInt(id));
 
@@ -63,9 +67,10 @@ const GroupDetailsPage = () => {
     setCurrentMembersCollapse(false);
   };
 
-  const handleInputChange = event => {
-    event.preventDefault();
-    const { name, value } = event.target;
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault();
+    const { name, value } = e.target;
+    // @ts-ignore
     setGroup({ ...group, [name]: value });
   };
 
@@ -74,7 +79,10 @@ const GroupDetailsPage = () => {
     backToSearch();
   };
 
-  const formatActionButtonCell = (cell, row) => {
+  const formatActionButtonCell = (cell: any, row: any) => {
+    console.log("cell", cell);
+    console.log("row", row);
+
     return (
       <>
         <Button
@@ -82,7 +90,10 @@ const GroupDetailsPage = () => {
           className="btn-icon btn-2"
           type="button"
           color="info"
-          onClick={memberDetails}
+          onClick={e =>
+            // @ts-ignore
+            history.push(`/admin/users/employee-details/${e.target.id}`)
+          }
         >
           <span id={row.id} className="btn-inner--icon">
             <i id={row.id} className="ni ni-badge" />
@@ -93,7 +104,7 @@ const GroupDetailsPage = () => {
           className="btn-icon btn-2"
           color="danger"
           type="button"
-          onClick={memberRemove}
+          onClick={e => memberRemove(e)}
         >
           <span id={row.id} className="btn-inner--icon">
             <i id={row.id} className="ni ni-fat-remove" />
@@ -103,17 +114,12 @@ const GroupDetailsPage = () => {
     );
   };
 
-  const memberDetails = e => {
-    var { id } = e.target;
-    history.push("/admin/users/employee-details/" + id);
-  };
-
-  const memberRemove = e => {
+  const memberRemove = (e: any) => {
     var { id } = e.target;
     console.log(id);
   };
 
-  const deactivateGroup = e => {
+  const deactivateGroup = () => {
     // var { id } = e.target;
     console.log("deactivateGroup");
   };
@@ -259,9 +265,9 @@ const GroupDetailsPage = () => {
                         {/* <MembersTableComps data={group.members} /> */}
                         <Collapse isOpen={addMembersCollapse}>
                           <AddMemberPanel
-                            onchangeRole={e => console.log(e)}
-                            onchangeCountry={e => console.log(e)}
-                            onchangeBunit={e => console.log(e)}
+                            onChangeRole={e => console.log(e)}
+                            onChangeCountry={e => console.log(e)}
+                            onChangeBunit={e => console.log(e)}
                             onSelectCareMember={e => console.log(e)}
                           />
                         </Collapse>
@@ -327,6 +333,7 @@ const GroupDetailsPage = () => {
                                 {
                                   dataField: "action",
                                   text: "",
+                                  // @todo find out why this works without giving attributes
                                   formatter: formatActionButtonCell,
                                 },
                               ]}

@@ -124,3 +124,12 @@ export interface View {
 export type LayoutType = "/admin" | "/auth";
 
 export type Theme = "light" | "dark";
+
+export interface ISelectOption {
+  value: string;
+  label: string;
+}
+
+// export type HTMLElementEvent<T extends HTMLElement> = Event & {
+//   target: T;
+// };
