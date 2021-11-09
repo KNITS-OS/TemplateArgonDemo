@@ -40,8 +40,9 @@ import GroupDetailsPage from "views/pages/groups/GroupDetailsPage";
 
 import ChartsPage from "views/pages/dashboards/ChartsPage";
 import WorldOverviewPage from "views/pages/dashboards/WorldOverviewPage";
+import { IRoute } from "./types/types";
 
-const routes = [
+const routes: IRoute[] = [
   /* Users */
   {
     collapse: true,
