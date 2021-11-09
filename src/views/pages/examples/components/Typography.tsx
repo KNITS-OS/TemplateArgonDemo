@@ -14,8 +14,6 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React from "react";
-
 // reactstrap components
 import {
   Card,
@@ -28,7 +26,7 @@ import {
 // core components
 import SimpleHeader from "components/Headers/SimpleHeader";
 
-function Typography() {
+const Typography = () => {
   return (
     <>
       <SimpleHeader name="Typography" parentName="Components" />
@@ -359,6 +357,6 @@ function Typography() {
       </Container>
     </>
   );
-}
+};
 
 export default Typography;

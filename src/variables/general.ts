@@ -18,16 +18,16 @@
 // // // data for populating the calendar in Calendar view
 // #############################
 
-var today = new Date();
-var y = today.getFullYear();
-var m = today.getMonth();
-var d = today.getDate();
+let today = new Date();
+let y = today.getFullYear();
+let m = today.getMonth();
+let d = today.getDate();
 
 // @todo add types
 
 const events = [
   {
-    id: 1,
+    id: "1",
     title: "Call with Dave",
     start: new Date(y, m, 1),
     allDay: true,
@@ -37,7 +37,7 @@ const events = [
   },
 
   {
-    id: 2,
+    id: "2",
     title: "Lunch meeting",
     start: new Date(y, m, d - 1, 10, 30),
     allDay: true,
@@ -47,7 +47,7 @@ const events = [
   },
 
   {
-    id: 3,
+    id: "3",
     title: "All day conference",
     start: new Date(y, m, d + 7, 12, 0),
     allDay: true,
@@ -57,7 +57,7 @@ const events = [
   },
 
   {
-    id: 4,
+    id: "4",
     title: "Meeting with Mary",
     start: new Date(y, m, d - 2),
     allDay: true,
@@ -67,7 +67,7 @@ const events = [
   },
 
   {
-    id: 5,
+    id: "5",
     title: "Winter Hackaton",
     start: new Date(y, m, d + 1, 19, 0),
     allDay: true,
@@ -77,7 +77,7 @@ const events = [
   },
 
   {
-    id: 6,
+    id: "6",
     title: "Digital event",
     start: new Date(y, m, 21),
     allDay: true,
@@ -87,7 +87,7 @@ const events = [
   },
 
   {
-    id: 7,
+    id: "7",
     title: "Marketing event",
     start: new Date(y, m, 21),
     allDay: true,
@@ -97,7 +97,7 @@ const events = [
   },
 
   {
-    id: 8,
+    id: "8",
     title: "Dinner with Family",
     start: new Date(y, m, 19),
     allDay: true,
@@ -107,7 +107,7 @@ const events = [
   },
 
   {
-    id: 9,
+    id: "9",
     title: "Black Friday",
     start: new Date(y, m, 23),
     allDay: true,
@@ -117,7 +117,7 @@ const events = [
   },
 
   {
-    id: 10,
+    id: "10",
     title: "Cyber Week",
     start: new Date(y, m, 2),
     allDay: true,

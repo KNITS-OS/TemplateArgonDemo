@@ -14,7 +14,7 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React from "react";
+import { useState } from "react";
 // react component that copies the given text inside your clipboard
 import { CopyToClipboard } from "react-copy-to-clipboard";
 // reactstrap components
@@ -30,8 +30,9 @@ import {
 // core components
 import SimpleHeader from "components/Headers/SimpleHeader";
 
-function Icons() {
-  const [copiedText, setCopiedText] = React.useState(null);
+const Icons = () => {
+  const [copiedText, setCopiedText] = useState("");
+
   return (
     <>
       <SimpleHeader name="Icons" parentName="Components" />
@@ -2786,6 +2787,6 @@ function Icons() {
       </Container>
     </>
   );
-}
+};
 
 export default Icons;

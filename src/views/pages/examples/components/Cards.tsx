@@ -14,8 +14,6 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React from "react";
-
 // reactstrap components
 import {
   Button,
@@ -36,7 +34,7 @@ import {
 // core components
 import CardsHeader from "components/Headers/CardsHeader";
 
-function Cards() {
+const Cards = () => {
   return (
     <>
       <CardsHeader name="Cards" parentName="Components" />
@@ -535,6 +533,6 @@ function Cards() {
       </Container>
     </>
   );
-}
+};
 
 export default Cards;

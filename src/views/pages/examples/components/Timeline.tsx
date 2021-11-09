@@ -14,8 +14,6 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React from "react";
-
 // reactstrap components
 import {
   Badge,
@@ -29,7 +27,7 @@ import {
 // core components
 import SimpleHeader from "components/Headers/SimpleHeader";
 
-function Timeline() {
+const Timeline = () => {
   return (
     <>
       <SimpleHeader name="Timeline" parentName="Pages" />
@@ -343,6 +341,6 @@ function Timeline() {
       </Container>
     </>
   );
-}
+};
 
 export default Timeline;

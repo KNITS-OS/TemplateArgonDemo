@@ -14,8 +14,6 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React from "react";
-
 // reactstrap components
 import {
   Button,
@@ -30,7 +28,7 @@ import {
 // core components
 import SimpleHeader from "components/Headers/SimpleHeader";
 
-function Buttons() {
+const Buttons = () => {
   return (
     <>
       <SimpleHeader name="Buttons" parentName="Components" />
@@ -451,6 +449,6 @@ function Buttons() {
       </Container>
     </>
   );
-}
+};
 
 export default Buttons;

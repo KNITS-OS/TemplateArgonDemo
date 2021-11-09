@@ -46,7 +46,7 @@ import { events as eventsVariables } from "variables/general";
 
 let calendar;
 
-function CalendarView() {
+const CalendarView = () => {
   const [events, setEvents] = React.useState(eventsVariables);
   const [alert, setAlert] = React.useState(null);
   const [modalAdd, setModalAdd] = React.useState(false);
@@ -517,6 +517,6 @@ function CalendarView() {
       </Container>
     </>
   );
-}
+};
 
 export default CalendarView;

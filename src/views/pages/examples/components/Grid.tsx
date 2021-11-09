@@ -14,21 +14,19 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React from "react";
-
+// core components
+import SimpleHeader from "components/Headers/SimpleHeader";
 // reactstrap components
 import {
   Card,
-  CardHeader,
   CardBody,
+  CardHeader,
+  Col,
   Container,
   Row,
-  Col,
 } from "reactstrap";
-// core components
-import SimpleHeader from "components/Headers/SimpleHeader";
 
-function Grid() {
+const Grid = () => {
   return (
     <>
       <SimpleHeader name="Grid" parentName="Components" />
@@ -205,6 +203,6 @@ function Grid() {
       </Container>
     </>
   );
-}
+};
 
 export default Grid;
