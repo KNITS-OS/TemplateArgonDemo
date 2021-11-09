@@ -73,6 +73,8 @@ export interface Group {
   id: number;
   name: string;
   active: boolean;
+  members: number[];
+  description: string;
 }
 
 export interface CountryList {

@@ -22,6 +22,7 @@ import { Calendar } from "@fullcalendar/core";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import moment from "moment";
 // react plugin for creating vector maps
+//@todo upgrade to @react-jvectormap
 import { VectorMap } from "react-jvectormap";
 // reactstrap components
 import {

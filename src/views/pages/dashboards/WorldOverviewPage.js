@@ -16,6 +16,7 @@
 */
 import React from "react";
 // react plugin for creating vector maps
+//@todo upgrade to @react-jvectormap
 import { VectorMap } from "react-jvectormap";
 
 // reactstrap components

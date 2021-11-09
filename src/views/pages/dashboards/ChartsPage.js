@@ -41,7 +41,7 @@ import {
   chartExample7,
 } from "variables/charts";
 
-// @todo fix react-chartjs-2 errors
+// @todo fix react-chartjs-2 errors when file is tsx
 const ChartsPage = () => {
   if (window.Chart) {
     parseOptions(Chart, chartOptions());
