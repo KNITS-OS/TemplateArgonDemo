@@ -14,19 +14,19 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React, { useRef, useState } from "react";
+import { useRef, useState } from "react";
 // react library for routing
 import { Redirect, Switch, useLocation } from "react-router-dom";
 // import Logo from "assets/img/brand/Logo.png";
 import routes from "routes";
 // core components
-import AdminFooter from "../components/Footers/AdminFooter.js";
+import AdminFooter from "../components/Footers/AdminFooter";
 import AdminNavbar from "../components/Navbars/AdminNavbar";
-import Sidebar from "../components/Sidebar/Sidebar.js";
+import Sidebar from "../components/Sidebar/Sidebar";
 import { getRoutes } from "./GetRoutes";
 import ScrollToTop from "./ScrollToTop";
 
-const Admin: React.FC = () => {
+const Admin = () => {
   const [sidenavOpen, setSidenavOpen] = useState(true);
   const location = useLocation();
   const mainContentRef = useRef(document.createElement("div"));
@@ -58,9 +58,11 @@ const Admin: React.FC = () => {
         sidenavOpen={sidenavOpen}
         logo={{
           innerLink: "/",
+          outerLink: "/",
           imgSrc: require("assets/img/brand/Logo.png").default,
           imgAlt: "...",
         }}
+        rtlActive={false}
       />
       <div className="main-content" ref={mainContentRef}>
         <AdminNavbar

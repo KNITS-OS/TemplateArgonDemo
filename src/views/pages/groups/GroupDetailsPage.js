@@ -14,9 +14,9 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import GradientEmptyHeader from "components/Headers/GradientEmptyHeader.js";
-import { groups } from "mock-data/groups.js";
-import { employeesFromIds } from "mock-data/groupUtils.js";
+import GradientEmptyHeader from "components/Headers/GradientEmptyHeader";
+import { groups } from "mock-data/groups";
+import { employeesFromIds } from "mock-data/groupUtils";
 import React, { useState } from "react";
 import BootstrapTable from "react-bootstrap-table-next";
 import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
@@ -36,7 +36,7 @@ import {
   Input,
   Row,
 } from "reactstrap";
-import { pagination } from "utils/tableUtils.js";
+import { pagination } from "utils/tableUtils";
 // core components
 import { useHistory } from "react-router";
 import AddMemberPanel from "./AddMemberPanel";

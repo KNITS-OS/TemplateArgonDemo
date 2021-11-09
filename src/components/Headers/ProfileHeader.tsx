@@ -14,12 +14,10 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React from "react";
-
 // reactstrap components
 import { Button, Container, Row, Col } from "reactstrap";
 
-function ProfileHeader() {
+const ProfileHeader = () => {
   return (
     <>
       <div
@@ -39,18 +37,19 @@ function ProfileHeader() {
         <Container className="d-flex align-items-center" fluid>
           <Row>
             <Col lg="7" md="10">
-              <h1 className="display-2 text-white">مرحبا جيسي</h1>
+              <h1 className="display-2 text-white">Hello Jesse</h1>
               <p className="text-white mt-0 mb-5">
-                هذه هي صفحة ملفك الشخصي. يمكنك رؤية التقدم الذي أحرزته في عملك
-                وإدارة مشاريعك أو المهام المعينة
+                This is your profile page. You can see the progress you've
+                made with your work and manage your projects or assigned
+                tasks
               </p>
               <Button
                 className="btn-neutral"
                 color="default"
                 href="#pablo"
-                onClick={(e) => e.preventDefault()}
+                onClick={e => e.preventDefault()}
               >
-                تعديل الملف الشخصي
+                Edit profile
               </Button>
             </Col>
           </Row>
@@ -58,6 +57,6 @@ function ProfileHeader() {
       </div>
     </>
   );
-}
+};
 
 export default ProfileHeader;

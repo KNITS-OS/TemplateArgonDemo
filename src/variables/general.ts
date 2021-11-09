@@ -23,6 +23,8 @@ var y = today.getFullYear();
 var m = today.getMonth();
 var d = today.getDate();
 
+// @todo add types
+
 const events = [
   {
     id: 1,

@@ -24,7 +24,7 @@ import routes from "routes";
 import { getRoutes } from "./GetRoutes";
 import ScrollToTop from "./ScrollToTop";
 
-const Auth: React.FC = () => {
+const Auth = () => {
   const mainContentRef = useRef(document.createElement("div"));
 
   useEffect(() => {

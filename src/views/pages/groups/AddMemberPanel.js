@@ -14,8 +14,8 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import { categoriesData } from "mock-data/categories.js";
-import { employeesData } from "mock-data/employees.js";
+import { categoriesData } from "mock-data/categories";
+import { employeesData } from "mock-data/employees";
 import React from "react";
 // core components
 import Select from "react-select";

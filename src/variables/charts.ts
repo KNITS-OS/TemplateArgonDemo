@@ -14,7 +14,8 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-const Chart = require("chart.js");
+import Chart from "chart.js";
+import { Theme } from "../types/types";
 // Only for demo purposes - return a random number to generate datasets
 var randomScalingFactor = function () {
   return Math.round(Math.random() * 100);
@@ -25,6 +26,10 @@ var randomScalingFactor = function () {
 // Code from: https://codepen.io/jedtrow/full/ygRYgo
 //
 
+// @todo Add types to all :any fields
+
+// @todo fix Chart.elements.Rectangle.prototype.draw problem
+// @ts-ignore
 Chart.elements.Rectangle.prototype.draw = function () {
   var ctx = this._chart.ctx;
   var vm = this._view;
@@ -62,10 +67,12 @@ Chart.elements.Rectangle.prototype.draw = function () {
     borderWidth = borderWidth > barSize ? barSize : borderWidth;
     var halfStroke = borderWidth / 2;
     // Adjust borderWidth when bar top position is near vm.base(zero).
-    var borderLeft = left + (borderSkipped !== "left" ? halfStroke * signX : 0);
+    var borderLeft =
+      left + (borderSkipped !== "left" ? halfStroke * signX : 0);
     var borderRight =
       right + (borderSkipped !== "right" ? -halfStroke * signX : 0);
-    var borderTop = top + (borderSkipped !== "top" ? halfStroke * signY : 0);
+    var borderTop =
+      top + (borderSkipped !== "top" ? halfStroke * signY : 0);
     var borderBottom =
       bottom + (borderSkipped !== "bottom" ? -halfStroke * signY : 0);
     // not become a vertical line?
@@ -102,7 +109,7 @@ Chart.elements.Rectangle.prototype.draw = function () {
     startCorner = 0;
   }
 
-  function cornerAt(index) {
+  function cornerAt(index: number) {
     return corners[(startCorner + index) % 4];
   }
 
@@ -138,7 +145,12 @@ Chart.elements.Rectangle.prototype.draw = function () {
     ctx.lineTo(x + width - radius, y);
     ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
     ctx.lineTo(x + width, y + height - radius);
-    ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+    ctx.quadraticCurveTo(
+      x + width,
+      y + height,
+      x + width - radius,
+      y + height,
+    );
     ctx.lineTo(x + radius, y + height);
     ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
     ctx.lineTo(x, y + radius);
@@ -151,7 +163,7 @@ Chart.elements.Rectangle.prototype.draw = function () {
   }
 };
 
-var mode = "light"; //(themeMode) ? themeMode : 'light';
+let mode: Theme = "light"; //(themeMode) ? themeMode : 'light';
 var fonts = {
   base: "Open Sans",
 };
@@ -186,15 +198,17 @@ var colors = {
 // Methods
 
 // Chart.js global options
-function chartOptions() {
+export const chartOptions = () => {
   // Options
   var options = {
     defaults: {
       global: {
         responsive: true,
         maintainAspectRatio: false,
-        defaultColor: mode === "dark" ? colors.gray[700] : colors.gray[600],
-        defaultFontColor: mode === "dark" ? colors.gray[700] : colors.gray[600],
+        defaultColor:
+          mode === "dark" ? colors.gray[700] : colors.gray[600],
+        defaultFontColor:
+          mode === "dark" ? colors.gray[700] : colors.gray[600],
         defaultFontFamily: fonts.base,
         defaultFontSize: 13,
         layout: {
@@ -237,11 +251,11 @@ function chartOptions() {
       },
       doughnut: {
         cutoutPercentage: 83,
-        legendCallback: function (chart) {
+        legendCallback: function (chart: any) {
           var data = chart.data;
           var content = "";
 
-          data.labels.forEach(function (label, index) {
+          data.labels.forEach(function (label: string, index: number) {
             var bgColor = data.datasets[0].backgroundColor[index];
 
             content += '<span class="chart-legend-item">';
@@ -263,7 +277,7 @@ function chartOptions() {
   Chart.scaleService.updateScaleDefaults("linear", {
     gridLines: {
       borderDash: [2],
-      borderDashOffset: [2],
+      borderDashOffset: 2,
       color: mode === "dark" ? colors.gray[900] : colors.gray[300],
       drawBorder: false,
       drawTicks: false,
@@ -271,15 +285,16 @@ function chartOptions() {
       zeroLineWidth: 1,
       zeroLineColor: mode === "dark" ? colors.gray[900] : colors.gray[300],
       zeroLineBorderDash: [2],
-      zeroLineBorderDashOffset: [2],
+      zeroLineBorderDashOffset: 2,
     },
     ticks: {
       beginAtZero: true,
       padding: 10,
-      callback: function (value) {
+      callback: function (value: number) {
         if (!(value % 10)) {
           return value;
         }
+        return null;
       },
     },
   });
@@ -297,10 +312,10 @@ function chartOptions() {
   });
 
   return options;
-}
+};
 
 // Parse global options
-function parseOptions(parent, options) {
+export const parseOptions = (parent: any, options: any) => {
   for (var item in options) {
     if (typeof options[item] !== "object") {
       parent[item] = options[item];
@@ -308,10 +323,10 @@ function parseOptions(parent, options) {
       parseOptions(parent[item], options[item]);
     }
   }
-}
+};
 
 // Example 1 of Chart inside src/views/dashboards/Dashboard.js
-let chartExample1 = {
+export const chartExample1 = {
   options: {
     scales: {
       yAxes: [
@@ -321,10 +336,11 @@ let chartExample1 = {
             zeroLineColor: colors.gray[700],
           },
           ticks: {
-            callback: function (value) {
+            callback: function (value: number) {
               if (!(value % 10)) {
                 return "$" + value + "k";
               }
+              return null;
             },
           },
         },
@@ -332,7 +348,7 @@ let chartExample1 = {
     },
     tooltips: {
       callbacks: {
-        label: function (item, data) {
+        label: function (item: any, data: any) {
           var label = data.datasets[item.datasetIndex].label || "";
           var yLabel = item.yLabel;
           var content = "";
@@ -347,7 +363,7 @@ let chartExample1 = {
       },
     },
   },
-  data1: (canvas) => {
+  data1: () => {
     return {
       labels: ["May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
       datasets: [
@@ -358,7 +374,7 @@ let chartExample1 = {
       ],
     };
   },
-  data2: (canvas) => {
+  data2: () => {
     return {
       labels: ["May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
       datasets: [
@@ -372,7 +388,7 @@ let chartExample1 = {
 };
 
 // Example 2 of Chart inside src/views/dashboards/Dashboard.js and src/views/dashboards/Alternative.js and src/views/pages/Charts.js
-let chartExample2 = {
+export const chartExample2 = {
   options: {
     scales: {
       yAxes: [
@@ -382,11 +398,12 @@ let chartExample2 = {
             zeroLineColor: colors.gray[200],
           },
           ticks: {
-            callback: function (value) {
+            callback: function (value: number) {
               if (!(value % 10)) {
                 //return '$' + value + 'k'
                 return value;
               }
+              return null;
             },
           },
         },
@@ -394,7 +411,7 @@ let chartExample2 = {
     },
     tooltips: {
       callbacks: {
-        label: function (item, data) {
+        label: function (item: any, data: any) {
           var label = data.datasets[item.datasetIndex].label || "";
           var yLabel = item.yLabel;
           var content = "";
@@ -420,7 +437,7 @@ let chartExample2 = {
 };
 
 // Example 3 of Chart inside src/views/dashboards/Alternative.js and src/views/pages/Charts.js
-let chartExample3 = {
+export const chartExample3 = {
   options: {
     scales: {
       yAxes: [
@@ -446,7 +463,7 @@ let chartExample3 = {
 };
 
 // Example 4 of Chart inside src/views/pages/Charts.js
-const chartExample4 = {
+export const chartExample4 = {
   options: {
     scales: {
       yAxes: [
@@ -475,7 +492,7 @@ const chartExample4 = {
 };
 
 // Example 5 of Chart inside src/views/pages/Charts.js
-const chartExample5 = {
+export const chartExample5 = {
   data: {
     labels: ["Danger", "Warning", "Success", "Primary", "Info"],
     datasets: [
@@ -511,7 +528,7 @@ const chartExample5 = {
 };
 
 // Example 6 of Chart inside src/views/pages/Charts.js
-const chartExample6 = {
+export const chartExample6 = {
   data: {
     labels: ["Danger", "Warning", "Success", "Primary", "Info"],
     datasets: [
@@ -547,9 +564,17 @@ const chartExample6 = {
 };
 
 // Example 7 of Chart inside src/views/pages/Charts.js
-const chartExample7 = {
+export const chartExample7 = {
   data: {
-    labels: ["January", "February", "March", "April", "May", "June", "July"],
+    labels: [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+    ],
     datasets: [
       {
         label: "Dataset 1",
@@ -614,16 +639,4 @@ const chartExample7 = {
       ],
     },
   },
-};
-
-module.exports = {
-  chartOptions, // used alonside with the chartExamples variables
-  parseOptions, // used alonside with the chartExamples variables
-  chartExample1, // used inside src/views/dashboards/Dashboard.js
-  chartExample2, // used inside src/views/dashboards/Dashboard.js and src/views/dashboards/Alternative.js and src/views/pages/Charts.js
-  chartExample3, // used inside src/views/dashboards/Alternative.js and src/views/pages/Charts.js
-  chartExample4, // used inside src/views/pages/Charts.js
-  chartExample5, // used inside src/views/pages/Charts.js
-  chartExample6, // used inside src/views/pages/Charts.js
-  chartExample7, // used inside src/views/pages/Charts.js
 };

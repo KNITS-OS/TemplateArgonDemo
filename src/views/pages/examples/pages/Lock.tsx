@@ -14,7 +14,7 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React from "react";
+import { useState } from "react";
 // nodejs library that concatenates classes
 import classnames from "classnames";
 // reactstrap components
@@ -33,13 +33,16 @@ import {
   Col,
 } from "reactstrap";
 // core components
-import AuthHeader from "components/Headers/AuthHeader.js";
+import AuthHeader from "components/Headers/AuthHeader";
 
-function Lock() {
-  const [focused, setFocused] = React.useState(false);
+const Lock = () => {
+  const [focused, setFocused] = useState(false);
   return (
     <>
-      <AuthHeader title="Lock screen" lead="Better to be safe than sorry." />
+      <AuthHeader
+        title="Lock screen"
+        lead="Better to be safe than sorry."
+      />
       <Container className="mt--8 pb-5">
         <Row className="justify-content-center">
           <Col lg="5" md="7">
@@ -92,6 +95,6 @@ function Lock() {
       </Container>
     </>
   );
-}
+};
 
 export default Lock;

@@ -15,8 +15,8 @@
 
 */
 // core components
-import SimpleHeader from "components/Headers/SimpleHeader.js";
-import { groups } from "mock-data/groups.js";
+import SimpleHeader from "components/Headers/SimpleHeader";
+import { groups } from "mock-data/groups";
 import React from "react";
 // react component for creating dynamic tables
 import BootstrapTable from "react-bootstrap-table-next";

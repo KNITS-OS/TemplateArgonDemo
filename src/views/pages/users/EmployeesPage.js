@@ -16,9 +16,9 @@
 */
 
 // core components
-import GradientEmptyHeader from "components/Headers/GradientEmptyHeader.js";
-import { categoriesData } from "mock-data/categories.js";
-import { employeesData as employees } from "mock-data/employees.js";
+import GradientEmptyHeader from "components/Headers/GradientEmptyHeader";
+import { categoriesData } from "mock-data/categories";
+import { employeesData as employees } from "mock-data/employees";
 import React, { useState } from "react";
 // react component for creating dynamic tables
 import BootstrapTable from "react-bootstrap-table-next";

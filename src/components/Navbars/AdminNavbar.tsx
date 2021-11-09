@@ -49,11 +49,7 @@ interface Props {
   toggleSidenav: () => void;
 }
 
-const AdminNavbar: React.FC<Props> = ({
-  theme,
-  sidenavOpen,
-  toggleSidenav,
-}) => {
+const AdminNavbar = ({ theme, sidenavOpen, toggleSidenav }: Props) => {
   // function that on mobile devices makes the search open
   const openSearch = () => {
     document.body.classList.add("g-navbar-search-showing");

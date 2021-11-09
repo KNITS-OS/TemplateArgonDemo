@@ -1,16 +1,14 @@
-import {employeesData as employees } from "./employees.js";
+import { employeesData as employees } from "./employees";
 
-export const employeesFromIds = (employeeIds) =>{
+export const employeesFromIds = employeeIds => {
+  let groupMembers = employees.filter(employee => {
+    for (let empId of employeeIds) {
+      if (employee.id === empId) {
+        return true;
+      }
+    }
 
-    let groupMembers = employees.filter((employee) => {
-             
-        for (let empId of employeeIds ){
-            if (employee.id === empId){
-                return true;
-            }           
-        }        
-
-        return false;
-    });
-    return groupMembers;
-}
+    return false;
+  });
+  return groupMembers;
+};

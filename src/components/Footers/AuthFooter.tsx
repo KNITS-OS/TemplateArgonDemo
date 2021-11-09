@@ -15,12 +15,10 @@
 
 */
 /*eslint-disable*/
-import React from "react";
-
 // reactstrap components
 import { NavItem, NavLink, Nav, Container, Row, Col } from "reactstrap";
 
-function AuthFooter() {
+const AuthFooter = () => {
   return (
     <>
       <footer className="py-5" id="footer-main">
@@ -79,6 +77,6 @@ function AuthFooter() {
       </footer>
     </>
   );
-}
+};
 
 export default AuthFooter;

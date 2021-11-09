@@ -16,18 +16,18 @@
 */
 
 //examples
-import Buttons from "views/pages/examples/components/Buttons.js";
-import Calendar from "views/pages/examples/components/Calendar.js";
-import Cards from "views/pages/examples/components/Cards.js";
-import Components from "views/pages/examples/forms/Components.js";
-import Elements from "views/pages/examples/forms/Elements.js";
-import Validation from "views/pages/examples/forms/Validation.js";
-import Notifications from "views/pages/examples/components/Notifications.js";
-import Timeline from "views/pages/examples/components/Timeline.js";
-import Typography from "views/pages/examples/components/Typography.js";
-import Pricing from "views/pages/examples/pages/Pricing.js";
-import Profile from "views/pages/examples/pages/Profile.js";
-import Icons from "views/pages/examples/components/Icons.js";
+import Buttons from "views/pages/examples/components/Buttons";
+import Calendar from "views/pages/examples/components/Calendar";
+import Cards from "views/pages/examples/components/Cards";
+import Components from "views/pages/examples/forms/Components";
+import Elements from "views/pages/examples/forms/Elements";
+import Validation from "views/pages/examples/forms/Validation";
+import Notifications from "views/pages/examples/components/Notifications";
+import Timeline from "views/pages/examples/components/Timeline";
+import Typography from "views/pages/examples/components/Typography";
+import Pricing from "views/pages/examples/pages/Pricing";
+import Profile from "views/pages/examples/pages/Profile";
+import Icons from "views/pages/examples/components/Icons";
 
 //final pages
 import CreateEmployeePage from "views/pages/users/CreateEmployeePage";

@@ -14,7 +14,6 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React from "react";
 // javascipt plugin for creating charts
 import Chart from "chart.js";
 // react plugin used to create charts
@@ -29,7 +28,7 @@ import {
   Col,
 } from "reactstrap";
 // core components
-import CardsHeader from "components/Headers/CardsHeader.js";
+import CardsHeader from "components/Headers/CardsHeader";
 
 import {
   chartOptions,
@@ -40,9 +39,10 @@ import {
   chartExample5,
   chartExample6,
   chartExample7,
-} from "variables/charts.js";
+} from "variables/charts";
 
-function ChartsPage() {
+// @todo fix react-chartjs-2 errors
+const ChartsPage = () => {
   if (window.Chart) {
     parseOptions(Chart, chartOptions());
   }
@@ -167,6 +167,6 @@ function ChartsPage() {
       </Container>
     </>
   );
-}
+};
 
 export default ChartsPage;

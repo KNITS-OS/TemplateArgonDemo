@@ -14,19 +14,17 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React from "react";
-
 // reactstrap components
 import {
   Breadcrumb,
   BreadcrumbItem,
   Button,
+  Col,
   Container,
   Row,
-  Col,
 } from "reactstrap";
 
-function AlternativeHeader() {
+const AlternativeHeader = () => {
   return (
     <>
       <div className="header pb-6">
@@ -40,12 +38,12 @@ function AlternativeHeader() {
                   listClassName="breadcrumb-links"
                 >
                   <BreadcrumbItem>
-                    <a href="#pablo" onClick={(e) => e.preventDefault()}>
+                    <a href="#pablo" onClick={e => e.preventDefault()}>
                       <i className="fas fa-home" />
                     </a>
                   </BreadcrumbItem>
                   <BreadcrumbItem>
-                    <a href="#pablo" onClick={(e) => e.preventDefault()}>
+                    <a href="#pablo" onClick={e => e.preventDefault()}>
                       Dashboards
                     </a>
                   </BreadcrumbItem>
@@ -59,7 +57,7 @@ function AlternativeHeader() {
                   className="btn-neutral"
                   color=""
                   href="#pablo"
-                  onClick={(e) => e.preventDefault()}
+                  onClick={e => e.preventDefault()}
                   size="sm"
                 >
                   New
@@ -68,7 +66,7 @@ function AlternativeHeader() {
                   className="btn-neutral"
                   color=""
                   href="#pablo"
-                  onClick={(e) => e.preventDefault()}
+                  onClick={e => e.preventDefault()}
                   size="sm"
                 >
                   Filters
@@ -80,6 +78,6 @@ function AlternativeHeader() {
       </div>
     </>
   );
-}
+};
 
 export default AlternativeHeader;

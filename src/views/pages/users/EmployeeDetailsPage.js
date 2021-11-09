@@ -15,8 +15,8 @@
 
 */
 // core components
-import GradientEmptyHeader from "components/Headers/GradientEmptyHeader.js";
-import { employeesData as employees } from "mock-data/employees.js";
+import GradientEmptyHeader from "components/Headers/GradientEmptyHeader";
+import { employeesData as employees } from "mock-data/employees";
 import React from "react";
 import { useParams } from "react-router-dom";
 // reactstrap components

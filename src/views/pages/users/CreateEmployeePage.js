@@ -15,7 +15,7 @@
 
 */
 // core components
-import GradientEmptyHeader from "components/Headers/GradientEmptyHeader.js";
+import GradientEmptyHeader from "components/Headers/GradientEmptyHeader";
 import React, { useState } from "react";
 import { useHistory } from "react-router";
 // reactstrap components

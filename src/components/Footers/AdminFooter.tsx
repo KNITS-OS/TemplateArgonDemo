@@ -15,19 +15,15 @@
 
 */
 /*eslint-disable*/
-import React from "react";
-
 // reactstrap components
-import { NavItem, NavLink, Nav, Container, Row, Col } from "reactstrap";
+import { Container } from "reactstrap";
 
-function AdminFooter() {
+const AdminFooter = () => {
   return (
     <>
-      <Container fluid>
-       
-      </Container>
+      <Container fluid></Container>
     </>
   );
-}
+};
 
 export default AdminFooter;
