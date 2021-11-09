@@ -14,7 +14,6 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React from "react";
 // reactstrap components
 import {
   Card,
@@ -31,7 +30,7 @@ import {
 // core components
 import SimpleHeader from "components/Headers/SimpleHeader";
 
-function Elements() {
+const Elements = () => {
   return (
     <>
       <SimpleHeader name="Form elements" parentName="Forms" />
@@ -230,7 +229,7 @@ function Elements() {
                       </label>
                       <Input
                         id="exampleFormControlSelect2"
-                        multiple="multiple"
+                        multiple={true}
                         type="select"
                       >
                         <option>1</option>
@@ -600,7 +599,7 @@ function Elements() {
                       </label>
                       <Input
                         id="exampleFormControlSelect6"
-                        multiple="multiple"
+                        multiple={true}
                         type="select"
                       >
                         <option>1</option>
@@ -620,7 +619,7 @@ function Elements() {
                       <Input
                         disabled
                         id="exampleFormControlSelect4"
-                        multiple="multiple"
+                        multiple={true}
                         type="select"
                       >
                         <option>1</option>
@@ -793,6 +792,6 @@ function Elements() {
       </Container>
     </>
   );
-}
+};
 
 export default Elements;

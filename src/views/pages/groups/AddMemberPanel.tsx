@@ -16,7 +16,7 @@
 */
 import { categoriesData } from "mock-data/categories";
 import { employeesData } from "mock-data/employees";
-import React from "react";
+// @ts-ignore
 // core components
 import Select from "react-select";
 // reactstrap components
@@ -29,7 +29,19 @@ import {
   Row,
 } from "reactstrap";
 
-function AddMemberPanel(props) {
+interface Props {
+  onchangeRole: () => {};
+  onchangeCountry: () => {};
+  onchangeBunit: () => {};
+  onSelectCareMember: () => {};
+}
+
+const AddMemberPanel = ({
+  onchangeRole,
+  onchangeCountry,
+  onchangeBunit,
+  onSelectCareMember,
+}: Props) => {
   const employees = employeesData.map(employee => {
     return { value: employee.id, label: employee.internationalName };
   });
@@ -67,7 +79,7 @@ function AddMemberPanel(props) {
                     Job Title
                   </label>
                   <Select
-                    onChange={props.onchangeRole}
+                    onChange={onchangeRole}
                     options={jobTitles}
                     // getOptionValue={(option) => option.value}
                     // getOptionLabel={(option) => option.value}
@@ -80,7 +92,7 @@ function AddMemberPanel(props) {
                     Country
                   </label>
                   <Select
-                    onChange={props.onchangeCountry}
+                    onChange={onchangeCountry}
                     options={countries}
                     // getOptionValue={(option) => option.value}
                     // getOptionLabel={(option) => option.name}
@@ -93,7 +105,7 @@ function AddMemberPanel(props) {
                     Business Unit
                   </label>
                   <Select
-                    onChange={props.onchangeBunit}
+                    onChange={onchangeBunit}
                     options={businessUnits}
                   />
                 </FormGroup>
@@ -105,7 +117,7 @@ function AddMemberPanel(props) {
                   </label>
                   <Select
                     isMulti
-                    onChange={props.onSelectCareMember}
+                    onChange={onSelectCareMember}
                     options={employees}
                   />
                 </FormGroup>
@@ -116,13 +128,6 @@ function AddMemberPanel(props) {
       </CardBody>
     </Card>
   );
-}
+};
 
 export default AddMemberPanel;
-
-// AddMemberPanel.propTypes = {
-//   onchangeRole: PropTypes.func,
-//   onchangeCountry: PropTypes.func,
-//   onchangeBunit: PropTypes.func,
-//   onSelectCareMember: PropTypes.func
-// };

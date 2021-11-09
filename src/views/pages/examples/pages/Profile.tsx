@@ -14,7 +14,6 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React from "react";
 
 // reactstrap components
 import {
@@ -37,7 +36,7 @@ import {
 // core components
 import ProfileHeader from "components/Headers/ProfileHeader";
 
-function Profile() {
+const Profile = () => {
   return (
     <>
       <ProfileHeader />
@@ -536,6 +535,6 @@ function Profile() {
       </Container>
     </>
   );
-}
+};
 
 export default Profile;

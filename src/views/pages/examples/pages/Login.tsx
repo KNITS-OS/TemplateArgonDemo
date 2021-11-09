@@ -14,7 +14,7 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React from "react";
+import { useState } from "react";
 // nodejs library that concatenates classes
 import classnames from "classnames";
 // reactstrap components
@@ -36,9 +36,9 @@ import {
 // core components
 import AuthHeader from "components/Headers/AuthHeader";
 
-function Login() {
-  const [focusedEmail, setfocusedEmail] = React.useState(false);
-  const [focusedPassword, setfocusedPassword] = React.useState(false);
+const Login = () => {
+  const [focusedEmail, setfocusedEmail] = useState(false);
+  const [focusedPassword, setfocusedPassword] = useState(false);
   return (
     <>
       <AuthHeader
@@ -179,6 +179,6 @@ function Login() {
       </Container>
     </>
   );
-}
+};
 
 export default Login;

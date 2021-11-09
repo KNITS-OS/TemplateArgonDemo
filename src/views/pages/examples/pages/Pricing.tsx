@@ -14,8 +14,6 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React from "react";
-
 // reactstrap components
 import {
   Button,
@@ -31,7 +29,7 @@ import {
 // core components
 import AuthHeader from "components/Headers/AuthHeader";
 
-function Pricing() {
+const Pricing = () => {
   return (
     <>
       <AuthHeader title="Choose the best plan for your business" lead="" />
@@ -284,6 +282,6 @@ function Pricing() {
       </Container>
     </>
   );
-}
+};
 
 export default Pricing;
