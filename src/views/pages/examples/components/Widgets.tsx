@@ -22,8 +22,7 @@ import { Calendar } from "@fullcalendar/core";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import moment from "moment";
 // react plugin for creating vector maps
-//@todo upgrade to @react-jvectormap
-import { VectorMap } from "react-jvectormap";
+import { VectorMap } from "@react-jvectormap/core";
 // reactstrap components
 import {
   Badge,
@@ -51,27 +50,30 @@ import {
 import CardsHeader from "components/Headers/CardsHeader";
 
 import { widgetEvents } from "variables/general";
+// this is imported like this for bundling optimizations purposes
+import worldMill from "@react-jvectormap/world/dist/worldMill.json";
 
-let mapData = {
-  AU: 760,
-  BR: 550,
-  CA: 120,
-  DE: 1300,
-  FR: 540,
-  GB: 690,
-  GE: 200,
-  IN: 200,
-  RO: 600,
-  RU: 300,
-  US: 2920,
-};
+let mapData = [760, 550, 120, 1300, 540, 690, 200, 200, 600, 300, 2920];
+// let mapData = {
+//   AU: 760,
+//   BR: 550,
+//   CA: 120,
+//   DE: 1300,
+//   FR: 540,
+//   GB: 690,
+//   GE: 200,
+//   IN: 200,
+//   RO: 600,
+//   RU: 300,
+//   US: 2920,
+// };
 
 function Widgets() {
   const [nameOnCard, setnameOnCard] = React.useState(false);
   const [cardNumber, setcardNumber] = React.useState(false);
   const [date, setdate] = React.useState(false);
   const [ccv, setccv] = React.useState(false);
-  const widgetCalendarRef = React.useRef(null);
+  const widgetCalendarRef = React.useRef(document.createElement("div"));
   React.useEffect(() => {
     let calendar = new Calendar(widgetCalendarRef.current, {
       plugins: [dayGridPlugin],
@@ -79,7 +81,7 @@ function Widgets() {
       selectable: true,
       editable: true,
       events: widgetEvents,
-      headerToolbar: "",
+      headerToolbar: false,
     });
     calendar.render();
   }, []);
@@ -821,29 +823,29 @@ function Widgets() {
               </CardHeader>
               <CardBody>
                 <VectorMap
-                  containerClassName="vector-map vector-map-sm"
-                  containerStyle={{
-                    width: "100%",
-                    height: "280px",
-                  }}
-                  map={"world_mill"}
+                  // containerClassName="vector-map vector-map-sm"
+                  // containerStyle={{
+                  //   width: "100%",
+                  //   height: "280px",
+                  // }}
+                  map={worldMill}
                   zoomOnScroll={false}
-                  scaleColors={["#f00", "#0071A4"]}
-                  normalizeFunction="polynomial"
-                  hoverOpacity={0.7}
-                  hoverColor={false}
+                  // scaleColors={["#f00", "#0071A4"]}
+                  // normalizeFunction="polynomial"
+                  // hoverOpacity={0.7}
+                  // hoverColor={false}
                   backgroundColor="transparent"
                   regionStyle={{
                     initial: {
                       fill: "#e9ecef",
-                      "fill-opacity": 0.8,
+                      fillOpacity: 0.8,
                       stroke: "none",
-                      "stroke-width": 0,
-                      "stroke-opacity": 1,
+                      strokeWidth: 0,
+                      strokeOpacity: 1,
                     },
                     hover: {
                       fill: "#dee2e6",
-                      "fill-opacity": 0.8,
+                      fillOpacity: 0.8,
                       cursor: "pointer",
                     },
                     selected: {
@@ -854,11 +856,11 @@ function Widgets() {
                   markerStyle={{
                     initial: {
                       fill: "#fb6340",
-                      "stroke-width": 0,
+                      strokeWidth: 0,
                     },
                     hover: {
                       fill: "#11cdef",
-                      "stroke-width": 0,
+                      strokeWidth: 0,
                     },
                   }}
                   markers={[
@@ -903,8 +905,9 @@ function Widgets() {
                     regions: [
                       {
                         values: mapData,
-                        scale: ["#ced4da", "#adb5bd"],
+                        // scale: ["#ced4da", "#adb5bd"],
                         normalizeFunction: "polynomial",
+                        attribute: "fill",
                       },
                     ],
                   }}

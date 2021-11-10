@@ -14,29 +14,16 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React from "react";
 // react plugin for creating vector maps
-//@todo upgrade to @react-jvectormap
-import { VectorMap } from "react-jvectormap";
+import { VectorMap } from "@react-jvectormap/core";
+import worldMill from "@react-jvectormap/world/dist/worldMill.json";
 
 // reactstrap components
 import { Card, CardBody, Container, Row } from "reactstrap";
 // core components
 import SimpleHeader from "components/Headers/SimpleHeader";
 
-let mapData = {
-  AU: 760,
-  BR: 550,
-  CA: 120,
-  DE: 1300,
-  FR: 540,
-  GB: 690,
-  GE: 200,
-  IN: 200,
-  RO: 600,
-  RU: 300,
-  US: 2920,
-};
+let mapData = [760, 550, 120, 1300, 540, 690, 200, 200, 600, 300, 2920];
 
 function WorldOverviewPage() {
   return (
@@ -48,29 +35,29 @@ function WorldOverviewPage() {
             <Card>
               <CardBody className="pt-0">
                 <VectorMap
-                  containerClassName="vector-map"
-                  containerStyle={{
+                  className="vector-map"
+                  style={{
                     width: "100%",
                     height: "600px",
                   }}
-                  map={"world_mill"}
+                  map={worldMill}
                   zoomOnScroll={false}
-                  scaleColors={["#f00", "#0071A4"]}
-                  normalizeFunction="polynomial"
-                  hoverOpacity={0.7}
-                  hoverColor={false}
+                  // scaleColors={["#f00", "#0071A4"]}
+                  // normalizeFunction="polynomial"
+                  // hoverOpacity={0.7}
+                  // hoverColor={false}
                   backgroundColor="transparent"
                   regionStyle={{
                     initial: {
                       fill: "#e9ecef",
-                      "fill-opacity": 0.8,
+                      fillOpacity: 0.8,
                       stroke: "none",
-                      "stroke-width": 0,
-                      "stroke-opacity": 1,
+                      strokeWidth: 0,
+                      strokeOpacity: 1,
                     },
                     hover: {
                       fill: "#dee2e6",
-                      "fill-opacity": 0.8,
+                      fillOpacity: 0.8,
                       cursor: "pointer",
                     },
                     selected: {
@@ -81,11 +68,11 @@ function WorldOverviewPage() {
                   markerStyle={{
                     initial: {
                       fill: "#fb6340",
-                      "stroke-width": 0,
+                      strokeWidth: 0,
                     },
                     hover: {
                       fill: "#11cdef",
-                      "stroke-width": 0,
+                      strokeWidth: 0,
                     },
                   }}
                   markers={[
@@ -130,8 +117,9 @@ function WorldOverviewPage() {
                     regions: [
                       {
                         values: mapData,
-                        scale: ["#ced4da", "#adb5bd"],
+                        // scale: ["#ced4da", "#adb5bd"],
                         normalizeFunction: "polynomial",
+                        attribute: "fill",
                       },
                     ],
                   }}
