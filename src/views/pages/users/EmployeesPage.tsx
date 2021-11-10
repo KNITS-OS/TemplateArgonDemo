@@ -74,8 +74,7 @@ const EmployeesPage = () => {
     console.log(employees[empIndex]);
     console.log(employees.length);
     console.log(employees.length);
-    // @ts-ignore
-    employees = employees.splice(id, 1);
+    // employees = employees.splice(id, 1);
 
     //history.push('/admin/users/employee-details/'+id);
   };

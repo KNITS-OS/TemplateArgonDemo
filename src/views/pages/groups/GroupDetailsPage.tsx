@@ -20,6 +20,8 @@ import { employeesFromIds } from "mock-data/groupUtils";
 import { useState } from "react";
 import BootstrapTable from "react-bootstrap-table-next";
 import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
+// core components
+import { useHistory } from "react-router";
 import { useParams } from "react-router-dom";
 // reactstrap components
 import {
@@ -37,8 +39,7 @@ import {
   Row,
 } from "reactstrap";
 import { pagination } from "utils/tableUtils";
-// core components
-import { useHistory } from "react-router";
+import { Employee, Group } from "../../../types/types";
 import AddMemberPanel from "./AddMemberPanel";
 
 const { SearchBar } = Search;
@@ -50,13 +51,16 @@ interface RouteParams {
 const GroupDetailsPage = () => {
   let { id } = useParams<RouteParams>(); //see in routes path: "/users/employee-details/:id",
   const history = useHistory();
-  let currentGroup = groups.find(group => group.id === parseInt(id));
 
-  const [group, setGroup] = useState(currentGroup);
+  let currentGroup = groups.find(
+    group => group.id === parseInt(id),
+  ) as Group;
+
   const [currentMembersCollapse, setCurrentMembersCollapse] =
     useState(false);
   const [addMembersCollapse, setAddMembersCollapse] = useState(false);
 
+  const [group, setGroup] = useState<Group>(currentGroup);
   const toggleCurrentMembers = () => {
     setCurrentMembersCollapse(!currentMembersCollapse);
     setAddMembersCollapse(false);
@@ -70,8 +74,9 @@ const GroupDetailsPage = () => {
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
     const { name, value } = e.target;
-    // @ts-ignore
-    setGroup({ ...group, [name]: value });
+    let newGroup: Group = { ...group, [name]: value };
+
+    setGroup(newGroup);
   };
 
   const handleSaveClick = () => {
@@ -79,44 +84,47 @@ const GroupDetailsPage = () => {
     backToSearch();
   };
 
-  const formatActionButtonCell = (cell: any, row: any) => {
-    console.log("cell", cell);
-    console.log("row", row);
+  const formatActionButtonCell = (_: undefined, row: Employee) => {
+    const { id } = row;
+
+    let employeeId = id.toString();
 
     return (
       <>
         <Button
-          id={row.id}
+          id={employeeId}
           className="btn-icon btn-2"
           type="button"
           color="info"
-          onClick={e =>
-            // @ts-ignore
-            history.push(`/admin/users/employee-details/${e.target.id}`)
-          }
+          onClick={e => memberDetails(e)}
         >
-          <span id={row.id} className="btn-inner--icon">
-            <i id={row.id} className="ni ni-badge" />
+          <span id={employeeId} className="btn-inner--icon">
+            <i id={employeeId} className="ni ni-badge" />
           </span>
         </Button>
         <Button
-          id={row.id}
+          id={employeeId}
           className="btn-icon btn-2"
           color="danger"
           type="button"
           onClick={e => memberRemove(e)}
         >
-          <span id={row.id} className="btn-inner--icon">
-            <i id={row.id} className="ni ni-fat-remove" />
+          <span id={employeeId} className="btn-inner--icon">
+            <i id={employeeId} className="ni ni-fat-remove" />
           </span>
         </Button>
       </>
     );
   };
 
-  const memberRemove = (e: any) => {
-    var { id } = e.target;
-    console.log(id);
+  const memberRemove = (e: React.MouseEvent<HTMLButtonElement>) => {
+    let element = e.target as HTMLButtonElement;
+    console.log(element.id);
+  };
+
+  const memberDetails = (e: React.MouseEvent<HTMLButtonElement>) => {
+    let element = e.target as HTMLButtonElement;
+    history.push(`/admin/users/employee-details/${element.id}`);
   };
 
   const deactivateGroup = () => {
@@ -208,7 +216,7 @@ const GroupDetailsPage = () => {
                             <Input
                               id="input-last-name"
                               value={group.name}
-                              name="groupName"
+                              name="name"
                               onChange={handleInputChange}
                               type="text"
                             />
@@ -227,7 +235,7 @@ const GroupDetailsPage = () => {
                             <Input
                               id="input-last-name"
                               value={group.description}
-                              name="groupDesc"
+                              name="description"
                               onChange={handleInputChange}
                               rows="4"
                               type="textarea"
@@ -265,12 +273,10 @@ const GroupDetailsPage = () => {
                         {/* <MembersTableComps data={group.members} /> */}
                         <Collapse isOpen={addMembersCollapse}>
                           <AddMemberPanel
-                            onChangeRole={option => console.log(option)}
-                            onChangeCountry={option => console.log(option)}
-                            onChangeBunit={option => console.log(option)}
-                            onSelectCareMember={option =>
-                              console.log(option)
-                            }
+                            onChangeRole={item => console.log(item)}
+                            onChangeCountry={item => console.log(item)}
+                            onChangeBunit={item => console.log(item)}
+                            onSelectCareMember={item => console.log(item)}
                           />
                         </Collapse>
                         <Collapse isOpen={currentMembersCollapse}>
@@ -335,7 +341,6 @@ const GroupDetailsPage = () => {
                                 {
                                   dataField: "action",
                                   text: "",
-                                  // @todo find out why this works without giving attributes
                                   formatter: formatActionButtonCell,
                                 },
                               ]}
