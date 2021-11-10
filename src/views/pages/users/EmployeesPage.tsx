@@ -17,7 +17,6 @@
 
 // core components
 import GradientEmptyHeader from "components/Headers/GradientEmptyHeader";
-import { categoriesData } from "mock-data/categories";
 import { employeesData as employees } from "mock-data/employees";
 import { useState } from "react";
 // react component for creating dynamic tables
@@ -25,11 +24,7 @@ import BootstrapTable from "react-bootstrap-table-next";
 import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
 import ReactDatetime from "react-datetime";
 import { useHistory } from "react-router";
-
-// @ts-ignore
 import Select from "react-select";
-// @ts-ignore
-import makeAnimated from "react-select/animated";
 // reactstrap components
 import {
   Button,
@@ -43,6 +38,10 @@ import {
   Row,
 } from "reactstrap";
 import { pagination } from "utils/tableUtils";
+import {
+  getSelectBusinessUnits,
+  getSelectCountries,
+} from "../../../utils/fetchData";
 
 const { SearchBar } = Search;
 
@@ -53,18 +52,6 @@ const EmployeesPage = () => {
   const [searchBusinessUnit, setSearchBusinessUnit] = useState("");
   const [searchCountry, setSearchCountry] = useState("");
   const [searchHiringDate, setSearchHiringDate] = useState(null);
-
-  const getBusinessUnits = categoriesData.businessUnits.map(
-    businessUnit => {
-      return { value: businessUnit.id, label: businessUnit.name };
-    },
-  );
-
-  const getCountries = categoriesData.countryListAllIsoData.map(
-    country => {
-      return { value: country.code, label: country.name };
-    },
-  );
 
   const findByAllParameters = () => {
     let filters = {
@@ -164,10 +151,9 @@ const EmployeesPage = () => {
                       </label>
                       <Select
                         id="businessUnits"
-                        components={makeAnimated()}
-                        options={getBusinessUnits}
-                        onChange={(item: any) =>
-                          setSearchBusinessUnit(item.value)
+                        options={getSelectBusinessUnits}
+                        onChange={item =>
+                          item && setSearchBusinessUnit(item.value)
                         }
                       />
                     </FormGroup>
@@ -182,10 +168,9 @@ const EmployeesPage = () => {
                       </label>
                       <Select
                         id="country"
-                        components={makeAnimated()}
-                        options={getCountries}
-                        onChange={(item: any) =>
-                          setSearchCountry(item.value)
+                        options={getSelectCountries}
+                        onChange={item =>
+                          item && setSearchCountry(item.value)
                         }
                       />
                     </FormGroup>

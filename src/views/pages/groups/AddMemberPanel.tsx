@@ -14,11 +14,8 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import { categoriesData } from "mock-data/categories";
-import { employeesData } from "mock-data/employees";
-// @ts-ignore
 // core components
-import Select from "react-select";
+import Select, { MultiValue, SingleValue } from "react-select";
 // reactstrap components
 import {
   Card,
@@ -28,13 +25,18 @@ import {
   FormGroup,
   Row,
 } from "reactstrap";
-import { ISelectOption } from "../../../types/types";
+import { OptionType } from "../../../types/types";
+import {
+  getSelectBusinessUnits,
+  getSelectCountries,
+  getSelectEmployees,
+} from "../../../utils/fetchData";
 
 interface Props {
-  onChangeRole: (e: ISelectOption) => void;
-  onChangeCountry: (e: ISelectOption) => void;
-  onChangeBunit: (e: ISelectOption) => void;
-  onSelectCareMember: (e: ISelectOption) => void;
+  onChangeRole: (option: SingleValue<OptionType>) => void;
+  onChangeCountry: (option: SingleValue<OptionType>) => void;
+  onChangeBunit: (option: SingleValue<OptionType>) => void;
+  onSelectCareMember: (option: MultiValue<OptionType>) => void;
 }
 
 const AddMemberPanel = ({
@@ -43,22 +45,13 @@ const AddMemberPanel = ({
   onChangeBunit,
   onSelectCareMember,
 }: Props) => {
-  const employees = employeesData.map(employee => {
-    return { value: employee.id, label: employee.internationalName };
-  });
-  const businessUnits = categoriesData.businessUnits.map(businessUnit => {
-    return { value: businessUnit.id, label: businessUnit.name };
-  });
-  const countries = categoriesData.countryListAllIsoData.map(country => {
-    return { value: country.code, label: country.name };
-  });
-  const jobTitles = [
-    { value: 1, label: "product manager" },
-    { value: 2, label: "qa engineer" },
-    { value: 3, label: "hr consultant" },
-    { value: 4, label: "office manager" },
-    { value: 5, label: "sales representative" },
-    { value: 6, label: "logistics consultant" },
+  const jobTitles: OptionType[] = [
+    { value: "1", label: "product manager" },
+    { value: "2", label: "qa engineer" },
+    { value: "3", label: "hr consultant" },
+    { value: "4", label: "office manager" },
+    { value: "5", label: "sales representative" },
+    { value: "6", label: "logistics consultant" },
   ];
 
   return (
@@ -80,10 +73,10 @@ const AddMemberPanel = ({
                     Job Title
                   </label>
                   <Select
-                    onChange={onChangeRole}
+                    onChange={item => onChangeRole(item)}
                     options={jobTitles}
-                    // getOptionValue={(option) => option.value}
-                    // getOptionLabel={(option) => option.value}
+                    getOptionValue={option => option.value}
+                    getOptionLabel={option => option.label}
                   />
                 </FormGroup>
               </Col>
@@ -93,10 +86,10 @@ const AddMemberPanel = ({
                     Country
                   </label>
                   <Select
-                    onChange={onChangeCountry}
-                    options={countries}
-                    // getOptionValue={(option) => option.value}
-                    // getOptionLabel={(option) => option.name}
+                    onChange={item => onChangeCountry(item)}
+                    options={getSelectCountries}
+                    getOptionValue={option => option.value}
+                    getOptionLabel={option => option.label}
                   />
                 </FormGroup>
               </Col>
@@ -106,8 +99,10 @@ const AddMemberPanel = ({
                     Business Unit
                   </label>
                   <Select
-                    onChange={onChangeBunit}
-                    options={businessUnits}
+                    onChange={item => onChangeBunit(item)}
+                    options={getSelectBusinessUnits}
+                    getOptionValue={option => option.value}
+                    getOptionLabel={option => option.label}
                   />
                 </FormGroup>
               </Col>
@@ -117,9 +112,11 @@ const AddMemberPanel = ({
                     Add members
                   </label>
                   <Select
+                    onChange={item => onSelectCareMember(item)}
+                    options={getSelectEmployees}
                     isMulti
-                    onChange={onSelectCareMember}
-                    options={employees}
+                    getOptionValue={option => option.value}
+                    getOptionLabel={option => option.label}
                   />
                 </FormGroup>
               </Col>

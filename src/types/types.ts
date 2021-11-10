@@ -125,7 +125,7 @@ export type LayoutType = "/admin" | "/auth";
 
 export type Theme = "light" | "dark";
 
-export interface ISelectOption {
+export interface OptionType {
   value: string;
   label: string;
 }

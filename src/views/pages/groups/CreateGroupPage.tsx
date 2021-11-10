@@ -239,10 +239,12 @@ const CreateGroupPage = () => {
                         {/* <MembersTableComps data={group.members} /> */}
                         <Collapse isOpen={addMembersCollapse}>
                           <AddMemberPanel
-                            onChangeRole={e => console.log(e)}
-                            onChangeCountry={e => console.log(e)}
-                            onChangeBunit={e => console.log(e)}
-                            onSelectCareMember={e => console.log(e)}
+                            onChangeRole={option => console.log(option)}
+                            onChangeCountry={option => console.log(option)}
+                            onChangeBunit={option => console.log(option)}
+                            onSelectCareMember={option =>
+                              console.log(option)
+                            }
                           />
                         </Collapse>
                       </Col>
