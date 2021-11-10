@@ -14,153 +14,14 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import Chart from "chart.js";
+
+import { ChartData } from "chart.js";
 import { Theme } from "../types/types";
+import "./chartDefaults";
+
 // Only for demo purposes - return a random number to generate datasets
 var randomScalingFactor = function () {
   return Math.round(Math.random() * 100);
-};
-
-//
-// Chart extension for making the bars rounded
-// Code from: https://codepen.io/jedtrow/full/ygRYgo
-//
-
-// @todo Add types to all :any fields
-
-// @todo fix Chart.elements.Rectangle.prototype.draw problem
-// @ts-ignore
-Chart.elements.Rectangle.prototype.draw = function () {
-  var ctx = this._chart.ctx;
-  var vm = this._view;
-  var left, right, top, bottom, signX, signY, borderSkipped, radius;
-  var borderWidth = vm.borderWidth;
-  // Set Radius Here
-  // If radius is large enough to cause drawing errors a max radius is imposed
-  var cornerRadius = 6;
-
-  if (!vm.horizontal) {
-    // bar
-    left = vm.x - vm.width / 2;
-    right = vm.x + vm.width / 2;
-    top = vm.y;
-    bottom = vm.base;
-    signX = 1;
-    signY = bottom > top ? 1 : -1;
-    borderSkipped = vm.borderSkipped || "bottom";
-  } else {
-    // horizontal bar
-    left = vm.base;
-    right = vm.x;
-    top = vm.y - vm.height / 2;
-    bottom = vm.y + vm.height / 2;
-    signX = right > left ? 1 : -1;
-    signY = 1;
-    borderSkipped = vm.borderSkipped || "left";
-  }
-
-  // Canvas doesn't allow us to stroke inside the width so we can
-  // adjust the sizes to fit if we're setting a stroke on the line
-  if (borderWidth) {
-    // borderWidth shold be less than bar width and bar height.
-    var barSize = Math.min(Math.abs(left - right), Math.abs(top - bottom));
-    borderWidth = borderWidth > barSize ? barSize : borderWidth;
-    var halfStroke = borderWidth / 2;
-    // Adjust borderWidth when bar top position is near vm.base(zero).
-    var borderLeft =
-      left + (borderSkipped !== "left" ? halfStroke * signX : 0);
-    var borderRight =
-      right + (borderSkipped !== "right" ? -halfStroke * signX : 0);
-    var borderTop =
-      top + (borderSkipped !== "top" ? halfStroke * signY : 0);
-    var borderBottom =
-      bottom + (borderSkipped !== "bottom" ? -halfStroke * signY : 0);
-    // not become a vertical line?
-    if (borderLeft !== borderRight) {
-      top = borderTop;
-      bottom = borderBottom;
-    }
-    // not become a horizontal line?
-    if (borderTop !== borderBottom) {
-      left = borderLeft;
-      right = borderRight;
-    }
-  }
-
-  ctx.beginPath();
-  ctx.fillStyle = vm.backgroundColor;
-  ctx.strokeStyle = vm.borderColor;
-  ctx.lineWidth = borderWidth;
-
-  // Corner points, from bottom-left to bottom-right clockwise
-  // | 1 2 |
-  // | 0 3 |
-  var corners = [
-    [left, bottom],
-    [left, top],
-    [right, top],
-    [right, bottom],
-  ];
-
-  // Find first (starting) corner with fallback to 'bottom'
-  var borders = ["bottom", "left", "top", "right"];
-  var startCorner = borders.indexOf(borderSkipped, 0);
-  if (startCorner === -1) {
-    startCorner = 0;
-  }
-
-  function cornerAt(index: number) {
-    return corners[(startCorner + index) % 4];
-  }
-
-  // Draw rectangle from 'startCorner'
-  var corner = cornerAt(0);
-  ctx.moveTo(corner[0], corner[1]);
-
-  for (var i = 1; i < 4; i++) {
-    corner = cornerAt(i);
-    let nextCornerId = i + 1;
-    if (nextCornerId === 4) {
-      nextCornerId = 0;
-    }
-
-    // let nextCorner = cornerAt(nextCornerId);
-
-    let width = corners[2][0] - corners[1][0];
-    let height = corners[0][1] - corners[1][1];
-    let x = corners[1][0];
-    let y = corners[1][1];
-    // eslint-disable-next-line
-    var radius: any = cornerRadius;
-
-    // Fix radius being too large
-    if (radius > height / 2) {
-      radius = height / 2;
-    }
-    if (radius > width / 2) {
-      radius = width / 2;
-    }
-
-    ctx.moveTo(x + radius, y);
-    ctx.lineTo(x + width - radius, y);
-    ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
-    ctx.lineTo(x + width, y + height - radius);
-    ctx.quadraticCurveTo(
-      x + width,
-      y + height,
-      x + width - radius,
-      y + height,
-    );
-    ctx.lineTo(x + radius, y + height);
-    ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
-    ctx.lineTo(x, y + radius);
-    ctx.quadraticCurveTo(x, y, x + radius, y);
-  }
-
-  ctx.fill();
-  if (borderWidth) {
-    ctx.stroke();
-  }
 };
 
 let mode: Theme = "light"; //(themeMode) ? themeMode : 'light';
@@ -169,7 +30,7 @@ var fonts = {
 };
 
 // Colors
-var colors = {
+const colors = {
   gray: {
     100: "#f6f9fc",
     200: "#e9ecef",
@@ -195,8 +56,7 @@ var colors = {
   transparent: "transparent",
 };
 
-// Methods
-
+// @todo remove if not needed
 // Chart.js global options
 export const chartOptions = () => {
   // Options
@@ -273,47 +133,53 @@ export const chartOptions = () => {
     },
   };
 
-  // yAxes
-  Chart.scaleService.updateScaleDefaults("linear", {
-    gridLines: {
-      borderDash: [2],
-      borderDashOffset: 2,
-      color: mode === "dark" ? colors.gray[900] : colors.gray[300],
-      drawBorder: false,
-      drawTicks: false,
-      lineWidth: 1,
-      zeroLineWidth: 1,
-      zeroLineColor: mode === "dark" ? colors.gray[900] : colors.gray[300],
-      zeroLineBorderDash: [2],
-      zeroLineBorderDashOffset: 2,
-    },
-    ticks: {
-      beginAtZero: true,
-      padding: 10,
-      callback: function (value: number) {
-        if (!(value % 10)) {
-          return value;
-        }
-        return null;
-      },
-    },
-  });
+  // let lineChart = new Chart(ctx,{
+  // type: 'line',
 
-  // xAxes
-  Chart.scaleService.updateScaleDefaults("category", {
-    gridLines: {
-      drawBorder: false,
-      drawOnChartArea: false,
-      drawTicks: false,
-    },
-    ticks: {
-      padding: 20,
-    },
-  });
+  // })
+
+  // // yAxes
+  // Chart.scaleService.updateScaleDefaults("linear", {
+  //   gridLines: {
+  //     borderDash: [2],
+  //     borderDashOffset: 2,
+  //     color: mode === "dark" ? colors.gray[900] : colors.gray[300],
+  //     drawBorder: false,
+  //     drawTicks: false,
+  //     lineWidth: 1,
+  //     zeroLineWidth: 1,
+  //     zeroLineColor: mode === "dark" ? colors.gray[900] : colors.gray[300],
+  //     zeroLineBorderDash: [2],
+  //     zeroLineBorderDashOffset: 2,
+  //   },
+  //   ticks: {
+  //     beginAtZero: true,
+  //     padding: 10,
+  //     callback: function (value: number) {
+  //       if (!(value % 10)) {
+  //         return value;
+  //       }
+  //       return null;
+  //     },
+  //   },
+  // });
+
+  // // xAxes
+  // Chart.scaleService.updateScaleDefaults("category", {
+  //   gridLines: {
+  //     drawBorder: false,
+  //     drawOnChartArea: false,
+  //     drawTicks: false,
+  //   },
+  //   ticks: {
+  //     padding: 20,
+  //   },
+  // });
 
   return options;
 };
 
+// @todo remove if not needed
 // Parse global options
 export const parseOptions = (parent: any, options: any) => {
   for (var item in options) {
@@ -387,256 +253,135 @@ export const chartExample1 = {
   },
 };
 
-// Example 2 of Chart inside src/views/dashboards/Dashboard.js and src/views/dashboards/Alternative.js and src/views/pages/Charts.js
-export const chartExample2 = {
-  options: {
-    scales: {
-      yAxes: [
-        {
-          gridLines: {
-            color: colors.gray[200],
-            zeroLineColor: colors.gray[200],
-          },
-          ticks: {
-            callback: function (value: number) {
-              if (!(value % 10)) {
-                //return '$' + value + 'k'
-                return value;
-              }
-              return null;
-            },
-          },
-        },
-      ],
+export const lineChartExample: ChartData<"line"> = {
+  labels: ["May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+  datasets: [
+    {
+      label: "Performance",
+      data: [0, 20, 10, 30, 15, 40, 20, 60, 60],
+      fill: false,
+      borderColor: colors.theme["primary"],
+      tension: 0.4,
     },
-    tooltips: {
-      callbacks: {
-        label: function (item: any, data: any) {
-          var label = data.datasets[item.datasetIndex].label || "";
-          var yLabel = item.yLabel;
-          var content = "";
-          if (data.datasets.length > 1) {
-            content += label;
-          }
-          content += yLabel;
-          return content;
-        },
-      },
-    },
-  },
-  data: {
-    labels: ["Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-    datasets: [
-      {
-        label: "Sales",
-        data: [25, 20, 30, 22, 17, 29],
-        maxBarThickness: 10,
-      },
-    ],
-  },
+  ],
 };
 
-// Example 3 of Chart inside src/views/dashboards/Alternative.js and src/views/pages/Charts.js
-export const chartExample3 = {
-  options: {
-    scales: {
-      yAxes: [
-        {
-          gridLines: {
-            color: colors.gray[200],
-            zeroLineColor: colors.gray[200],
-          },
-          ticks: {},
-        },
-      ],
+export const barChartExample: ChartData<"bar"> = {
+  labels: ["Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+  datasets: [
+    {
+      label: "Sales",
+      data: [25, 20, 30, 22, 17, 29],
+      maxBarThickness: 20,
+      backgroundColor: colors.theme["warning"],
     },
-  },
-  data: {
-    labels: ["May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-    datasets: [
-      {
-        label: "Performance",
-        data: [0, 20, 10, 30, 15, 40, 20, 60, 60],
-      },
-    ],
-  },
+  ],
 };
 
-// Example 4 of Chart inside src/views/pages/Charts.js
-export const chartExample4 = {
-  options: {
-    scales: {
-      yAxes: [
-        {
-          gridLines: {
-            color: colors.gray[200],
-            zeroLineColor: colors.gray[200],
-          },
-          ticks: {},
-        },
-      ],
+export const dotChartExample: ChartData<"line"> = {
+  labels: ["May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+  datasets: [
+    {
+      label: "Performance",
+      data: [10, 18, 28, 23, 28, 40, 36, 46, 52],
+      pointRadius: 10,
+      pointHoverRadius: 15,
+      showLine: false,
+      backgroundColor: colors.theme["primary"],
     },
-  },
-  data: {
-    labels: ["May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-    datasets: [
-      {
-        label: "Performance",
-        data: [10, 18, 28, 23, 28, 40, 36, 46, 52],
-        pointRadius: 10,
-        pointHoverRadius: 15,
-        showLine: false,
-      },
-    ],
-  },
+  ],
 };
 
-// Example 5 of Chart inside src/views/pages/Charts.js
-export const chartExample5 = {
-  data: {
-    labels: ["Danger", "Warning", "Success", "Primary", "Info"],
-    datasets: [
-      {
-        data: [
-          randomScalingFactor(),
-          randomScalingFactor(),
-          randomScalingFactor(),
-          randomScalingFactor(),
-          randomScalingFactor(),
-        ],
-        backgroundColor: [
-          colors.theme["danger"],
-          colors.theme["warning"],
-          colors.theme["success"],
-          colors.theme["primary"],
-          colors.theme["info"],
-        ],
-        label: "Dataset 1",
-      },
-    ],
-  },
-  options: {
-    responsive: true,
-    legend: {
-      position: "top",
-    },
-    animation: {
-      animateScale: true,
-      animateRotate: true,
-    },
-  },
-};
-
-// Example 6 of Chart inside src/views/pages/Charts.js
-export const chartExample6 = {
-  data: {
-    labels: ["Danger", "Warning", "Success", "Primary", "Info"],
-    datasets: [
-      {
-        data: [
-          randomScalingFactor(),
-          randomScalingFactor(),
-          randomScalingFactor(),
-          randomScalingFactor(),
-          randomScalingFactor(),
-        ],
-        backgroundColor: [
-          colors.theme["danger"],
-          colors.theme["warning"],
-          colors.theme["success"],
-          colors.theme["primary"],
-          colors.theme["info"],
-        ],
-        label: "Dataset 1",
-      },
-    ],
-  },
-  options: {
-    responsive: true,
-    legend: {
-      position: "top",
-    },
-    animation: {
-      animateScale: true,
-      animateRotate: true,
-    },
-  },
-};
-
-// Example 7 of Chart inside src/views/pages/Charts.js
-export const chartExample7 = {
-  data: {
-    labels: [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-    ],
-    datasets: [
-      {
-        label: "Dataset 1",
-        backgroundColor: colors.theme["danger"],
-        data: [
-          randomScalingFactor(),
-          randomScalingFactor(),
-          randomScalingFactor(),
-          randomScalingFactor(),
-          randomScalingFactor(),
-          randomScalingFactor(),
-          randomScalingFactor(),
-        ],
-        maxBarThickness: 10,
-      },
-      {
-        label: "Dataset 2",
-        backgroundColor: colors.theme["primary"],
-        data: [
-          randomScalingFactor(),
-          randomScalingFactor(),
-          randomScalingFactor(),
-          randomScalingFactor(),
-          randomScalingFactor(),
-          randomScalingFactor(),
-          randomScalingFactor(),
-        ],
-        maxBarThickness: 10,
-      },
-      {
-        label: "Dataset 3",
-        backgroundColor: colors.theme["success"],
-        data: [
-          randomScalingFactor(),
-          randomScalingFactor(),
-          randomScalingFactor(),
-          randomScalingFactor(),
-          randomScalingFactor(),
-          randomScalingFactor(),
-          randomScalingFactor(),
-        ],
-        maxBarThickness: 10,
-      },
-    ],
-  },
-  options: {
-    tooltips: {
-      mode: "index",
-      intersect: false,
-    },
-    responsive: true,
-    scales: {
-      xAxes: [
-        {
-          stacked: true,
-        },
+export const doughnutChartExample: ChartData<"doughnut"> = {
+  datasets: [
+    {
+      label: "Dataset 1",
+      data: [
+        randomScalingFactor(),
+        randomScalingFactor(),
+        randomScalingFactor(),
+        randomScalingFactor(),
+        randomScalingFactor(),
       ],
-      yAxes: [
-        {
-          stacked: true,
-        },
+      backgroundColor: [
+        colors.theme["danger"],
+        colors.theme["warning"],
+        colors.theme["success"],
+        colors.theme["primary"],
+        colors.theme["info"],
       ],
     },
-  },
+  ],
+  labels: ["Danger", "Warning", "Success", "Primary", "Info"],
+};
+
+export const pieChartExample: ChartData<"pie"> = {
+  labels: ["Danger", "Warning", "Success", "Primary", "Info"],
+  datasets: [
+    {
+      label: "Dataset 1",
+      data: [
+        randomScalingFactor(),
+        randomScalingFactor(),
+        randomScalingFactor(),
+        randomScalingFactor(),
+        randomScalingFactor(),
+      ],
+      backgroundColor: [
+        colors.theme["danger"],
+        colors.theme["warning"],
+        colors.theme["success"],
+        colors.theme["primary"],
+        colors.theme["info"],
+      ],
+    },
+  ],
+};
+
+export const multiBarChartExample: ChartData<"bar"> = {
+  labels: ["January", "February", "March", "April", "May", "June", "July"],
+  datasets: [
+    {
+      label: "Dataset 1",
+      backgroundColor: colors.theme["danger"],
+      data: [
+        randomScalingFactor(),
+        randomScalingFactor(),
+        randomScalingFactor(),
+        randomScalingFactor(),
+        randomScalingFactor(),
+        randomScalingFactor(),
+        randomScalingFactor(),
+      ],
+      maxBarThickness: 12,
+    },
+    {
+      label: "Dataset 2",
+      backgroundColor: colors.theme["primary"],
+      data: [
+        randomScalingFactor(),
+        randomScalingFactor(),
+        randomScalingFactor(),
+        randomScalingFactor(),
+        randomScalingFactor(),
+        randomScalingFactor(),
+        randomScalingFactor(),
+      ],
+      maxBarThickness: 10,
+    },
+    {
+      label: "Dataset 3",
+      backgroundColor: colors.theme["success"],
+      data: [
+        randomScalingFactor(),
+        randomScalingFactor(),
+        randomScalingFactor(),
+        randomScalingFactor(),
+        randomScalingFactor(),
+        randomScalingFactor(),
+        randomScalingFactor(),
+      ],
+      maxBarThickness: 10,
+    },
+  ],
 };
