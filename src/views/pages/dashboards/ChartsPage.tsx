@@ -55,6 +55,13 @@ const ChartsPage = () => {
                     id="chart-sales"
                     className="chart-canvas"
                     data={lineChartExample}
+                    options={{
+                      plugins: {
+                        tooltip: {
+                          intersect: false,
+                        },
+                      },
+                    }}
                   />
                 </div>
               </CardBody>
@@ -110,6 +117,7 @@ const ChartsPage = () => {
                       animation: {
                         animateScale: true,
                       },
+                      cutout: 120,
                     }}
                     className="chart-canvas"
                     id="chart-doughnut"
@@ -154,6 +162,22 @@ const ChartsPage = () => {
                     data={multiBarChartExample}
                     className="chart-canvas"
                     id="chart-bar-stacked"
+                    options={{
+                      scales: {
+                        xAxes: {
+                          stacked: true,
+                        },
+                        yAxes: {
+                          stacked: true,
+                        },
+                      },
+                      plugins: {
+                        tooltip: {
+                          mode: "index",
+                          intersect: false,
+                        },
+                      },
+                    }}
                   />
                 </div>
               </CardBody>
