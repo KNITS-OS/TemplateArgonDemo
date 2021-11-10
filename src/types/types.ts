@@ -133,10 +133,27 @@ export interface ISelectOption {
 export interface IEvent {
   id: string;
   title: string;
+  className: string;
   start: Date;
   allDay: boolean;
-  className: string;
   description: string;
+}
+
+export interface IWidgetEvent {
+  title: string;
+  className: string;
+  start: string | Date;
+  end?: string | Date;
+  allDay?: boolean;
+}
+
+export interface IDataTable {
+  name: string;
+  position: string;
+  office: string;
+  age: string;
+  start_date: string;
+  salary: string;
 }
 
 // export type HTMLElementEvent<T extends HTMLElement> = Event & {

@@ -15,7 +15,7 @@
 
 */
 
-import { IEvent } from "../types/types";
+import { IDataTable, IEvent, IWidgetEvent } from "../types/types";
 
 // ##############################
 // // // data for populating the calendar in Calendar view
@@ -25,8 +25,6 @@ let today = new Date();
 let y = today.getFullYear();
 let m = today.getMonth();
 let d = today.getDate();
-
-// @todo add types
 
 const events: IEvent[] = [
   {
@@ -134,7 +132,7 @@ const events: IEvent[] = [
 // // // data for populating the calendar in Widgest view
 // #############################
 
-const widgetEvents = [
+const widgetEvents: IWidgetEvent[] = [
   {
     title: "Lunch meeting",
     start: new Date().getFullYear() + "-11-21",
@@ -196,7 +194,7 @@ const widgetEvents = [
 // // // data for populating the table in ReactTables view
 // #############################
 
-const dataTable = [
+const dataTable: IDataTable[] = [
   {
     name: "Tiger Nixon",
     position: "System Architect",
