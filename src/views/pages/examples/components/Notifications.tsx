@@ -14,49 +14,60 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React from "react";
 // nodejs library that concatenates classes
 import classnames from "classnames";
-// react plugin for creating notifications over the dashboard
-import NotificationAlert from "react-notification-alert";
-// react component used to create sweet alerts
-import ReactBSAlert from "react-bootstrap-sweetalert";
-// reactstrap components
-import {
-  UncontrolledAlert,
-  Button,
-  Card,
-  CardHeader,
-  CardBody,
-  FormGroup,
-  Form,
-  Input,
-  InputGroupAddon,
-  InputGroupText,
-  InputGroup,
-  Modal,
-  Container,
-  Row,
-  Col,
-} from "reactstrap";
 // core components
 import SimpleHeader from "components/Headers/SimpleHeader";
+import { useRef, useState } from "react";
+// react component used to create sweet alerts
+import ReactBSAlert from "react-bootstrap-sweetalert";
+// react plugin for creating notifications over the dashboard
+import NotificationAlert, { AlertOptions } from "react-notification-alert";
+// reactstrap components
+import {
+  Button,
+  Card,
+  CardBody,
+  CardHeader,
+  Col,
+  Container,
+  Form,
+  FormGroup,
+  Input,
+  InputGroup,
+  InputGroupAddon,
+  InputGroupText,
+  Modal,
+  Row,
+  UncontrolledAlert,
+} from "reactstrap";
+
+type AlertOptionsType =
+  | "primary"
+  | "secondary"
+  | "success"
+  | "danger"
+  | "warning"
+  | "info"
+  | "light"
+  | "dark";
 
 const Notifications = () => {
-  const [focusedEmail, setFocusedEmail] = React.useState(false);
-  const [focusedPassword, setFocusedPassword] = React.useState(false);
-  const [defaultModal, setdefaultModal] = React.useState(false);
-  const [notificationModal, setnotificationModal] = React.useState(false);
-  const [formModal, setformModal] = React.useState(false);
-  const [alert, setalert] = React.useState(false);
-  const notificationAlertRef = React.useRef(null);
-  const notify = type => {
-    let options = {
+  const [focusedEmail, setFocusedEmail] = useState(false);
+  const [focusedPassword, setFocusedPassword] = useState(false);
+  const [defaultModal, setdefaultModal] = useState(false);
+  const [notificationModal, setnotificationModal] = useState(false);
+  const [formModal, setformModal] = useState(false);
+  const [alert, setAlert] = useState<any>();
+  const notificationAlertRef = useRef<any>(null);
+
+  const notify = (type: AlertOptionsType) => {
+    let options: AlertOptions = {
       place: "tc",
+      // @ts-ignore
       message: (
         <div className="alert-text">
           <span className="alert-title" data-notify="title">
-            {" "}
             Bootstrap Notify
           </span>
           <span data-notify="message">
@@ -64,34 +75,35 @@ const Notifications = () => {
           </span>
         </div>
       ),
-      type: type,
+      type,
       icon: "ni ni-bell-55",
       autoDismiss: 7,
     };
+
     notificationAlertRef.current.notificationAlert(options);
   };
+
   const basicAlert = () => {
-    setalert(
+    setAlert(
       <ReactBSAlert
         style={{ display: "block", marginTop: "-100px" }}
         title="Here's a message!"
-        onConfirm={() => setalert(null)}
-        onCancel={() => setalert(null)}
+        onConfirm={() => setAlert(null)}
+        onCancel={() => setAlert(null)}
         btnSize=""
-        text="A few words about this sweet alert ..."
       >
         A few words about this sweet alert ...
       </ReactBSAlert>,
     );
   };
   const infoAlert = () => {
-    setalert(
+    setAlert(
       <ReactBSAlert
         info
         style={{ display: "block", marginTop: "-100px" }}
         title="Info"
-        onConfirm={() => setalert(null)}
-        onCancel={() => setalert(null)}
+        onConfirm={() => setAlert(null)}
+        onCancel={() => setAlert(null)}
         confirmBtnBsStyle="info"
         confirmBtnText="Ok"
         btnSize=""
@@ -101,13 +113,13 @@ const Notifications = () => {
     );
   };
   const successAlert = () => {
-    setalert(
+    setAlert(
       <ReactBSAlert
         success
         style={{ display: "block", marginTop: "-100px" }}
         title="Success"
-        onConfirm={() => setalert(null)}
-        onCancel={() => setalert(null)}
+        onConfirm={() => setAlert(null)}
+        onCancel={() => setAlert(null)}
         confirmBtnBsStyle="success"
         confirmBtnText="Ok"
         btnSize=""
@@ -117,13 +129,13 @@ const Notifications = () => {
     );
   };
   const warningAlert = () => {
-    setalert(
+    setAlert(
       <ReactBSAlert
         warning
         style={{ display: "block", marginTop: "-100px" }}
         title="Warning"
-        onConfirm={() => setalert(null)}
-        onCancel={() => setalert(null)}
+        onConfirm={() => setAlert(null)}
+        onCancel={() => setAlert(null)}
         confirmBtnBsStyle="warning"
         confirmBtnText="Ok"
         btnSize=""
@@ -133,7 +145,7 @@ const Notifications = () => {
     );
   };
   const questionAlert = () => {
-    setalert(
+    setAlert(
       <ReactBSAlert
         custom
         style={{ display: "block", marginTop: "-100px" }}
@@ -146,8 +158,8 @@ const Notifications = () => {
             <span className="swal2-icon-text">?</span>
           </div>
         }
-        onConfirm={() => setalert(null)}
-        onCancel={() => setalert(null)}
+        onConfirm={() => setAlert(null)}
+        onCancel={() => setAlert(null)}
         confirmBtnBsStyle="default"
         confirmBtnText="Ok"
         btnSize=""
@@ -517,7 +529,7 @@ const Notifications = () => {
                 <h3 className="mb-0">Notifications</h3>
               </CardHeader>
               <CardBody>
-                <Button color="default" onClick={() => notify("default")}>
+                <Button color="default" onClick={() => notify("primary")}>
                   Default
                 </Button>
                 <Button color="info" onClick={() => notify("info")}>
