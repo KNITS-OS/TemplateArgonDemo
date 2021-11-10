@@ -14,6 +14,9 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
+
+import { IEvent } from "../types/types";
+
 // ##############################
 // // // data for populating the calendar in Calendar view
 // #############################
@@ -25,7 +28,7 @@ let d = today.getDate();
 
 // @todo add types
 
-const events = [
+const events: IEvent[] = [
   {
     id: "1",
     title: "Call with Dave",

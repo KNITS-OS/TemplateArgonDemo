@@ -14,7 +14,7 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 // nodejs library that concatenates classes
 import classnames from "classnames";
 // JavaScript library that creates a callendar with events
@@ -47,21 +47,21 @@ import { events as eventsVariables } from "variables/general";
 let calendar;
 
 const CalendarView = () => {
-  const [events, setEvents] = React.useState(eventsVariables);
-  const [alert, setAlert] = React.useState(null);
-  const [modalAdd, setModalAdd] = React.useState(false);
-  const [modalChange, setModalChange] = React.useState(false);
-  const [startDate, setStartDate] = React.useState(null);
-  const [endDate, setEndDate] = React.useState(null);
-  const [radios, setRadios] = React.useState(null);
-  const [eventId, setEventId] = React.useState(null);
-  const [eventTitle, setEventTitle] = React.useState(null);
-  const [eventDescription, setEventDescription] = React.useState(null);
+  const [events, setEvents] = useState(eventsVariables);
+  const [alert, setAlert] = useState(null);
+  const [modalAdd, setModalAdd] = useState(false);
+  const [modalChange, setModalChange] = useState(false);
+  const [startDate, setStartDate] = useState(null);
+  const [endDate, setEndDate] = useState(null);
+  const [radios, setRadios] = useState(null);
+  const [eventId, setEventId] = useState(null);
+  const [eventTitle, setEventTitle] = useState(null);
+  const [eventDescription, setEventDescription] = useState(null);
   // eslint-disable-next-line
-  const [event, setEvent] = React.useState(null);
-  const [currentDate, setCurrentDate] = React.useState(null);
-  const calendarRef = React.useRef(null);
-  React.useEffect(() => {
+  const [event, setEvent] = useState(null);
+  const [currentDate, setCurrentDate] = useState(null);
+  const calendarRef = useRef(null);
+  useEffect(() => {
     createCalendar();
     // eslint-disable-next-line
   }, []);

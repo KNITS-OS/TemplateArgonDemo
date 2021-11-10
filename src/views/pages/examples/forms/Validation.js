@@ -14,7 +14,7 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React from "react";
+import React, { useState } from "react";
 // nodejs library that concatenates classes
 import classnames from "classnames";
 // reactstrap components
@@ -36,22 +36,22 @@ import {
 // core components
 import SimpleHeader from "components/Headers/SimpleHeader";
 
-function Validation() {
-  const [focused, setFocused] = React.useState(false);
-  const [firstName, setfirstName] = React.useState("Mark");
-  const [firstNameState, setfirstNameState] = React.useState(null);
-  const [lastName, setlastName] = React.useState("Otto");
-  const [lastNameState, setlastNameState] = React.useState(null);
-  const [username, setusername] = React.useState("");
-  const [usernameState, setusernameState] = React.useState(null);
-  const [city, setcity] = React.useState("");
-  const [cityState, setcityState] = React.useState(null);
-  const [state, setstate] = React.useState("");
-  const [stateState, setstateState] = React.useState(null);
-  const [zip, setzip] = React.useState("");
-  const [zipState, setzipState] = React.useState(null);
-  const [checkbox, setcheckbox] = React.useState(false);
-  const [checkboxState, setcheckboxState] = React.useState(null);
+const Validation = () => {
+  const [focused, setFocused] = useState(false);
+  const [firstName, setfirstName] = useState("Mark");
+  const [firstNameState, setfirstNameState] = useState(null);
+  const [lastName, setlastName] = useState("Otto");
+  const [lastNameState, setlastNameState] = useState(null);
+  const [username, setusername] = useState("");
+  const [usernameState, setusernameState] = useState(null);
+  const [city, setcity] = useState("");
+  const [cityState, setcityState] = useState(null);
+  const [state, setstate] = useState("");
+  const [stateState, setstateState] = useState(null);
+  const [zip, setzip] = useState("");
+  const [zipState, setzipState] = useState(null);
+  const [checkbox, setcheckbox] = useState(false);
+  const [checkboxState, setcheckboxState] = useState(null);
   const validateCustomStylesForm = () => {
     if (firstName === "") {
       setfirstNameState("invalid");
@@ -659,6 +659,6 @@ function Validation() {
       </Container>
     </>
   );
-}
+};
 
 export default Validation;

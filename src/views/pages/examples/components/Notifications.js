@@ -42,7 +42,7 @@ import {
 // core components
 import SimpleHeader from "components/Headers/SimpleHeader";
 
-function Notifications() {
+const Notifications = () => {
   const [focusedEmail, setFocusedEmail] = React.useState(false);
   const [focusedPassword, setFocusedPassword] = React.useState(false);
   const [defaultModal, setdefaultModal] = React.useState(false);
@@ -562,6 +562,6 @@ function Notifications() {
       </Container>
     </>
   );
-}
+};
 
 export default Notifications;

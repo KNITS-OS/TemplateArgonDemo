@@ -14,7 +14,7 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React from "react";
+import { useEffect, useRef, useState } from "react";
 // nodejs library that concatenates classes
 import classnames from "classnames";
 // JavaScript library that creates a callendar with events
@@ -68,13 +68,13 @@ let mapData = [760, 550, 120, 1300, 540, 690, 200, 200, 600, 300, 2920];
 //   US: 2920,
 // };
 
-function Widgets() {
-  const [nameOnCard, setnameOnCard] = React.useState(false);
-  const [cardNumber, setcardNumber] = React.useState(false);
-  const [date, setdate] = React.useState(false);
-  const [ccv, setccv] = React.useState(false);
-  const widgetCalendarRef = React.useRef(document.createElement("div"));
-  React.useEffect(() => {
+const Widgets = () => {
+  const [nameOnCard, setnameOnCard] = useState(false);
+  const [cardNumber, setcardNumber] = useState(false);
+  const [date, setdate] = useState(false);
+  const [ccv, setccv] = useState(false);
+  const widgetCalendarRef = useRef(document.createElement("div"));
+  useEffect(() => {
     let calendar = new Calendar(widgetCalendarRef.current, {
       plugins: [dayGridPlugin],
       initialView: "dayGridMonth",
@@ -721,9 +721,7 @@ function Widgets() {
                         >
                           <img
                             alt="..."
-                            src={
-                              require("assets/img/theme/react.jpg").default
-                            }
+                            src={require("assets/img/theme/jpg").default}
                           />
                         </a>
                       </Col>
@@ -1251,6 +1249,6 @@ function Widgets() {
       </Container>
     </>
   );
-}
+};
 
 export default Widgets;

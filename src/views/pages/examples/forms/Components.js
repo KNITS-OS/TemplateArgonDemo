@@ -14,7 +14,7 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 // nodejs library that concatenates classes
 import classnames from "classnames";
 // react plugin used to create datetimepicker
@@ -52,31 +52,28 @@ import TagsInput from "components/TagsInput/TagsInput";
 
 Dropzone.autoDiscover = false;
 
-function Components() {
-  const [yourName, setyourName] = React.useState(false);
-  const [emailAddress, setemailAddress] = React.useState(false);
-  const [location, setlocation] = React.useState(false);
-  const [password, setpassword] = React.useState(false);
-  const [paymentMethos, setpaymentMethos] = React.useState(false);
-  const [phoneNumber, setphoneNumber] = React.useState(false);
-  const [startDate, setStartDate] = React.useState(null);
-  const [endDate, setEndDate] = React.useState(null);
-  const [tagsinput, setTagsinput] = React.useState([
+const Components = () => {
+  const [yourName, setyourName] = useState(false);
+  const [emailAddress, setemailAddress] = useState(false);
+  const [location, setlocation] = useState(false);
+  const [password, setpassword] = useState(false);
+  const [paymentMethos, setpaymentMethos] = useState(false);
+  const [phoneNumber, setphoneNumber] = useState(false);
+  const [startDate, setStartDate] = useState(null);
+  const [endDate, setEndDate] = useState(null);
+  const [tagsinput, setTagsinput] = useState([
     "Bucharest",
     "Cluj",
     "Iasi",
     "Timisoara",
     "Piatra Neamt",
   ]);
-  const [slider1Value, setSlider1Value] = React.useState("100.00");
-  const [slider2Values, setSlider2Values] = React.useState([
-    "200.00",
-    "400.00",
-  ]);
-  const [reactQuillText, setReactQuillText] = React.useState("");
-  const slider1Ref = React.useRef(null);
-  const slider2Ref = React.useRef(null);
-  React.useEffect(() => {
+  const [slider1Value, setSlider1Value] = useState("100.00");
+  const [slider2Values, setSlider2Values] = useState(["200.00", "400.00"]);
+  const [reactQuillText, setReactQuillText] = useState("");
+  const slider1Ref = useRef(document.createElement("div"));
+  const slider2Ref = useRef(document.createElement("div"));
+  useEffect(() => {
     Slider.create(slider1Ref.current, {
       start: [100],
       connect: [true, false],
@@ -722,6 +719,6 @@ function Components() {
       </Container>
     </>
   );
-}
+};
 
 export default Components;

@@ -130,6 +130,15 @@ export interface ISelectOption {
   label: string;
 }
 
+export interface IEvent {
+  id: string;
+  title: string;
+  start: Date;
+  allDay: boolean;
+  className: string;
+  description: string;
+}
+
 // export type HTMLElementEvent<T extends HTMLElement> = Event & {
 //   target: T;
 // };
