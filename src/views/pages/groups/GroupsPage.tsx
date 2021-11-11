@@ -24,6 +24,7 @@ import { useHistory } from "react-router";
 // reactstrap components
 import { Button, Card, CardHeader, Container, Row } from "reactstrap";
 import { pagination } from "utils/tableUtils";
+import { Group } from "../../../types/types";
 
 const { SearchBar } = Search;
 
@@ -35,18 +36,21 @@ const GroupsPage = () => {
     history.push(`/admin/groups/group-details/${id}`);
   };
 
-  const formatActionButtonCell = (cell: any, row: any) => {
+  const formatActionButtonCell = (_: undefined, row: Group) => {
+    const { id } = row;
+
+    let groupId = id.toString();
     return (
       <>
         <Button
-          id={row.id}
+          id={groupId}
           className="btn-icon btn-2"
           type="button"
           color="info"
           onClick={groupDetails}
         >
-          <span id={row.id} className="btn-inner--icon">
-            <i id={row.id} className="ni ni-badge" />
+          <span id={groupId} className="btn-inner--icon">
+            <i id={groupId} className="ni ni-badge" />
           </span>
         </Button>
       </>

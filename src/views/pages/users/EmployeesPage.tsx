@@ -38,6 +38,7 @@ import {
   Row,
 } from "reactstrap";
 import { pagination } from "utils/tableUtils";
+import { Employee } from "../../../types/types";
 import {
   getSelectBusinessUnits,
   getSelectCountries,
@@ -79,29 +80,32 @@ const EmployeesPage = () => {
     //history.push('/admin/users/employee-details/'+id);
   };
 
-  const formatActionButtonCell = (cell: any, row: any) => {
+  const formatActionButtonCell = (_: undefined, row: Employee) => {
+    const { id } = row;
+
+    let employeeId = id.toString();
     return (
       <>
         <Button
-          id={row.id}
+          id={employeeId}
           className="btn-icon btn-2"
           type="button"
           color="info"
           onClick={goToEmployeeDetails}
         >
-          <span id={row.id} className="btn-inner--icon">
-            <i id={row.id} className="ni ni-badge" />
+          <span id={employeeId} className="btn-inner--icon">
+            <i id={employeeId} className="ni ni-badge" />
           </span>
         </Button>
         <Button
-          id={row.id}
+          id={employeeId}
           className="btn-icon btn-2"
           color="danger"
           type="button"
           onClick={removeEmployee}
         >
-          <span id={row.id} className="btn-inner--icon">
-            <i id={row.id} className="ni ni-fat-remove" />
+          <span id={employeeId} className="btn-inner--icon">
+            <i id={employeeId} className="ni ni-fat-remove" />
           </span>
         </Button>
       </>
