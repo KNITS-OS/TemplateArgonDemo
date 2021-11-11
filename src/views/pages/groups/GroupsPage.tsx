@@ -31,8 +31,8 @@ const { SearchBar } = Search;
 const GroupsPage = () => {
   const history = useHistory();
 
-  const groupDetails = (e: any) => {
-    var { id } = e.target;
+  const groupDetails = (e: React.MouseEvent<HTMLButtonElement>) => {
+    var { id } = e.target as HTMLButtonElement;
     history.push(`/admin/groups/group-details/${id}`);
   };
 

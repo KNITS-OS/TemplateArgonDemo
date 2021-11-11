@@ -64,13 +64,13 @@ const EmployeesPage = () => {
     console.log("filters: ", filters);
   };
 
-  const goToEmployeeDetails = (e: any) => {
-    var { id } = e.target;
+  const goToEmployeeDetails = (e: React.MouseEvent<HTMLButtonElement>) => {
+    var { id } = e.target as HTMLButtonElement;
     history.push(`/admin/users/employee-details/${id}`);
   };
 
-  const removeEmployee = (e: any) => {
-    var { id } = e.target;
+  const removeEmployee = (e: React.MouseEvent<HTMLButtonElement>) => {
+    var { id } = e.target as HTMLButtonElement;
     let empIndex = employees.findIndex(emp => emp.id !== parseInt(id));
     console.log(employees[empIndex]);
     console.log(employees.length);
