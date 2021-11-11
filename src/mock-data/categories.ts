@@ -1,4 +1,4 @@
-import { BusinessUnit, CountryList } from "../types/types";
+import { BusinessUnit, CountryList } from "types/types";
 
 const businessUnits: BusinessUnit[] = [
   { id: 1, name: "Road Logistics" },

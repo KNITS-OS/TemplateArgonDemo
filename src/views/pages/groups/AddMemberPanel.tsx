@@ -25,12 +25,12 @@ import {
   FormGroup,
   Row,
 } from "reactstrap";
-import { OptionType } from "../../../types/types";
+import { OptionType } from "types/types";
 import {
   getSelectBusinessUnits,
   getSelectCountries,
   getSelectEmployees,
-} from "../../../utils/fetchData";
+} from "utils/fetchData";
 
 interface Props {
   onChangeRole: (option: SingleValue<OptionType>) => void;

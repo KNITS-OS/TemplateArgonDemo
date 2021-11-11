@@ -24,7 +24,7 @@ import { useHistory } from "react-router";
 // reactstrap components
 import { Button, Card, CardHeader, Container, Row } from "reactstrap";
 import { pagination } from "utils/tableUtils";
-import { Group } from "../../../types/types";
+import { Group } from "types/types";
 
 const { SearchBar } = Search;
 

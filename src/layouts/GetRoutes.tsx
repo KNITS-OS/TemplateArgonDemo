@@ -1,5 +1,5 @@
 import { Route } from "react-router-dom";
-import { IRoute, LayoutType, View } from "../types/types";
+import { IRoute, LayoutType, View } from "types/types";
 
 export const getRoutes = (routes: IRoute[], layout: LayoutType) => {
   return routes.map((route, key) => {

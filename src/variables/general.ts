@@ -15,7 +15,7 @@
 
 */
 
-import { IDataTable, IEvent, IWidgetEvent } from "../types/types";
+import { IDataTable, IEvent, IWidgetEvent } from "types/types";
 
 // ##############################
 // // // data for populating the calendar in Calendar view

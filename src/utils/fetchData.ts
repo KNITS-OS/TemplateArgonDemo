@@ -1,6 +1,6 @@
-import { categoriesData } from "../mock-data/categories";
-import { employeesData } from "../mock-data/employees";
-import { OptionType } from "../types/types";
+import { categoriesData } from "mock-data/categories";
+import { employeesData } from "mock-data/employees";
+import { OptionType } from "types/types";
 
 export const getSelectBusinessUnits: OptionType[] =
   categoriesData.businessUnits.map(businessUnit => {

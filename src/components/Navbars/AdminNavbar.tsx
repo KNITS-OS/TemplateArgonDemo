@@ -41,9 +41,9 @@ import {
   Row,
   Col,
 } from "reactstrap";
-import { useSidenav } from "../../context";
-import { useToggleSidenav } from "../../hooks";
-import { Theme } from "../../types/types";
+import { useSidenav } from "context";
+import { useToggleSidenav } from "hooks";
+import { Theme } from "types/types";
 
 interface Props {
   theme: Theme;

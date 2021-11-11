@@ -16,7 +16,7 @@
 */
 
 import { ChartData } from "chart.js";
-import { Theme } from "../types/types";
+import { Theme } from "types/types";
 import "./chartDefaults";
 
 // Only for demo purposes - return a random number to generate datasets

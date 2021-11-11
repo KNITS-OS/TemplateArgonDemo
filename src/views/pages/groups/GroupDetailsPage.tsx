@@ -39,7 +39,7 @@ import {
   Row,
 } from "reactstrap";
 import { pagination } from "utils/tableUtils";
-import { Employee, Group } from "../../../types/types";
+import { Employee, Group } from "types/types";
 import AddMemberPanel from "./AddMemberPanel";
 
 const { SearchBar } = Search;

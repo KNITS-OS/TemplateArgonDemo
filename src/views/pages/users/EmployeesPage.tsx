@@ -38,11 +38,11 @@ import {
   Row,
 } from "reactstrap";
 import { pagination } from "utils/tableUtils";
-import { Employee } from "../../../types/types";
+import { Employee } from "types/types";
 import {
   getSelectBusinessUnits,
   getSelectCountries,
-} from "../../../utils/fetchData";
+} from "utils/fetchData";
 
 const { SearchBar } = Search;
 

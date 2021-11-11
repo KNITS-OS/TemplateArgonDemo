@@ -1,4 +1,4 @@
-import { useSidenav } from "../context/SidenavContext";
+import { useSidenav } from "context/SidenavContext";
 
 /**
  * @description This function is used to toggle the sidenav

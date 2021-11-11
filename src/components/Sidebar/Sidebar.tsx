@@ -34,9 +34,9 @@ import {
   NavLink,
   Nav,
 } from "reactstrap";
-import { IRoute, View } from "../../types/types";
-import { useSidenav } from "../../context";
-import { useToggleSidenav } from "../../hooks";
+import { IRoute, View } from "types/types";
+import { useSidenav } from "context";
+import { useToggleSidenav } from "hooks";
 
 // @todo fix all @ts-ignore
 
