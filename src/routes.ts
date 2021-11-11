@@ -41,6 +41,7 @@ import GroupDetailsPage from "views/pages/groups/GroupDetailsPage";
 import ChartsPage from "views/pages/dashboards/ChartsPage";
 import WorldOverviewPage from "views/pages/dashboards/WorldOverviewPage";
 import { IRoute } from "./types/types";
+import TrelloExamplePage from "./views/pages/trello/TrelloExamplePage";
 
 const routes: IRoute[] = [
   /* Users */
@@ -88,6 +89,14 @@ const routes: IRoute[] = [
         layout: "/admin",
       },
     ],
+  },
+  {
+    collapse: false,
+    name: "Trello",
+    icon: "ni ni-chart-pie-35 text-info",
+    path: "/trello/trello-example",
+    component: TrelloExamplePage,
+    layout: "/admin",
   },
   /* Dashboard */
   {
