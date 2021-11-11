@@ -14,37 +14,30 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import { useRef, useState } from "react";
+// core components
+import AdminFooter from "components/Footers/AdminFooter";
+import AdminNavbar from "components/Navbars/AdminNavbar";
+import Sidebar from "components/Sidebar/Sidebar";
+import { useSidenav } from "context";
+import { useToggleSidenav } from "hooks";
+import { useRef } from "react";
 // react library for routing
 import { Redirect, Switch, useLocation } from "react-router-dom";
 // import Logo from "assets/img/brand/Logo.png";
 import routes from "routes";
-// core components
-import AdminFooter from "../components/Footers/AdminFooter";
-import AdminNavbar from "../components/Navbars/AdminNavbar";
-import Sidebar from "../components/Sidebar/Sidebar";
+import { Theme } from "types/types";
 import { getRoutes } from "./GetRoutes";
 import ScrollToTop from "./ScrollToTop";
 
 const Admin = () => {
-  const [sidenavOpen, setSidenavOpen] = useState(true);
   const location = useLocation();
   const mainContentRef = useRef(document.createElement("div"));
+  const { sidenavOpen } = useSidenav();
+  const { toggleSidenav } = useToggleSidenav();
 
   ScrollToTop(mainContentRef);
 
-  // toggles collapse between mini sidenav and normal
-  const toggleSidenav = () => {
-    if (document.body.classList.contains("g-sidenav-pinned")) {
-      document.body.classList.remove("g-sidenav-pinned");
-      document.body.classList.add("g-sidenav-hidden");
-    } else {
-      document.body.classList.add("g-sidenav-pinned");
-      document.body.classList.remove("g-sidenav-hidden");
-    }
-    setSidenavOpen(!sidenavOpen);
-  };
-  const getNavbarTheme = () => {
+  const getNavbarTheme = (): Theme => {
     return location.pathname.indexOf("admin/alternative-dashboard") === -1
       ? "dark"
       : "light";
@@ -54,8 +47,6 @@ const Admin = () => {
     <>
       <Sidebar
         routes={routes}
-        toggleSidenav={toggleSidenav}
-        sidenavOpen={sidenavOpen}
         logo={{
           innerLink: "/",
           outerLink: "/",
@@ -65,11 +56,7 @@ const Admin = () => {
         rtlActive={false}
       />
       <div className="main-content" ref={mainContentRef}>
-        <AdminNavbar
-          theme={getNavbarTheme()}
-          toggleSidenav={toggleSidenav}
-          sidenavOpen={sidenavOpen}
-        />
+        <AdminNavbar theme={getNavbarTheme()} />
         <Switch>
           {getRoutes(routes, "/admin")}
           <Redirect from="*" to="/admin/dashboard" />

@@ -30,17 +30,20 @@ import "sweetalert2/dist/sweetalert2.min.css";
 import "./assets/scss/argon-dashboard-react.scss?v1.2.0";
 // plugins styles downloaded
 import "./assets/vendor/nucleo/css/nucleo.css";
+import { SidenavProvider } from "./context";
 import AdminLayout from "./layouts/Admin";
 import AuthLayout from "./layouts/Auth";
 
 ReactDOM.render(
   <BrowserRouter>
-    <Switch>
-      <Route path="/admin" render={() => <AdminLayout />} />
-      <Route path="/auth" render={() => <AuthLayout />} />
-      <Route path="/" render={() => <AdminLayout />} />
-      <Redirect from="*" to="/" />
-    </Switch>
+    <SidenavProvider>
+      <Switch>
+        <Route path="/admin" render={() => <AdminLayout />} />
+        <Route path="/auth" render={() => <AuthLayout />} />
+        <Route path="/" render={() => <AdminLayout />} />
+        <Redirect from="*" to="/" />
+      </Switch>
+    </SidenavProvider>
   </BrowserRouter>,
   document.getElementById("root"),
 );

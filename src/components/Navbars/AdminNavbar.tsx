@@ -41,15 +41,17 @@ import {
   Row,
   Col,
 } from "reactstrap";
+import { useSidenav } from "../../context";
+import { useToggleSidenav } from "../../hooks";
 import { Theme } from "../../types/types";
 
 interface Props {
   theme: Theme;
-  sidenavOpen: boolean;
-  toggleSidenav: () => void;
 }
 
-const AdminNavbar = ({ theme, sidenavOpen, toggleSidenav }: Props) => {
+const AdminNavbar = ({ theme }: Props) => {
+  const { sidenavOpen } = useSidenav();
+  const { toggleSidenav } = useToggleSidenav();
   // function that on mobile devices makes the search open
   const openSearch = () => {
     document.body.classList.add("g-navbar-search-showing");

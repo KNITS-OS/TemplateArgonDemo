@@ -35,19 +35,12 @@ import {
   Nav,
 } from "reactstrap";
 import { IRoute, View } from "../../types/types";
+import { useSidenav } from "../../context";
+import { useToggleSidenav } from "../../hooks";
 
 // @todo fix all @ts-ignore
 
 interface Props {
-  /**
-   * function used to make sidenav mini or normal
-   */
-  toggleSidenav: () => void;
-  /**
-   * @default false
-   * prop to know if the sidenav is mini or normal
-   */
-  sidenavOpen: boolean;
   /**
    * links that will be displayed inside the component
    */
@@ -80,15 +73,12 @@ interface Props {
   rtlActive: boolean;
 }
 
-const Sidebar = ({
-  toggleSidenav,
-  sidenavOpen = false,
-  routes,
-  logo,
-  rtlActive = false,
-}: Props) => {
+const Sidebar = ({ routes, logo, rtlActive = false }: Props) => {
   const [state, setState] = useState({});
   const location = useLocation();
+
+  const { sidenavOpen } = useSidenav();
+  const { toggleSidenav } = useToggleSidenav();
 
   useEffect(() => {
     setState(getCollapseStates(routes));
