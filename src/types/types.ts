@@ -1,3 +1,4 @@
+import { ChartData, ChartOptions } from "chart.js";
 import { ReactNode } from "react";
 
 export interface Employee {
@@ -159,3 +160,20 @@ export interface IDataTable {
 // export type HTMLElementEvent<T extends HTMLElement> = Event & {
 //   target: T;
 // };
+
+export interface ILineChart {
+  data: ChartData<"line">;
+  options: ChartOptions<"line">;
+}
+export interface IBarChart {
+  data: ChartData<"bar">;
+  options: ChartOptions<"bar">;
+}
+export interface IDoughnutChart {
+  data: ChartData<"doughnut">;
+  options: ChartOptions<"doughnut">;
+}
+export interface IPieChart {
+  data: ChartData<"pie">;
+  options: ChartOptions<"pie">;
+}

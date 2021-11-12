@@ -38,10 +38,10 @@ import CreateGroupPage from "views/pages/groups/CreateGroupPage";
 import GroupsPage from "views/pages/groups/GroupsPage";
 import GroupDetailsPage from "views/pages/groups/GroupDetailsPage";
 
-import ChartsPage from "views/pages/dashboards/ChartsPage";
 import WorldOverviewPage from "views/pages/dashboards/WorldOverviewPage";
 import { IRoute } from "./types/types";
 import TrelloExamplePage from "./views/pages/trello/TrelloExamplePage";
+import ChartsPage from "./views/pages/dashboards/ChartsPage";
 
 const routes: IRoute[] = [
   /* Users */

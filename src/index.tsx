@@ -33,6 +33,7 @@ import "./assets/vendor/nucleo/css/nucleo.css";
 import { SidenavProvider } from "./context";
 import AdminLayout from "./layouts/Admin";
 import AuthLayout from "./layouts/Auth";
+import "./variables/chartDefaults";
 
 ReactDOM.render(
   <BrowserRouter>

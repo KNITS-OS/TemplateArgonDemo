@@ -4,7 +4,7 @@
 * Argon Dashboard PRO React - v1.2.0
 =========================================================
 
-* Product Page: https://www.creative-tim.com/product/argon-dashboard-react
+* Product Page: https://www.creative-tim.com/product/argon-dashboard-pro-react
 * Copyright 2021 Creative Tim (https://www.creative-tim.com)
 
 * Coded by Creative Tim
@@ -14,9 +14,7 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-// react plugin used to create charts dasds
 import { Line, Bar, Doughnut, Pie } from "react-chartjs-2";
-// reactstrap components
 import {
   Card,
   CardHeader,
@@ -25,7 +23,6 @@ import {
   Row,
   Col,
 } from "reactstrap";
-// core components
 import CardsHeader from "components/Headers/CardsHeader";
 
 import {
@@ -52,16 +49,10 @@ const ChartsPage = () => {
               <CardBody>
                 <div className="chart">
                   <Line
+                    data={lineChartExample.data}
+                    options={lineChartExample.options}
                     id="chart-sales"
                     className="chart-canvas"
-                    data={lineChartExample}
-                    options={{
-                      plugins: {
-                        tooltip: {
-                          intersect: false,
-                        },
-                      },
-                    }}
                   />
                 </div>
               </CardBody>
@@ -76,7 +67,8 @@ const ChartsPage = () => {
               <CardBody>
                 <div className="chart">
                   <Bar
-                    data={barChartExample}
+                    data={barChartExample.data}
+                    options={barChartExample.options}
                     className="chart-canvas"
                     id="chart-bars"
                   />
@@ -95,7 +87,8 @@ const ChartsPage = () => {
               <CardBody>
                 <div className="chart">
                   <Line
-                    data={dotChartExample}
+                    data={dotChartExample.data}
+                    options={dotChartExample.options}
                     id="chart-points"
                     className="chart-canvas"
                   />
@@ -112,13 +105,8 @@ const ChartsPage = () => {
               <CardBody>
                 <div className="chart">
                   <Doughnut
-                    data={doughnutChartExample}
-                    options={{
-                      animation: {
-                        animateScale: true,
-                      },
-                      cutout: 120,
-                    }}
+                    data={doughnutChartExample.data}
+                    options={doughnutChartExample.options}
                     className="chart-canvas"
                     id="chart-doughnut"
                   />
@@ -137,12 +125,8 @@ const ChartsPage = () => {
               <CardBody>
                 <div className="chart">
                   <Pie
-                    data={pieChartExample}
-                    options={{
-                      animation: {
-                        animateScale: true,
-                      },
-                    }}
+                    data={pieChartExample.data}
+                    options={pieChartExample.options}
                     className="chart-canvas"
                     id="chart-pie"
                   />
@@ -159,25 +143,10 @@ const ChartsPage = () => {
               <CardBody>
                 <div className="chart">
                   <Bar
-                    data={multiBarChartExample}
+                    data={multiBarChartExample.data}
+                    options={multiBarChartExample.options}
                     className="chart-canvas"
                     id="chart-bar-stacked"
-                    options={{
-                      scales: {
-                        xAxes: {
-                          stacked: true,
-                        },
-                        yAxes: {
-                          stacked: true,
-                        },
-                      },
-                      plugins: {
-                        tooltip: {
-                          mode: "index",
-                          intersect: false,
-                        },
-                      },
-                    }}
                   />
                 </div>
               </CardBody>
