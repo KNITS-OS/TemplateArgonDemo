@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { Employee, IEmployeeFilters } from "types/types";
-import { searchWithFilters } from "redux/queries";
+import axiosInstance from "utils/axiosInstance";
+import { searchWithFilters } from "redux/api";
 
 interface EmployeesState {
   employees: Employee[];
@@ -16,15 +17,26 @@ const initialState: EmployeesState = {
   error: "",
 };
 
-export const fetchByFilters = createAsyncThunk(
-  "employees/fetchByFilters",
+export const fetchEmployeesByFilters = createAsyncThunk(
+  "employees/fetchEmployeesByFilters",
   async (filters: IEmployeeFilters) => {
-    const res = await searchWithFilters({
+    const { data } = await searchWithFilters({
       filters,
       select: "*",
-      table: "employees",
     });
-    return res.data;
+    return data;
+  },
+);
+
+export const fetchEmployee = createAsyncThunk(
+  "employees/fetchEmployee",
+  async (id: number) => {
+    let { data } = await axiosInstance.get("employees", {
+      params: {
+        id: `eq.${id}`,
+      },
+    });
+    return data;
   },
 );
 
@@ -33,15 +45,26 @@ const employeesSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: builder => {
-    builder.addCase(fetchByFilters.pending, state => {
+    builder.addCase(fetchEmployeesByFilters.rejected, (state, action) => {
+      state.error = action.payload;
+      state.loading = false;
+    });
+    builder.addCase(fetchEmployeesByFilters.pending, state => {
       state.loading = true;
     });
-    builder.addCase(fetchByFilters.fulfilled, (state, action) => {
+    builder.addCase(fetchEmployeesByFilters.fulfilled, (state, action) => {
       state.employees = action.payload;
       state.loading = false;
     });
-    builder.addCase(fetchByFilters.rejected, (state, action) => {
+    builder.addCase(fetchEmployee.rejected, (state, action) => {
       state.error = action.payload;
+      state.loading = false;
+    });
+    builder.addCase(fetchEmployee.pending, state => {
+      state.loading = true;
+    });
+    builder.addCase(fetchEmployee.fulfilled, (state, action) => {
+      state.employee = action.payload[0];
       state.loading = false;
     });
   },

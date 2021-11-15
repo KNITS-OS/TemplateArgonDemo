@@ -1,4 +1,4 @@
-import { fetchBusinessUnit } from "../queries";
+import { fetchBusinessUnit } from "../api";
 
 const addBusinessUnitFilter = async (businessUnitParam: string | null) => {
   let businessUnit = null;

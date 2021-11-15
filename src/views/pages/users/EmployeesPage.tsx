@@ -43,7 +43,7 @@ import {
   getSelectCountries,
 } from "utils/fetchData";
 import { useAppDispatch, useAppSelector } from "redux/app/hooks";
-import { fetchByFilters } from "redux/features/employees/employeesSlice";
+import { fetchEmployeesByFilters } from "redux/features/employees/employeesSlice";
 
 const { SearchBar } = Search;
 
@@ -66,7 +66,7 @@ const EmployeesPage = () => {
       hiringDate: searchHiringDate,
     };
 
-    dispatch(fetchByFilters(filters));
+    dispatch(fetchEmployeesByFilters(filters));
   };
 
   const goToEmployeeDetails = (e: React.MouseEvent<HTMLButtonElement>) => {

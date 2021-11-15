@@ -1,5 +1,5 @@
 import axiosInstance from "utils/axiosInstance";
-import { IEmployeeFilters } from "../../types/types";
+import { IEmployeeFilters } from "types/types";
 import {
   addBusinessUnitFilter,
   addCountryFilter,
@@ -9,13 +9,12 @@ import {
 interface Props {
   filters: IEmployeeFilters;
   select: string;
-  table: string;
 }
 
 /**
  *  @description gets data from the API using filters
  */
-const searchWithFilters = async ({ filters, select, table }: Props) => {
+const searchWithFilters = async ({ filters, select }: Props) => {
   const lastNameFilter = addLastnameFilter(filters.lastName);
   const countryFilter = await addCountryFilter(filters.countryIsoCode);
   const businessUnitFilter = await addBusinessUnitFilter(
@@ -30,7 +29,7 @@ const searchWithFilters = async ({ filters, select, table }: Props) => {
     businessUnit: businessUnitFilter,
   };
 
-  let { data } = await axiosInstance.get(table, {
+  let { data } = await axiosInstance.get("/employees", {
     params,
   });
 

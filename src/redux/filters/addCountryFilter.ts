@@ -1,4 +1,4 @@
-import { fetchCountry } from "../queries";
+import { fetchCountry } from "../api";
 
 const addCountryFilter = async (countryParam: string | null) => {
   let country = null;
