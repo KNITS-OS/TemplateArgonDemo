@@ -16,15 +16,24 @@
 */
 // core components
 import SimpleHeader from "components/Headers/SimpleHeader";
-import { groups } from "mock-data/groups";
 // react component for creating dynamic tables
 import BootstrapTable from "react-bootstrap-table-next";
 import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
 import { useHistory } from "react-router";
 // reactstrap components
-import { Button, Card, CardHeader, Container, Row } from "reactstrap";
-import { pagination } from "utils/tableUtils";
+import {
+  Button,
+  Card,
+  CardHeader,
+  Col,
+  Container,
+  FormGroup,
+  Row,
+} from "reactstrap";
 import { Group } from "types/types";
+import { pagination } from "utils/tableUtils";
+import { useAppDispatch, useAppSelector } from "../../../redux/app/hooks";
+import { fetchGroups } from "../../../redux/features/groups/groupsSlice";
 
 const { SearchBar } = Search;
 
@@ -35,6 +44,9 @@ const GroupsPage = () => {
     var { id } = e.target as HTMLButtonElement;
     history.push(`/admin/groups/group-details/${id}`);
   };
+
+  const { groups = [] } = useAppSelector(state => state.groups);
+  const dispatch = useAppDispatch();
 
   const formatActionButtonCell = (_: undefined, row: Group) => {
     const { id } = row;
@@ -55,6 +67,10 @@ const GroupsPage = () => {
         </Button>
       </>
     );
+  };
+
+  const onFindGroups = () => {
+    dispatch(fetchGroups());
   };
 
   return (
@@ -111,13 +127,28 @@ const GroupsPage = () => {
                       id="datatable-basic_filter"
                       className="dataTables_filter px-4 pb-1"
                     >
-                      <label>
-                        Search:
-                        <SearchBar
-                          className="form-control-sm"
-                          {...props.searchProps}
-                        />
-                      </label>
+                      <Row>
+                        <Col>
+                          <label>
+                            Search:
+                            <SearchBar
+                              className="form-control-sm"
+                              {...props.searchProps}
+                            />
+                          </label>
+                        </Col>
+                        <Col>
+                          <FormGroup>
+                            <button
+                              className="btn btn-info"
+                              type="button"
+                              onClick={onFindGroups}
+                            >
+                              Search
+                            </button>
+                          </FormGroup>
+                        </Col>
+                      </Row>
                     </div>
                     <BootstrapTable
                       {...props.baseProps}

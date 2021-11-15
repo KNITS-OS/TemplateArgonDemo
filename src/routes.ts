@@ -37,7 +37,6 @@ import EmployeeDetailsPage from "views/pages/users/EmployeeDetailsPage";
 
 import CreateGroupPage from "views/pages/groups/CreateGroupPage";
 import GroupsPage from "views/pages/groups/GroupsPage";
-import GroupDetailsPage from "views/pages/groups/GroupDetailsPage";
 
 import WorldOverviewPage from "views/pages/dashboards/WorldOverviewPage";
 import { IRoute } from "./types/types";
@@ -179,13 +178,6 @@ const routes: IRoute[] = [
     global: true,
     path: "/users/employee-details/:id",
     component: EmployeeDetailsPage,
-    layout: "/admin",
-  },
-  {
-    collapse: false,
-    global: true,
-    path: "/groups/group-details/:id",
-    component: GroupDetailsPage,
     layout: "/admin",
   },
   /* Examples */

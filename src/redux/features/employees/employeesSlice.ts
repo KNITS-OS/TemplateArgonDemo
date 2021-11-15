@@ -7,14 +7,14 @@ interface EmployeesState {
   employees: Employee[];
   employee: Employee | null;
   loading: boolean;
-  error: unknown;
+  error: any;
 }
 
 const initialState: EmployeesState = {
   employees: [],
   employee: null,
   loading: false,
-  error: "",
+  error: null,
 };
 
 export const fetchEmployeesByFilters = createAsyncThunk(

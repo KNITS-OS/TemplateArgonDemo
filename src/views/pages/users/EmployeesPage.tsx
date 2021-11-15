@@ -59,7 +59,7 @@ const EmployeesPage = () => {
   const [searchHiringDate, setSearchHiringDate] = useState(null);
 
   const dispatch = useAppDispatch();
-  const { employees } = useAppSelector(state => state.employees);
+  const { employees = [] } = useAppSelector(state => state.employees);
 
   const findByAllParameters = () => {
     let filters: IEmployeeFilters = {
