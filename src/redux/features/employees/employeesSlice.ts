@@ -40,6 +40,18 @@ export const fetchEmployee = createAsyncThunk(
   },
 );
 
+export const deleteEmployee = createAsyncThunk(
+  "employees/deleteEmployee",
+  async (id: number) => {
+    let { data } = await axiosInstance.delete("employees", {
+      params: {
+        id: `eq.${id}`,
+      },
+    });
+    return data;
+  },
+);
+
 const employeesSlice = createSlice({
   name: "employees",
   initialState,
@@ -65,6 +77,17 @@ const employeesSlice = createSlice({
     });
     builder.addCase(fetchEmployee.fulfilled, (state, action) => {
       state.employee = action.payload[0];
+      state.loading = false;
+    });
+    builder.addCase(deleteEmployee.pending, state => {
+      state.loading = true;
+    });
+    builder.addCase(deleteEmployee.fulfilled, (state, action) => {
+      state.employee = action.payload[0];
+      state.loading = false;
+    });
+    builder.addCase(deleteEmployee.rejected, (state, action) => {
+      state.error = action.payload;
       state.loading = false;
     });
   },

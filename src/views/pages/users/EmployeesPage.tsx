@@ -43,7 +43,10 @@ import {
   getSelectCountries,
 } from "utils/fetchData";
 import { useAppDispatch, useAppSelector } from "redux/app/hooks";
-import { fetchEmployeesByFilters } from "redux/features/employees/employeesSlice";
+import {
+  deleteEmployee,
+  fetchEmployeesByFilters,
+} from "redux/features/employees/employeesSlice";
 
 const { SearchBar } = Search;
 
@@ -74,15 +77,9 @@ const EmployeesPage = () => {
     history.push(`/admin/users/employee-details/${id}`);
   };
 
-  const removeEmployee = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const onRemoveEmployee = (e: React.MouseEvent<HTMLButtonElement>) => {
     var { id } = e.target as HTMLButtonElement;
-    let empIndex = employees.findIndex(emp => emp.id !== parseInt(id));
-    console.log(employees[empIndex]);
-    console.log(employees.length);
-    console.log(employees.length);
-    // employees = employees.splice(id, 1);
-
-    //history.push('/admin/users/employee-details/'+id);
+    dispatch(deleteEmployee(parseInt(id)));
   };
 
   const formatActionButtonCell = (_: undefined, row: Employee) => {
@@ -107,7 +104,7 @@ const EmployeesPage = () => {
           className="btn-icon btn-2"
           color="danger"
           type="button"
-          onClick={removeEmployee}
+          onClick={onRemoveEmployee}
         >
           <span id={employeeId} className="btn-inner--icon">
             <i id={employeeId} className="ni ni-fat-remove" />
