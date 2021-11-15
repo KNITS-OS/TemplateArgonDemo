@@ -118,7 +118,6 @@ const EmployeesPage = () => {
     );
   };
 
-  if (loading) return <div>Loading...</div>;
   if (error) return <div>Error</div>;
   if (!employees) return <div>No employees found</div>;
 
@@ -238,6 +237,7 @@ const EmployeesPage = () => {
                 <h3 className="mb-0">Employees</h3>
                 <p className="text-sm mb-0">Employees </p>
               </CardHeader>
+
               <ToolkitProvider
                 data={employees}
                 keyField="id"
@@ -305,12 +305,16 @@ const EmployeesPage = () => {
                         />
                       </label>
                     </div>
-                    <BootstrapTable
-                      {...props.baseProps}
-                      bootstrap4={true}
-                      pagination={pagination}
-                      bordered={false}
-                    />
+                    {loading ? (
+                      "Loading data"
+                    ) : (
+                      <BootstrapTable
+                        {...props.baseProps}
+                        bootstrap4={true}
+                        pagination={pagination}
+                        bordered={false}
+                      />
+                    )}
                   </div>
                 )}
               </ToolkitProvider>

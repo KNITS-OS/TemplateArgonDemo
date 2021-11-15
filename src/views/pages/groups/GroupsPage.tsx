@@ -77,7 +77,6 @@ const GroupsPage = () => {
     dispatch(fetchGroups());
   };
 
-  if (loading) return <div>Loading...</div>;
   if (error) return <div>Error</div>;
   if (!groups) return <div>No groups found</div>;
 
@@ -158,12 +157,17 @@ const GroupsPage = () => {
                         </Col>
                       </Row>
                     </div>
-                    <BootstrapTable
-                      {...props.baseProps}
-                      bootstrap4={true}
-                      pagination={pagination}
-                      bordered={false}
-                    />
+
+                    {loading ? (
+                      "Loading data"
+                    ) : (
+                      <BootstrapTable
+                        {...props.baseProps}
+                        bootstrap4={true}
+                        pagination={pagination}
+                        bordered={false}
+                      />
+                    )}
                   </div>
                 )}
               </ToolkitProvider>
