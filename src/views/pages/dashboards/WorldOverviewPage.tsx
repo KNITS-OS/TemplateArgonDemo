@@ -4,7 +4,7 @@
 * Argon Dashboard PRO React - v1.2.0
 =========================================================
 
-* Product Page: https://www.creative-tim.com/product/argon-dashboard-react
+* Product Page: https://www.creative-tim.com/product/argon-dashboard-pro-react
 * Copyright 2021 Creative Tim (https://www.creative-tim.com)
 
 * Coded by Creative Tim
@@ -14,65 +14,75 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-// react plugin for creating vector maps
+
+import { Card, CardBody, Col, Container, Row } from "reactstrap";
+import SimpleHeader from "components/Headers/SimpleHeader";
 import { VectorMap } from "@react-jvectormap/core";
 import worldMill from "@react-jvectormap/world/dist/worldMill.json";
 
-// reactstrap components
-import { Card, CardBody, Container, Row } from "reactstrap";
-// core components
-import SimpleHeader from "components/Headers/SimpleHeader";
-
-let mapData = [760, 550, 120, 1300, 540, 690, 200, 200, 600, 300, 2920];
-
-function WorldOverviewPage() {
+const mapData = {
+  AU: 760,
+  BR: 550,
+  CA: 120,
+  DE: 1300,
+  FR: 540,
+  GB: 690,
+  GE: 200,
+  IN: 200,
+  RO: 600,
+  RU: 300,
+  US: 2920,
+};
+// @todo
+// fix zoom-in zoom-out buttons
+const WorldOverviewPage = () => {
   return (
     <>
       <SimpleHeader name="Vector maps" parentName="Maps" />
       <Container className="mt--6" fluid>
         <Row>
-          <div className="col">
+          <Col>
             <Card>
               <CardBody className="pt-0">
                 <VectorMap
+                  containerClassName="vector-map"
                   className="vector-map"
                   style={{
-                    width: "100%",
                     height: "600px",
                   }}
                   map={worldMill}
                   zoomOnScroll={false}
-                  // scaleColors={["#f00", "#0071A4"]}
-                  // normalizeFunction="polynomial"
-                  // hoverOpacity={0.7}
-                  // hoverColor={false}
                   backgroundColor="transparent"
                   regionStyle={{
                     initial: {
                       fill: "#e9ecef",
-                      fillOpacity: 0.8,
+                      // @ts-ignore
+                      "fill-opacity": 0.8,
                       stroke: "none",
-                      strokeWidth: 0,
-                      strokeOpacity: 1,
+                      "stroke-width": 0,
+                      "stroke-opacity": 1,
                     },
                     hover: {
                       fill: "#dee2e6",
-                      fillOpacity: 0.8,
+                      // @ts-ignore
+                      "fill-opacity": 0.8,
                       cursor: "pointer",
                     },
                     selected: {
                       fill: "yellow",
                     },
-                    selectedHover: {},
                   }}
                   markerStyle={{
                     initial: {
                       fill: "#fb6340",
-                      strokeWidth: 0,
+                      // @ts-ignore
+                      "stroke-width": 0,
                     },
                     hover: {
                       fill: "#11cdef",
-                      strokeWidth: 0,
+                      // @ts-ignore
+                      "stroke-width": 0,
+                      border: 0,
                     },
                   }}
                   markers={[
@@ -116,8 +126,10 @@ function WorldOverviewPage() {
                   series={{
                     regions: [
                       {
+                        //@ts-ignore
                         values: mapData,
-                        // scale: ["#ced4da", "#adb5bd"],
+                        //@ts-ignore
+                        scale: ["#ced4da", "#adb5bd"],
                         normalizeFunction: "polynomial",
                         attribute: "fill",
                       },
@@ -126,11 +138,11 @@ function WorldOverviewPage() {
                 />
               </CardBody>
             </Card>
-          </div>
+          </Col>
         </Row>
       </Container>
     </>
   );
-}
+};
 
 export default WorldOverviewPage;
