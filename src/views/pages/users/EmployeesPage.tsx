@@ -17,7 +17,6 @@
 
 // core components
 import GradientEmptyHeader from "components/Headers/GradientEmptyHeader";
-import { employeesData as employees } from "mock-data/employees";
 import { useState } from "react";
 // react component for creating dynamic tables
 import BootstrapTable from "react-bootstrap-table-next";
@@ -38,11 +37,13 @@ import {
   Row,
 } from "reactstrap";
 import { pagination } from "utils/tableUtils";
-import { Employee } from "types/types";
+import { Employee, IEmployeeFilters } from "types/types";
 import {
   getSelectBusinessUnits,
   getSelectCountries,
 } from "utils/fetchData";
+import { useAppDispatch, useAppSelector } from "redux/app/hooks";
+import { fetchByFilters } from "redux/features/employees/employeesSlice";
 
 const { SearchBar } = Search;
 
@@ -54,14 +55,18 @@ const EmployeesPage = () => {
   const [searchCountry, setSearchCountry] = useState("");
   const [searchHiringDate, setSearchHiringDate] = useState(null);
 
+  const dispatch = useAppDispatch();
+  const { employees } = useAppSelector(state => state.employees);
+
   const findByAllParameters = () => {
-    let filters = {
+    let filters: IEmployeeFilters = {
       lastName: searchLastName,
       businessUnitId: searchBusinessUnit,
-      countryIsoCode3: searchCountry,
+      countryIsoCode: searchCountry,
       hiringDate: searchHiringDate,
     };
-    console.log("filters: ", filters);
+
+    dispatch(fetchByFilters(filters));
   };
 
   const goToEmployeeDetails = (e: React.MouseEvent<HTMLButtonElement>) => {

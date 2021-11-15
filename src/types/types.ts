@@ -177,3 +177,16 @@ export interface IPieChart {
   data: ChartData<"pie">;
   options: ChartOptions<"pie">;
 }
+
+export interface IFilterParams {
+  lastName: string | null;
+  country: string | null;
+  businessUnit: string | null;
+}
+
+export interface IEmployeeFilters {
+  lastName: string;
+  businessUnitId: string;
+  countryIsoCode: string;
+  hiringDate: string | null;
+}
