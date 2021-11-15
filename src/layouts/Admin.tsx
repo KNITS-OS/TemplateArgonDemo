@@ -18,22 +18,22 @@
 import AdminFooter from "components/Footers/AdminFooter";
 import AdminNavbar from "components/Navbars/AdminNavbar";
 import Sidebar from "components/Sidebar/Sidebar";
-import { useSidenav } from "context";
-import { useToggleSidenav } from "hooks";
 import { useRef } from "react";
 // react library for routing
 import { Redirect, Switch, useLocation } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "redux/app/hooks";
 // import Logo from "assets/img/brand/Logo.png";
 import routes from "routes";
 import { Theme } from "types/types";
 import { getRoutes } from "./GetRoutes";
 import ScrollToTop from "./ScrollToTop";
+import { toggleSidenav } from "redux/features/sidenav/sidenavSlice";
 
 const Admin = () => {
   const location = useLocation();
   const mainContentRef = useRef(document.createElement("div"));
-  const { sidenavOpen } = useSidenav();
-  const { toggleSidenav } = useToggleSidenav();
+  const dispatch = useAppDispatch();
+  const { isSidenavOpen } = useAppSelector(state => state.sidenav);
 
   ScrollToTop(mainContentRef);
 
@@ -63,8 +63,11 @@ const Admin = () => {
         </Switch>
         <AdminFooter />
       </div>
-      {sidenavOpen ? (
-        <div className="backdrop d-xl-none" onClick={toggleSidenav} />
+      {isSidenavOpen ? (
+        <div
+          className="backdrop d-xl-none"
+          onClick={() => dispatch(toggleSidenav)}
+        />
       ) : null}
     </>
   );

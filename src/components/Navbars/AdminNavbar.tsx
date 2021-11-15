@@ -19,39 +19,36 @@
 import classnames from "classnames";
 // reactstrap components
 import {
+  Col,
   Collapse,
-  DropdownMenu,
+  Container,
   DropdownItem,
-  UncontrolledDropdown,
+  DropdownMenu,
   DropdownToggle,
-  FormGroup,
   Form,
+  FormGroup,
   Input,
+  InputGroup,
   InputGroupAddon,
   InputGroupText,
-  InputGroup,
-  ListGroupItem,
   ListGroup,
+  ListGroupItem,
   Media,
+  Nav,
   Navbar,
   NavItem,
   NavLink,
-  Nav,
-  Container,
   Row,
-  Col,
+  UncontrolledDropdown,
 } from "reactstrap";
-import { useSidenav } from "context";
-import { useToggleSidenav } from "hooks";
 import { Theme } from "types/types";
+import SidenavToggler from "./SidenavToggler";
 
 interface Props {
   theme: Theme;
 }
 
 const AdminNavbar = ({ theme }: Props) => {
-  const { sidenavOpen } = useSidenav();
-  const { toggleSidenav } = useToggleSidenav();
   // function that on mobile devices makes the search open
   const openSearch = () => {
     document.body.classList.add("g-navbar-search-showing");
@@ -118,22 +115,7 @@ const AdminNavbar = ({ theme }: Props) => {
             </Form>
 
             <Nav className="align-items-center ml-md-auto" navbar>
-              <NavItem className="d-xl-none">
-                <div
-                  className={classnames(
-                    "pr-3 sidenav-toggler",
-                    { active: sidenavOpen },
-                    { "sidenav-toggler-dark": theme === "dark" },
-                  )}
-                  onClick={toggleSidenav}
-                >
-                  <div className="sidenav-toggler-inner">
-                    <i className="sidenav-toggler-line" />
-                    <i className="sidenav-toggler-line" />
-                    <i className="sidenav-toggler-line" />
-                  </div>
-                </div>
-              </NavItem>
+              <SidenavToggler theme={theme} />
               <NavItem className="d-sm-none">
                 <NavLink onClick={openSearch}>
                   <i className="ni ni-zoom-split-in" />

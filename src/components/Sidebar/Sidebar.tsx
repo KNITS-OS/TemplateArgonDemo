@@ -14,29 +14,29 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import { useEffect, useState } from "react";
-// react library for routing
-import {
-  useLocation,
-  NavLink as NavLinkRRD,
-  Link,
-} from "react-router-dom";
 // nodejs library that concatenates classes
 import classnames from "classnames";
+import { useEffect, useState } from "react";
 // react library that creates nice scrollbar on windows devices
 import PerfectScrollbar from "react-perfect-scrollbar";
+// react library for routing
+import {
+  Link,
+  NavLink as NavLinkRRD,
+  useLocation,
+} from "react-router-dom";
 // reactstrap components
 import {
   Collapse,
-  NavbarBrand,
+  Nav,
   Navbar,
+  NavbarBrand,
   NavItem,
   NavLink,
-  Nav,
 } from "reactstrap";
+import { useAppDispatch, useAppSelector } from "redux/app/hooks";
 import { IRoute, View } from "types/types";
-import { useSidenav } from "context";
-import { useToggleSidenav } from "hooks";
+import { toggleSidenav } from "redux/features/sidenav/sidenavSlice";
 
 // @todo fix all @ts-ignore
 
@@ -77,9 +77,8 @@ const Sidebar = ({ routes, logo, rtlActive = false }: Props) => {
   const [state, setState] = useState({});
   const location = useLocation();
 
-  const { sidenavOpen } = useSidenav();
-  const { toggleSidenav } = useToggleSidenav();
-
+  const dispatch = useAppDispatch();
+  const { isSidenavOpen } = useAppSelector(state => state.sidenav);
   useEffect(() => {
     setState(getCollapseStates(routes));
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -170,7 +169,7 @@ const Sidebar = ({ routes, logo, rtlActive = false }: Props) => {
    */
   const closeSidenav = () => {
     if (window.innerWidth < 1200) {
-      toggleSidenav();
+      dispatch(toggleSidenav());
     }
   };
 
@@ -285,9 +284,9 @@ const Sidebar = ({ routes, logo, rtlActive = false }: Props) => {
         <div className="ml-auto">
           <div
             className={classnames("sidenav-toggler d-none d-xl-block", {
-              active: sidenavOpen,
+              active: isSidenavOpen,
             })}
-            onClick={toggleSidenav}
+            onClick={() => dispatch(toggleSidenav())}
           >
             <div className="sidenav-toggler-inner">
               <i className="sidenav-toggler-line" />
