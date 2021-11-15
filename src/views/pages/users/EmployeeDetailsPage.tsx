@@ -32,7 +32,6 @@ import {
 } from "reactstrap";
 import { useAppDispatch, useAppSelector } from "redux/app/hooks";
 import { fetchEmployee } from "redux/features/employees/employeesSlice";
-import { Employee } from "types/types";
 
 interface RouteParams {
   id: string;
@@ -51,26 +50,28 @@ const EmployeeDetailsPage = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  loading && <div>Loading...</div>;
-  error && <div>Couldn't fetch data</div>;
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error</div>;
+  if (!employee) return <div>No employee found</div>;
 
-  if (employee) {
-    const {
-      firstName,
-      lastName,
-      internationalName,
-      email,
-      title,
-      companyCode,
-      businessUnit,
-      costCenter,
-      managementGroup,
-    } = employee as Employee;
+  const {
+    firstName,
+    lastName,
+    internationalName,
+    email,
+    title,
+    companyCode,
+    businessUnit,
+    costCenter,
+    managementGroup,
+  } = employee;
 
-    return (
-      <>
-        <GradientEmptyHeader />
-        <Container className="mt--6" fluid>
+  return (
+    <>
+      <GradientEmptyHeader />
+      <Container className="mt--6" fluid>
+        {error && <div>Couldn't fetch data</div>}
+        {employee && (
           <Row>
             <Col className="order-xl-1" xl="12">
               <Card>
@@ -334,12 +335,10 @@ const EmployeeDetailsPage = () => {
               </Card>
             </Col>
           </Row>
-        </Container>
-      </>
-    );
-  }
-
-  return null;
+        )}
+      </Container>
+    </>
+  );
 };
 
 export default EmployeeDetailsPage;

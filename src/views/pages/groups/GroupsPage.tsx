@@ -45,7 +45,11 @@ const GroupsPage = () => {
     history.push(`/admin/groups/group-details/${id}`);
   };
 
-  const { groups = [] } = useAppSelector(state => state.groups);
+  const {
+    groups = [],
+    loading,
+    error,
+  } = useAppSelector(state => state.groups);
   const dispatch = useAppDispatch();
 
   const formatActionButtonCell = (_: undefined, row: Group) => {
@@ -72,6 +76,10 @@ const GroupsPage = () => {
   const onFindGroups = () => {
     dispatch(fetchGroups());
   };
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error</div>;
+  if (!groups) return <div>No groups found</div>;
 
   return (
     <>

@@ -59,7 +59,11 @@ const EmployeesPage = () => {
   const [searchHiringDate, setSearchHiringDate] = useState(null);
 
   const dispatch = useAppDispatch();
-  const { employees = [] } = useAppSelector(state => state.employees);
+  const {
+    employees = [],
+    loading,
+    error,
+  } = useAppSelector(state => state.employees);
 
   const findByAllParameters = () => {
     let filters: IEmployeeFilters = {
@@ -113,6 +117,10 @@ const EmployeesPage = () => {
       </>
     );
   };
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error</div>;
+  if (!employees) return <div>No employees found</div>;
 
   return (
     <>
