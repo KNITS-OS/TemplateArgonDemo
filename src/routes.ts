@@ -17,6 +17,7 @@
 
 //examples
 import Buttons from "views/pages/examples/components/Buttons";
+import Counter from "views/pages/examples/components/Counter";
 import Calendar from "views/pages/examples/components/Calendar";
 import Cards from "views/pages/examples/components/Cards";
 import Components from "views/pages/examples/forms/Components";
@@ -221,6 +222,13 @@ const routes: IRoute[] = [
         name: "components",
         miniName: "WV",
         component: Components,
+        layout: "/admin",
+      },
+      {
+        path: "/counter",
+        name: "counter",
+        miniName: "WV",
+        component: Counter,
         layout: "/admin",
       },
       {

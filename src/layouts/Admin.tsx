@@ -66,7 +66,7 @@ const Admin = () => {
       {isSidenavOpen ? (
         <div
           className="backdrop d-xl-none"
-          onClick={() => dispatch(toggleSidenav)}
+          onClick={() => dispatch(toggleSidenav())}
         />
       ) : null}
     </>

@@ -19,7 +19,7 @@ const SidenavToggler = ({ theme }: Props) => {
           { active: isSidenavOpen },
           { "sidenav-toggler-dark": theme === "dark" },
         )}
-        onClick={() => dispatch(toggleSidenav)}
+        onClick={() => dispatch(toggleSidenav())}
       >
         <div className="sidenav-toggler-inner">
           <i className="sidenav-toggler-line" />

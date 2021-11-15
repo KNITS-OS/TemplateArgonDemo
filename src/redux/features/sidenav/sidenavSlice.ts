@@ -20,7 +20,6 @@ export const sidenavSlice = createSlice({
         document.body.classList.add("g-sidenav-pinned");
         document.body.classList.remove("g-sidenav-hidden");
       }
-      console.log(state.isSidenavOpen);
 
       state.isSidenavOpen = !state.isSidenavOpen;
     },
