@@ -56,7 +56,6 @@ const EmployeesPage = () => {
   const [searchLastName, setSearchLastName] = useState("");
   const [searchBusinessUnit, setSearchBusinessUnit] = useState("");
   const [searchCountry, setSearchCountry] = useState("");
-  const [searchHiringDate, setSearchHiringDate] = useState(null);
 
   const dispatch = useAppDispatch();
   const {
@@ -70,7 +69,6 @@ const EmployeesPage = () => {
       lastName: searchLastName,
       businessUnitId: searchBusinessUnit,
       countryIsoCode: searchCountry,
-      hiringDate: searchHiringDate,
     };
 
     dispatch(fetchEmployeesByFilters(filters));
@@ -199,10 +197,13 @@ const EmployeesPage = () => {
                         inputProps={{
                           placeholder: "Hire date",
                         }}
-                        onChange={(dateAsMoment: any) =>
-                          setSearchHiringDate(
-                            dateAsMoment.format("D-MM-YYYY"),
-                          )
+                        onChange={
+                          (dateAsMoment: any) =>
+                            console.log(dateAsMoment.format("D-MM-YYYY"))
+
+                          // setSearchHiringDate(
+                          //   dateAsMoment.format("D-MM-YYYY"),
+                          // )
                         }
                         timeFormat={false}
                       />

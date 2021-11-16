@@ -1,6 +1,6 @@
 import { fetchCountry } from "../api";
 
-const addCountryFilter = async (countryParam: string | null) => {
+const addCountryFilter = async (countryParam: string) => {
   let country = null;
   if (countryParam) {
     const { data } = await fetchCountry({

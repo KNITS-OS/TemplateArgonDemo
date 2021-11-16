@@ -1,7 +1,11 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { Employee, IEmployeeFilters } from "types/types";
 import axiosInstance from "utils/axiosInstance";
-import { searchWithFilters } from "redux/api";
+import {
+  addBusinessUnitFilter,
+  addCountryFilter,
+  addLastnameFilter,
+} from "../../filters";
 
 interface EmployeesState {
   employees: Employee[];
@@ -20,9 +24,21 @@ const initialState: EmployeesState = {
 export const fetchEmployeesByFilters = createAsyncThunk(
   "employees/fetchEmployeesByFilters",
   async (filters: IEmployeeFilters) => {
-    const { data } = await searchWithFilters({
-      filters,
+    const lastNameFilter = addLastnameFilter(filters.lastName);
+    const countryFilter = await addCountryFilter(filters.countryIsoCode);
+    const businessUnitFilter = await addBusinessUnitFilter(
+      filters.businessUnitId,
+    );
+
+    const params = {
       select: "*",
+      lastName: lastNameFilter,
+      country: countryFilter,
+      businessUnit: businessUnitFilter,
+    };
+
+    let { data } = await axiosInstance.get("/employees", {
+      params,
     });
     return data;
   },

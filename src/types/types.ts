@@ -188,5 +188,4 @@ export interface IEmployeeFilters {
   lastName: string;
   businessUnitId: string;
   countryIsoCode: string;
-  hiringDate: string | null;
 }

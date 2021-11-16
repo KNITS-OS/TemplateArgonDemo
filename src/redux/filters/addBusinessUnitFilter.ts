@@ -1,6 +1,6 @@
 import { fetchBusinessUnit } from "../api";
 
-const addBusinessUnitFilter = async (businessUnitParam: string | null) => {
+const addBusinessUnitFilter = async (businessUnitParam: string) => {
   let businessUnit = null;
 
   if (businessUnitParam) {

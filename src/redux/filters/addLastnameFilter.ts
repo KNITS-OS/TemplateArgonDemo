@@ -1,4 +1,4 @@
-const addLastNameFilter = (lastNameParam: string | null) => {
+const addLastNameFilter = (lastNameParam: string) => {
   let lastName = null;
 
   if (lastNameParam) lastName = `eq.${lastNameParam}`;
