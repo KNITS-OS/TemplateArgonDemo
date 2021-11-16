@@ -1,7 +1,12 @@
 import { fetchBusinessUnit } from "../api";
 
-const addBusinessUnitFilter = async (businessUnitParam: string | null) => {
-  let businessUnit = null;
+/**
+ * @param businessUnitParam
+ * @returns undefined or eq.businessUnitParam
+ * @description function that takes in a string and returns query param if it is defined
+ */
+const addBusinessUnitFilter = async (businessUnitParam: string) => {
+  let businessUnit = undefined;
 
   if (businessUnitParam) {
     const businessUnitId = parseInt(businessUnitParam);

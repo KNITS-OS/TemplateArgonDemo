@@ -16,7 +16,6 @@
 */
 // core components
 import GradientEmptyHeader from "components/Headers/GradientEmptyHeader";
-import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 // reactstrap components
 import {
@@ -30,8 +29,7 @@ import {
   Input,
   Row,
 } from "reactstrap";
-import { useAppDispatch, useAppSelector } from "redux/app/hooks";
-import { fetchEmployee } from "redux/features/employees/employeesSlice";
+import { useFetchEmployeeQuery } from "../../../redux/features/employees/employeesApiSlice";
 
 interface RouteParams {
   id: string;
@@ -40,16 +38,18 @@ interface RouteParams {
 const EmployeeDetailsPage = () => {
   let { id } = useParams<RouteParams>(); //see in routes path: "/users/employee-details/:id",
 
-  const dispatch = useAppDispatch();
-  const { employee, loading, error } = useAppSelector(
-    state => state.employees,
-  );
-  useEffect(() => {
-    dispatch(fetchEmployee(parseInt(id)));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  const {
+    data = [],
+    isError,
+    isFetching,
+    isLoading,
+  } = useFetchEmployeeQuery({
+    id,
+    select: "*",
+  });
 
-  if (error) return <div>Error</div>;
+  let employee = data[0];
+
   if (!employee) return <div>No employee found</div>;
 
   const {
@@ -68,7 +68,7 @@ const EmployeeDetailsPage = () => {
     <>
       <GradientEmptyHeader />
       <Container className="mt--6" fluid>
-        {error && <div>Couldn't fetch data</div>}
+        {isError && <div>Couldn't fetch data</div>}
         {employee && (
           <Row>
             <Col className="order-xl-1" xl="12">
@@ -100,7 +100,7 @@ const EmployeeDetailsPage = () => {
                     </Col>
                   </Row> */}
                 </CardHeader>
-                {loading ? (
+                {isLoading || isFetching ? (
                   "Loading data"
                 ) : (
                   <CardBody>

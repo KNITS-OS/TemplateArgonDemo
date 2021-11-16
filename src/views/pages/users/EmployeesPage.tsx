@@ -36,17 +36,20 @@ import {
   Input,
   Row,
 } from "reactstrap";
-import { pagination } from "utils/tableUtils";
+import { useAppDispatch } from "redux/app/hooks";
+import { deleteEmployee } from "redux/features/employees/employeesSlice";
 import { Employee, IEmployeeFilters } from "types/types";
 import {
   getSelectBusinessUnits,
   getSelectCountries,
 } from "utils/fetchData";
-import { useAppDispatch, useAppSelector } from "redux/app/hooks";
+import { pagination } from "utils/tableUtils";
+import { useLazyFetchEmployeesByFiltersQuery } from "../../../redux/features/employees/employeesApiSlice";
 import {
-  deleteEmployee,
-  fetchEmployeesByFilters,
-} from "redux/features/employees/employeesSlice";
+  addBusinessUnitFilter,
+  addCountryFilter,
+  addLastnameFilter,
+} from "../../../redux/filters";
 
 const { SearchBar } = Search;
 
@@ -56,24 +59,26 @@ const EmployeesPage = () => {
   const [searchLastName, setSearchLastName] = useState("");
   const [searchBusinessUnit, setSearchBusinessUnit] = useState("");
   const [searchCountry, setSearchCountry] = useState("");
-  const [searchHiringDate, setSearchHiringDate] = useState(null);
 
   const dispatch = useAppDispatch();
-  const {
-    employees = [],
-    loading,
-    error,
-  } = useAppSelector(state => state.employees);
+  const [
+    fetchEmployeesByFilters,
+    { data: employees = [], isLoading, isError, isFetching },
+  ] = useLazyFetchEmployeesByFiltersQuery();
 
-  const findByAllParameters = () => {
-    let filters: IEmployeeFilters = {
-      lastName: searchLastName,
-      businessUnitId: searchBusinessUnit,
-      countryIsoCode: searchCountry,
-      hiringDate: searchHiringDate,
+  const findByAllParameters = async () => {
+    const lastNameFilter = addLastnameFilter(searchLastName);
+    const countryFilter = await addCountryFilter(searchCountry);
+    const businessUnitFilter = await addBusinessUnitFilter(
+      searchBusinessUnit,
+    );
+
+    const filters: IEmployeeFilters = {
+      lastName: lastNameFilter,
+      country: countryFilter,
+      businessUnit: businessUnitFilter,
     };
-
-    dispatch(fetchEmployeesByFilters(filters));
+    fetchEmployeesByFilters({ select: "*", filters });
   };
 
   const goToEmployeeDetails = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -118,7 +123,7 @@ const EmployeesPage = () => {
     );
   };
 
-  if (error) return <div>Error</div>;
+  if (isError) return <div>Error</div>;
   if (!employees) return <div>No employees found</div>;
 
   return (
@@ -199,10 +204,13 @@ const EmployeesPage = () => {
                         inputProps={{
                           placeholder: "Hire date",
                         }}
-                        onChange={(dateAsMoment: any) =>
-                          setSearchHiringDate(
-                            dateAsMoment.format("D-MM-YYYY"),
-                          )
+                        onChange={
+                          (dateAsMoment: any) =>
+                            console.log(dateAsMoment.format("D-MM-YYYY"))
+
+                          // setSearchHiringDate(
+                          //   dateAsMoment.format("D-MM-YYYY"),
+                          // )
                         }
                         timeFormat={false}
                       />
@@ -305,7 +313,7 @@ const EmployeesPage = () => {
                         />
                       </label>
                     </div>
-                    {loading ? (
+                    {isLoading || isFetching ? (
                       "Loading data"
                     ) : (
                       <BootstrapTable

@@ -1,7 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { Employee, IEmployeeFilters } from "types/types";
+import { Employee } from "types/types";
 import axiosInstance from "utils/axiosInstance";
-import { searchWithFilters } from "redux/api";
 
 interface EmployeesState {
   employees: Employee[];
@@ -16,17 +15,6 @@ const initialState: EmployeesState = {
   loading: false,
   error: null,
 };
-
-export const fetchEmployeesByFilters = createAsyncThunk(
-  "employees/fetchEmployeesByFilters",
-  async (filters: IEmployeeFilters) => {
-    const { data } = await searchWithFilters({
-      filters,
-      select: "*",
-    });
-    return data;
-  },
-);
 
 export const fetchEmployee = createAsyncThunk(
   "employees/fetchEmployee",
@@ -57,17 +45,6 @@ const employeesSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: builder => {
-    builder.addCase(fetchEmployeesByFilters.rejected, (state, action) => {
-      state.error = action.payload;
-      state.loading = false;
-    });
-    builder.addCase(fetchEmployeesByFilters.pending, state => {
-      state.loading = true;
-    });
-    builder.addCase(fetchEmployeesByFilters.fulfilled, (state, action) => {
-      state.employees = action.payload;
-      state.loading = false;
-    });
     builder.addCase(fetchEmployee.rejected, (state, action) => {
       state.error = action.payload;
       state.loading = false;

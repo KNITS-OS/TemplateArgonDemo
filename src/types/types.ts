@@ -1,6 +1,8 @@
 import { ChartData, ChartOptions } from "chart.js";
 import { ReactNode } from "react";
 
+export type StringOrUndefined = string | undefined;
+
 export interface Employee {
   id: number;
   pdmId: number;
@@ -185,8 +187,7 @@ export interface IFilterParams {
 }
 
 export interface IEmployeeFilters {
-  lastName: string;
-  businessUnitId: string;
-  countryIsoCode: string;
-  hiringDate: string | null;
+  lastName: StringOrUndefined;
+  businessUnit: StringOrUndefined;
+  country: StringOrUndefined;
 }
