@@ -32,8 +32,7 @@ import {
 } from "reactstrap";
 import { Group } from "types/types";
 import { pagination } from "utils/tableUtils";
-import { useAppDispatch, useAppSelector } from "../../../redux/app/hooks";
-import { fetchGroups } from "../../../redux/features/groups/groupsSlice";
+import { useLazyFetchGroupsQuery } from "redux/features/groups/groupsApiSlice";
 
 const { SearchBar } = Search;
 
@@ -45,12 +44,8 @@ const GroupsPage = () => {
     history.push(`/admin/groups/group-details/${id}`);
   };
 
-  const {
-    groups = [],
-    loading,
-    error,
-  } = useAppSelector(state => state.groups);
-  const dispatch = useAppDispatch();
+  const [fetchGroups, { data: groups, isError, isLoading, isFetching }] =
+    useLazyFetchGroupsQuery();
 
   const formatActionButtonCell = (_: undefined, row: Group) => {
     const { id } = row;
@@ -74,10 +69,10 @@ const GroupsPage = () => {
   };
 
   const onFindGroups = () => {
-    dispatch(fetchGroups());
+    fetchGroups({ select: "*" });
   };
 
-  if (error) return <div>Error</div>;
+  if (isError) return <div>Error</div>;
   if (!groups) return <div>No groups found</div>;
 
   return (
@@ -158,7 +153,7 @@ const GroupsPage = () => {
                       </Row>
                     </div>
 
-                    {loading ? (
+                    {isLoading || isFetching ? (
                       "Loading data"
                     ) : (
                       <BootstrapTable

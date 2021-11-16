@@ -36,20 +36,21 @@ import {
   Input,
   Row,
 } from "reactstrap";
-import { useAppDispatch } from "redux/app/hooks";
-import { deleteEmployee } from "redux/features/employees/employeesSlice";
 import { Employee, IEmployeeFilters } from "types/types";
 import {
   getSelectBusinessUnits,
   getSelectCountries,
 } from "utils/fetchData";
 import { pagination } from "utils/tableUtils";
-import { useLazyFetchEmployeesByFiltersQuery } from "../../../redux/features/employees/employeesApiSlice";
+import {
+  useDeleteEmployeeMutation,
+  useLazyFetchEmployeesByFiltersQuery,
+} from "redux/features/employees/employeesApiSlice";
 import {
   addBusinessUnitFilter,
   addCountryFilter,
   addLastnameFilter,
-} from "../../../redux/filters";
+} from "redux/filters";
 
 const { SearchBar } = Search;
 
@@ -60,7 +61,8 @@ const EmployeesPage = () => {
   const [searchBusinessUnit, setSearchBusinessUnit] = useState("");
   const [searchCountry, setSearchCountry] = useState("");
 
-  const dispatch = useAppDispatch();
+  const [deleteEmployee] = useDeleteEmployeeMutation();
+
   const [
     fetchEmployeesByFilters,
     { data: employees = [], isLoading, isError, isFetching },
@@ -82,13 +84,13 @@ const EmployeesPage = () => {
   };
 
   const goToEmployeeDetails = (e: React.MouseEvent<HTMLButtonElement>) => {
-    var { id } = e.target as HTMLButtonElement;
+    let { id } = e.target as HTMLButtonElement;
     history.push(`/admin/users/employee-details/${id}`);
   };
 
   const onRemoveEmployee = (e: React.MouseEvent<HTMLButtonElement>) => {
-    var { id } = e.target as HTMLButtonElement;
-    dispatch(deleteEmployee(parseInt(id)));
+    let { id } = e.target as HTMLButtonElement;
+    deleteEmployee({ id });
   };
 
   const formatActionButtonCell = (_: undefined, row: Employee) => {

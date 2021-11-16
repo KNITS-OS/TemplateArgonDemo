@@ -11,6 +11,9 @@ interface IFetchEmployeeArgs {
   id: string | number;
   select: string;
 }
+interface IDeleteEmployeeArgs {
+  id: string | number;
+}
 
 export const employeesApiSlice = createApi({
   reducerPath: "employeesApi",
@@ -46,6 +49,18 @@ export const employeesApiSlice = createApi({
           };
         },
       }),
+      deleteEmployee: builder.mutation<void, IDeleteEmployeeArgs>({
+        query: args => {
+          const { id } = args;
+          return {
+            url: "employees",
+            method: "delete",
+            params: {
+              id: `eq.${id}`,
+            },
+          };
+        },
+      }),
     };
   },
 });
@@ -53,4 +68,5 @@ export const employeesApiSlice = createApi({
 export const {
   useLazyFetchEmployeesByFiltersQuery,
   useFetchEmployeeQuery,
+  useDeleteEmployeeMutation,
 } = employeesApiSlice;
