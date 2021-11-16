@@ -44,8 +44,10 @@ const GroupsPage = () => {
     history.push(`/admin/groups/group-details/${id}`);
   };
 
-  const [fetchGroups, { data: groups, isError, isLoading, isFetching }] =
-    useLazyFetchGroupsQuery();
+  const [
+    fetchGroups,
+    { data: groups = [], isError, isLoading, isFetching },
+  ] = useLazyFetchGroupsQuery();
 
   const formatActionButtonCell = (_: undefined, row: Group) => {
     const { id } = row;

@@ -16,7 +16,7 @@ export const groupsApiSlice = createApi({
         query: args => {
           const { limit = 30, select } = args;
           return {
-            url: "groups",
+            url: "grodsups",
             params: {
               select,
               limit,
