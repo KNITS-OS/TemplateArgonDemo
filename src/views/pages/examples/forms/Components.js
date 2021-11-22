@@ -24,7 +24,7 @@ import Select2 from "react-select2-wrapper";
 // plugin that creates slider
 import Slider from "nouislider";
 // react plugin that creates text editor
-import ReactQuill from "react-quill";
+// import ReactQuill from "react-quill";
 // javascript plugin that creates nice dropzones for files
 import Dropzone from "dropzone";
 // reactstrap components
@@ -468,7 +468,7 @@ function Components() {
                       data-quill-placeholder="Quill WYSIWYG"
                       data-toggle="quill"
                     />
-                    <ReactQuill
+                    {/* <ReactQuill
                       value={reactQuillText}
                       onChange={(value) => setReactQuillText(value)}
                       theme="snow"
@@ -486,7 +486,7 @@ function Components() {
                           ],
                         ],
                       }}
-                    />
+                    /> */}
                   </Form>
                 </CardBody>
               </Card>
