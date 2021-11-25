@@ -83,7 +83,7 @@ function WorldOverviewPage() {
                       "stroke-width": 0,
                     },
                     hover: {
-                      fill: "#11cdef",
+                      fill: "#0099da",
                       "stroke-width": 0,
                     },
                   }}
