@@ -856,7 +856,7 @@ function Widgets() {
                       "stroke-width": 0,
                     },
                     hover: {
-                      fill: "#0099da",
+                      fill: "#11cdef",
                       "stroke-width": 0,
                     },
                   }}
