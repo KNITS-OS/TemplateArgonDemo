@@ -31,14 +31,23 @@ import {
   Input,
   Row,
 } from "reactstrap";
+import { useDispatch, useSelector } from "react-redux";
+
 
 const CreateEmployeePage = () => {
+ 
+ 
   let [firstName, setFirstName] = useState("first name");
+  let [lastName, setLastName] = useState("last name");
+ 
   const history = useHistory();
+
+  const dispatch = useDispatch();
+
 
   let employee = {
     firstName: firstName,
-    lastName: "",
+    lastName: lastName,
     internationalName: "",
     title: "",
     email: "",
@@ -56,6 +65,11 @@ const CreateEmployeePage = () => {
     officeAddressCity: "",
     officeAddressStreet: "",
   };
+
+
+  const saveEmployee = () =>{
+    dispatch({type:'CREATE_EMPLOYEE', payload:employee });	
+  }
 
   return (
     <>
@@ -106,6 +120,7 @@ const CreateEmployeePage = () => {
                             id="input-last-name"
                             value={employee.lastName}
                             type="text"
+                            onChange={e => setLastName(e.target.value)}
                           />
                         </FormGroup>
                       </Col>
@@ -308,7 +323,7 @@ const CreateEmployeePage = () => {
                         <Button
                           type="button"
                           color="success"
-                          onClick={e => e.preventDefault()}
+                          onClick={saveEmployee}
                         >
                           Create
                         </Button>

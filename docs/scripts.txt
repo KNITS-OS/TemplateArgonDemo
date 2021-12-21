@@ -1,0 +1,5 @@
+# installation
+> npm install --legacy-peer-deps
+
+# run test api
+> npm run api

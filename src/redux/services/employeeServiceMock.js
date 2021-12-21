@@ -1,6 +1,6 @@
 import { categoriesData } from "mock-data/categories";
 import { employeesData } from "mock-data/employees";
-import http from "./http-common";
+
 
 /*
 const searchEmployees = queryParams => {
@@ -41,17 +41,29 @@ const searchEmployees = queryParams => {
   return { data: result };
 };*/
 
+const createEmployee = (employee) => {
+   employeesData.push(employee);
+};
+
+
 const searchEmployees = (queryParams) => {
-  return http.get(`/employees?${queryParams}`);
+  return employeesData;
 };
 
 const listEmployees = () => {
-  return http.get(`/employees`);
+    callWithDelay ( () => console.log('Just log when done'), 2000);
+    return employeesData;
 };
 
 const employeeService = {
+  createEmployee,
   searchEmployees,
   listEmployees
+};
+
+
+const callWithDelay = (callback, delay) => {
+  setTimeout(callback, delay);
 };
 
 export default employeeService;

@@ -30,6 +30,8 @@ function Admin() {
   const location = useLocation();
   const mainContentRef = React.useRef(null);
 
+  console.log(process.env);
+  
   React.useEffect(() => {
     document.documentElement.scrollTop = 0;
     document.scrollingElement.scrollTop = 0;

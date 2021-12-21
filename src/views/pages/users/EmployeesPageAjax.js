@@ -39,33 +39,17 @@ import {
   Row,
   Spinner
 } from "reactstrap";
-import {
-  API_CALL_ERROR,
-  API_CALL_START,
-  CREATE_EMPLOYEE,
-  DELETE_EMPLOYEE,
-  SEARCH_EMPLOYEES,
-  UPDATE_EMPLOYEE,
-  LIST_EMPLOYEES,
-  CLOSE_ERROR_ALERT
-} from "redux/actions/types";
-import ReactBSAlert from "react-bootstrap-sweetalert";
 import { searchEmployees } from "redux/actions/employees";
 import employeeService   from "redux/services/employeeService"; 
 import { deleteUser } from "redux/actions/employees";
 import { pagination } from "utils/tableUtils";
-
-//import { employeesData } from "mock-data/employees.js";
-
-
-
-
+import ReactBSAlert from "react-bootstrap-sweetalert";
 
 
 
 const { SearchBar } = Search;
-const EmployeesPage = () => {
 
+const EmployeesPage = () => {
   const history = useHistory();
 
   const [searchLastName, setSearchLastName] = useState("");
@@ -74,11 +58,42 @@ const EmployeesPage = () => {
   const [searchHiringDate, setSearchHiringDate] = useState(null);
 
   const dispatch = useDispatch();
-
-  const employeesDataInStore = useSelector(state => state.employees);
+  //const employees = useSelector(state => state.employees);
 
   const [employees, setEmployees] = useState([]);
-  
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+
+  //  let mounted = true;
+
+    employeeService.listEmployees()
+      .then(response => {
+        setEmployees(response.data)
+      })
+      .catch(error=> {
+        console.log(error);
+        setError(displayErrorInReactBSAlert(error.message))
+      })
+
+  //  return () => mounted = false;
+
+ }, [])
+
+
+ const displayErrorInReactBSAlert = (error) =>{
+  return (
+      <ReactBSAlert
+      danger
+      style={{ display: "block", marginTop: "-100px" }}
+      title="Exception"  
+      onConfirm={() => setError(null)}
+    >
+      {error}
+    </ReactBSAlert>
+  )
+ }
+ 
 
   const getBusinessUnits = useSelector(state => {
     return state.categories.businessUnits.map(bunit => {
@@ -103,23 +118,6 @@ const EmployeesPage = () => {
     dispatch(searchEmployees(filters));
   };*/
   
-
-  //1) Initial version read from local
-  
-  const findByAllParameters = () => {
-    alert('findByAllParameters');
-    setEmployees(employeesDataInStore);
-  }
-
-
-
-/*
-  const findByAllParameters = () => {
-    setEmployees(employeesDataInStore);
-  }*/
-
-
-  /*
   const findByAllParameters = () => {
 
     let filters = {
@@ -129,29 +127,17 @@ const EmployeesPage = () => {
       hiringDate: searchHiringDate,
     };
     
-
-    dispatch({
-      type: API_CALL_START,
-      payload: LIST_EMPLOYEES,
-    });
-
-    //const queryParams = new URLSearchParams(filters);
-    employeeService.listEmployees()
-      .then(response => {
-        dispatch({
-          type: LIST_EMPLOYEES,
-          payload: response.data,
-        });
-      })
-      .catch(error=> {
-        dispatch({
-          type: API_CALL_ERROR,
-          payload: error.message,
-        });
-      })
-
-    };*/
+    employeeService.searchEmployees(filters)
+    .then(response => {
+      setEmployees(response.data)
+    })
+    .catch(error=> {
+      console.log(error);
+      setError(displayErrorInReactBSAlert(error.message))
+    })
     
+  };
+  
   const goToEmployeeDetails = e => {
     var { id } = e.target;
     history.push(`/admin/users/employee-details/${id}`);
@@ -194,11 +180,9 @@ const EmployeesPage = () => {
 
   return (
     <>
-      {/* {employeesSlice.error.hasError ?  displayErrorInReactBSAlert(employeesSlice.error.message): <> </> } */}
-     
+      {error}
       <GradientEmptyHeader />
       <Container className="mt--6" fluid>
-       
         <Row>
           <div className="col">
             <Card>
@@ -311,13 +295,6 @@ const EmployeesPage = () => {
                 <h3 className="mb-0">Employees</h3>
                 <p className="text-sm mb-0">Employees </p>
               </CardHeader>
-
-              {/* {loading ? 
-                (
-                <div style={{textAlign: "center"}}>
-                  <Spinner />
-                </div>)              
-              :  ( */}
               <ToolkitProvider
                 data={employees}
                 keyField="id"
@@ -395,7 +372,6 @@ const EmployeesPage = () => {
                   </div>
                 )}
               </ToolkitProvider>
-              {/* )} */}
             </Card>
           </div>
         </Row>

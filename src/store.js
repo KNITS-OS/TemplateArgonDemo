@@ -6,9 +6,13 @@ import { rootReducer } from "redux/reducers/rootReducer";
 
 const middleware = [thunk];
 
+// const store = createStore(
+//   rootReducer,
+//   composeWithDevTools(applyMiddleware(...middleware, logger)),
+// );
+
 const store = createStore(
-  rootReducer,
-  composeWithDevTools(applyMiddleware(...middleware, logger)),
+  rootReducer
 );
 
 export default store;

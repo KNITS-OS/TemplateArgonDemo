@@ -49,23 +49,18 @@ import {
   LIST_EMPLOYEES,
   CLOSE_ERROR_ALERT
 } from "redux/actions/types";
-import ReactBSAlert from "react-bootstrap-sweetalert";
+
 import { searchEmployees } from "redux/actions/employees";
 import employeeService   from "redux/services/employeeService"; 
 import { deleteUser } from "redux/actions/employees";
 import { pagination } from "utils/tableUtils";
-
-//import { employeesData } from "mock-data/employees.js";
-
-
-
-
+import ReactBSAlert from "react-bootstrap-sweetalert";
 
 
 
 const { SearchBar } = Search;
-const EmployeesPage = () => {
 
+const EmployeesPage = () => {
   const history = useHistory();
 
   const [searchLastName, setSearchLastName] = useState("");
@@ -74,11 +69,53 @@ const EmployeesPage = () => {
   const [searchHiringDate, setSearchHiringDate] = useState(null);
 
   const dispatch = useDispatch();
+  //const employees = useSelector(state => state.employees);
 
-  const employeesDataInStore = useSelector(state => state.employees);
+  let employeesSlice = useSelector(state => state.employees);
 
-  const [employees, setEmployees] = useState([]);
-  
+  let employees = (employeesSlice.employees)? employeesSlice.employees : []
+  let loading =employeesSlice.loading;
+
+  //const [employees, setEmployees] = useState([]);
+  //
+
+//   useEffect(() => {
+
+//   //  let mounted = true;
+
+//     employeeService.listEmployees()
+//       .then(response => {
+//         setEmployees(response.data)
+//       })
+//       .catch(error=> {
+//         console.log(error);
+//         setError(displayErrorInReactBSAlert(error.message))
+//       })
+
+//   //  return () => mounted = false;
+
+//  }, [])
+
+
+ const displayErrorInReactBSAlert = (errorMessage) =>{
+  return (
+      <ReactBSAlert
+      danger
+      style={{ display: "block", marginTop: "-100px" }}
+      title="Exception"  
+      onConfirm={() => {
+          dispatch({
+            type: CLOSE_ERROR_ALERT,
+            payload: '',
+          });
+        }
+      }
+    >
+      {errorMessage}
+    </ReactBSAlert>
+  )
+ }
+ 
 
   const getBusinessUnits = useSelector(state => {
     return state.categories.businessUnits.map(bunit => {
@@ -103,23 +140,6 @@ const EmployeesPage = () => {
     dispatch(searchEmployees(filters));
   };*/
   
-
-  //1) Initial version read from local
-  
-  const findByAllParameters = () => {
-    alert('findByAllParameters');
-    setEmployees(employeesDataInStore);
-  }
-
-
-
-/*
-  const findByAllParameters = () => {
-    setEmployees(employeesDataInStore);
-  }*/
-
-
-  /*
   const findByAllParameters = () => {
 
     let filters = {
@@ -150,7 +170,7 @@ const EmployeesPage = () => {
         });
       })
 
-    };*/
+    };
     
   const goToEmployeeDetails = e => {
     var { id } = e.target;
@@ -194,7 +214,7 @@ const EmployeesPage = () => {
 
   return (
     <>
-      {/* {employeesSlice.error.hasError ?  displayErrorInReactBSAlert(employeesSlice.error.message): <> </> } */}
+      {employeesSlice.error.hasError ?  displayErrorInReactBSAlert(employeesSlice.error.message): <> </> }
      
       <GradientEmptyHeader />
       <Container className="mt--6" fluid>
@@ -312,12 +332,12 @@ const EmployeesPage = () => {
                 <p className="text-sm mb-0">Employees </p>
               </CardHeader>
 
-              {/* {loading ? 
+              {loading ? 
                 (
                 <div style={{textAlign: "center"}}>
                   <Spinner />
                 </div>)              
-              :  ( */}
+              :  (
               <ToolkitProvider
                 data={employees}
                 keyField="id"
@@ -394,8 +414,7 @@ const EmployeesPage = () => {
                     />
                   </div>
                 )}
-              </ToolkitProvider>
-              {/* )} */}
+              </ToolkitProvider>)}
             </Card>
           </div>
         </Row>

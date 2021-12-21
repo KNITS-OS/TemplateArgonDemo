@@ -1,38 +1,35 @@
 import {
+  API_CALL_ERROR,
+  API_CALL_START,
   CREATE_EMPLOYEE,
   UPDATE_EMPLOYEE,
   SEARCH_EMPLOYEES,
   DELETE_EMPLOYEE,
+  LIST_EMPLOYEES,
+  CLOSE_ERROR_ALERT
 } from "../actions/types";
 
-const employeesReducer = (employees = [], action) => {
+import { employeesData } from "mock-data/employees.js"
+
+const employeesReducer = (employeeState = employeesData, action) => {
   const { type, payload } = action;
+  
   switch (type) {
-    case CREATE_EMPLOYEE:
-      console.log(payload);
-      return [...employees, payload];
+    case CREATE_EMPLOYEE:  
+      return [...employeeState , payload];
 
     case SEARCH_EMPLOYEES:
-      return payload;
-
-    case UPDATE_EMPLOYEE:
-      return employees.map(user => {
-        if (user.id === payload.id) {
-          return {
-            ...user,
-            ...payload,
-          };
-        } else {
-          return user;
-        }
-      });
-
-    case DELETE_EMPLOYEE:
-      return employees.filter(({ id }) => id !== payload.id);
+    case LIST_EMPLOYEES:    
+        return employeeState;
+    
+    case UPDATE_EMPLOYEE:   
+      console.log("Action: ",action);
+      break;
 
     default:
-      return employees;
+      return employeeState;
   }
+
 };
 
 export default employeesReducer;
