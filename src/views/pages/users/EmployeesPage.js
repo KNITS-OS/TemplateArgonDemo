@@ -17,6 +17,7 @@
 
 // core components
 import GradientEmptyHeader from "components/Headers/GradientEmptyHeader.js";
+import TableHeader from "components/Headers/TableHeader";
 import { categoriesData } from "mock-data/categories.js";
 import { employeesData as employees } from "mock-data/employees.js";
 import React, { useState } from "react";
@@ -32,7 +33,6 @@ import {
   Button,
   Card,
   CardBody,
-  CardHeader,
   Col,
   Container,
   FormGroup,
@@ -125,10 +125,7 @@ const EmployeesPage = () => {
         <Row>
           <div className="col">
             <Card>
-              <CardHeader>
-                <h3 className="mb-0">Search Employees</h3>
-                <p className="text-sm mb-0">Filters</p>
-              </CardHeader>
+              <TableHeader title="Search Employees" text="Filters" />
               <CardBody>
                 <Row>
                   <Col md="3">
@@ -230,10 +227,7 @@ const EmployeesPage = () => {
         <Row>
           <div className="col">
             <Card>
-              <CardHeader>
-                <h3 className="mb-0">Employees</h3>
-                <p className="text-sm mb-0">Employees </p>
-              </CardHeader>
+              <TableHeader title="Employees" text="Employees" />
               <ToolkitProvider
                 data={employees}
                 keyField="id"
@@ -296,7 +290,6 @@ const EmployeesPage = () => {
                         Search:
                         <SearchBar
                           className="form-control-sm"
-                          placeholder=""
                           {...props.searchProps}
                         />
                       </label>
