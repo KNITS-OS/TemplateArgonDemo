@@ -23,8 +23,6 @@ import ReactDatetime from "react-datetime";
 import Select2 from "react-select2-wrapper";
 // plugin that creates slider
 import Slider from "nouislider";
-// react plugin that creates text editor
-import ReactQuill from "react-quill";
 // javascript plugin that creates nice dropzones for files
 import Dropzone from "dropzone";
 // reactstrap components
@@ -73,7 +71,7 @@ function Components() {
     "200.00",
     "400.00",
   ]);
-  const [reactQuillText, setReactQuillText] = React.useState("");
+  // const [reactQuillText, setReactQuillText] = React.useState("");
   const slider1Ref = React.useRef(null);
   const slider2Ref = React.useRef(null);
   React.useEffect(() => {
@@ -102,10 +100,11 @@ function Components() {
       thumbnailWidth: null,
       thumbnailHeight: null,
       previewsContainer: document.getElementsByClassName(
-        "dz-preview-single"
+        "dz-preview-single",
       )[0],
-      previewTemplate: document.getElementsByClassName("dz-preview-single")[0]
-        .innerHTML,
+      previewTemplate: document.getElementsByClassName(
+        "dz-preview-single",
+      )[0].innerHTML,
       maxFiles: 1,
       acceptedFiles: "image/*",
       init: function () {
@@ -127,10 +126,11 @@ function Components() {
       thumbnailWidth: null,
       thumbnailHeight: null,
       previewsContainer: document.getElementsByClassName(
-        "dz-preview-multiple"
+        "dz-preview-multiple",
       )[0],
-      previewTemplate: document.getElementsByClassName("dz-preview-multiple")[0]
-        .innerHTML,
+      previewTemplate: document.getElementsByClassName(
+        "dz-preview-multiple",
+      )[0].innerHTML,
       maxFiles: null,
       acceptedFiles: null,
       init: function () {
@@ -141,7 +141,8 @@ function Components() {
         });
       },
     });
-    document.getElementsByClassName("dz-preview-multiple")[0].innerHTML = "";
+    document.getElementsByClassName("dz-preview-multiple")[0].innerHTML =
+      "";
   }, []);
   const handleReactDatetimeChange = (who, date) => {
     if (
@@ -171,7 +172,7 @@ function Components() {
   // start-date className which means that this day will only have left border radius
   // end-date className which means that this day will only have right border radius
   // this way, the selected dates will look nice and will only be rounded at the ends
-  const getClassNameReactDatetimeDays = (date) => {
+  const getClassNameReactDatetimeDays = date => {
     if (startDate && endDate) {
     }
     if (startDate && endDate && startDate._d + "" !== endDate._d + "") {
@@ -220,8 +221,8 @@ function Components() {
                             <Input
                               placeholder="Your name"
                               type="text"
-                              onFocus={(e) => setyourName(true)}
-                              onBlur={(e) => setyourName(false)}
+                              onFocus={e => setyourName(true)}
+                              onBlur={e => setyourName(false)}
                             />
                           </InputGroup>
                         </FormGroup>
@@ -241,8 +242,8 @@ function Components() {
                             <Input
                               placeholder="Email address"
                               type="email"
-                              onFocus={(e) => setemailAddress(true)}
-                              onBlur={(e) => setemailAddress(false)}
+                              onFocus={e => setemailAddress(true)}
+                              onBlur={e => setemailAddress(false)}
                             />
                           </InputGroup>
                         </FormGroup>
@@ -259,8 +260,8 @@ function Components() {
                             <Input
                               placeholder="Location"
                               type="text"
-                              onFocus={(e) => setlocation(true)}
-                              onBlur={(e) => setlocation(false)}
+                              onFocus={e => setlocation(true)}
+                              onBlur={e => setlocation(false)}
                             />
                             <InputGroupAddon addonType="append">
                               <InputGroupText>
@@ -280,8 +281,8 @@ function Components() {
                             <Input
                               placeholder="Password"
                               type="password"
-                              onFocus={(e) => setpassword(true)}
-                              onBlur={(e) => setpassword(false)}
+                              onFocus={e => setpassword(true)}
+                              onBlur={e => setpassword(false)}
                             />
                             <InputGroupAddon addonType="append">
                               <InputGroupText>
@@ -308,12 +309,14 @@ function Components() {
                             <Input
                               placeholder="Payment method"
                               type="text"
-                              onFocus={(e) => setpaymentMethos(true)}
-                              onBlur={(e) => setpaymentMethos(false)}
+                              onFocus={e => setpaymentMethos(true)}
+                              onBlur={e => setpaymentMethos(false)}
                             />
                             <InputGroupAddon addonType="append">
                               <InputGroupText>
-                                <small className="font-weight-bold">USD</small>
+                                <small className="font-weight-bold">
+                                  USD
+                                </small>
                               </InputGroupText>
                             </InputGroupAddon>
                           </InputGroup>
@@ -334,8 +337,8 @@ function Components() {
                             <Input
                               placeholder="Phone number"
                               type="text"
-                              onFocus={(e) => setphoneNumber(true)}
-                              onBlur={(e) => setphoneNumber(false)}
+                              onFocus={e => setphoneNumber(true)}
+                              onBlur={e => setphoneNumber(false)}
                             />
                             <InputGroupAddon addonType="append">
                               <InputGroupText>
@@ -409,14 +412,17 @@ function Components() {
                             }}
                             value={startDate}
                             timeFormat={false}
-                            onChange={(e) =>
+                            onChange={e =>
                               handleReactDatetimeChange("startDate", e)
                             }
-                            renderDay={(props, currentDate, selectedDate) => {
+                            renderDay={(
+                              props,
+                              currentDate,
+                              selectedDate,
+                            ) => {
                               let classes = props.className;
-                              classes += getClassNameReactDatetimeDays(
-                                currentDate
-                              );
+                              classes +=
+                                getClassNameReactDatetimeDays(currentDate);
                               return (
                                 <td {...props} className={classes}>
                                   {currentDate.date()}
@@ -437,14 +443,17 @@ function Components() {
                             }}
                             value={endDate}
                             timeFormat={false}
-                            onChange={(e) =>
+                            onChange={e =>
                               handleReactDatetimeChange("endDate", e)
                             }
-                            renderDay={(props, currentDate, selectedDate) => {
+                            renderDay={(
+                              props,
+                              currentDate,
+                              selectedDate,
+                            ) => {
                               let classes = props.className;
-                              classes += getClassNameReactDatetimeDays(
-                                currentDate
-                              );
+                              classes +=
+                                getClassNameReactDatetimeDays(currentDate);
                               return (
                                 <td {...props} className={classes}>
                                   {currentDate.date()}
@@ -468,7 +477,7 @@ function Components() {
                       data-quill-placeholder="Quill WYSIWYG"
                       data-toggle="quill"
                     />
-                    <ReactQuill
+                    {/* <ReactQuill
                       value={reactQuillText}
                       onChange={(value) => setReactQuillText(value)}
                       theme="snow"
@@ -486,7 +495,7 @@ function Components() {
                           ],
                         ],
                       }}
-                    />
+                    /> */}
                   </Form>
                 </CardBody>
               </Card>
@@ -503,7 +512,7 @@ function Components() {
                     <TagsInput
                       onlyUnique
                       className="bootstrap-tagsinput"
-                      onChange={(value) => setTagsinput(value)}
+                      onChange={value => setTagsinput(value)}
                       value={tagsinput}
                       tagProps={{ className: "tag badge mr-1" }}
                       inputProps={{
@@ -683,12 +692,19 @@ function Components() {
                             <h4 className=" mb-1" data-dz-name>
                               ...
                             </h4>
-                            <p className=" small text-muted mb-0" data-dz-size>
+                            <p
+                              className=" small text-muted mb-0"
+                              data-dz-size
+                            >
                               ...
                             </p>
                           </div>
                           <Col className=" col-auto">
-                            <Button size="sm" color="danger" data-dz-remove>
+                            <Button
+                              size="sm"
+                              color="danger"
+                              data-dz-remove
+                            >
                               <i className="fas fa-trash" />
                             </Button>
                           </Col>

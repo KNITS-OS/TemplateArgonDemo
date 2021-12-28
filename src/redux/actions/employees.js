@@ -23,11 +23,7 @@ export const searchEmployees = filters => async dispatch => {
     });
 
     // search
-    const { data } = await searchWithFilters(
-      queryParams,
-      "*",
-      "employees",
-    );
+    const { data } = await searchWithFilters(queryParams);
 
     dispatch({
       type: SEARCH_EMPLOYEES,

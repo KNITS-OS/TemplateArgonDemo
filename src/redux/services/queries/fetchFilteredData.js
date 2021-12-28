@@ -1,10 +1,9 @@
-import axiosInstance from "utils/axiosInstance";
+import axios from "axios";
 
-const fetchFilteredData = async (select, table, params) => {
+const fetchFilteredData = async params => {
   const { country, lastName, businessUnit } = params;
-  let { data } = await axiosInstance.get(table, {
+  let { data } = await axios.get("http://localhost:5000/employees", {
     params: {
-      select,
       country,
       lastName,
       businessUnit,

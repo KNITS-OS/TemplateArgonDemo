@@ -5,7 +5,7 @@ import {
   addLastNameFilter,
 } from "../filters";
 
-const searchWithFilters = async (queryParams, select, table) => {
+const searchWithFilters = async queryParams => {
   const lastNameFilter = addLastNameFilter(queryParams.get("lastName"));
   const countryFilter = await addCountryFilter(
     queryParams.get("countryIsoCode3"),
@@ -21,7 +21,7 @@ const searchWithFilters = async (queryParams, select, table) => {
     businessUnit: businessUnitFilter,
   };
 
-  const { data } = await fetchFilteredData(select, table, params);
+  const { data } = await fetchFilteredData(params);
 
   return { data };
 };

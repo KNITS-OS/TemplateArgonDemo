@@ -1,8 +1,8 @@
-import axiosInstance from 'utils/axiosInstance';
+import axios from "axios";
 
 const fetchBusinessUnit = async (select, params) => {
   const { businessUnitId } = params;
-  let { data } = await axiosInstance.get(`/businessUnits`, {
+  let { data } = await axios.get(`http://localhost:5000/businessUnits`, {
     params: {
       select,
       id: `eq.${businessUnitId}`,

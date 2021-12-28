@@ -1,9 +1,9 @@
-import axiosInstance from 'utils/axiosInstance';
+import axios from "axios";
 
 const fetchCountry = async (select, params) => {
   const { countryIsoCode3Param } = params;
 
-  let { data } = await axiosInstance.get(`/country`, {
+  let { data } = await axios.get(`http://localhost:5000/countries`, {
     params: {
       select,
       code3: `eq.${countryIsoCode3Param}`,
