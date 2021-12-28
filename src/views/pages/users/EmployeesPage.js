@@ -17,6 +17,7 @@
 
 // core components
 import GradientEmptyHeader from "components/Headers/GradientEmptyHeader.js";
+import TableHeader from "components/Headers/TableHeader";
 import React, { useState } from "react";
 // react component for creating dynamic tables
 import BootstrapTable from "react-bootstrap-table-next";
@@ -31,15 +32,13 @@ import {
   Button,
   Card,
   CardBody,
-  CardHeader,
   Col,
   Container,
   FormGroup,
   Input,
   Row,
 } from "reactstrap";
-import { searchEmployees } from "redux/actions/employees";
-import { deleteUser } from "redux/actions/employees";
+import { deleteUser, searchEmployees } from "redux/actions/employees";
 import { pagination } from "utils/tableUtils";
 
 const { SearchBar } = Search;
@@ -124,10 +123,7 @@ const EmployeesPage = () => {
         <Row>
           <div className="col">
             <Card>
-              <CardHeader>
-                <h3 className="mb-0">Search Employees</h3>
-                <p className="text-sm mb-0">Filters</p>
-              </CardHeader>
+              <TableHeader title="Search Employees" text="Filters" />
               <CardBody>
                 <Row>
                   <Col md="3">
@@ -229,10 +225,7 @@ const EmployeesPage = () => {
         <Row>
           <div className="col">
             <Card>
-              <CardHeader>
-                <h3 className="mb-0">Employees</h3>
-                <p className="text-sm mb-0">Employees </p>
-              </CardHeader>
+              <TableHeader title="Employees" text="Employees" />
               <ToolkitProvider
                 data={employees}
                 keyField="id"

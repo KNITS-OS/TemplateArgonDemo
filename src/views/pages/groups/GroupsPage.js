@@ -16,6 +16,7 @@
 */
 // core components
 import SimpleHeader from "components/Headers/SimpleHeader.js";
+import TableHeader from "components/Headers/TableHeader";
 import React from "react";
 // react component for creating dynamic tables
 import BootstrapTable from "react-bootstrap-table-next";
@@ -23,7 +24,7 @@ import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
 // reactstrap components
-import { Button, Card, CardHeader, Col, Container, Row } from "reactstrap";
+import { Button, Card, Col, Container, Row } from "reactstrap";
 import { retrieveGroups } from "redux/actions/groups";
 import { pagination } from "utils/tableUtils";
 
@@ -71,14 +72,12 @@ function GroupsPage() {
         <Row>
           <div className="col">
             <Card>
-              <CardHeader>
-                <h3 className="mb-0">React Bootstrap Table 2</h3>
-                <p className="text-sm mb-0">
-                  This is an exmaple of data table using the well known
+              <TableHeader
+                title="React Bootstrap Table 2"
+                text="This is an exmaple of data table using the well known
                   react-bootstrap-table2 plugin. This is a minimal setup in
-                  order to get started fast.
-                </p>
-              </CardHeader>
+                  order to get started fast."
+              />
               <ToolkitProvider
                 data={groups}
                 keyField="id"
