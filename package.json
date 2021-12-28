@@ -63,12 +63,6 @@
       "react-app/jest"
     ]
   },
-  "jest": {
-    "collectCoverageFrom": [
-      "src/**/*.{js,jsx,ts,tsx}"
-    ],
-    "resetMocks": false
-  },
   "browserslist": {
     "production": [
       ">0.2%",
