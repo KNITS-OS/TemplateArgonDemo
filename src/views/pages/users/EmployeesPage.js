@@ -238,7 +238,7 @@ const EmployeesPage = () => {
                   {
                     dataField: "firstName",
                     text: "firstName",
-                    sort: "First Name",
+                    sort: true,
                   },
                   {
                     dataField: "lastName",
