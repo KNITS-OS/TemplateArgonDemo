@@ -294,11 +294,14 @@ const EmployeesPage = () => {
                       </label>
                     </div>
                     <BootstrapTable
+                      id="bootstrap-table"
                       {...props.baseProps}
                       bootstrap4={true}
                       pagination={pagination}
                       bordered={false}
                       deleteRow={true}
+                      keyField="id"
+                      rowClasses="test-row-class"
                     />
                   </div>
                 )}

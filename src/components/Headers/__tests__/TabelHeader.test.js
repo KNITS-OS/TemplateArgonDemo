@@ -1,4 +1,3 @@
-import "@testing-library/jest-dom";
 import TableHeader from "../TableHeader";
 import { render, screen } from "@testing-library/react";
 

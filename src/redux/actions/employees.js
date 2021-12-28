@@ -14,6 +14,7 @@ export const createUser = data => {
 };
 
 export const searchEmployees = filters => async dispatch => {
+  // export const searchEmployees = () => async dispatch => {
   try {
     const queryParams = new URLSearchParams(filters);
 
@@ -21,7 +22,6 @@ export const searchEmployees = filters => async dispatch => {
       type: API_CALL_START,
       payload: SEARCH_EMPLOYEES,
     });
-
     // search
     const { data } = await searchWithFilters(queryParams);
 
