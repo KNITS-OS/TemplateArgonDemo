@@ -33,7 +33,7 @@ import {
 } from "reactstrap";
 
 const CreateEmployeePage = () => {
-  let [firstName, setFirstName] = useState("first name");
+  let [firstName, setFirstName] = useState("");
   const history = useHistory();
 
   let employee = {
@@ -87,9 +87,11 @@ const CreateEmployeePage = () => {
                             First name
                           </label>
                           <Input
+                            data-testid="firstName"
                             id="input-first-name"
                             value={employee.firstName}
                             type="text"
+                            placeholder="First Name"
                             onChange={e => setFirstName(e.target.value)}
                           />
                         </FormGroup>
