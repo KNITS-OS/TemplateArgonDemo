@@ -3,6 +3,7 @@ import {
   RETRIEVE_GROUPS,
   DEACTIVATE_GROUP,
   UPDATE_GROUP,
+  SEARCH_GROUPS,
 } from "../actions/types";
 
 const groupReducer = (groups = [], action) => {
@@ -11,6 +12,9 @@ const groupReducer = (groups = [], action) => {
   switch (type) {
     case CREATE_GROUP:
       return [...groups, payload];
+
+    case SEARCH_GROUPS:
+      return payload;
 
     case RETRIEVE_GROUPS:
       return payload;

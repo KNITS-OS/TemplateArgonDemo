@@ -284,14 +284,16 @@ const EmployeesPage = () => {
                       id="datatable-basic_filter"
                       className="dataTables_filter px-4 pb-1"
                     >
-                      <label>
-                        Search:
-                        <SearchBar
-                          className="form-control-sm"
-                          placeholder=""
-                          {...props.searchProps}
-                        />
-                      </label>
+                      <FormGroup>
+                        <label>
+                          Search:
+                          <SearchBar
+                            className="form-control-sm"
+                            placeholder="Search Employees"
+                            {...props.searchProps}
+                          />
+                        </label>
+                      </FormGroup>
                     </div>
                     <BootstrapTable
                       id="bootstrap-table"

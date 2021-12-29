@@ -25,7 +25,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
 // reactstrap components
 import { Button, Card, Col, Container, Row } from "reactstrap";
-import { retrieveGroups } from "redux/actions/groups";
+import { searchGroups } from "redux/actions/groups";
 import { pagination } from "utils/tableUtils";
 
 const { SearchBar } = Search;
@@ -38,7 +38,7 @@ function GroupsPage() {
   const dispatch = useDispatch();
 
   const findGroups = () => {
-    dispatch(retrieveGroups());
+    dispatch(searchGroups());
   };
 
   const groupDetails = e => {
@@ -138,7 +138,7 @@ function GroupsPage() {
                           className="btn btn-info"
                           onClick={findGroups}
                         >
-                          Find
+                          Search
                         </button>
                       </Col>
                     </Row>

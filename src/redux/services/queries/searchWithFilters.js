@@ -13,7 +13,6 @@ const searchWithFilters = async queryParams => {
   const businessUnitFilter = await addBusinessUnitFilter(
     queryParams.get("businessUnitId"),
   );
-  // @todo add more filters for care members
 
   const params = {
     lastName: lastNameFilter,

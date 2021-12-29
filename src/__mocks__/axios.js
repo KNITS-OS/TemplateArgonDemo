@@ -1,4 +1,4 @@
-const mockResponse = {
+const employeeMockResponse = {
   data: [
     {
       id: 1,
@@ -137,9 +137,56 @@ const mockResponse = {
     },
   ],
 };
+const groupMockResponse = {
+  data: [
+    {
+      id: 1,
+      name: "Brainy Buddies",
+      description: "Nothing can be achieved without having fun.",
+      active: true,
+      members: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+    },
+    {
+      id: 2,
+      name: "Dynamite Dealers",
+      description: "Can't beat them at negotiation or Monopoly..",
+      active: true,
+      members: [11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
+    },
+    {
+      id: 3,
+      name: "Unfrozen Caveman",
+      description:
+        "If you need extreme solution they are there for you. Might be rude from time to time",
+      active: true,
+      members: [21, 22, 23, 24, 25, 26, 27, 28, 29, 30],
+    },
+    {
+      id: 4,
+      name: "Mind Serenade",
+      description: "They always comes with new ideas, out from the box",
+      active: true,
+      members: [31, 32, 33, 34, 35, 36, 37, 38, 39, 40],
+    },
+    {
+      id: 5,
+      name: "Clan Optimism",
+      description: "Watch the bright side of everything",
+      active: true,
+      members: [41, 42, 43, 44, 45, 46, 47, 48, 49, 50],
+    },
+  ],
+};
 
 const mockData = {
-  get: jest.fn().mockResolvedValue(mockResponse),
+  get: jest.fn(url => {
+    if (url.includes("/employees")) {
+      return Promise.resolve(employeeMockResponse);
+    }
+    if (url.includes("/groups")) {
+      return Promise.resolve(groupMockResponse);
+    }
+  }),
 };
 
 export default mockData;

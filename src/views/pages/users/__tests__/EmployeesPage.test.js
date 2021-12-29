@@ -1,14 +1,10 @@
-import {
-  fireEvent,
-  render,
-  screen,
-  waitFor,
-} from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import { Provider } from "react-redux";
 import { searchEmployees } from "redux/actions/employees";
 import { searchWithFilters } from "redux/services/queries";
 import store from "store";
 import EmployeesPage from "../EmployeesPage";
+import userEvent from "@testing-library/user-event";
 
 const MockEmployeesPage = () => {
   return (
@@ -43,7 +39,7 @@ describe("Employees Page", () => {
     });
 
     test("should render multible table items", async () => {
-      const { container } = render(<MockEmployeesPage />);
+      render(<MockEmployeesPage />);
 
       store.dispatch(
         searchEmployees({
@@ -54,29 +50,19 @@ describe("Employees Page", () => {
         }),
       );
 
-      // const tables = await screen.findAllByRole("table");
-
       const text = await screen.findByText("Hamli");
-      // console.log("text", text);
-      // screen.debug();
+      // await waitFor(() => {
+      //   const data = screen.queryAllByRole("row");
+      //   const filtered = data.filter(element => {
+      //     return element.type === "tr";
+      //     // && element.className === "test-row-class"
+      //     // return element.pendingProps.className === "test-row-class";
+      //   });
+      //   // const data = document.querySelectorAll(".test-row-class");
 
-      // const employeeTableElements = await tables.getElementsByClassName(
-      //   "test-row-class",
-      // );
-      await waitFor(() => {
-        // const employeeTableElements =
-        //   container.querySelectorAll(".test-row-class");
-        const data = screen.queryAllByRole("row");
-        const filtered = data.filter(element => {
-          return element.type === "tr";
-          // && element.className === "test-row-class"
-          // return element.pendingProps.className === "test-row-class";
-        });
-        // const data = document.querySelectorAll(".test-row-class");
-
-        console.log("filtered2", filtered);
-        // console.log("employeeTableElements", employeeTableElements);
-      });
+      //   console.log("filtered2", filtered);
+      //   // console.log("employeeTableElements", employeeTableElements);
+      // });
       expect(text).toBeInTheDocument();
     });
 
@@ -97,11 +83,28 @@ describe("Employees Page", () => {
       const button = screen.getByRole("button", {
         name: /search/i,
       });
-      fireEvent.click(button);
+      userEvent.click(button);
 
       const text = await screen.findByText("Hamli");
 
       expect(text).toBeInTheDocument();
     });
+
+    // test("should click on search, render employees, filter using input and not find anything", async () => {
+    //   render(<MockEmployeesPage />);
+    //   const buttonElement = screen.getByRole("button", {
+    //     name: /search/i,
+    //   });
+    //   fireEvent.click(buttonElement);
+    //   setTimeout(() => {
+    //     const inputElement =
+    //       screen.getByPlaceholderText("Search Employees");
+
+    //     fireEvent.change(inputElement, { target: { value: "Hamli" } });
+    //     const text = screen.getByText("Hamli");
+
+    //     expect(text).not.toBeInTheDocument();
+    //   }, 1000);
+    // });
   });
 });

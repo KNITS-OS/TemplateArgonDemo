@@ -14,7 +14,6 @@ export const createUser = data => {
 };
 
 export const searchEmployees = filters => async dispatch => {
-  // export const searchEmployees = () => async dispatch => {
   try {
     const queryParams = new URLSearchParams(filters);
 
@@ -36,24 +35,6 @@ export const searchEmployees = filters => async dispatch => {
     });
   }
 };
-
-/*
-export const searchEmployees = (filters) => async (dispatch) => {
-  try {
-    const queryParams = new URLSearchParams(filters);
-
-    const res = await employeeService.searchEmployees(queryParams);
-
-    console.log(res)
-
-    dispatch({
-      type: RETRIEVE_EMPLOYEES,
-      payload: res.data,
-    });
-  } catch (err) {
-    console.log(err);
-  }
-};*/
 
 export const updateUser = (id, data) => {
   return { type: UPDATE_EMPLOYEE, payload: id, data };
