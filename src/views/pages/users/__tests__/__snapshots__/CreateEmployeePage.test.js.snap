@@ -1,0 +1,411 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Create Employees Page Snapshot tests should render correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="header pb-6 d-flex align-items-center"
+    style="min-height: 150px; background-size: cover; background-position: center top;"
+  >
+    <span
+      class="mask bg-gradient-info opacity-8"
+    />
+  </div>
+  <div
+    class="mt--6 container-fluid"
+  >
+    <div
+      class="row"
+    >
+      <div
+        class="order-xl-1 col-xl-12"
+      >
+        <div
+          class="card"
+        >
+          <div
+            class="card-header"
+          >
+            <div
+              class="align-items-center row"
+            >
+              <div
+                class="col-8"
+              >
+                <h3
+                  class="mb-0"
+                >
+                  Create Employee
+                </h3>
+              </div>
+            </div>
+          </div>
+          <div
+            class="card-body"
+          >
+            <form
+              class=""
+            >
+              <h6
+                class="heading-small text-muted mb-4"
+              >
+                User information
+              </h6>
+              <div
+                class="pl-lg-4"
+              >
+                <div
+                  class="row"
+                >
+                  <div
+                    class="col-lg-6"
+                  >
+                    <div
+                      class="form-group"
+                    >
+                      <label
+                        class="form-control-label"
+                        for="input-first-name"
+                      >
+                        First name
+                      </label>
+                      <input
+                        class="form-control"
+                        data-testid="firstName"
+                        id="input-first-name"
+                        placeholder="First Name"
+                        type="text"
+                        value=""
+                      />
+                    </div>
+                  </div>
+                  <div
+                    class="col-lg-6"
+                  >
+                    <div
+                      class="form-group"
+                    >
+                      <label
+                        class="form-control-label"
+                        for="input-last-name"
+                      >
+                        Last name
+                      </label>
+                      <input
+                        class="form-control"
+                        id="input-last-name"
+                        type="text"
+                        value=""
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="row"
+                >
+                  <div
+                    class="col-lg-6"
+                  >
+                    <div
+                      class="form-group"
+                    >
+                      <label
+                        class="form-control-label"
+                        for="input-username"
+                      >
+                        International Name
+                      </label>
+                      <input
+                        class="form-control"
+                        id="input-username"
+                        type="text"
+                        value=""
+                      />
+                    </div>
+                  </div>
+                  <div
+                    class="col-lg-6"
+                  >
+                    <div
+                      class="form-group"
+                    >
+                      <label
+                        class="form-control-label"
+                        for="input-email"
+                      >
+                        Email address
+                      </label>
+                      <input
+                        class="form-control"
+                        id="input-email"
+                        type="email"
+                        value=""
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <hr
+                class="my-4"
+              />
+              <h6
+                class="heading-small text-muted mb-4"
+              >
+                Contact information
+              </h6>
+              <div
+                class="pl-lg-4"
+              >
+                <div
+                  class="row"
+                >
+                  <div
+                    class="col-md-12"
+                  >
+                    <div
+                      class="form-group"
+                    >
+                      <label
+                        class="form-control-label"
+                        for="input-address"
+                      >
+                        Address
+                      </label>
+                      <input
+                        class="form-control"
+                        id="input-address"
+                        placeholder="Home Address"
+                        type="text"
+                        value="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="row"
+                >
+                  <div
+                    class="col-lg-4"
+                  >
+                    <div
+                      class="form-group"
+                    >
+                      <label
+                        class="form-control-label"
+                        for="input-city"
+                      >
+                        City
+                      </label>
+                      <input
+                        class="form-control"
+                        id="input-city"
+                        placeholder="City"
+                        type="text"
+                        value="New York"
+                      />
+                    </div>
+                  </div>
+                  <div
+                    class="col-lg-4"
+                  >
+                    <div
+                      class="form-group"
+                    >
+                      <label
+                        class="form-control-label"
+                        for="input-country"
+                      >
+                        Country
+                      </label>
+                      <input
+                        class="form-control"
+                        id="input-country"
+                        placeholder="Country"
+                        type="text"
+                        value="United States"
+                      />
+                    </div>
+                  </div>
+                  <div
+                    class="col-lg-4"
+                  >
+                    <div
+                      class="form-group"
+                    >
+                      <label
+                        class="form-control-label"
+                        for="input-country"
+                      >
+                        Postal code
+                      </label>
+                      <input
+                        class="form-control"
+                        id="input-postal-code"
+                        placeholder="Postal code"
+                        type="number"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <hr
+                class="my-4"
+              />
+              <h6
+                class="heading-small text-muted mb-4"
+              >
+                Company Data
+              </h6>
+              <div
+                class="pl-lg-4"
+              >
+                <div
+                  class="row"
+                >
+                  <div
+                    class="col-lg-4"
+                  >
+                    <div
+                      class="form-group"
+                    >
+                      <label
+                        class="form-control-label"
+                      >
+                        Title
+                      </label>
+                      <input
+                        class="form-control"
+                        id="title"
+                        type="text"
+                        value=""
+                      />
+                    </div>
+                  </div>
+                  <div
+                    class="col-lg-4"
+                  >
+                    <div
+                      class="form-group"
+                    >
+                      <label
+                        class="form-control-label"
+                      >
+                        Company Phone
+                      </label>
+                      <input
+                        class="form-control"
+                        id="companyPhone"
+                        type="text"
+                        value="+372 77645322"
+                      />
+                    </div>
+                  </div>
+                  <div
+                    class="col-lg-4"
+                  >
+                    <div
+                      class="form-group"
+                    >
+                      <label
+                        class="form-control-label"
+                      >
+                        Company Code
+                      </label>
+                      <input
+                        class="form-control"
+                        id="input-postal-code"
+                        type="text"
+                        value=""
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="row"
+                >
+                  <div
+                    class="col-lg-4"
+                  >
+                    <div
+                      class="form-group"
+                    >
+                      <label
+                        class="form-control-label"
+                      >
+                        Business Unit
+                      </label>
+                      <input
+                        class="form-control"
+                        id="input-postal-code"
+                        type="text"
+                        value=""
+                      />
+                    </div>
+                  </div>
+                  <div
+                    class="col-lg-4"
+                  >
+                    <div
+                      class="form-group"
+                    >
+                      <label
+                        class="form-control-label"
+                      >
+                        Cost Center
+                      </label>
+                      <input
+                        class="form-control"
+                        id="input-postal-code"
+                        type="text"
+                        value=""
+                      />
+                    </div>
+                  </div>
+                  <div
+                    class="col-lg-4"
+                  >
+                    <div
+                      class="form-group"
+                    >
+                      <label
+                        class="form-control-label"
+                      >
+                        Management Group
+                      </label>
+                      <input
+                        class="form-control"
+                        id="input-postal-code"
+                        type="text"
+                        value=""
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="align-items-center py-4 row"
+                >
+                  <div
+                    class="text-right col-7 col-lg-12"
+                  >
+                    <button
+                      class="btn btn-success"
+                      type="button"
+                    >
+                      Create
+                    </button>
+                    <button
+                      class="btn btn-info"
+                      type="button"
+                    >
+                      Back to Search
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

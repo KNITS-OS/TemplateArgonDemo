@@ -20,4 +20,11 @@ describe("Create Employees Page", () => {
     expect(inputElement.value).toBe(inputValue);
     expect(screen.getByDisplayValue("Hamli")).toBeInTheDocument();
   });
+  describe("Snapshot tests", () => {
+    test("should render correctly", () => {
+      const { asFragment } = render(<CreateEmployeePage />);
+
+      expect(asFragment()).toMatchSnapshot();
+    });
+  });
 });

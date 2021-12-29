@@ -47,4 +47,11 @@ describe("Groups Page", () => {
       expect(text).toBeInTheDocument();
     });
   });
+  describe("Snapshot tests", () => {
+    test("should render correctly", () => {
+      const { asFragment } = render(<MockGroupsPage />);
+
+      expect(asFragment()).toMatchSnapshot();
+    });
+  });
 });

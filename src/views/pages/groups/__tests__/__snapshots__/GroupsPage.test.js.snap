@@ -1,0 +1,437 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Groups Page Snapshot tests should render correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="header header-dark bg-info pb-6 content__title content__title--calendar"
+  >
+    <div
+      class="container-fluid"
+    >
+      <div
+        class="header-body"
+      >
+        <div
+          class="align-items-center py-4 row"
+        >
+          <div
+            class="col-7 col-lg-6"
+          >
+            <h6
+              class="fullcalendar-title h2 text-white d-inline-block mb-0"
+            >
+              React Tables
+            </h6>
+             
+            <nav
+              aria-label="breadcrumb"
+              class="d-none d-md-inline-block ml-lg-4"
+            >
+              <ol
+                class="breadcrumb breadcrumb-links breadcrumb-dark"
+              >
+                <li
+                  class="breadcrumb-item"
+                >
+                  <a
+                    href="#pablo"
+                  >
+                    <i
+                      class="fas fa-home"
+                    />
+                  </a>
+                </li>
+                <li
+                  class="breadcrumb-item"
+                >
+                  <a
+                    href="#pablo"
+                  >
+                    Tables
+                  </a>
+                </li>
+                <li
+                  class="active breadcrumb-item"
+                >
+                  React Tables
+                </li>
+              </ol>
+            </nav>
+          </div>
+          <div
+            class="mt-3 mt-md-0 text-md-right col-5 col-lg-6"
+          >
+            <button
+              class="btn-neutral btn btn-default btn-sm"
+            >
+              New
+            </button>
+            <button
+              class="btn-neutral btn btn-default btn-sm"
+            >
+              Filters
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="mt--6 container-fluid"
+  >
+    <div
+      class="row"
+    >
+      <div
+        class="col"
+      >
+        <div
+          class="card"
+        >
+          <div
+            class="card-header"
+          >
+            <h3
+              class="mb-0"
+            >
+              React Bootstrap Table 2
+            </h3>
+            <p
+              class="text-sm mb-0"
+            >
+              This is an exmaple of data table using the well known
+ react-bootstrap-table2 plugin. This is a minimal setup in
+ order to get started fast.
+            </p>
+          </div>
+          <div
+            class="py-4 table-responsive"
+          >
+            <div
+              class="row"
+            >
+              <div
+                class="col"
+              >
+                <div
+                  class="dataTables_filter px-4 pb-1"
+                  id="datatable-basic_filter"
+                >
+                  <label>
+                    Search:
+                    <label
+                      class="search-label"
+                      for="search-bar-0"
+                    >
+                      <span
+                        class="sr-only"
+                        id="search-bar-0-label"
+                      >
+                        Search this table
+                      </span>
+                      <input
+                        aria-labelledby="search-bar-0-label"
+                        class="form-control form-control-sm"
+                        id="search-bar-0"
+                        placeholder="Search"
+                        type="text"
+                        value=""
+                      />
+                    </label>
+                  </label>
+                </div>
+              </div>
+              <div
+                class="col-md-2"
+                style="display: flex; justify-content: center;"
+              >
+                <button
+                  class="btn btn-info"
+                >
+                  Search
+                </button>
+              </div>
+            </div>
+            <div
+              class="react-bootstrap-table"
+            >
+              <table
+                class="table"
+              >
+                <thead>
+                  <tr>
+                    <th
+                      aria-label="Name sortable"
+                      class="sortable"
+                      tabindex="0"
+                    >
+                      Name
+                      <span
+                        class="order-4"
+                      />
+                    </th>
+                    <th
+                      aria-label="description sortable"
+                      class="sortable"
+                      tabindex="0"
+                    >
+                      description
+                      <span
+                        class="order-4"
+                      />
+                    </th>
+                    <th
+                      aria-label="active sortable"
+                      class="sortable"
+                      tabindex="0"
+                    >
+                      active
+                      <span
+                        class="order-4"
+                      />
+                    </th>
+                    <th
+                      tabindex="0"
+                    />
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      Brainy Buddies
+                    </td>
+                    <td>
+                      Nothing can be achieved without having fun.
+                    </td>
+                    <td>
+                      true
+                    </td>
+                    <td>
+                      <button
+                        class="btn-icon btn-2 btn btn-info"
+                        id="1"
+                        type="button"
+                      >
+                        <span
+                          class="btn-inner--icon"
+                          id="1"
+                        >
+                          <i
+                            class="ni ni-badge"
+                            id="1"
+                          />
+                        </span>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Dynamite Dealers
+                    </td>
+                    <td>
+                      Can't beat them at negotiation or Monopoly..
+                    </td>
+                    <td>
+                      true
+                    </td>
+                    <td>
+                      <button
+                        class="btn-icon btn-2 btn btn-info"
+                        id="2"
+                        type="button"
+                      >
+                        <span
+                          class="btn-inner--icon"
+                          id="2"
+                        >
+                          <i
+                            class="ni ni-badge"
+                            id="2"
+                          />
+                        </span>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Unfrozen Caveman
+                    </td>
+                    <td>
+                      If you need extreme solution they are there for you. Might be rude from time to time
+                    </td>
+                    <td>
+                      true
+                    </td>
+                    <td>
+                      <button
+                        class="btn-icon btn-2 btn btn-info"
+                        id="3"
+                        type="button"
+                      >
+                        <span
+                          class="btn-inner--icon"
+                          id="3"
+                        >
+                          <i
+                            class="ni ni-badge"
+                            id="3"
+                          />
+                        </span>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Mind Serenade
+                    </td>
+                    <td>
+                      They always comes with new ideas, out from the box
+                    </td>
+                    <td>
+                      true
+                    </td>
+                    <td>
+                      <button
+                        class="btn-icon btn-2 btn btn-info"
+                        id="4"
+                        type="button"
+                      >
+                        <span
+                          class="btn-inner--icon"
+                          id="4"
+                        >
+                          <i
+                            class="ni ni-badge"
+                            id="4"
+                          />
+                        </span>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Clan Optimism
+                    </td>
+                    <td>
+                      Watch the bright side of everything
+                    </td>
+                    <td>
+                      true
+                    </td>
+                    <td>
+                      <button
+                        class="btn-icon btn-2 btn btn-info"
+                        id="5"
+                        type="button"
+                      >
+                        <span
+                          class="btn-inner--icon"
+                          id="5"
+                        >
+                          <i
+                            class="ni ni-badge"
+                            id="5"
+                          />
+                        </span>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div
+              class="row react-bootstrap-table-pagination"
+            >
+              <div
+                class="col-md-6 col-xs-6 col-sm-6 col-lg-6"
+              >
+                <div
+                  class="dataTables_length"
+                  id="datatable-basic_length"
+                >
+                  <label>
+                    Show 
+                    <select
+                      aria-controls="datatable-basic"
+                      class="form-control form-control-sm"
+                      name="datatable-basic_length"
+                    >
+                      <option
+                        value="10"
+                      >
+                        10
+                      </option>
+                      <option
+                        value="25"
+                      >
+                        25
+                      </option>
+                      <option
+                        value="50"
+                      >
+                        50
+                      </option>
+                      <option
+                        value="100"
+                      >
+                        100
+                      </option>
+                    </select>
+                     entries.
+                  </label>
+                </div>
+                <span
+                  class="react-bootstrap-table-pagination-total"
+                >
+                   Showing rows 1 to 5 of 5
+                </span>
+              </div>
+              <div
+                class="react-bootstrap-table-pagination-list col-md-6 col-xs-6 col-sm-6 col-lg-6"
+              >
+                <ul
+                  class="pagination react-bootstrap-table-page-btns-ul"
+                >
+                  <li
+                    class="disabled page-item"
+                    title="previous page"
+                  >
+                    <a
+                      class="page-link"
+                      href="#"
+                    >
+                      &lt;
+                    </a>
+                  </li>
+                  <li
+                    class="active page-item"
+                    title="1"
+                  >
+                    <a
+                      class="page-link"
+                      href="#"
+                    >
+                      1
+                    </a>
+                  </li>
+                  <li
+                    class="disabled page-item"
+                    title="next page"
+                  >
+                    <a
+                      class="page-link"
+                      href="#"
+                    >
+                      &gt;
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

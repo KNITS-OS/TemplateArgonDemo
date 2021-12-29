@@ -107,4 +107,11 @@ describe("Employees Page", () => {
     //   }, 1000);
     // });
   });
+  describe("Snapshot tests", () => {
+    test("should render correctly", () => {
+      const { asFragment } = render(<MockEmployeesPage />);
+
+      expect(asFragment()).toMatchSnapshot();
+    });
+  });
 });
