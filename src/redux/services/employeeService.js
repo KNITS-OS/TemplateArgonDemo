@@ -1,6 +1,13 @@
-import { categoriesData } from "mock-data/categories";
-import { employeesData } from "mock-data/employees";
+import httpCommon from "./http-common";
 
+
+
+const searchEmployees = (queryParams) => {
+  // return httpCommon.get(`/employees?${queryParams}`);
+  return httpCommon.get(`/employees`);
+};
+
+/*
 const searchEmployees = queryParams => {
   let result = employeesData.filter(employee => {
     if (
@@ -38,6 +45,7 @@ const searchEmployees = queryParams => {
 
   return { data: result };
 };
+*/
 
 const employeeService = {
   searchEmployees,

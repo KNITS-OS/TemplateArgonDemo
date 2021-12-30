@@ -1,16 +1,16 @@
-import { searchWithFilters } from "redux/services/queries";
+import employeeService from "redux/services/employeeService";
 import {
-  CREATE_EMPLOYEE,
-  UPDATE_EMPLOYEE,
-  DELETE_EMPLOYEE,
-  SEARCH_EMPLOYEES,
-  API_CALL_ERROR,
-  API_CALL_START,
+  CREATE_EMPLOYEE_COMPLETE,
+  DELETE_EMPLOYEE_COMPLETE,
+  SEARCH_EMPLOYEES_COMPLETE,
+  SEARCH_EMPLOYEES_ERROR,
+  SEARCH_EMPLOYEES_LOADING,
+  UPDATE_EMPLOYEE_COMPLETE,
 } from "./types";
 
 export const createUser = data => {
   console.log(data);
-  return { type: CREATE_EMPLOYEE, payload: data };
+  return { type: CREATE_EMPLOYEE_COMPLETE, payload: data };
 };
 
 export const searchEmployees = filters => async dispatch => {
@@ -18,25 +18,29 @@ export const searchEmployees = filters => async dispatch => {
     const queryParams = new URLSearchParams(filters);
 
     dispatch({
-      type: API_CALL_START,
-      payload: SEARCH_EMPLOYEES,
+      type: SEARCH_EMPLOYEES_LOADING,
+      payload: 'SEARCH_EMPLOYEES_LOADING',
     });
 
+    
+    const { data } = await employeeService.searchEmployees(queryParams);
+
     // search
-    const { data } = await searchWithFilters(
-      queryParams,
-      "*",
-      "employees",
-    );
+    // const { data } = await searchWithFilters(
+    //   queryParams,
+    //   "*",
+    //   "employees",
+    // );
 
     dispatch({
-      type: SEARCH_EMPLOYEES,
+      type: SEARCH_EMPLOYEES_COMPLETE,
       payload: data,
     });
   } catch (err) {
+    console.log(err);
     dispatch({
-      type: API_CALL_ERROR,
-      payload: err,
+      type: SEARCH_EMPLOYEES_ERROR,
+      payload: err.message,
     });
   }
 };
@@ -60,9 +64,9 @@ export const searchEmployees = (filters) => async (dispatch) => {
 };*/
 
 export const updateUser = (id, data) => {
-  return { type: UPDATE_EMPLOYEE, payload: id, data };
+  return { type: UPDATE_EMPLOYEE_COMPLETE, payload: id, data };
 };
 
 export const deleteUser = id => {
-  return { type: DELETE_EMPLOYEE, payload: { id } };
+  return { type: DELETE_EMPLOYEE_COMPLETE, payload: { id } };
 };

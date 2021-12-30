@@ -26,6 +26,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
 import Select from "react-select";
 import makeAnimated from "react-select/animated";
+import SweetAlert from "react-bootstrap-sweetalert";
 // reactstrap components
 import {
   Button,
@@ -37,6 +38,7 @@ import {
   FormGroup,
   Input,
   Row,
+  Spinner,  
 } from "reactstrap";
 import { searchEmployees } from "redux/actions/employees";
 import { deleteUser } from "redux/actions/employees";
@@ -47,25 +49,50 @@ const { SearchBar } = Search;
 const EmployeesPage = () => {
   const history = useHistory();
 
-  const [searchLastName, setSearchLastName] = useState("");
-  const [searchBusinessUnit, setSearchBusinessUnit] = useState("");
-  const [searchCountry, setSearchCountry] = useState("");
-  const [searchHiringDate, setSearchHiringDate] = useState(null);
-
   const dispatch = useDispatch();
-  const employees = useSelector(state => state.employees);
+  const employeesState = useSelector(state => state.employees);
 
-  const getBusinessUnits = useSelector(state => {
+
+  const businessUnitsList = useSelector(state => {
     return state.categories.businessUnits.map(bunit => {
       return { value: bunit.id, label: bunit.name };
     });
   });
 
-  const getCountries = useSelector(state => {
+  const countriesList = useSelector(state => {
     return state.categories.countryListAllIsoData.map(country => {
       return { value: country.code3, label: country.name };
     });
   });
+
+
+  const [searchLastName, setSearchLastName] = useState("");
+  const [searchBusinessUnit, setSearchBusinessUnit] = useState("");
+  const [searchCountry, setSearchCountry] = useState("");
+  const [searchHiringDate, setSearchHiringDate] = useState(null);
+  const [alert, setAlert] = useState(false);
+
+// const displayErrorAlertMessage = ()  =>{
+  
+//if (employeesState.errorMessage){
+ // setAlert (
+//  const errorAlertMessage = <ReactBSAlert
+//       warning
+//       style={{ display: "block", marginTop: "-100px" }}
+//       title="Error"
+//       onConfirm={() => {}}
+//       onCancel={() =>{}}
+//       confirmBtnCssClass="btn-secondary"
+//       cancelBtnBsStyle="danger"
+//       confirmBtnText="Cancel"
+//       cancelBtnText="Yes, delete it"
+//       showCancel
+//       btnSize=""
+//     >
+//       {employeesState.errorMessage}
+//     </ReactBSAlert>;
+  
+
 
   const findByAllParameters = () => {
     let filters = {
@@ -88,9 +115,16 @@ const EmployeesPage = () => {
     //history.push('/admin/users/employee-details/'+id);
   };
 
+  const closeAlert = () => {
+    
+    dispatch({type:'CLOSE_ALERT'});
+    //history.push('/admin/users/employee-details/'+id);
+  };
+
+
   const formatActionButtonCell = (cell, row) => {
     return (
-      <>
+      <>    
         <Button
           id={row.id}
           className="btn-icon btn-2"
@@ -119,8 +153,15 @@ const EmployeesPage = () => {
 
   return (
     <>
-      <GradientEmptyHeader />
+      <GradientEmptyHeader /> 
       <Container className="mt--6" fluid>
+        { employeesState.errorMessage ? 
+        (
+
+          <SweetAlert danger title="Error" onConfirm={closeAlert}>
+             {employeesState.errorMessage}
+          </SweetAlert>     
+        ) : (<span>&nbsp;</span>) }     
         <Row>
           <div className="col">
             <Card>
@@ -160,7 +201,7 @@ const EmployeesPage = () => {
                       <Select
                         id="businessUnits"
                         components={makeAnimated()}
-                        options={getBusinessUnits}
+                        options={businessUnitsList}
                         onChange={item =>
                           setSearchBusinessUnit(item.value)
                         }
@@ -178,7 +219,7 @@ const EmployeesPage = () => {
                       <Select
                         id="country"
                         components={makeAnimated()}
-                        options={getCountries}
+                        options={countriesList}
                         onChange={item => setSearchCountry(item.value)}
                       />
                     </FormGroup>
@@ -233,8 +274,17 @@ const EmployeesPage = () => {
                 <h3 className="mb-0">Employees</h3>
                 <p className="text-sm mb-0">Employees </p>
               </CardHeader>
-              <ToolkitProvider
-                data={employees}
+               { employeesState.loading ? (
+                <div
+                  style={{
+                    textAlign: "center",
+                  }}
+                >
+                  <Spinner />
+                </div>
+                ) : (
+                <ToolkitProvider
+                data={employeesState.employees}
                 keyField="id"
                 columns={[
                   {
@@ -245,7 +295,7 @@ const EmployeesPage = () => {
                   {
                     dataField: "firstName",
                     text: "firstName",
-                    sort: "First Name",
+                    sort: true,
                   },
                   {
                     dataField: "lastName",
@@ -309,7 +359,11 @@ const EmployeesPage = () => {
                     />
                   </div>
                 )}
-              </ToolkitProvider>
+                </ToolkitProvider>
+                )
+              }
+            
+            
             </Card>
           </div>
         </Row>
