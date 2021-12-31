@@ -10,39 +10,33 @@ import {
   SEARCH_EMPLOYEES_COMPLETE,
   DELETE_EMPLOYEE_LOADING,
   DELETE_EMPLOYEE_ERROR,
-  DELETE_EMPLOYEE_COMPLETE,
-  CLOSE_ALERT
+  DELETE_EMPLOYEE_COMPLETE
 } from "../actions/types";
 
 
 const initialState = {
   loading: false,
-  errorMessage: false,
-  employees: [], 
-  employee: null 
+  isError:false,
+  errorMessage: null,
+  entities: [], 
+  entity: null 
 };
 
-const employeesReducer = (employeesState = initialState, action) => {
+const employeeReducer = (employeeState = initialState, action) => {
+
   const { type, payload } = action;
   switch (type) {
-
-    case CLOSE_ALERT:
-      return {
-        loading: false,
-        errorMessage: false,
-        employees: [], 
-        employee: null
-      }
 
     case CREATE_EMPLOYEE_LOADING:
     case UPDATE_EMPLOYEE_LOADING:
     case SEARCH_EMPLOYEES_LOADING:
     case DELETE_EMPLOYEE_LOADING:
       return {
-        loading: true,
+        isLoading: true,
+        isError:false,
         errorMessage: null,
-        employees: [], 
-        employee: null
+        entities: [], 
+        entity: null
       }
         
     case CREATE_EMPLOYEE_ERROR:
@@ -51,32 +45,35 @@ const employeesReducer = (employeesState = initialState, action) => {
     case DELETE_EMPLOYEE_ERROR:
       console.log(action)
         return {
-          loading: false,
+          isLoading: false,
+          isError:true,
           errorMessage: payload,
-          employees: [], 
-          employee: null
+          entities: [], 
+          entity: null
         }
 
 
     case CREATE_EMPLOYEE_COMPLETE:      
       return {
-        loading: false,
+        isLoading: false,
+        isError:false,
         errorMessage: null,
-        employees: [...employeesState.employees, payload], 
-        employee: null
+        entities: [...employeeState.entities, payload], 
+        entity: null
       }
 
     case SEARCH_EMPLOYEES_COMPLETE:
       return {
-        loading: false,
+        isLoading: false,
+        isError:false,
         errorMessage: null,
-        employees: payload, 
-        employee: null
+        entities: payload, 
+        entity: null
       }   
 
     case UPDATE_EMPLOYEE_COMPLETE:
 
-      let updatedEmployees= employeesState.employees.map(employee => {
+      let updatedEmployees= employeeState.entities.map(employee => {
         if (employee.id === payload.id) {
           return {
             ...employee,
@@ -88,28 +85,30 @@ const employeesReducer = (employeesState = initialState, action) => {
       });
 
       return {
-        loading: false,
+        isLoading: false,
+        isError:false,
         errorMessage: null,
-        employees: updatedEmployees, 
-        employee: null
+        entities: updatedEmployees, 
+        entity: null
       }  
 
 
     case DELETE_EMPLOYEE_COMPLETE:
-      let employeesToKeep= employeesState.employees.filter(({ id }) => id !== payload.id);
+      let employeesToKeep= employeeState.entities.filter(({ id }) => id !== payload.id);
       
       return {
-        loading: false,
+        isLoading: false,
+        isError:false,
         errorMessage: null,
-        employees: employeesToKeep, 
-        employee: null
+        entities: employeesToKeep, 
+        entity: null
       }  
 
 
 
     default:
-      return employeesState;
+      return employeeState;
   }
 };
 
-export default employeesReducer;
+export default employeeReducer;

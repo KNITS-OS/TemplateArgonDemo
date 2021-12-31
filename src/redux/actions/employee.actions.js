@@ -1,4 +1,4 @@
-import employeeService from "redux/services/employeeService";
+import employeeService from "redux/services/employee.service";
 import {
   CREATE_EMPLOYEE_COMPLETE,
   DELETE_EMPLOYEE_COMPLETE,

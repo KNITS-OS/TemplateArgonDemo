@@ -15,18 +15,11 @@
 
 */
 
-// core components
-import GradientEmptyHeader from "components/Headers/GradientEmptyHeader.js";
-import React, { useState } from "react";
-// react component for creating dynamic tables
-import BootstrapTable from "react-bootstrap-table-next";
-import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
-import ReactDatetime from "react-datetime";
+// core react libraries
+import React, { useState , useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
-import Select from "react-select";
-import makeAnimated from "react-select/animated";
-import SweetAlert from "react-bootstrap-sweetalert";
+
 // reactstrap components
 import {
   Button,
@@ -40,59 +33,62 @@ import {
   Row,
   Spinner,  
 } from "reactstrap";
-import { searchEmployees } from "redux/actions/employees";
-import { deleteUser } from "redux/actions/employees";
+
+// 3rd part react libraries
+import ReactDatetime from "react-datetime";
+import Select from "react-select";
+import makeAnimated from "react-select/animated";
+import SweetAlert from "react-bootstrap-sweetalert";
+import BootstrapTable from "react-bootstrap-table-next";
+import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
+
+//local components
+import GradientEmptyHeader from "components/Headers/GradientEmptyHeader.js";
+
+// redux
+import { searchEmployees,deleteUser } from "redux/actions/employee.actions.js";
 import { pagination } from "utils/tableUtils";
+
+
 
 const { SearchBar } = Search;
 
-const EmployeesPage = () => {
+const SearchEmployeesPage = () => {
+  
   const history = useHistory();
-
   const dispatch = useDispatch();
-  const employeesState = useSelector(state => state.employees);
+  const employeesState = useSelector(state => state.employee);
 
 
-  const businessUnitsList = useSelector(state => {
-    return state.categories.businessUnits.map(bunit => {
-      return { value: bunit.id, label: bunit.name };
-    });
-  });
+  // const businessUnitsList = useSelector(state => {
+  //   return state.categories.businessUnits.map(bunit => {
+  //     return { value: bunit.id, label: bunit.name };
+  //   });
+  // });
 
-  const countriesList = useSelector(state => {
-    return state.categories.countryListAllIsoData.map(country => {
-      return { value: country.code3, label: country.name };
-    });
-  });
+  // const countriesList = useSelector(state => {
+  //   return state.categories.countryListAllIsoData.map(country => {
+  //     return { value: country.code3, label: country.name };
+  //   });
+  // });
 
 
   const [searchLastName, setSearchLastName] = useState("");
   const [searchBusinessUnit, setSearchBusinessUnit] = useState("");
   const [searchCountry, setSearchCountry] = useState("");
   const [searchHiringDate, setSearchHiringDate] = useState(null);
-  const [alert, setAlert] = useState(false);
+  const [alert, setAlert] = useState(employeesState.isError);
 
-// const displayErrorAlertMessage = ()  =>{
-  
-//if (employeesState.errorMessage){
- // setAlert (
-//  const errorAlertMessage = <ReactBSAlert
-//       warning
-//       style={{ display: "block", marginTop: "-100px" }}
-//       title="Error"
-//       onConfirm={() => {}}
-//       onCancel={() =>{}}
-//       confirmBtnCssClass="btn-secondary"
-//       cancelBtnBsStyle="danger"
-//       confirmBtnText="Cancel"
-//       cancelBtnText="Yes, delete it"
-//       showCancel
-//       btnSize=""
-//     >
-//       {employeesState.errorMessage}
-//     </ReactBSAlert>;
-  
 
+  useEffect(() => {
+    if (employeesState.isError){
+      setAlert(
+        <SweetAlert danger title="Error" onConfirm={() => setAlert(false)}>
+          {employeesState.errorMessage}
+        </SweetAlert>
+      )
+    }
+  }, [employeesState.isError,employeesState.errorMessage ])
 
   const findByAllParameters = () => {
     let filters = {
@@ -115,12 +111,7 @@ const EmployeesPage = () => {
     //history.push('/admin/users/employee-details/'+id);
   };
 
-  const closeAlert = () => {
-    
-    dispatch({type:'CLOSE_ALERT'});
-    //history.push('/admin/users/employee-details/'+id);
-  };
-
+ 
 
   const formatActionButtonCell = (cell, row) => {
     return (
@@ -155,13 +146,7 @@ const EmployeesPage = () => {
     <>
       <GradientEmptyHeader /> 
       <Container className="mt--6" fluid>
-        { employeesState.errorMessage ? 
-        (
-
-          <SweetAlert danger title="Error" onConfirm={closeAlert}>
-             {employeesState.errorMessage}
-          </SweetAlert>     
-        ) : (<span>&nbsp;</span>) }     
+        { alert}          
         <Row>
           <div className="col">
             <Card>
@@ -201,7 +186,7 @@ const EmployeesPage = () => {
                       <Select
                         id="businessUnits"
                         components={makeAnimated()}
-                        options={businessUnitsList}
+                        // options={businessUnitsList}
                         onChange={item =>
                           setSearchBusinessUnit(item.value)
                         }
@@ -219,7 +204,7 @@ const EmployeesPage = () => {
                       <Select
                         id="country"
                         components={makeAnimated()}
-                        options={countriesList}
+                        // options={countriesList}
                         onChange={item => setSearchCountry(item.value)}
                       />
                     </FormGroup>
@@ -274,7 +259,7 @@ const EmployeesPage = () => {
                 <h3 className="mb-0">Employees</h3>
                 <p className="text-sm mb-0">Employees </p>
               </CardHeader>
-               { employeesState.loading ? (
+               { employeesState.isLoading ? (
                 <div
                   style={{
                     textAlign: "center",
@@ -284,7 +269,7 @@ const EmployeesPage = () => {
                 </div>
                 ) : (
                 <ToolkitProvider
-                data={employeesState.employees}
+                data={employeesState.entities}
                 keyField="id"
                 columns={[
                   {
@@ -372,4 +357,4 @@ const EmployeesPage = () => {
   );
 };
 
-export default EmployeesPage;
+export default SearchEmployeesPage;

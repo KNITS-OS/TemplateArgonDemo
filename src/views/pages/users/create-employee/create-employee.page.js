@@ -144,6 +144,7 @@ const CreateEmployeePage = () => {
                       </Col>
                     </Row>
                   </div>
+                 
                   <hr className="my-4" />
 
                   <h6 className="heading-small text-muted mb-4">
