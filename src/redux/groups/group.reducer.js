@@ -3,7 +3,7 @@ import {
   RETRIEVE_GROUPS,
   DEACTIVATE_GROUP,
   UPDATE_GROUP,
-} from "../actions/types";
+} from "../types.actions";
 
 const groupReducer = (groups = [], action) => {
   const { type, payload } = action;

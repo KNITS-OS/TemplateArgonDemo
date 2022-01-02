@@ -2,7 +2,7 @@ import {
   LIST_COUNTRIES_COMPLETE,
   LIST_COUNTRIES_LOADING,
   LIST_COUNTRIES_ERROR
-} from "../actions/types";
+} from "redux/types.actions.js";
 
 
 const initialState = {

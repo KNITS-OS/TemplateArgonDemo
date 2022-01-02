@@ -11,7 +11,7 @@ import {
   DELETE_EMPLOYEE_LOADING,
   DELETE_EMPLOYEE_ERROR,
   DELETE_EMPLOYEE_COMPLETE
-} from "../actions/types";
+} from "redux/types.actions.js";
 
 
 const initialState = {

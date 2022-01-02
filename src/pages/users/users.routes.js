@@ -1,6 +1,6 @@
 
-import CreateEmployeePage from "./create-employee/create-employee.page.js";
-import SearchEmployeesPage from "./search-employees/search-employees.page.js";
+import CreateEmployeePage from "./create-employee/CreateEmployee.page.js";
+import SearchEmployeesPage from "./search-employees/SearchEmployees.page.js";
 
 
 const userMenu ={

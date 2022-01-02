@@ -46,7 +46,7 @@ import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
 import GradientEmptyHeader from "components/Headers/GradientEmptyHeader.js";
 
 // redux
-import { searchEmployees,deleteUser } from "redux/actions/employee.actions.js";
+import { searchEmployees,deleteUser } from "redux/employees/employee.actions.js";
 import { pagination } from "utils/tableUtils";
 
 

@@ -34,7 +34,7 @@
 // import EmployeesPage from "views/pages/users/EmployeesPage";
 // import EmployeeDetailsPage from "views/pages/users/EmployeeDetailsPage";
 
-import userMenu from "views/pages/users/users.routes.js";
+import userMenu from "pages/users/users.routes.js";
 
 // import CreateGroupPage from "views/pages/groups/CreateGroupPage";
 // import GroupsPage from "views/pages/groups/GroupsPage";

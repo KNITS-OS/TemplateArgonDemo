@@ -1,4 +1,4 @@
-import httpCommon from "./http-common";
+import httpCommon from "../http-common";
 
 
 

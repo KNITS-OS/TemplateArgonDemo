@@ -1,4 +1,3 @@
-import employeeService from "redux/services/employee.service";
 import {
   CREATE_EMPLOYEE_COMPLETE,
   DELETE_EMPLOYEE_COMPLETE,
@@ -6,7 +5,9 @@ import {
   SEARCH_EMPLOYEES_ERROR,
   SEARCH_EMPLOYEES_LOADING,
   UPDATE_EMPLOYEE_COMPLETE,
-} from "./types";
+} from "redux/types.actions.js";
+import employeeService from "redux/employees/employee.service";
+
 
 export const createUser = data => {
   console.log(data);

@@ -31,7 +31,7 @@ import Logo from 'assets/img/brand/Logo.png';
 import routes from "routes.js";
 import { Spinner } from "reactstrap";
 
-import { listCountries } from "redux/actions/country.actions.js";
+import { listCountries } from "redux/countries/country.actions.js";
 import SweetAlert from "react-bootstrap-sweetalert";
 
 function Admin() {
@@ -54,7 +54,8 @@ function Admin() {
 
   useEffect(() => {
     dispatch (listCountries());  
-  }, []);
+
+  }, [dispatch]);
 
   useEffect(() => {
     if (countriesState.entities && countriesState.entities.length>0){
@@ -81,10 +82,9 @@ function Admin() {
           <i className="ni ni-like-2" />
         </span>{" "}
         <span className="alert-inner--text">
-          <strong>Attention!</strong> No data were loaded.Application will not work as expected
+          <strong>Attention!</strong> No data were loaded. Application will not work as expected
         </span>
-    </UncontrolledAlert>
-    
+    </UncontrolledAlert>    
       ));
   }
 
@@ -127,6 +127,7 @@ function Admin() {
     }
     setSidenavOpen(!sidenavOpen);
   };
+
   const getNavbarTheme = () => {
     return location.pathname.indexOf("admin/alternative-dashboard") === -1
       ? "dark"
@@ -134,8 +135,7 @@ function Admin() {
   };
 
   return (
-    <>
-     
+    <>     
       <Sidebar
         routes={routes}
         toggleSidenav={toggleSidenav}

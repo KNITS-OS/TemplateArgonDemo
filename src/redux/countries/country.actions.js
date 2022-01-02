@@ -2,9 +2,9 @@ import {
   LIST_COUNTRIES_COMPLETE,
   LIST_COUNTRIES_LOADING,
   LIST_COUNTRIES_ERROR
-  } from "./types";
+  } from "redux/types.actions.js";
 
-import countryService from "redux/services/country.service";
+import countryService from "./country.service";
 
 export const listCountriesLoading = () => {
   return {
