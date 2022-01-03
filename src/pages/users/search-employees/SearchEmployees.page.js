@@ -39,39 +39,25 @@ import ReactDatetime from "react-datetime";
 import Select from "react-select";
 import makeAnimated from "react-select/animated";
 import SweetAlert from "react-bootstrap-sweetalert";
-import BootstrapTable from "react-bootstrap-table-next";
-import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
 
-//local components
-import GradientEmptyHeader from "components/Headers/GradientEmptyHeader.js";
+//template core components
+import GradientEmptyHeader from "components/headers/GradientEmptyHeader.js";
+import ReactTable from "components/react-table/ReactTable.js";
 
 // redux
 import { searchEmployees,deleteUser } from "redux/employees/employee.actions.js";
-import { pagination } from "utils/tableUtils";
+import { selectCountriesAsList } from "redux/countries/country.selectors.js";
+
+import employeesTableColumns from "./SearchEmployees.table.js";
 
 
-
-const { SearchBar } = Search;
 
 const SearchEmployeesPage = () => {
   
   const history = useHistory();
   const dispatch = useDispatch();
   const employeesState = useSelector(state => state.employee);
-
-
-  // const businessUnitsList = useSelector(state => {
-  //   return state.categories.businessUnits.map(bunit => {
-  //     return { value: bunit.id, label: bunit.name };
-  //   });
-  // });
-
-  // const countriesList = useSelector(state => {
-  //   return state.categories.countryListAllIsoData.map(country => {
-  //     return { value: country.code3, label: country.name };
-  //   });
-  // });
-
+  const countriesList = useSelector(selectCountriesAsList);
 
   const [searchLastName, setSearchLastName] = useState("");
   const [searchBusinessUnit, setSearchBusinessUnit] = useState("");
@@ -107,41 +93,10 @@ const SearchEmployeesPage = () => {
 
   const removeEmployee = e => {
     var { id } = e.target;
-    dispatch(deleteUser(id));
-    //history.push('/admin/users/employee-details/'+id);
+    dispatch(deleteUser(id)); 
   };
 
  
-
-  const formatActionButtonCell = (cell, row) => {
-    return (
-      <>    
-        <Button
-          id={row.id}
-          className="btn-icon btn-2"
-          type="button"
-          color="info"
-          onClick={goToEmployeeDetails}
-        >
-          <span id={row.id} className="btn-inner--icon">
-            <i id={row.id} className="ni ni-badge" />
-          </span>
-        </Button>
-        <Button
-          id={row.id}
-          className="btn-icon btn-2"
-          color="danger"
-          type="button"
-          onClick={removeEmployee}
-        >
-          <span id={row.id} className="btn-inner--icon">
-            <i id={row.id} className="ni ni-fat-remove" />
-          </span>
-        </Button>
-      </>
-    );
-  };
-
   return (
     <>
       <GradientEmptyHeader /> 
@@ -204,7 +159,7 @@ const SearchEmployeesPage = () => {
                       <Select
                         id="country"
                         components={makeAnimated()}
-                        // options={countriesList}
+                        options={countriesList}
                         onChange={item => setSearchCountry(item.value)}
                       />
                     </FormGroup>
@@ -268,87 +223,16 @@ const SearchEmployeesPage = () => {
                   <Spinner />
                 </div>
                 ) : (
-                <ToolkitProvider
-                data={employeesState.entities}
-                keyField="id"
-                columns={[
-                  {
-                    dataField: "id",
-                    text: "id",
-                    hidden: true,
-                  },
-                  {
-                    dataField: "firstName",
-                    text: "firstName",
-                    sort: true,
-                  },
-                  {
-                    dataField: "lastName",
-                    text: "lastName",
-                    sort: true,
-                  },
-                  {
-                    dataField: "internationalName",
-                    text: "int Name",
-                    sort: true,
-                  },
-                  {
-                    dataField: "title",
-                    text: "title",
-                    sort: true,
-                  },
-                  {
-                    dataField: "businessUnit",
-                    text: "bUnit",
-                    sort: true,
-                  },
-                  {
-                    dataField: "managementGroup",
-                    text: "Man Group",
-                    sort: true,
-                  },
-                  {
-                    dataField: "country",
-                    text: "country",
-                    sort: true,
-                  },
-                  {
-                    dataField: "action",
-                    text: "",
-                    formatter: formatActionButtonCell,
-                  },
-                ]}
-                search
-              >
-                {props => (
-                  <div className="py-4 table-responsive">
-                    <div
-                      id="datatable-basic_filter"
-                      className="dataTables_filter px-4 pb-1"
-                    >
-                      <label>
-                        Search:
-                        <SearchBar
-                          className="form-control-sm"
-                          placeholder=""
-                          {...props.searchProps}
-                        />
-                      </label>
-                    </div>
-                    <BootstrapTable
-                      {...props.baseProps}
-                      bootstrap4={true}
-                      pagination={pagination}
-                      bordered={false}
-                      deleteRow={true}
-                    />
-                  </div>
-                )}
-                </ToolkitProvider>
+
+                  <ReactTable 
+                    data={employeesState.entities}
+                    keyField="id"
+                    columns={employeesTableColumns}
+                    onViewDetails={goToEmployeeDetails}
+                    onDeleteItem={removeEmployee}
+                  />              
                 )
-              }
-            
-            
+              }     
             </Card>
           </div>
         </Row>

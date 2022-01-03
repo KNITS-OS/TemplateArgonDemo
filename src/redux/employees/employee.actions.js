@@ -22,7 +22,6 @@ export const searchEmployees = filters => async dispatch => {
       type: SEARCH_EMPLOYEES_LOADING,
       payload: 'SEARCH_EMPLOYEES_LOADING',
     });
-
     
     const { data } = await employeeService.searchEmployees(queryParams);
 

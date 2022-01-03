@@ -15,65 +15,44 @@
 
 */
 // core components
-import GradientEmptyHeader from "components/headers/GradientEmptyHeader.js";
-import React, { useState } from "react";
 import { useHistory } from "react-router";
+import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 // reactstrap components
 import {
-  Button,
-  Card,
-  CardBody,
-  CardHeader,
-  Col,
   Container,
-  Form,
-  FormGroup,
-  Input,
-  Row,
 } from "reactstrap";
 
-
+import GradientEmptyHeader from "components/headers/GradientEmptyHeader.js";
 import EditEmployeePanel from "pages/users/employee-panels/EditEmployee.panel.js";
+import {selectEmployeeById} from "redux/employees/employee.selectors.js"
 
+const EmployeeDetailsPage = () => {
 
-const CreateEmployeePage = () => {
-
-   let employee = {
-    firstName: "",
-    lastName: "",
-    internationalName: "",
-    title: "",
-    email: "",
-    businessUnit: "",
-    managementGroup: "",
-    companyCode: "",
-    costCenter: "",
-    country: "",
-    birthDate: "",
-    companyPhone: "",
-    companyMobilePhone: "",
-    gender: "",
-    nationality: "",
-    officeAddressCountry: "",
-    officeAddressCity: "",
-    officeAddressStreet: "",
-  };
-
-
+  let { id } = useParams()
+  const history = useHistory();
   
-const onSave = (updatedEmployee) =>{
-    console.log(updatedEmployee);    
-}
+  const employee = useSelector( selectEmployeeById(id));
+  console.log(employee);
 
+  const onSave = (updatedEmployee) =>{
+      console.log(updatedEmployee);    
+  }
+
+
+  const onBackToSerch = () =>{
+    history.push("/admin/search-employees")
+  }
 
   return (
     <>
       <GradientEmptyHeader />
       <Container className="mt--6" fluid>
-        <EditEmployeePanel employee={employee} onSave={onSave} />     
+        <EditEmployeePanel employee={employee} onBackSearchClick={onBackToSerch}  onSave={onSave} />       
       </Container>
     </>
   );
+
 };
 
-export default CreateEmployeePage;
+export default EmployeeDetailsPage;

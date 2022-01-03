@@ -1,24 +1,11 @@
-
-import React from 'react'
-import { useSelector } from 'react-redux'
 import { createSelector } from 'reselect'
 
+export const selectEmployees = createSelector(
+  [(state) =>state.employee.entities],
+  (data) =>  data
+);
 
-
-const selectNumCompletedTodos = createSelector(
-  (state) => state.todos,
-  (todos) => todos.filter((todo) => todo.completed).length
+export const selectEmployeeById = (id) => createSelector(
+  [selectEmployees], 
+  (employeesdata) => employeesdata.find((employee) => employee.id===parseInt(id))
 )
-
-
-/*
-const selectNumCompletedTodos = createSelector(
-    (state) => state.todos,
-    (todos) => todos.filter((todo) => todo.completed).length
-  )
-  
-  export const CompletedTodosCounter = () => {
-    const numCompletedTodos = useSelector(selectNumCompletedTodos)
-    return <div>{numCompletedTodos}</div>
-  }
-*/

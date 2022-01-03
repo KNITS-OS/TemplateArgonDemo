@@ -1,16 +1,17 @@
 
-import React from 'react'
-import { useSelector } from 'react-redux'
 import { createSelector } from 'reselect'
 
-/*
-const selectNumCompletedTodos = createSelector(
-    (state) => state.todos,
-    (todos) => todos.filter((todo) => todo.completed).length
-  )
-  
-  export const CompletedTodosCounter = () => {
-    const numCompletedTodos = useSelector(selectNumCompletedTodos)
-    return <div>{numCompletedTodos}</div>
+
+export const selectCountriesAsListNoReselect = (state) =>{
+  return state.country.entities;
+}
+
+
+export const selectCountriesAsList = createSelector(
+  (state) =>  state.country.entities,
+  (countries) => {   
+    return countries.map(country => {
+      return { value: country.code3, label: country.name };
+    });    
   }
-*/
+)

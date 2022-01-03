@@ -44,7 +44,7 @@ import userMenu from "pages/users/users.routes.js";
 // import WorldOverviewPage from "views/pages/dashboards/WorldOverviewPage";
 
 const routes = [
-  userMenu,
+  ...userMenu,
   /* Users */
   // {
   //   collapse: true,
