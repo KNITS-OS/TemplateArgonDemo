@@ -1,0 +1,61 @@
+import React, { useState } from "react";
+import { useHistory } from "react-router";
+// reactstrap components
+import {
+  Button,
+  Card,
+  CardBody,
+  CardHeader,
+  Col,
+  Container,
+  Form,
+  FormGroup,
+  Input,
+  Row,
+} from "reactstrap";
+
+import GradientEmptyHeader from "components/headers/GradientEmptyHeader.js";
+import EditEmployeePanel from "pages/users/employee-panels/EditEmployee.panel.js";
+
+
+const CreateEmployeePage = () => {
+
+   let employee = {
+    firstName: "",
+    lastName: "",
+    internationalName: "",
+    title: "",
+    email: "",
+    businessUnit: "",
+    managementGroup: "",
+    companyCode: "",
+    costCenter: "",
+    country: "",
+    birthDate: "",
+    companyPhone: "",
+    companyMobilePhone: "",
+    gender: "",
+    nationality: "",
+    officeAddressCountry: "",
+    officeAddressCity: "",
+    officeAddressStreet: "",
+  };
+
+
+  
+const onSave = (updatedEmployee) =>{
+    console.log(updatedEmployee);    
+}
+
+
+  return (
+    <>
+      <GradientEmptyHeader />
+      <Container className="mt--6" fluid>
+        <EditEmployeePanel employee={employee} onSave={onSave} />     
+      </Container>
+    </>
+  );
+};
+
+export default CreateEmployeePage;
