@@ -27,12 +27,6 @@ const EditEmployeePanel = ({employee, onSave, onBackSearchClick}) => {
     let [officeAddressCity, setOfficeAddressCity] = useState(employee? employee.officeAddressCity : '');
     let [officeAddressStreet, setOfficeAddressStreet] = useState(employee? employee.officeAddressStreet : '');
     let [officeAddressPostalCode, setOfficeAddressPostalCode] = useState(employee? employee.officeAddressPostalCode : '');
-
-    let [country, setCountry] = useState(employee? employee.country: '');
-    let [birthDate, setBirthDate] = useState(employee? employee.birthDate : '');
-    let [companyMobilePhone, setCompanyMobilePhone] = useState(employee? employee.companyMobilePhone : '');
-    let [gender, setGender] = useState(employee? employee.gender : '');
-    let [nationality, setNationality] = useState(employee? employee.nationality : '');
       
   const onSaveClick = () =>{
 
@@ -45,13 +39,8 @@ const EditEmployeePanel = ({employee, onSave, onBackSearchClick}) => {
         businessUnit,
         managementGroup,
         companyCode,
-        costCenter,
-        country,
-        birthDate,
-        companyPhone,
-        companyMobilePhone,
-        gender,
-        nationality,
+        costCenter,    
+        companyPhone,    
         officeAddressCountry,
         officeAddressCity,
         officeAddressStreet,

@@ -25,7 +25,6 @@ import {
 
 import SweetAlert from "react-bootstrap-sweetalert";
 
-import Logo from 'assets/img/brand/Logo.png';
 import routes from "routes.js";
 import AdminNavbar from "components/navbars/AdminNavbar.js";
 import AdminFooter from "components/footers/AdminFooter.js";

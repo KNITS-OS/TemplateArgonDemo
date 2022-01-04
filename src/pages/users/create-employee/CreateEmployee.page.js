@@ -1,17 +1,5 @@
-import React, { useState } from "react";
-import { useHistory } from "react-router";
-// reactstrap components
 import {
-  Button,
-  Card,
-  CardBody,
-  CardHeader,
-  Col,
-  Container,
-  Form,
-  FormGroup,
-  Input,
-  Row,
+  Container
 } from "reactstrap";
 
 import GradientEmptyHeader from "components/headers/GradientEmptyHeader.js";
