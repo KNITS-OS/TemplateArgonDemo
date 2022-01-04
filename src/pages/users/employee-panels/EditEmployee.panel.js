@@ -5,34 +5,34 @@ import {
     Card,
     CardBody,
     CardHeader,
-    Col,
-    FormGroup,
-    Input,
+    Col, 
     Row,
   } from "reactstrap";
 
-  import InputField from 'components/widgets/input-field/InputField.js'
+import InputField from 'components/widgets/input-field/InputField.js'
 
 const EditEmployeePanel = ({employee, onSave, onBackSearchClick}) => {
 
     let [firstName, setFirstName] = useState(employee? employee.firstName : '');
     let [lastName, setLastName] = useState(employee? employee.lastName : '');
     let [internationalName, setInternationalName] = useState(employee? employee.internationalName : '');
-    let [title, setTitle] = useState(employee.title);
+    let [title, setTitle] = useState(employee? employee.title : '');
     let [email, setEmail] = useState(employee? employee.email  : '');
-    let [businessUnit, setBusinessUnit] = useState(employee.businessUnit);
-    let [managementGroup, setManagementGroup] = useState(employee.managementGroup);
-    let [companyCode, setCompanyCode] = useState(employee.companyCode);
-    let [costCenter, setCostCenter] = useState(employee.costCenter);
-    let [country, setCountry] = useState(employee.country);
-    let [birthDate, setBirthDate] = useState(employee.birthDate);
-    let [companyPhone, setCompanyPhone] = useState(employee.companyPhone);
-    let [companyMobilePhone, setCompanyMobilePhone] = useState(employee.companyMobilePhone);
-    let [gender, setGender] = useState(employee.gender);
-    let [nationality, setNationality] = useState(employee.nationality);
-    let [officeAddressCountry, setOfficeAddressCountry] = useState(employee.officeAddressCountry);
-    let [officeAddressCity, setOfficeAddressCity] = useState(employee.officeAddressCity);
-    let [officeAddressStreet, setOfficeAddressStreet] = useState(employee.officeAddressStreet);   
+    let [businessUnit, setBusinessUnit] = useState(employee? employee.businessUnit : '');
+    let [managementGroup, setManagementGroup] = useState(employee? employee.managementGroup : '');
+    let [companyCode, setCompanyCode] = useState(employee? employee.companyCode : '');
+    let [costCenter, setCostCenter] = useState(employee? employee.costCenter : ''); 
+    let [companyPhone, setCompanyPhone] = useState(employee? employee.companyPhone : '');  
+    let [officeAddressCountry, setOfficeAddressCountry] = useState(employee? employee.officeAddressCountry : '');
+    let [officeAddressCity, setOfficeAddressCity] = useState(employee? employee.officeAddressCity : '');
+    let [officeAddressStreet, setOfficeAddressStreet] = useState(employee? employee.officeAddressStreet : '');
+    let [officeAddressPostalCode, setOfficeAddressPostalCode] = useState(employee? employee.officeAddressPostalCode : '');
+
+    let [country, setCountry] = useState(employee? employee.country: '');
+    let [birthDate, setBirthDate] = useState(employee? employee.birthDate : '');
+    let [companyMobilePhone, setCompanyMobilePhone] = useState(employee? employee.companyMobilePhone : '');
+    let [gender, setGender] = useState(employee? employee.gender : '');
+    let [nationality, setNationality] = useState(employee? employee.nationality : '');
       
   const onSaveClick = () =>{
 
@@ -55,6 +55,7 @@ const EditEmployeePanel = ({employee, onSave, onBackSearchClick}) => {
         officeAddressCountry,
         officeAddressCity,
         officeAddressStreet,
+        officeAddressPostalCode,
       };
     onSave (updatedEmployee);
   }
@@ -84,90 +85,30 @@ const EditEmployeePanel = ({employee, onSave, onBackSearchClick}) => {
                         type="text"
                         onChange={e => setFirstName(e.target.value)}
                       />
-
-
-                      {/* <FormGroup>
-                        <label
-                          className="form-control-label"
-                          htmlFor="input-first-name"
-                        >
-                          First name
-                        </label>
-                        <Input
-                          id="input-first-name"
-                          value={firstName}
-                          type="text"
-                          onChange={e => setFirstName(e.target.value)}
-                        />
-                      </FormGroup> */}
                     </Col>
-                    <Col lg="6">
 
+                    <Col lg="6">
                     <InputField 
                         id="input-last-name" 
                         label="Last Name"
                         value={lastName}
                         type="text"
                         onChange={e => setLastName(e.target.value)}
-                      />
-
-                      {/* <FormGroup>
-                        <label
-                          className="form-control-label"
-                          htmlFor="input-last-name"
-                        >
-                          Last name
-                        </label>
-                        <Input
-                          id="input-last-name"
-                          value={lastName}
-                          type="text"
-                          onChange={e => setLastName(e.target.value)}
-                        />
-                      </FormGroup> */}
+                      />                    
                     </Col>
                   </Row>
 
                   <Row>
-                    <Col lg="6">
-                      {/* <FormGroup>
-                        <label
-                          className="form-control-label"
-                          htmlFor="input-username"
-                        >
-                          International Name
-                        </label>
-                        <Input
-                          id="input-username"
+                    <Col lg="6">   
+                      <InputField 
+                          id="input-international-name" 
+                          label="International Name"
                           value={internationalName}
                           type="text"
                           onChange={e => setInternationalName(e.target.value)}
                         />
-                      </FormGroup> */}
-
-                    <InputField 
-                        id="input-international-name" 
-                        label="International Name"
-                        value={internationalName}
-                        type="text"
-                        onChange={e => setInternationalName(e.target.value)}
-                      />
                     </Col>
-                    <Col lg="6">
-                      {/* <FormGroup>
-                        <label
-                          className="form-control-label"
-                          htmlFor="input-email"
-                        >
-                          Email address
-                        </label>
-                        <Input
-                          id="input-email"
-                          value={email}
-                          type="email"
-                          onChange={e => setEmail(e.target.value)}
-                        />
-                      </FormGroup> */}
+                    <Col lg="6">                     
                        <InputField 
                         id="input-email" 
                         label="Email Address"
@@ -185,73 +126,46 @@ const EditEmployeePanel = ({employee, onSave, onBackSearchClick}) => {
                   Contact information
                 </h6>
                 <div className="pl-lg-4">
-                    {/*
+                    
                   <Row>
                     <Col md="12">
-                      <FormGroup>
-                        <label
-                          className="form-control-label"
-                          htmlFor="input-address"
-                        >
-                          Address
-                        </label>
-                        <Input
-                          defaultValue="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09"
-                          id="input-address"
-                          placeholder="Home Address"
+                      <InputField 
+                          id="input-address" 
+                          label="Office Street"                        
+                          value={officeAddressStreet}
                           type="text"
-                          onChange={e => setOfficeAddressCity(e.target.value)}
-                        />
-                      </FormGroup>
+                          onChange={e => setOfficeAddressStreet(e.target.value)}
+                        />                    
                     </Col>
                   </Row>
+
                   <Row>
                     <Col lg="4">
-                      <FormGroup>
-                        <label
-                          className="form-control-label"
-                          htmlFor="input-city"
-                        >
-                          City
-                        </label>
-                        <Input
-                          defaultValue="New York"
-                          id="input-city"
-                          placeholder="City"
+                       <InputField 
+                          id="input-city" 
+                          label="Office City"                         
+                          value={officeAddressCity}
                           type="text"
-                        />
-                      </FormGroup>
+                          onChange={e => setOfficeAddressCity(e.target.value)}
+                        />  
                     </Col>
                     <Col lg="4">
-                      <FormGroup>
-                        <label
-                          className="form-control-label"
-                          htmlFor="input-country"
-                        >
-                          Country
-                        </label>
-                        <Input
-                          defaultValue="United States"
-                          id="input-country"
-                          placeholder="Country"
+                     <InputField 
+                          id="input-country" 
+                          label="Office Country"                         
+                          value={officeAddressCountry}
                           type="text"
-                        />
-                      </FormGroup>
+                          onChange={e => setOfficeAddressCountry(e.target.value)}
+                        />  
                     </Col>
                     <Col lg="4">
-                      <FormGroup>
-                        <label
-                          className="form-control-label"
-                          htmlFor="input-country"
-                        >
-                          Postal code
-                        </label>
-                        <Input
-                          id="input-postal-code"
-                          placeholder="Postal code"
-                          type="number"
-                        />
-                      </FormGroup>
+                      <InputField 
+                          id="input-postal-code" 
+                          label="Office Postal code"                         
+                          value={officeAddressPostalCode}                        
+                          type="text"
+                          onChange={e => setOfficeAddressPostalCode(e.target.value)}
+                        />                     
                     </Col>
                   </Row>
                 </div>
@@ -263,83 +177,65 @@ const EditEmployeePanel = ({employee, onSave, onBackSearchClick}) => {
                 <div className="pl-lg-4">
                   <Row>
                     <Col lg="4">
-                      <FormGroup>
-                        <label className="form-control-label">
-                          Title
-                        </label>
-                        <Input
-                          id="title"
-                          value={title}
-                          type="text"
-                        />
-                      </FormGroup>
+                      <InputField 
+                            id="input-title" 
+                            label="Job Title"                         
+                            value={title}                          
+                            type="text"
+                            onChange={e => setTitle(e.target.value)}
+                          />   
                     </Col>
 
                     <Col lg="4">
-                      <FormGroup>
-                        <label className="form-control-label">
-                          Company Phone
-                        </label>
-                        <Input
-                          id="companyPhone"
-                          value="+372 77645322"
-                          type="text"
-                        />
-                      </FormGroup>
+                       <InputField 
+                            id="input-company-phone" 
+                            label="Company Phone"                         
+                            value={companyPhone}                          
+                            type="text"
+                            onChange={e => setCompanyPhone(e.target.value)}
+                          />                      
                     </Col>
                     <Col lg="4">
-                      <FormGroup>
-                        <label className="form-control-label">
-                          Company Code
-                        </label>
-                        <Input
-                          id="input-postal-code"
-                          value={companyCode}
-                          type="text"
-                        />
-                      </FormGroup>
+                      <InputField 
+                            id="input-company-code" 
+                            label="Company Code"                         
+                            value={companyCode}                          
+                            type="text"
+                            onChange={e => setCompanyCode(e.target.value)}
+                          />   
                     </Col>
                   </Row>
 
                   <Row>
                     <Col lg="4">
-                      <FormGroup>
-                        <label className="form-control-label">
-                          Business Unit
-                        </label>
-                        <Input
-                          id="input-postal-code"
-                          value={businessUnit}
-                          type="text"
-                        />
-                      </FormGroup>
+                      <InputField 
+                            id="input-business-unit" 
+                            label="Business Unit"                         
+                            value={businessUnit}                          
+                            type="text"
+                            onChange={e => setBusinessUnit(e.target.value)}
+                          />                        
                     </Col>
 
                     <Col lg="4">
-                      <FormGroup>
-                        <label className="form-control-label">
-                          Cost Center
-                        </label>
-                        <Input
-                          id="input-postal-code"
-                          value={costCenter}
-                          type="text"
-                        />
-                      </FormGroup>
+                      <InputField 
+                            id="input-cost-center" 
+                            label="Cost Center"                         
+                            value={costCenter}                          
+                            type="text"
+                            onChange={e => setCostCenter(e.target.value)}
+                          />   
                     </Col>
                     <Col lg="4">
-                      <FormGroup>
-                        <label className="form-control-label">
-                          Management Group
-                        </label>
-                        <Input
-                          id="input-postal-code"
-                          value={managementGroup}
-                          type="text"
-                        />
-                      </FormGroup>
+                      <InputField 
+                            id="input-management-group" 
+                            label="Management Group"                         
+                            value={managementGroup}                          
+                            type="text"
+                            onChange={e => setManagementGroup(e.target.value)}
+                          />   
                     </Col>
-                  </Row> */}
+                  </Row> 
 
 
                   <Row className="align-items-center py-4">

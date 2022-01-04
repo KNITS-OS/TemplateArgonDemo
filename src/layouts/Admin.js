@@ -18,21 +18,21 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, Route, Switch, Redirect } from "react-router-dom";
 
-// core components
+import {
+  UncontrolledAlert,
+  Spinner
+} from "reactstrap";
+
+import SweetAlert from "react-bootstrap-sweetalert";
+
+import Logo from 'assets/img/brand/Logo.png';
+import routes from "routes.js";
 import AdminNavbar from "components/navbars/AdminNavbar.js";
 import AdminFooter from "components/footers/AdminFooter.js";
 import Sidebar from "components/sidebar/Sidebar.js";
 
-import {
-  UncontrolledAlert
-} from "reactstrap";
-
-import Logo from 'assets/img/brand/Logo.png';
-import routes from "routes.js";
-import { Spinner } from "reactstrap";
-
 import { listCountries } from "redux/countries/country.actions.js";
-import SweetAlert from "react-bootstrap-sweetalert";
+
 
 function Admin() {
 

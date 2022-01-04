@@ -8,6 +8,4 @@ export const rootReducer = combineReducers({
   employee: employeeReducer,
   group: groupReducer,
   country:countryReducer
-  // businessUnitState: businessUnitReducer,
-  // countryState: countryReducer,
 });

@@ -1,20 +1,3 @@
-/*!
-
-=========================================================
-* Argon Dashboard PRO React - v1.2.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/argon-dashboard-react
-* Copyright 2021 Creative Tim (https://www.creative-tim.com)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
-
 // core react libraries
 import React, { useState , useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -42,12 +25,13 @@ import SweetAlert from "react-bootstrap-sweetalert";
 
 //template core components
 import GradientEmptyHeader from "components/headers/GradientEmptyHeader.js";
-import ReactTable from "components/react-table/ReactTable.js";
+import ReactTable from "components/widgets/react-table/ReactTable.js";
 
 // redux
 import { searchEmployees,deleteUser } from "redux/employees/employee.actions.js";
 import { selectCountriesAsList } from "redux/countries/country.selectors.js";
 
+//local components
 import employeesTableColumns from "./SearchEmployees.table.js";
 
 
