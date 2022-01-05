@@ -11,7 +11,7 @@ const EditEmployeePanel = ({
   onBackSearchClick,
 }) => {
   if (!employee) {
-    return "Employee Not Found";
+    throw new Error("Employee not found");
   }
 
   const {
