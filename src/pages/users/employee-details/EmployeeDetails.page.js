@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useHistory } from "react-router";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -12,10 +13,12 @@ import EditEmployeePanel from "pages/users/employee-panels/EditEmployee.panel";
 const EmployeeDetailsPage = () => {
   let { id } = useParams();
   const history = useHistory();
-  const employee = useSelector(selectEmployeeById(id));
+  const reduxEmployee = useSelector(selectEmployeeById(id));
+
+  const [employee, setEmployee] = useState(reduxEmployee);
 
   const onSave = updatedEmployee => {
-    console.log(updatedEmployee);
+    console.log("updatedEmployee", updatedEmployee);
   };
 
   const onBackToSerch = () => {
@@ -28,6 +31,7 @@ const EmployeeDetailsPage = () => {
       <Container className="mt--6" fluid>
         <EditEmployeePanel
           employee={employee}
+          setEmployee={setEmployee}
           onBackSearchClick={onBackToSerch}
           onSave={onSave}
         />

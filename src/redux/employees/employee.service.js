@@ -1,8 +1,8 @@
 import httpCommon from "../http-common";
 
 const searchEmployees = queryParams => {
-  return httpCommon.get(`/employees?${queryParams}`);
-  //return httpCommon.get(`/employees`);
+  // return httpCommon.get(`/employees?${queryParams}`);
+  return httpCommon.get(`/employees`);
 };
 
 const employeeService = {
