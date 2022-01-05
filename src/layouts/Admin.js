@@ -18,23 +18,18 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, Route, Switch, Redirect } from "react-router-dom";
 
-import {
-  UncontrolledAlert,
-  Spinner
-} from "reactstrap";
+import { UncontrolledAlert, Spinner } from "reactstrap";
 
 import SweetAlert from "react-bootstrap-sweetalert";
 
 import routes from "routes.js";
-import AdminNavbar from "components/navbars/AdminNavbar.js";
-import AdminFooter from "components/footers/AdminFooter.js";
-import Sidebar from "components/sidebar/Sidebar.js";
+import AdminNavbar from "components/Navbars/AdminNavbar.js";
+import AdminFooter from "components/Footers/AdminFooter.js";
+import Sidebar from "components/Sidebar/Sidebar.js";
 
 import { listCountries } from "redux/countries/country.actions.js";
 
-
 function Admin() {
-
   const dispatch = useDispatch();
   const location = useLocation();
   const countriesState = useSelector(state => state.country);
@@ -52,42 +47,41 @@ function Admin() {
   }, [location]);
 
   useEffect(() => {
-    dispatch (listCountries());  
-
+    dispatch(listCountries());
   }, [dispatch]);
 
   useEffect(() => {
-    if (countriesState.entities && countriesState.entities.length>0){
-     setCategoryDataLoaded(true);
-    }    
+    if (countriesState.entities && countriesState.entities.length > 0) {
+      setCategoryDataLoaded(true);
+    }
   }, [countriesState.entities]);
 
   useEffect(() => {
-    if (countriesState.isError){
+    if (countriesState.isError) {
       setAlert(
-        <SweetAlert danger title="Error" onConfirm={ () => cleanAlert()}>
+        <SweetAlert danger title="Error" onConfirm={() => cleanAlert()}>
           {`${countriesState.errorMessage} please contact administrator`}
-        </SweetAlert>
-      )
+        </SweetAlert>,
+      );
     }
-  }, [countriesState.isError,countriesState.errorMessage ])
-
+  }, [countriesState.isError, countriesState.errorMessage]);
 
   const cleanAlert = () => {
     setCategoryDataLoaded(true); // remove spinner
-    setAlert((    
+    setAlert(
       <UncontrolledAlert color="danger" fade={false}>
         <span className="alert-inner--icon">
           <i className="ni ni-like-2" />
         </span>{" "}
         <span className="alert-inner--text">
-          <strong>Attention!</strong> No data were loaded. Application will not work as expected
+          <strong>Attention!</strong> No data were loaded. Application will
+          not work as expected
         </span>
-    </UncontrolledAlert>    
-      ));
-  }
+      </UncontrolledAlert>,
+    );
+  };
 
-  const getRoutes = (routes) => {
+  const getRoutes = routes => {
     return routes.map((prop, key) => {
       if (prop.collapse) {
         return getRoutes(prop.views);
@@ -106,9 +100,11 @@ function Admin() {
     });
   };
 
-  const getBrandText = (path) => {
+  const getBrandText = path => {
     for (let i = 0; i < routes.length; i++) {
-      if (location.pathname.indexOf(routes[i].layout + routes[i].path) !== -1) {
+      if (
+        location.pathname.indexOf(routes[i].layout + routes[i].path) !== -1
+      ) {
         return routes[i].name;
       }
     }
@@ -116,7 +112,7 @@ function Admin() {
   };
 
   // toggles collapse between mini sidenav and normal
-  const toggleSidenav = (e) => {
+  const toggleSidenav = e => {
     if (document.body.classList.contains("g-sidenav-pinned")) {
       document.body.classList.remove("g-sidenav-pinned");
       document.body.classList.add("g-sidenav-hidden");
@@ -134,7 +130,7 @@ function Admin() {
   };
 
   return (
-    <>     
+    <>
       <Sidebar
         routes={routes}
         toggleSidenav={toggleSidenav}
@@ -142,32 +138,32 @@ function Admin() {
         logo={{
           innerLink: "/",
           imgSrc: require("assets/img/brand/Logo.png").default,
-          imgAlt: "..."
-        }} />
+          imgAlt: "...",
+        }}
+      />
       <div className="main-content" ref={mainContentRef}>
         {alert}
-        {categoryDataLoaded ?
-          (
-            <>
-              <AdminNavbar
-                theme={getNavbarTheme()}
-                toggleSidenav={toggleSidenav}
-                sidenavOpen={sidenavOpen}
-                brandText={getBrandText(location.pathname)} />
-              <Switch>
-                {getRoutes(routes)}
-                <Redirect from="*" to="/admin/dashboard" />
-              </Switch>
-              <AdminFooter />
-            </>
-          ) :
-          (
-            <>
-              <div style={{ textAlign: "center" }}>
-                <Spinner />
-              </div>
-            </>
-          )}
+        {categoryDataLoaded ? (
+          <>
+            <AdminNavbar
+              theme={getNavbarTheme()}
+              toggleSidenav={toggleSidenav}
+              sidenavOpen={sidenavOpen}
+              brandText={getBrandText(location.pathname)}
+            />
+            <Switch>
+              {getRoutes(routes)}
+              <Redirect from="*" to="/admin/dashboard" />
+            </Switch>
+            <AdminFooter />
+          </>
+        ) : (
+          <>
+            <div style={{ textAlign: "center" }}>
+              <Spinner />
+            </div>
+          </>
+        )}
       </div>
       {sidenavOpen ? (
         <div className="backdrop d-xl-none" onClick={toggleSidenav} />

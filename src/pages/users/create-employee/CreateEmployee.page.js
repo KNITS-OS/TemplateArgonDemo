@@ -1,14 +1,10 @@
-import {
-  Container
-} from "reactstrap";
+import { Container } from "reactstrap";
 
-import GradientEmptyHeader from "components/headers/GradientEmptyHeader.js";
+import GradientEmptyHeader from "components/Headers/GradientEmptyHeader.js";
 import EditEmployeePanel from "pages/users/employee-panels/EditEmployee.panel.js";
 
-
 const CreateEmployeePage = () => {
-
-   let employee = {
+  let employee = {
     firstName: "",
     lastName: "",
     internationalName: "",
@@ -29,18 +25,15 @@ const CreateEmployeePage = () => {
     officeAddressStreet: "",
   };
 
-
-  
-const onSave = (updatedEmployee) =>{
-    console.log(updatedEmployee);    
-}
-
+  const onSave = updatedEmployee => {
+    console.log(updatedEmployee);
+  };
 
   return (
     <>
       <GradientEmptyHeader />
       <Container className="mt--6" fluid>
-        <EditEmployeePanel employee={employee} onSave={onSave} />     
+        <EditEmployeePanel employee={employee} onSave={onSave} />
       </Container>
     </>
   );

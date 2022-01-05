@@ -1,5 +1,5 @@
 // core react libraries
-import React, { useState , useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
 
@@ -13,7 +13,7 @@ import {
   FormGroup,
   Input,
   Row,
-  Spinner,  
+  Spinner,
 } from "reactstrap";
 
 // 3rd part react libraries
@@ -23,20 +23,20 @@ import makeAnimated from "react-select/animated";
 import SweetAlert from "react-bootstrap-sweetalert";
 
 //template core components
-import GradientEmptyHeader from "components/headers/GradientEmptyHeader.js";
+import GradientEmptyHeader from "components/Headers/GradientEmptyHeader.js";
 import ReactTable from "components/widgets/react-table/ReactTable.js";
 
 // redux
-import { searchEmployees,deleteUser } from "redux/employees/employee.actions.js";
+import {
+  searchEmployees,
+  deleteUser,
+} from "redux/employees/employee.actions.js";
 import { selectCountriesAsList } from "redux/countries/country.selectors.js";
 
 //local components
 import employeesTableColumns from "./SearchEmployees.table.js";
 
-
-
 const SearchEmployeesPage = () => {
-  
   const history = useHistory();
   const dispatch = useDispatch();
   const employeesState = useSelector(state => state.employee);
@@ -48,16 +48,15 @@ const SearchEmployeesPage = () => {
   const [searchHiringDate, setSearchHiringDate] = useState(null);
   const [alert, setAlert] = useState(employeesState.isError);
 
-
   useEffect(() => {
-    if (employeesState.isError){
+    if (employeesState.isError) {
       setAlert(
         <SweetAlert danger title="Error" onConfirm={() => setAlert(false)}>
           {employeesState.errorMessage}
-        </SweetAlert>
-      )
+        </SweetAlert>,
+      );
     }
-  }, [employeesState.isError,employeesState.errorMessage ])
+  }, [employeesState.isError, employeesState.errorMessage]);
 
   const findByAllParameters = () => {
     let filters = {
@@ -76,15 +75,14 @@ const SearchEmployeesPage = () => {
 
   const removeEmployee = e => {
     var { id } = e.target;
-    dispatch(deleteUser(id)); 
+    dispatch(deleteUser(id));
   };
 
- 
   return (
     <>
-      <GradientEmptyHeader /> 
+      <GradientEmptyHeader />
       <Container className="mt--6" fluid>
-        { alert}          
+        {alert}
         <Row>
           <div className="col">
             <Card>
@@ -197,7 +195,7 @@ const SearchEmployeesPage = () => {
                 <h3 className="mb-0">Employees</h3>
                 <p className="text-sm mb-0">Employees </p>
               </CardHeader>
-               { employeesState.isLoading ? (
+              {employeesState.isLoading ? (
                 <div
                   style={{
                     textAlign: "center",
@@ -205,17 +203,15 @@ const SearchEmployeesPage = () => {
                 >
                   <Spinner />
                 </div>
-                ) : (
-
-                  <ReactTable 
-                    data={employeesState.entities}
-                    keyField="id"
-                    columns={employeesTableColumns}
-                    onViewDetails={goToEmployeeDetails}
-                    onDeleteItem={removeEmployee}
-                  />              
-                )
-              }     
+              ) : (
+                <ReactTable
+                  data={employeesState.entities}
+                  keyField="id"
+                  columns={employeesTableColumns}
+                  onViewDetails={goToEmployeeDetails}
+                  onDeleteItem={removeEmployee}
+                />
+              )}
             </Card>
           </div>
         </Row>
