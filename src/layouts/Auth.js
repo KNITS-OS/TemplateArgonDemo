@@ -24,7 +24,7 @@ import AuthFooter from "components/Footers/AuthFooter";
 
 import routes from "routes";
 
-function Auth() {
+const Auth = () => {
   const location = useLocation();
   const mainContentRef = React.useRef(null);
   React.useEffect(() => {
@@ -73,6 +73,6 @@ function Auth() {
       <AuthFooter />
     </>
   );
-}
+};
 
 export default Auth;

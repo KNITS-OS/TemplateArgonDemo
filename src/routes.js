@@ -16,7 +16,8 @@
 */
 import groupMenu from "pages/groups/groups.routes";
 import userMenu from "pages/users/users.routes";
+import dashboardMenu from "pages/dashboards/dashboards.routes";
 
-const routes = [...userMenu, ...groupMenu];
+const routes = [...userMenu, ...groupMenu, ...dashboardMenu];
 
 export default routes;
