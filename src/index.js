@@ -3,7 +3,7 @@ import "@fullcalendar/common/main.min.css";
 import "@fullcalendar/daygrid/main.min.css";
 import "quill/dist/quill.core.css";
 import "./variables/chartDefaults";
-import React from "react";
+import React, { StrictMode } from "react";
 import ReactDOM from "react-dom";
 // plugins styles from node_modules
 import "react-notification-alert/dist/animate.css";
@@ -24,12 +24,14 @@ import AuthLayout from "./layouts/Auth";
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
-      <Switch>
-        <Route path="/admin" render={() => <AdminLayout />} />
-        <Route path="/auth" render={() => <AuthLayout />} />
-        <Route path="/" render={() => <AdminLayout />} />
-        <Redirect from="*" to="/" />
-      </Switch>
+      <StrictMode>
+        <Switch>
+          <Route path="/admin" render={() => <AdminLayout />} />
+          <Route path="/auth" render={() => <AuthLayout />} />
+          <Route path="/" render={() => <AdminLayout />} />
+          <Redirect from="*" to="/" />
+        </Switch>
+      </StrictMode>
     </BrowserRouter>
   </Provider>,
   document.getElementById("root"),
