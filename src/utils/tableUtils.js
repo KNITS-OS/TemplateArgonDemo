@@ -13,7 +13,7 @@ export const selectRow = setSelectedRows => {
       } else {
         // removes this selected row from the selectedRows array
         setSelectedRows(oldRows =>
-          oldRows.filter(oldRow => oldRow.reqId !== row.reqId),
+          oldRows.filter(oldRow => oldRow.id !== row.id),
         );
         // unselect
         return true;

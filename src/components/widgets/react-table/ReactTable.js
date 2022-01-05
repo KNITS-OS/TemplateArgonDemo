@@ -54,12 +54,7 @@ const ReactTable = ({
   });
 
   return (
-    <ToolkitProvider
-      data={data}
-      keyField={keyField}
-      columns={columns}
-      search
-    >
+    <ToolkitProvider data={data} columns={columns} bootstrap4 search>
       {props => (
         <div className="py-4 table-responsive">
           <div
@@ -85,10 +80,11 @@ const ReactTable = ({
           </div>
           <BootstrapTable
             {...props.baseProps}
-            bootstrap4={true}
+            bootstrap4
+            keyField={keyField}
             pagination={pagination}
             bordered={false}
-            deleteRow={true}
+            deleteRow
             selectRow={selectRow(setSelectedRows)}
           />
         </div>
