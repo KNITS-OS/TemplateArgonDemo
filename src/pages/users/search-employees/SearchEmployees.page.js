@@ -23,18 +23,18 @@ import makeAnimated from "react-select/animated";
 import SweetAlert from "react-bootstrap-sweetalert";
 
 //template core components
-import GradientEmptyHeader from "components/Headers/GradientEmptyHeader.js";
-import ReactTable from "components/widgets/react-table/ReactTable.js";
+import GradientEmptyHeader from "components/Headers/GradientEmptyHeader";
+import ReactTable from "components/widgets/react-table/ReactTable";
 
 // redux
 import {
   searchEmployees,
   deleteUser,
-} from "redux/employees/employee.actions.js";
-import { selectCountriesAsList } from "redux/countries/country.selectors.js";
+} from "redux/employees/employee.actions";
+import { selectCountriesAsList } from "redux/countries/country.selectors";
 
 //local components
-import employeesTableColumns from "./SearchEmployees.table.js";
+import employeesTableColumns from "./SearchEmployees.table";
 
 const SearchEmployeesPage = () => {
   const history = useHistory();

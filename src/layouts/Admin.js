@@ -22,12 +22,12 @@ import { UncontrolledAlert, Spinner } from "reactstrap";
 
 import SweetAlert from "react-bootstrap-sweetalert";
 
-import routes from "routes.js";
-import AdminNavbar from "components/Navbars/AdminNavbar.js";
-import AdminFooter from "components/Footers/AdminFooter.js";
-import Sidebar from "components/Sidebar/Sidebar.js";
+import routes from "routes";
+import AdminNavbar from "components/Navbars/AdminNavbar";
+import AdminFooter from "components/Footers/AdminFooter";
+import Sidebar from "components/Sidebar/Sidebar";
 
-import { listCountries } from "redux/countries/country.actions.js";
+import { listCountries } from "redux/countries/country.actions";
 
 function Admin() {
   const dispatch = useDispatch();

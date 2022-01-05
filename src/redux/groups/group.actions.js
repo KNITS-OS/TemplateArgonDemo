@@ -7,7 +7,7 @@ import {
   REMOVE_CAREMEMBER_FROM_GROUP,
   API_CALL_START,
   API_CALL_ERROR,
-} from "redux/types.actions.js";
+} from "redux/types.actions";
 
 export const createGroup = (name, description) => async dispatch => {
   try {

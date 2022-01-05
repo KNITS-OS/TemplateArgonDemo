@@ -4,10 +4,10 @@ import { useSelector } from "react-redux";
 
 import { Container } from "reactstrap";
 
-import { selectEmployeeById } from "redux/employees/employee.selectors.js";
+import { selectEmployeeById } from "redux/employees/employee.selectors";
 
-import GradientEmptyHeader from "components/Headers/GradientEmptyHeader.js";
-import EditEmployeePanel from "pages/users/employee-panels/EditEmployee.panel.js";
+import GradientEmptyHeader from "components/Headers/GradientEmptyHeader";
+import EditEmployeePanel from "pages/users/employee-panels/EditEmployee.panel";
 
 const EmployeeDetailsPage = () => {
   let { id } = useParams();

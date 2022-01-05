@@ -1,11 +1,9 @@
+import CreateEmployeePage from "./create-employee/CreateEmployee.page";
+import SearchEmployeesPage from "./search-employees/SearchEmployees.page";
+import EmployeeDetailsPage from "./employee-details/EmployeeDetails.page";
 
-import CreateEmployeePage from "./create-employee/CreateEmployee.page.js";
-import SearchEmployeesPage from "./search-employees/SearchEmployees.page.js";
-import EmployeeDetailsPage from "./employee-details/EmployeeDetails.page.js";
-
-const userMenu =
-[
-{
+const userMenu = [
+  {
     collapse: true,
     name: "Users",
     icon: "ni ni-circle-08 text-info",
@@ -34,6 +32,6 @@ const userMenu =
     component: EmployeeDetailsPage,
     layout: "/admin",
   },
-]
+];
 
-  export default userMenu;
+export default userMenu;

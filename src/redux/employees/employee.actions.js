@@ -5,9 +5,8 @@ import {
   SEARCH_EMPLOYEES_ERROR,
   SEARCH_EMPLOYEES_LOADING,
   UPDATE_EMPLOYEE_COMPLETE,
-} from "redux/types.actions.js";
+} from "redux/types.actions";
 import employeeService from "redux/employees/employee.service";
-
 
 export const createUser = data => {
   console.log(data);
@@ -20,9 +19,9 @@ export const searchEmployees = filters => async dispatch => {
 
     dispatch({
       type: SEARCH_EMPLOYEES_LOADING,
-      payload: 'SEARCH_EMPLOYEES_LOADING',
+      payload: "SEARCH_EMPLOYEES_LOADING",
     });
-    
+
     const { data } = await employeeService.searchEmployees(queryParams);
 
     // search

@@ -33,8 +33,8 @@ import "sweetalert2/dist/sweetalert2.min.css";
 import "./assets/scss/argon-dashboard-react.scss?v1.2.0";
 // plugins styles downloaded
 import "./assets/vendor/nucleo/css/nucleo.css";
-import AdminLayout from "./layouts/Admin.js";
-import AuthLayout from "./layouts/Auth.js";
+import AdminLayout from "./layouts/Admin";
+import AuthLayout from "./layouts/Auth";
 
 ReactDOM.render(
   <Provider store={store}>

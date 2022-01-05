@@ -14,10 +14,8 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import userMenu from "pages/users/users.routes.js";
+import userMenu from "pages/users/users.routes";
 
-const routes = [
-  ...userMenu,  
-];
+const routes = [...userMenu];
 
 export default routes;
