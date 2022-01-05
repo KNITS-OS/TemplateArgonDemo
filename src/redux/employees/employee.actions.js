@@ -24,13 +24,6 @@ export const searchEmployees = filters => async dispatch => {
 
     const { data } = await employeeService.searchEmployees(queryParams);
 
-    // search
-    // const { data } = await searchWithFilters(
-    //   queryParams,
-    //   "*",
-    //   "employees",
-    // );
-
     dispatch({
       type: SEARCH_EMPLOYEES_COMPLETE,
       payload: data,
@@ -43,24 +36,6 @@ export const searchEmployees = filters => async dispatch => {
     });
   }
 };
-
-/*
-export const searchEmployees = (filters) => async (dispatch) => {
-  try {
-    const queryParams = new URLSearchParams(filters);
-
-    const res = await employeeService.searchEmployees(queryParams);
-
-    console.log(res)
-
-    dispatch({
-      type: RETRIEVE_EMPLOYEES,
-      payload: res.data,
-    });
-  } catch (err) {
-    console.log(err);
-  }
-};*/
 
 export const updateUser = (id, data) => {
   return { type: UPDATE_EMPLOYEE_COMPLETE, payload: id, data };

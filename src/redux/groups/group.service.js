@@ -1,41 +1,11 @@
-import http from "../http-common";
+import httpCommon from "../http-common";
 
-const getAll = () => {
-  return http.get("/groups");
+const searchGroups = queryParams => {
+  return httpCommon.get(`/groups?${queryParams}`);
 };
 
-const get = id => {
-  return http.get(`/groups/${id}`);
+const groupService = {
+  searchGroups,
 };
 
-const create = data => {
-  return http.post("/groups", data);
-};
-
-const update = (id, data) => {
-  return http.put(`/groups/${id}`, data);
-};
-
-const remove = id => {
-  return http.delete(`/groups/${id}`);
-};
-
-const removeAll = () => {
-  return http.delete(`/groups`);
-};
-
-// const findUserByUserName = userName => {
-//   return http.get(`/groups?userName=${userName}`);
-
-// }
-
-const groupServices = {
-  getAll,
-  get,
-  create,
-  update,
-  remove,
-  removeAll,
-};
-
-export default groupServices;
+export default groupService;

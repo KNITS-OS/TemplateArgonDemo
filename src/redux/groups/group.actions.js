@@ -1,111 +1,65 @@
-import groupServices from "redux/services/groupService";
+import groupService from "redux/services/group.service";
 import {
-  CREATE_GROUP,
-  RETRIEVE_GROUPS,
-  DEACTIVATE_GROUP,
-  ADD_CAREMEMBER_TO_GROUP,
-  REMOVE_CAREMEMBER_FROM_GROUP,
-  API_CALL_START,
-  API_CALL_ERROR,
+  ADD_CAREMEMBER_TO_GROUP_COMPLETE,
+  CREATE_GROUP_COMPLETE,
+  DEACTIVATE_GROUP_COMPLETE,
+  DELETE_GROUP_COMPLETE,
+  REMOVE_CAREMEMBER_FROM_GROUP_COMPLETE,
+  SEARCH_GROUPS_COMPLETE,
+  SEARCH_GROUPS_ERROR,
+  SEARCH_GROUPS_LOADING,
+  UPDATE_GROUP_COMPLETE,
 } from "redux/types.actions";
 
-export const createGroup = (name, description) => async dispatch => {
-  try {
-    const res = await groupServices.create({ name, description });
-    dispatch({
-      type: CREATE_GROUP,
-      payload: res.data,
-    });
-    return Promise.resolve(res.data);
-  } catch (err) {
-    console.log(err);
-    return Promise.reject(err);
-  }
+export const createGroup = data => {
+  console.log(data);
+  return { type: CREATE_GROUP_COMPLETE, payload: data };
 };
 
-export const retrieveGroups = () => async dispatch => {
+export const searchGroups = filters => async dispatch => {
   try {
+    const queryParams = new URLSearchParams(filters);
+
     dispatch({
-      type: API_CALL_START,
-      payload: RETRIEVE_GROUPS,
+      type: SEARCH_GROUPS_LOADING,
+      payload: "SEARCH_GROUPS_LOADING",
     });
 
-    const { data } = await groupServices.getAll("*");
+    const { data } = await groupService.searchGroups(queryParams);
 
     dispatch({
-      type: RETRIEVE_GROUPS,
+      type: SEARCH_GROUPS_COMPLETE,
       payload: data,
     });
   } catch (err) {
-    dispatch({
-      type: API_CALL_ERROR,
-      payload: err,
-    });
-  }
-};
-
-export const addGroupMember = (id, data) => async dispatch => {
-  try {
-    const res = await groupServices.update(id, data);
-    dispatch({
-      type: ADD_CAREMEMBER_TO_GROUP,
-      payload: data,
-    });
-
-    return Promise.resolve(res.data);
-  } catch (err) {
-    return Promise.reject(err);
-  }
-};
-
-export const deactivateGroup = id => async dispatch => {
-  try {
-    await groupServices.update(id);
-    dispatch({
-      type: DEACTIVATE_GROUP,
-      payload: { id },
-    });
-  } catch (err) {
     console.log(err);
-  }
-};
-
-export const removeGroupMember = (id, data) => async dispatch => {
-  try {
-    await groupServices.update(id, data);
-
     dispatch({
-      type: REMOVE_CAREMEMBER_FROM_GROUP,
-      payload: { id },
+      type: SEARCH_GROUPS_ERROR,
+      payload: err.message,
     });
-  } catch (err) {
-    console.log(err);
   }
 };
 
-// export const deleteAllGroups = () => async (dispatch) => {
-//   try {
-//     const res = await GroupDataService.removeAll();
+export const updateGroup = (id, data) => {
+  return { type: UPDATE_GROUP_COMPLETE, payload: id, data };
+};
 
-//     dispatch({
-//       type: DELETE_ALL_GROUPS,
-//       payload: res.data,
-//     });
+export const deleteGroup = id => {
+  return { type: DELETE_GROUP_COMPLETE, payload: { id } };
+};
 
-//     return Promise.resolve(res.data);
-//   } catch (err) {
-//     return Promise.reject(err);
-//   }
-// };
+export const deactivateGroup = id => {
+  return { type: DEACTIVATE_GROUP_COMPLETE, payload: id };
+};
 
-// export const findUserByUserName = (userName) => async (dispatch) => {
-//   try {
-//     const res = await UserDataService.findUserByUserName(userName);
-//     dispatch({
-//       type: RETRIEVE_USERS,
-//       payload: res.data,
-//     });
-//   } catch (err) {
-//     console.log(err);
-//   }
-// };
+export const addCareMemberToGroup = (id, data) => {
+  return { type: ADD_CAREMEMBER_TO_GROUP_COMPLETE, payload: id, data };
+};
+
+export const removeCareMemberFromGroup = (id, data) => {
+  return {
+    type: REMOVE_CAREMEMBER_FROM_GROUP_COMPLETE,
+    payload: id,
+    data,
+  };
+};
