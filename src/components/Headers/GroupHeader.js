@@ -14,12 +14,8 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React from "react";
 
-// reactstrap components
-import { Button, Container, Row, Col } from "reactstrap";
-
-function GroupHeader() {
+export const GroupHeader = () => {
   return (
     <>
       <div
@@ -27,18 +23,13 @@ function GroupHeader() {
         style={{
           minHeight: "400px",
           backgroundImage:
-            'url("' +
-            require("assets/img/care/team.jpg").default +
-            '")',
+            'url("' + require("assets/img/care/team.jpg").default + '")',
           backgroundSize: "cover",
           backgroundPosition: "center top",
         }}
       >
         <span className="mask bg-gradient-info opacity-8" />
-
       </div>
     </>
   );
-}
-
-export default GroupHeader;
+};

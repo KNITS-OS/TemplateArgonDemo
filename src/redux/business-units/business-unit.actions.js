@@ -4,7 +4,7 @@ import {
   LIST_BUSINESS_UNITS_ERROR,
 } from "redux/types.actions";
 
-import businessUnitService from "./business-unit.service";
+import { businessUnitService } from ".";
 
 export const listBusinessUnitsLoading = () => {
   return {

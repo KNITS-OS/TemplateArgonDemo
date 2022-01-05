@@ -14,20 +14,19 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React from "react";
+
 // react library for routing
 import { useLocation, Route, Switch, Redirect } from "react-router-dom";
+import { useEffect, useRef } from "react";
 
-// core components
-import AuthNavbar from "components/Navbars/AuthNavbar";
-import AuthFooter from "components/Footers/AuthFooter";
+import { routes } from "routes";
+import { AuthNavbar } from "components/Navbars";
+import { AuthFooter } from "components/Footers";
 
-import routes from "routes";
-
-const Auth = () => {
+export const AuthLayout = () => {
   const location = useLocation();
-  const mainContentRef = React.useRef(null);
-  React.useEffect(() => {
+  const mainContentRef = useRef(null);
+  useEffect(() => {
     document.documentElement.scrollTop = 0;
     document.scrollingElement.scrollTop = 0;
     mainContentRef.current.scrollTop = 0;
@@ -37,7 +36,7 @@ const Auth = () => {
       document.body.classList.remove("bg-default");
     };
   });
-  React.useEffect(() => {
+  useEffect(() => {
     document.documentElement.scrollTop = 0;
     document.scrollingElement.scrollTop = 0;
     mainContentRef.current.scrollTop = 0;
@@ -74,5 +73,3 @@ const Auth = () => {
     </>
   );
 };
-
-export default Auth;

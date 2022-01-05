@@ -1,7 +1,6 @@
-import ChartsPage from "./dashboard-chart/Charts.page";
-import WorldMapPage from "./dashboard-world-map/WorldMap.page";
+import { ChartsPage, WorldMapPage } from ".";
 
-const dashboardMenu = [
+export const dashboardMenu = [
   {
     collapse: true,
     name: "Dashboard",
@@ -25,5 +24,3 @@ const dashboardMenu = [
     ],
   },
 ];
-
-export default dashboardMenu;

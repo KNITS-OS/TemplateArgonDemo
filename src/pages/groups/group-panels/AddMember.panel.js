@@ -1,4 +1,3 @@
-import React from "react";
 // core components
 import Select from "react-select";
 // reactstrap components
@@ -10,11 +9,13 @@ import {
   FormGroup,
   Row,
 } from "reactstrap";
-import { selectBusinessUnitsAsList } from "redux/business-units/business-unit.selectors";
-import { selectCountriesAsList } from "redux/countries/country.selectors";
-import { selectEmployeesAsList } from "redux/employees/employee.selectors";
 
-const AddMemberPanel = props => {
+import PropTypes from "prop-types";
+import { selectCountriesAsList } from "redux/countries";
+import { selectBusinessUnitsAsList } from "redux/business-units";
+import { selectEmployeesAsList } from "redux/employees";
+
+export const AddMemberPanel = props => {
   const jobTitles = [
     { value: 1, label: "product manager" },
     { value: 2, label: "qa engineer" },
@@ -90,4 +91,9 @@ const AddMemberPanel = props => {
   );
 };
 
-export default AddMemberPanel;
+AddMemberPanel.propTypes = {
+  onchangeRole: PropTypes.func.isRequired,
+  onchangeCountry: PropTypes.func.isRequired,
+  onchangeBunit: PropTypes.func.isRequired,
+  onSelectCareMember: PropTypes.func.isRequired,
+};

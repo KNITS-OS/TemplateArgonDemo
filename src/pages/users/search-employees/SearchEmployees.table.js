@@ -1,4 +1,4 @@
-const employeesTableColumns = [
+export const employeesTableColumns = [
   {
     dataField: "id",
     text: "id",
@@ -45,4 +45,3 @@ const employeesTableColumns = [
     formatter: () => {},
   },
 ];
-export default employeesTableColumns;

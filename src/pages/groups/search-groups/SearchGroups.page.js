@@ -13,13 +13,12 @@ import {
   Spinner,
 } from "reactstrap";
 
-import ReactTable from "components/widgets/react-table/ReactTable";
+import { GradientEmptyHeader } from "components/Headers";
+import { ReactTable } from "components/widgets";
+import { deleteGroup, searchGroups } from "redux/groups";
+import { groupsTableColumns } from ".";
 
-import { searchGroups, deleteGroup } from "redux/groups/group.actions";
-import groupsTableColumns from "./SearchGroups.table";
-import GradientEmptyHeader from "components/Headers/GradientEmptyHeader";
-
-const SearchGroupsPage = () => {
+export const SearchGroupsPage = () => {
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -120,5 +119,3 @@ const SearchGroupsPage = () => {
     </>
   );
 };
-
-export default SearchGroupsPage;

@@ -19,18 +19,17 @@ import { useDispatch, useSelector } from "react-redux";
 import { useLocation, Route, Switch, Redirect } from "react-router-dom";
 
 import { UncontrolledAlert, Spinner } from "reactstrap";
-
 import SweetAlert from "react-bootstrap-sweetalert";
 
-import routes from "routes";
-import AdminNavbar from "components/Navbars/AdminNavbar";
-import AdminFooter from "components/Footers/AdminFooter";
-import Sidebar from "components/Sidebar/Sidebar";
+import { routes } from "routes";
+import { Sidebar } from "components/Sidebar";
+import { AdminNavbar } from "components/Navbars";
+import { AdminFooter } from "components/Footers";
 
-import { listCountries } from "redux/countries/country.actions";
-import { listBusinessUnits } from "redux/business-units/business-unit.actions";
+import { listCountries } from "redux/countries";
+import { listBusinessUnits } from "redux/business-units";
 
-const Admin = () => {
+export const AdminLayout = () => {
   const dispatch = useDispatch();
   const location = useLocation();
   const countriesState = useSelector(state => state.country);
@@ -190,5 +189,3 @@ const Admin = () => {
     </>
   );
 };
-
-export default Admin;

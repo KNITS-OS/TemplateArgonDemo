@@ -1,13 +1,9 @@
-import httpCommon from "../http-common";
-
+import { httpCommon } from "redux/http-common";
 
 const listCountries = () => {
-   return httpCommon.get(`/countries`);
+  return httpCommon.get(`/countries`);
 };
 
-const countryService = {
+export const countryService = {
   listCountries,
 };
-
-export default countryService;
-

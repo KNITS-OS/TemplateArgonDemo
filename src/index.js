@@ -12,14 +12,14 @@ import { Provider } from "react-redux";
 // react library for routing
 import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
 import "select2/dist/css/select2.min.css";
-import store from "store";
 import "sweetalert2/dist/sweetalert2.min.css";
 // core styles
 import "./assets/scss/argon-dashboard-react.scss?v1.2.0";
 // plugins styles downloaded
 import "./assets/vendor/nucleo/css/nucleo.css";
-import AdminLayout from "./layouts/Admin";
-import AuthLayout from "./layouts/Auth";
+import { store } from "store";
+import { AdminLayout } from "layouts/AdminLayout";
+import { AuthLayout } from "layouts/AuthLayout";
 
 ReactDOM.render(
   <Provider store={store}>

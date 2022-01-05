@@ -14,9 +14,8 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React from "react";
 
-function GradientEmptyHeader() {
+export const GradientEmptyHeader = () => {
   return (
     <>
       <div
@@ -31,6 +30,4 @@ function GradientEmptyHeader() {
       </div>
     </>
   );
-}
-
-export default GradientEmptyHeader;
+};

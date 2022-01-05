@@ -23,21 +23,18 @@ import makeAnimated from "react-select/animated";
 import SweetAlert from "react-bootstrap-sweetalert";
 
 //template core components
-import GradientEmptyHeader from "components/Headers/GradientEmptyHeader";
-import ReactTable from "components/widgets/react-table/ReactTable";
+import { GradientEmptyHeader } from "components/Headers";
+import { ReactTable } from "components/widgets";
 
 // redux
-import {
-  searchEmployees,
-  deleteUser,
-} from "redux/employees/employee.actions";
-import { selectCountriesAsList } from "redux/countries/country.selectors";
-import { selectBusinessUnitsAsList } from "redux/business-units/business-unit.selectors";
+import { searchEmployees, deleteUser } from "redux/employees";
+import { selectCountriesAsList } from "redux/countries";
+import { selectBusinessUnitsAsList } from "redux/business-units";
 
 //local components
-import employeesTableColumns from "./SearchEmployees.table";
+import { employeesTableColumns } from ".";
 
-const SearchEmployeesPage = () => {
+export const SearchEmployeesPage = () => {
   const history = useHistory();
   const dispatch = useDispatch();
   const employeesState = useSelector(state => state.employee);
@@ -224,5 +221,3 @@ const SearchEmployeesPage = () => {
     </>
   );
 };
-
-export default SearchEmployeesPage;

@@ -17,9 +17,9 @@ import {
   multiBarChartExample,
 } from "variables/charts";
 
-import GradientEmptyHeader from "components/Headers/GradientEmptyHeader";
+import { GradientEmptyHeader } from "components/Headers";
 
-const ChartsPage = () => {
+export const ChartsPage = () => {
   return (
     <>
       <GradientEmptyHeader />
@@ -142,5 +142,3 @@ const ChartsPage = () => {
     </>
   );
 };
-
-export default ChartsPage;

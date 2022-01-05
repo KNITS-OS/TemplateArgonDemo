@@ -1,4 +1,4 @@
-const groupsTableColumns = [
+export const groupsTableColumns = [
   {
     dataField: "id",
     text: "id",
@@ -25,4 +25,3 @@ const groupsTableColumns = [
     formatter: () => {},
   },
 ];
-export default groupsTableColumns;

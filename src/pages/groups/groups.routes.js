@@ -1,8 +1,6 @@
-import CreateGroupPage from "./create-group/CreateGroup.page";
-import GroupDetailsPage from "./group-details/GroupDetails.page";
-import SearchGroupsPage from "./search-groups/SearchGroups.page";
+import { CreateGroupPage, GroupDetailsPage, SearchGroupsPage } from ".";
 
-const groupMenu = [
+export const groupMenu = [
   {
     collapse: true,
     name: "Groups",
@@ -33,5 +31,3 @@ const groupMenu = [
     layout: "/admin",
   },
 ];
-
-export default groupMenu;

@@ -12,7 +12,10 @@ const initialState = {
   entity: null,
 };
 
-const businessUnitReducer = (businessUnitState = initialState, action) => {
+export const businessUnitReducer = (
+  businessUnitState = initialState,
+  action,
+) => {
   const { type, payload } = action;
   switch (type) {
     case LIST_BUSINESS_UNITS_LOADING:
@@ -46,5 +49,3 @@ const businessUnitReducer = (businessUnitState = initialState, action) => {
       return businessUnitState;
   }
 };
-
-export default businessUnitReducer;

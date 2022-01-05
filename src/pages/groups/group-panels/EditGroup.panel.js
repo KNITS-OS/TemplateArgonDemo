@@ -9,12 +9,12 @@ import {
   Form,
   Row,
 } from "reactstrap";
+import PropTypes from "prop-types";
 
-import InputField from "components/widgets/input-field/InputField";
+import { InputField } from "components/widgets";
+import { AddMemberPanel } from ".";
 
-import AddMemberPanel from "./AddMember.panel";
-
-const EditGroupPanel = (
+export const EditGroupPanel = (
   group,
   setGroup,
   onSave,
@@ -135,4 +135,12 @@ const EditGroupPanel = (
     </Row>
   );
 };
-export default EditGroupPanel;
+
+EditGroupPanel.propTypes = {
+  group: PropTypes.object,
+  setGroup: PropTypes.func,
+  onSave: PropTypes.func,
+  onBackToSearchClick: PropTypes.func,
+  addMembersCollapse: PropTypes.bool,
+  setAddMembersCollapse: PropTypes.func,
+};

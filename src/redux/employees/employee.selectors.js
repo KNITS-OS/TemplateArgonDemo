@@ -17,3 +17,14 @@ export const selectEmployeesAsList = createSelector(
       return { value: employee.id, label: employee.internationalName };
     }),
 );
+
+/**
+ * @description get all groupMembers of a group
+ * @param array employeeIds
+ */
+export const getGroupMembers = employeeIds =>
+  createSelector([selectEmployees], employeesData =>
+    employeeIds.map(employeeId => {
+      return employeesData.find(employee => employee.id === employeeId);
+    }),
+  );

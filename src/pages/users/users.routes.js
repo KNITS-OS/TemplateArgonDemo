@@ -1,8 +1,10 @@
-import CreateEmployeePage from "./create-employee/CreateEmployee.page";
-import SearchEmployeesPage from "./search-employees/SearchEmployees.page";
-import EmployeeDetailsPage from "./employee-details/EmployeeDetails.page";
+import {
+  CreateEmployeePage,
+  SearchEmployeesPage,
+  EmployeeDetailsPage,
+} from ".";
 
-const userMenu = [
+export const userMenu = [
   {
     collapse: true,
     name: "Users",
@@ -33,5 +35,3 @@ const userMenu = [
     layout: "/admin",
   },
 ];
-
-export default userMenu;

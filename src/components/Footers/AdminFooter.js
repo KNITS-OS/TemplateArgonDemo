@@ -14,20 +14,14 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-/*eslint-disable*/
-import React from "react";
 
 // reactstrap components
-import { NavItem, NavLink, Nav, Container, Row, Col } from "reactstrap";
+import { Container } from "reactstrap";
 
-function AdminFooter() {
+export const AdminFooter = () => {
   return (
     <>
-      <Container fluid>
-       
-      </Container>
+      <Container fluid></Container>
     </>
   );
-}
-
-export default AdminFooter;
+};

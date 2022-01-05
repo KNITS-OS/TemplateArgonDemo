@@ -21,7 +21,7 @@ const initialState = {
   entity: null,
 };
 
-const employeeReducer = (employeeState = initialState, action) => {
+export const employeeReducer = (employeeState = initialState, action) => {
   const { type, payload } = action;
   switch (type) {
     case CREATE_EMPLOYEE_LOADING:
@@ -104,5 +104,3 @@ const employeeReducer = (employeeState = initialState, action) => {
       return employeeState;
   }
 };
-
-export default employeeReducer;

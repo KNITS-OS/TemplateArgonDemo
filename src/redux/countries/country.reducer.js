@@ -12,7 +12,7 @@ const initialState = {
   entity: null,
 };
 
-const countryReducer = (countryState = initialState, action) => {
+export const countryReducer = (countryState = initialState, action) => {
   const { type, payload } = action;
   switch (type) {
     case LIST_COUNTRIES_LOADING:
@@ -46,5 +46,3 @@ const countryReducer = (countryState = initialState, action) => {
       return countryState;
   }
 };
-
-export default countryReducer;

@@ -30,7 +30,7 @@ const initialState = {
   entity: null,
 };
 
-const groupReducer = (groupState = initialState, action) => {
+export const groupReducer = (groupState = initialState, action) => {
   const { type, payload } = action;
 
   switch (type) {
@@ -180,5 +180,3 @@ const groupReducer = (groupState = initialState, action) => {
       return groupState;
   }
 };
-
-export default groupReducer;

@@ -1,6 +1,7 @@
 import { FormGroup, Input } from "reactstrap";
+import PropTypes from "prop-types";
 
-const InputField = props => {
+export const InputField = props => {
   let { id, label } = props;
 
   return (
@@ -12,4 +13,11 @@ const InputField = props => {
     </FormGroup>
   );
 };
-export default InputField;
+
+InputField.propTypes = {
+  id: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
+  value: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+};

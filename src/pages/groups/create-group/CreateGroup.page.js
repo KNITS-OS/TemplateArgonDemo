@@ -3,10 +3,10 @@ import { Container } from "reactstrap";
 import { useHistory, useParams } from "react-router";
 import { useSelector } from "react-redux";
 
-import { selectGroupById } from "redux/groups/group.selectors";
-import EditGroupPanel from "../group-panels/EditGroup.panel";
+import { EditGroupPanel } from "..";
+import { selectGroupById } from "redux/groups";
 
-const CreateGroupPage = () => {
+export const CreateGroupPage = () => {
   let { id } = useParams();
   const history = useHistory();
   const reduxGroup = useSelector(selectGroupById(id));
@@ -48,5 +48,3 @@ const CreateGroupPage = () => {
     </>
   );
 };
-
-export default CreateGroupPage;

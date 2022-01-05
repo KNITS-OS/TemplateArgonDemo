@@ -14,7 +14,7 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React from "react";
+
 // nodejs library to set properties for components
 import PropTypes from "prop-types";
 // reactstrap components
@@ -27,7 +27,7 @@ import {
   Col,
 } from "reactstrap";
 
-function TimelineHeader({ name, parentName }) {
+export const TimelineHeader = ({ name, parentName }) => {
   return (
     <>
       <div className="header header-dark bg-info pb-6 content__title content__title--calendar">
@@ -43,12 +43,12 @@ function TimelineHeader({ name, parentName }) {
                   listClassName="breadcrumb-links breadcrumb-dark"
                 >
                   <BreadcrumbItem>
-                    <a href="#pablo" onClick={(e) => e.preventDefault()}>
+                    <a href="#pablo" onClick={e => e.preventDefault()}>
                       <i className="fas fa-home" />
                     </a>
                   </BreadcrumbItem>
                   <BreadcrumbItem>
-                    <a href="#pablo" onClick={(e) => e.preventDefault()}>
+                    <a href="#pablo" onClick={e => e.preventDefault()}>
                       {parentName}
                     </a>
                   </BreadcrumbItem>
@@ -71,11 +71,9 @@ function TimelineHeader({ name, parentName }) {
       </div>
     </>
   );
-}
+};
 
 TimelineHeader.propTypes = {
   name: PropTypes.string,
   parentName: PropTypes.string,
 };
-
-export default TimelineHeader;

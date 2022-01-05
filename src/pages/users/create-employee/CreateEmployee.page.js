@@ -1,9 +1,9 @@
 import { Container } from "reactstrap";
 
-import GradientEmptyHeader from "components/Headers/GradientEmptyHeader";
-import EditEmployeePanel from "pages/users/employee-panels/EditEmployee.panel";
+import { GradientEmptyHeader } from "components/Headers";
+import { EditEmployeePanel } from "..";
 
-const CreateEmployeePage = () => {
+export const CreateEmployeePage = () => {
   let employee = {
     firstName: "",
     lastName: "",
@@ -38,5 +38,3 @@ const CreateEmployeePage = () => {
     </>
   );
 };
-
-export default CreateEmployeePage;

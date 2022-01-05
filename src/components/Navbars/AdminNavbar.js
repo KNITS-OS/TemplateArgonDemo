@@ -14,9 +14,7 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React from "react";
-// nodejs library to set properties for components
-import PropTypes from "prop-types";
+
 // reactstrap components
 import {
   Collapse,
@@ -30,30 +28,26 @@ import {
   Container,
 } from "reactstrap";
 
-function AdminNavbar({ theme, sidenavOpen, toggleSidenav }) {
-
+export const AdminNavbar = () => {
   return (
     <>
-      <Navbar
-        className="navbar-top navbar-expand border-bottom navbar-dark bg-info navbar"
-      >
+      <Navbar className="navbar-top navbar-expand border-bottom navbar-dark bg-info navbar">
         <Container fluid>
           <Collapse navbar isOpen={true}>
-
             <Nav className="align-items-center ml-md-auto" navbar>
               {/*  ContextNavigationBar */}
             </Nav>
-            
-            <Nav className="align-items-center ml-auto ml-md-0" navbar>
-              
-              <UncontrolledDropdown nav>
 
+            <Nav className="align-items-center ml-auto ml-md-0" navbar>
+              <UncontrolledDropdown nav>
                 <DropdownToggle className="nav-link pr-0" color="" tag="a">
                   <Media className="align-items-center">
                     <span className="avatar avatar-sm rounded-circle">
                       <img
                         alt="..."
-                        src={require("assets/img/theme/team-4.jpg").default}
+                        src={
+                          require("assets/img/theme/team-4.jpg").default
+                        }
                       />
                     </span>
                     <Media className="ml-2 d-none d-lg-block">
@@ -61,7 +55,6 @@ function AdminNavbar({ theme, sidenavOpen, toggleSidenav }) {
                         John Snow
                       </span>
                     </Media>
-
                   </Media>
                 </DropdownToggle>
 
@@ -71,28 +64,28 @@ function AdminNavbar({ theme, sidenavOpen, toggleSidenav }) {
                   </DropdownItem>
                   <DropdownItem
                     href="#pablo"
-                    onClick={(e) => e.preventDefault()}
+                    onClick={e => e.preventDefault()}
                   >
                     <i className="ni ni-single-02" />
                     <span>My profile</span>
                   </DropdownItem>
                   <DropdownItem
                     href="#pablo"
-                    onClick={(e) => e.preventDefault()}
+                    onClick={e => e.preventDefault()}
                   >
                     <i className="ni ni-settings-gear-65" />
                     <span>Settings</span>
                   </DropdownItem>
                   <DropdownItem
                     href="#pablo"
-                    onClick={(e) => e.preventDefault()}
+                    onClick={e => e.preventDefault()}
                   >
                     <i className="ni ni-calendar-grid-58" />
                     <span>Activity</span>
                   </DropdownItem>
                   <DropdownItem
                     href="#pablo"
-                    onClick={(e) => e.preventDefault()}
+                    onClick={e => e.preventDefault()}
                   >
                     <i className="ni ni-support-16" />
                     <span>Support</span>
@@ -100,32 +93,17 @@ function AdminNavbar({ theme, sidenavOpen, toggleSidenav }) {
                   <DropdownItem divider />
                   <DropdownItem
                     href="#pablo"
-                    onClick={(e) => e.preventDefault()}
+                    onClick={e => e.preventDefault()}
                   >
                     <i className="ni ni-user-run" />
                     <span>Logout</span>
                   </DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown>
-
-              
             </Nav>
           </Collapse>
         </Container>
       </Navbar>
     </>
   );
-}
-
-AdminNavbar.defaultProps = {
-  toggleSidenav: () => {},
-  sidenavOpen: false,
-  theme: "dark",
 };
-AdminNavbar.propTypes = {
-  toggleSidenav: PropTypes.func,
-  sidenavOpen: PropTypes.bool,
-  theme: PropTypes.oneOf(["dark", "light"]),
-};
-
-export default AdminNavbar;

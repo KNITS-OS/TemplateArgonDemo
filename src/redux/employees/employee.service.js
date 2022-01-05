@@ -1,12 +1,10 @@
-import httpCommon from "../http-common";
+import { httpCommon } from "redux/http-common";
 
 const searchEmployees = queryParams => {
   // return httpCommon.get(`/employees?${queryParams}`);
   return httpCommon.get(`/employees`);
 };
 
-const employeeService = {
+export const employeeService = {
   searchEmployees,
 };
-
-export default employeeService;

@@ -1,11 +1,9 @@
-import httpCommon from "../http-common";
+import { httpCommon } from "redux/http-common";
 
 const searchGroups = () => {
   return httpCommon.get(`/groups`);
 };
 
-const groupService = {
+export const groupService = {
   searchGroups,
 };
-
-export default groupService;

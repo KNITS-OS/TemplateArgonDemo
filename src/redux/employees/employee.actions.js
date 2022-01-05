@@ -6,7 +6,8 @@ import {
   SEARCH_EMPLOYEES_LOADING,
   UPDATE_EMPLOYEE_COMPLETE,
 } from "redux/types.actions";
-import employeeService from "redux/employees/employee.service";
+
+import { employeeService } from ".";
 
 export const createUser = data => {
   console.log(data);

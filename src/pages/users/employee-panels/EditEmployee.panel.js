@@ -1,10 +1,9 @@
-import React from "react";
-
 import { Button, Card, CardBody, CardHeader, Col, Row } from "reactstrap";
 
-import InputField from "components/widgets/input-field/InputField";
+import { InputField } from "components/widgets";
+import PropTypes from "prop-types";
 
-const EditEmployeePanel = ({
+export const EditEmployeePanel = ({
   employee,
   setEmployee,
   onSave,
@@ -320,4 +319,8 @@ const EditEmployeePanel = ({
   );
 };
 
-export default EditEmployeePanel;
+EditEmployeePanel.propTypes = {
+  employee: PropTypes.object,
+  onSaveClick: PropTypes.func,
+  onBackToSearchClick: PropTypes.func,
+};

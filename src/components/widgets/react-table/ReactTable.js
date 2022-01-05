@@ -1,14 +1,14 @@
 import React, { useEffect } from "react";
 import BootstrapTable from "react-bootstrap-table-next";
 import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
-
-// reactstrap components
 import { Button } from "reactstrap";
-import { selectRow, pagination } from "utils/tableUtils";
+import PropTypes from "prop-types";
+import { pagination } from "utils/tableUtils";
+import { selectRow } from "utils/tableUtils";
 
 const { SearchBar } = Search;
 
-const ReactTable = ({
+export const ReactTable = ({
   columns,
   keyField,
   data,
@@ -97,4 +97,13 @@ const ReactTable = ({
     </ToolkitProvider>
   );
 };
-export default ReactTable;
+
+ReactTable.propTypes = {
+  columns: PropTypes.array.isRequired,
+  keyField: PropTypes.string.isRequired,
+  data: PropTypes.array.isRequired,
+  onViewDetails: PropTypes.func.isRequired,
+  onDeleteItem: PropTypes.func.isRequired,
+  selectedRows: PropTypes.array.isRequired,
+  setSelectedRows: PropTypes.func.isRequired,
+};

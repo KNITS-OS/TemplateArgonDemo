@@ -14,12 +14,11 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React from "react";
 
 // reactstrap components
 import { Button, Container, Row, Col } from "reactstrap";
 
-function ProfileHeader() {
+export const ProfileHeader = () => {
   return (
     <>
       <div
@@ -41,14 +40,14 @@ function ProfileHeader() {
             <Col lg="7" md="10">
               <h1 className="display-2 text-white">مرحبا جيسي</h1>
               <p className="text-white mt-0 mb-5">
-                هذه هي صفحة ملفك الشخصي. يمكنك رؤية التقدم الذي أحرزته في عملك
-                وإدارة مشاريعك أو المهام المعينة
+                هذه هي صفحة ملفك الشخصي. يمكنك رؤية التقدم الذي أحرزته في
+                عملك وإدارة مشاريعك أو المهام المعينة
               </p>
               <Button
                 className="btn-neutral"
                 color="default"
                 href="#pablo"
-                onClick={(e) => e.preventDefault()}
+                onClick={e => e.preventDefault()}
               >
                 تعديل الملف الشخصي
               </Button>
@@ -58,6 +57,4 @@ function ProfileHeader() {
       </div>
     </>
   );
-}
-
-export default ProfileHeader;
+};

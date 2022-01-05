@@ -4,7 +4,7 @@ import {
   LIST_COUNTRIES_ERROR,
 } from "redux/types.actions";
 
-import countryService from "./country.service";
+import { countryService } from "./country.service";
 
 export const listCountriesLoading = () => {
   return {

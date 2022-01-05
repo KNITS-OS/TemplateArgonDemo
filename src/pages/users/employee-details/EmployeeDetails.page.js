@@ -2,15 +2,13 @@ import { useState } from "react";
 import { useHistory } from "react-router";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
-
 import { Container } from "reactstrap";
 
-import { selectEmployeeById } from "redux/employees/employee.selectors";
+import { selectEmployeeById } from "redux/employees";
+import { GradientEmptyHeader } from "components/Headers";
+import { EditEmployeePanel } from "..";
 
-import GradientEmptyHeader from "components/Headers/GradientEmptyHeader";
-import EditEmployeePanel from "pages/users/employee-panels/EditEmployee.panel";
-
-const EmployeeDetailsPage = () => {
+export const EmployeeDetailsPage = () => {
   let { id } = useParams();
   const history = useHistory();
   const reduxEmployee = useSelector(selectEmployeeById(id));
@@ -39,5 +37,3 @@ const EmployeeDetailsPage = () => {
     </>
   );
 };
-
-export default EmployeeDetailsPage;

@@ -17,16 +17,16 @@ import {
   Row,
 } from "reactstrap";
 
+import { GradientEmptyHeader } from "components/Headers";
+import { selectGroupById } from "redux/groups";
+import { InputField } from "components/widgets";
+import { AddMemberPanel } from "..";
 import { pagination } from "utils/tableUtils";
-import GradientEmptyHeader from "components/Headers/GradientEmptyHeader";
-import { employeesFromIds } from "mock-data/groupUtils";
-import AddMemberPanel from "../group-panels/AddMember.panel";
-import { selectGroupById } from "redux/groups/group.selectors";
-import InputField from "components/widgets/input-field/InputField";
+import { getGroupMembers } from "redux/employees";
 
 const { SearchBar } = Search;
 
-const GroupDetailsPage = () => {
+export const GroupDetailsPage = () => {
   let { id } = useParams();
   const history = useHistory();
 
@@ -242,7 +242,7 @@ const GroupDetailsPage = () => {
                           </CardHeader>
 
                           <ToolkitProvider
-                            data={employeesFromIds(members)}
+                            data={getGroupMembers(members)}
                             keyField="firstName"
                             columns={[
                               {
@@ -354,5 +354,3 @@ const GroupDetailsPage = () => {
     </>
   );
 };
-
-export default GroupDetailsPage;

@@ -1,11 +1,9 @@
-import httpCommon from "../http-common";
+import { httpCommon } from "redux/http-common";
 
 const listBusinessUnits = () => {
   return httpCommon.get(`/businessUnits`);
 };
 
-const businessUnitService = {
+export const businessUnitService = {
   listBusinessUnits,
 };
-
-export default businessUnitService;

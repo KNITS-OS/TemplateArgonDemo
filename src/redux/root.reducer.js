@@ -1,8 +1,8 @@
 import { combineReducers } from "redux";
-import employeeReducer from "redux/employees/employee.reducer";
-import groupReducer from "redux/groups/group.reducer";
-import countryReducer from "redux/countries/country.reducer";
-import businessUnitReducer from "redux/business-units/business-unit.reducer";
+import { businessUnitReducer } from "./business-units";
+import { countryReducer } from "./countries";
+import { employeeReducer } from "./employees";
+import { groupReducer } from "./groups";
 
 export const rootReducer = combineReducers({
   employee: employeeReducer,

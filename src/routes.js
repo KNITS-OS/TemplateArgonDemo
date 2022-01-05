@@ -14,10 +14,9 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import groupMenu from "pages/groups/groups.routes";
-import userMenu from "pages/users/users.routes";
-import dashboardMenu from "pages/dashboards/dashboards.routes";
 
-const routes = [...userMenu, ...groupMenu, ...dashboardMenu];
+import { dashboardMenu } from "pages/dashboards";
+import { groupMenu } from "pages/groups";
+import { userMenu } from "pages/users";
 
-export default routes;
+export const routes = [...userMenu, ...groupMenu, ...dashboardMenu];

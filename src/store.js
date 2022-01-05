@@ -6,9 +6,7 @@ import { rootReducer } from "redux/root.reducer";
 
 const middleware = [thunk];
 
-const store = createStore(
+export const store = createStore(
   rootReducer,
   composeWithDevTools(applyMiddleware(...middleware, logger)),
 );
-
-export default store;

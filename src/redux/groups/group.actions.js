@@ -10,7 +10,7 @@ import {
   UPDATE_GROUP_COMPLETE,
 } from "redux/types.actions";
 
-import groupService from "./group.service";
+import { groupService } from ".";
 
 export const createGroup = data => {
   console.log(data);
