@@ -21,7 +21,7 @@ const EmployeeDetailsPage = () => {
     console.log("updatedEmployee", updatedEmployee);
   };
 
-  const onBackToSerch = () => {
+  const onBackToSearch = () => {
     history.push("/admin/search-employees");
   };
 
@@ -32,7 +32,7 @@ const EmployeeDetailsPage = () => {
         <EditEmployeePanel
           employee={employee}
           setEmployee={setEmployee}
-          onBackSearchClick={onBackToSerch}
+          onBackToSearchClick={onBackToSearch}
           onSave={onSave}
         />
       </Container>

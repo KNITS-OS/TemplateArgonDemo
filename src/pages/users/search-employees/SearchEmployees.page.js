@@ -49,7 +49,7 @@ const SearchEmployeesPage = () => {
   const [searchBusinessUnit, setSearchBusinessUnit] = useState("");
   const [searchHiringDate, setSearchHiringDate] = useState(null);
   const [alert, setAlert] = useState(employeesState.isError);
-  const [selectedCandidates, setSelectedEmployees] = useState([]);
+  const [selectedEmployees, setSelectedEmployees] = useState([]);
 
   useEffect(() => {
     if (employeesState.isError) {
@@ -213,7 +213,7 @@ const SearchEmployeesPage = () => {
                   columns={employeesTableColumns}
                   onViewDetails={goToEmployeeDetails}
                   onDeleteItem={removeEmployee}
-                  selectedRows={selectedCandidates}
+                  selectedRows={selectedEmployees}
                   setSelectedRows={setSelectedEmployees}
                 />
               )}

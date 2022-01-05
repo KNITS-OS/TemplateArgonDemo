@@ -8,7 +8,7 @@ const EditEmployeePanel = ({
   employee,
   setEmployee,
   onSave,
-  onBackSearchClick,
+  onBackToSearchClick,
 }) => {
   if (!employee) {
     throw new Error("Employee not found");
@@ -296,14 +296,14 @@ const EditEmployeePanel = ({
                     color="success"
                     onClick={onSaveClick}
                   >
-                    Update
+                    Submit
                   </Button>
 
-                  {onBackSearchClick ? (
+                  {onBackToSearchClick ? (
                     <Button
                       type="button"
                       color="info"
-                      onClick={onBackSearchClick}
+                      onClick={onBackToSearchClick}
                     >
                       Back to Search
                     </Button>

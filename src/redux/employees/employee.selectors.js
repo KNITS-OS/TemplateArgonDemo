@@ -9,3 +9,11 @@ export const selectEmployeeById = id =>
   createSelector([selectEmployees], employeesdata =>
     employeesdata.find(employee => employee.id === parseInt(id)),
   );
+
+export const selectEmployeesAsList = createSelector(
+  [selectEmployees],
+  employeesData =>
+    employeesData.map(employee => {
+      return { value: employee.id, label: employee.internationalName };
+    }),
+);
