@@ -28,17 +28,21 @@ import AdminFooter from "components/Footers/AdminFooter";
 import Sidebar from "components/Sidebar/Sidebar";
 
 import { listCountries } from "redux/countries/country.actions";
+import { listBusinessUnits } from "redux/business-units/business-unit.actions";
 
-function Admin() {
+const Admin = () => {
   const dispatch = useDispatch();
   const location = useLocation();
   const countriesState = useSelector(state => state.country);
+  const businessUnitsState = useSelector(state => state.businessUnit);
 
   const [sidenavOpen, setSidenavOpen] = React.useState(true);
   const mainContentRef = React.useRef(null);
 
   const [categoryDataLoaded, setCategoryDataLoaded] = useState(false);
-  const [alert, setAlert] = useState(countriesState.isError);
+  const [alert, setAlert] = useState(
+    countriesState.isError || businessUnitsState.isError,
+  );
 
   useEffect(() => {
     document.documentElement.scrollTop = 0;
@@ -48,6 +52,7 @@ function Admin() {
 
   useEffect(() => {
     dispatch(listCountries());
+    dispatch(listBusinessUnits());
   }, [dispatch]);
 
   useEffect(() => {
@@ -57,14 +62,28 @@ function Admin() {
   }, [countriesState.entities]);
 
   useEffect(() => {
-    if (countriesState.isError) {
+    if (
+      businessUnitsState.entities &&
+      businessUnitsState.entities.length > 0
+    ) {
+      setCategoryDataLoaded(true);
+    }
+  }, [businessUnitsState.entities]);
+
+  useEffect(() => {
+    if (countriesState.isError || businessUnitsState.isError) {
       setAlert(
         <SweetAlert danger title="Error" onConfirm={() => cleanAlert()}>
           {`${countriesState.errorMessage} please contact administrator`}
         </SweetAlert>,
       );
     }
-  }, [countriesState.isError, countriesState.errorMessage]);
+  }, [
+    countriesState.isError,
+    countriesState.errorMessage,
+    businessUnitsState.isError,
+    businessUnitsState.errorMessage,
+  ]);
 
   const cleanAlert = () => {
     setCategoryDataLoaded(true); // remove spinner
@@ -170,6 +189,6 @@ function Admin() {
       ) : null}
     </>
   );
-}
+};
 
 export default Admin;

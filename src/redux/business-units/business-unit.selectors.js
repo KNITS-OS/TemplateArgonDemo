@@ -1,16 +1,14 @@
+import { createSelector } from "reselect";
 
-import React from 'react'
-import { useSelector } from 'react-redux'
-import { createSelector } from 'reselect'
+export const selectBusinessUnitsAsListNoReselect = state => {
+  return state.businessUnit.entities;
+};
 
-/*
-const selectNumCompletedTodos = createSelector(
-    (state) => state.todos,
-    (todos) => todos.filter((todo) => todo.completed).length
-  )
-  
-  export const CompletedTodosCounter = () => {
-    const numCompletedTodos = useSelector(selectNumCompletedTodos)
-    return <div>{numCompletedTodos}</div>
-  }
-*/
+export const selectBusinessUnitsAsList = createSelector(
+  state => state.businessUnit.entities,
+  businessUnits => {
+    return businessUnits.map(businessUnit => {
+      return { value: businessUnit.id, label: businessUnit.name };
+    });
+  },
+);

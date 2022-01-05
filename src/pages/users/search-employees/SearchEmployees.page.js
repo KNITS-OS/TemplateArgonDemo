@@ -32,6 +32,7 @@ import {
   deleteUser,
 } from "redux/employees/employee.actions";
 import { selectCountriesAsList } from "redux/countries/country.selectors";
+import { selectBusinessUnitsAsList } from "redux/business-units/business-unit.selectors";
 
 //local components
 import employeesTableColumns from "./SearchEmployees.table";
@@ -41,10 +42,11 @@ const SearchEmployeesPage = () => {
   const dispatch = useDispatch();
   const employeesState = useSelector(state => state.employee);
   const countriesList = useSelector(selectCountriesAsList);
+  const businessUnitsList = useSelector(selectBusinessUnitsAsList);
 
   const [searchLastName, setSearchLastName] = useState("");
-  const [searchBusinessUnit, setSearchBusinessUnit] = useState("");
   const [searchCountry, setSearchCountry] = useState("");
+  const [searchBusinessUnit, setSearchBusinessUnit] = useState("");
   const [searchHiringDate, setSearchHiringDate] = useState(null);
   const [alert, setAlert] = useState(employeesState.isError);
   const [selectedCandidates, setSelectedEmployees] = useState([]);
@@ -123,7 +125,7 @@ const SearchEmployeesPage = () => {
                       <Select
                         id="businessUnits"
                         components={makeAnimated()}
-                        // options={businessUnitsList}
+                        options={businessUnitsList}
                         onChange={item =>
                           setSearchBusinessUnit(item.value)
                         }
