@@ -47,6 +47,7 @@ const SearchEmployeesPage = () => {
   const [searchCountry, setSearchCountry] = useState("");
   const [searchHiringDate, setSearchHiringDate] = useState(null);
   const [alert, setAlert] = useState(employeesState.isError);
+  const [selectedCandidates, setSelectedEmployees] = useState([]);
 
   useEffect(() => {
     if (employeesState.isError) {
@@ -193,7 +194,7 @@ const SearchEmployeesPage = () => {
             <Card>
               <CardHeader>
                 <h3 className="mb-0">Employees</h3>
-                <p className="text-sm mb-0">Employees </p>
+                <p className="text-sm mb-0">Employees</p>
               </CardHeader>
               {employeesState.isLoading ? (
                 <div
@@ -210,6 +211,8 @@ const SearchEmployeesPage = () => {
                   columns={employeesTableColumns}
                   onViewDetails={goToEmployeeDetails}
                   onDeleteItem={removeEmployee}
+                  selectedRows={selectedCandidates}
+                  setSelectedRows={setSelectedEmployees}
                 />
               )}
             </Card>
