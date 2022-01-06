@@ -17,8 +17,18 @@ import {
   pieChartExample,
   multiBarChartExample,
 } from "variables/charts";
+import { useSelector } from "react-redux";
 
 export const ChartsPage = () => {
+  const chartsState = useSelector(state => state.chart);
+
+  const lineChart = lineChartExample(chartsState.entities[0]);
+  const barChart = barChartExample(chartsState.entities[1]);
+  const dotChart = dotChartExample(chartsState.entities[2]);
+  const doughnutChart = doughnutChartExample(chartsState.entities[3]);
+  const pieChart = pieChartExample(chartsState.entities[4]);
+  const multiBarChart = multiBarChartExample(chartsState.entities[5]);
+
   return (
     <>
       <GradientEmptyHeader />
@@ -33,10 +43,10 @@ export const ChartsPage = () => {
               <CardBody>
                 <div className="chart">
                   <Line
-                    data={lineChartExample.data}
-                    options={lineChartExample.options}
-                    id="chart-sales"
+                    data={lineChart.data}
+                    options={lineChart.options}
                     className="chart-canvas"
+                    id="chart-sales"
                   />
                 </div>
               </CardBody>
@@ -51,8 +61,8 @@ export const ChartsPage = () => {
               <CardBody>
                 <div className="chart">
                   <Bar
-                    data={barChartExample.data}
-                    options={barChartExample.options}
+                    data={barChart.data}
+                    options={barChart.options}
                     className="chart-canvas"
                     id="chart-bars"
                   />
@@ -71,8 +81,8 @@ export const ChartsPage = () => {
               <CardBody>
                 <div className="chart">
                   <Line
-                    data={dotChartExample.data}
-                    options={dotChartExample.options}
+                    data={dotChart.data}
+                    options={dotChart.options}
                     id="chart-points"
                     className="chart-canvas"
                   />
@@ -89,8 +99,8 @@ export const ChartsPage = () => {
               <CardBody>
                 <div className="chart">
                   <Doughnut
-                    data={doughnutChartExample.data}
-                    options={doughnutChartExample.options}
+                    data={doughnutChart.data}
+                    options={doughnutChart.options}
                     className="chart-canvas"
                     id="chart-doughnut"
                   />
@@ -109,8 +119,8 @@ export const ChartsPage = () => {
               <CardBody>
                 <div className="chart">
                   <Pie
-                    data={pieChartExample.data}
-                    options={pieChartExample.options}
+                    data={pieChart.data}
+                    options={pieChart.options}
                     className="chart-canvas"
                     id="chart-pie"
                   />
@@ -127,8 +137,8 @@ export const ChartsPage = () => {
               <CardBody>
                 <div className="chart">
                   <Bar
-                    data={multiBarChartExample.data}
-                    options={multiBarChartExample.options}
+                    data={multiBarChart.data}
+                    options={multiBarChart.options}
                     className="chart-canvas"
                     id="chart-bar-stacked"
                   />

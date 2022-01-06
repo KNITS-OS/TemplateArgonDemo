@@ -1,6 +1,7 @@
 import { combineReducers } from "redux";
 
 import { businessUnitReducer } from "./business-units";
+import { chartReducer } from "./charts";
 import { countryReducer } from "./countries";
 import { employeeReducer } from "./employees";
 import { groupReducer } from "./groups";
@@ -10,4 +11,5 @@ export const rootReducer = combineReducers({
   group: groupReducer,
   country: countryReducer,
   businessUnit: businessUnitReducer,
+  chart: chartReducer,
 });

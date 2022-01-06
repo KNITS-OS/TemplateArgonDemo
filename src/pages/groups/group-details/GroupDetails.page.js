@@ -20,8 +20,7 @@ import BootstrapTable from "react-bootstrap-table-next";
 import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
 
 import { GradientEmptyHeader } from "components/Headers";
-import { InputField } from "components/widgets";
-import { pagination } from "utils/tableUtils";
+import { InputField, pagination } from "components/widgets";
 
 import { selectGroupById } from "redux/groups";
 import { getGroupMembers } from "redux/employees";

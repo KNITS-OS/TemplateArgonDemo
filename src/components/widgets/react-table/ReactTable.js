@@ -6,7 +6,7 @@ import { Button } from "reactstrap";
 import BootstrapTable from "react-bootstrap-table-next";
 import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
 
-import { pagination, selectRow } from "utils/tableUtils";
+import { pagination, selectRow } from ".";
 
 const { SearchBar } = Search;
 

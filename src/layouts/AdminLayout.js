@@ -29,19 +29,23 @@ import { AdminFooter } from "components/Footers";
 
 import { listCountries } from "redux/countries";
 import { listBusinessUnits } from "redux/business-units";
+import { listCharts } from "redux/charts";
 
 export const AdminLayout = () => {
   const dispatch = useDispatch();
   const location = useLocation();
   const countriesState = useSelector(state => state.country);
   const businessUnitsState = useSelector(state => state.businessUnit);
+  const chartsState = useSelector(state => state.chart);
 
   const [sidenavOpen, setSidenavOpen] = React.useState(true);
   const mainContentRef = React.useRef(null);
 
   const [categoryDataLoaded, setCategoryDataLoaded] = useState(false);
   const [alert, setAlert] = useState(
-    countriesState.isError || businessUnitsState.isError,
+    countriesState.isError ||
+      businessUnitsState.isError ||
+      chartsState.isError,
   );
 
   useEffect(() => {
@@ -53,6 +57,7 @@ export const AdminLayout = () => {
   useEffect(() => {
     dispatch(listCountries());
     dispatch(listBusinessUnits());
+    dispatch(listCharts());
   }, [dispatch]);
 
   useEffect(() => {
@@ -71,19 +76,40 @@ export const AdminLayout = () => {
   }, [businessUnitsState.entities]);
 
   useEffect(() => {
-    if (countriesState.isError || businessUnitsState.isError) {
+    if (chartsState.entities && chartsState.entities.length > 0) {
+      setCategoryDataLoaded(true);
+    }
+  }, [chartsState.entities]);
+
+  useEffect(() => {
+    if (countriesState.isError) {
       setAlert(
         <SweetAlert danger title="Error" onConfirm={() => cleanAlert()}>
           {`${countriesState.errorMessage} please contact administrator`}
         </SweetAlert>,
       );
     }
-  }, [
-    countriesState.isError,
-    countriesState.errorMessage,
-    businessUnitsState.isError,
-    businessUnitsState.errorMessage,
-  ]);
+  }, [countriesState.isError, countriesState.errorMessage]);
+
+  useEffect(() => {
+    if (businessUnitsState.isError) {
+      setAlert(
+        <SweetAlert danger title="Error" onConfirm={() => cleanAlert()}>
+          {`${businessUnitsState.errorMessage} please contact administrator`}
+        </SweetAlert>,
+      );
+    }
+  }, [businessUnitsState.isError, businessUnitsState.errorMessage]);
+
+  useEffect(() => {
+    if (chartsState.isError) {
+      setAlert(
+        <SweetAlert danger title="Error" onConfirm={() => cleanAlert()}>
+          {`${chartsState.errorMessage} please contact administrator`}
+        </SweetAlert>,
+      );
+    }
+  }, [chartsState.isError, chartsState.errorMessage]);
 
   const cleanAlert = () => {
     setCategoryDataLoaded(true); // remove spinner
