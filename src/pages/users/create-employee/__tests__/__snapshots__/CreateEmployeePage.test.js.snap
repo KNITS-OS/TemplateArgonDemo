@@ -1,0 +1,418 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Create Employees Page Snapshot tests should render correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="header pb-6 d-flex align-items-center"
+    style="min-height: 150px; background-size: cover; background-position: center top;"
+  >
+    <span
+      class="mask bg-gradient-info opacity-8"
+    />
+  </div>
+  <div
+    class="mt--6 container-fluid"
+  >
+    <div
+      class="row"
+    >
+      <div
+        class="order-xl-1 col-xl-12"
+      >
+        <div
+          class="card"
+        >
+          <div
+            class="card-header"
+          >
+            <div
+              class="align-items-center row"
+            >
+              <div
+                class="col-8"
+              >
+                <h3
+                  class="mb-0"
+                >
+                  Create Employee
+                </h3>
+              </div>
+            </div>
+          </div>
+          <div
+            class="card-body"
+          >
+            <h6
+              class="heading-small text-muted mb-4"
+            >
+              User information
+            </h6>
+            <div
+              class="pl-lg-4"
+            >
+              <div
+                class="row"
+              >
+                <div
+                  class="col-lg-6"
+                >
+                  <div
+                    class="form-group"
+                  >
+                    <label
+                      class="form-control-label"
+                      for="input-first-name"
+                    >
+                      First name
+                    </label>
+                    <input
+                      class="form-control"
+                      id="input-first-name"
+                      label="First name"
+                      placeholder="First name"
+                      type="text"
+                      value=""
+                    />
+                  </div>
+                </div>
+                <div
+                  class="col-lg-6"
+                >
+                  <div
+                    class="form-group"
+                  >
+                    <label
+                      class="form-control-label"
+                      for="input-last-name"
+                    >
+                      Last Name
+                    </label>
+                    <input
+                      class="form-control"
+                      id="input-last-name"
+                      label="Last Name"
+                      type="text"
+                      value=""
+                    />
+                  </div>
+                </div>
+              </div>
+              <div
+                class="row"
+              >
+                <div
+                  class="col-lg-6"
+                >
+                  <div
+                    class="form-group"
+                  >
+                    <label
+                      class="form-control-label"
+                      for="input-international-name"
+                    >
+                      International Name
+                    </label>
+                    <input
+                      class="form-control"
+                      id="input-international-name"
+                      label="International Name"
+                      type="text"
+                      value=""
+                    />
+                  </div>
+                </div>
+                <div
+                  class="col-lg-6"
+                >
+                  <div
+                    class="form-group"
+                  >
+                    <label
+                      class="form-control-label"
+                      for="input-email"
+                    >
+                      Email Address
+                    </label>
+                    <input
+                      class="form-control"
+                      id="input-email"
+                      label="Email Address"
+                      type="text"
+                      value=""
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <hr
+              class="my-4"
+            />
+            <h6
+              class="heading-small text-muted mb-4"
+            >
+              Contact information
+            </h6>
+            <div
+              class="pl-lg-4"
+            >
+              <div
+                class="row"
+              >
+                <div
+                  class="col-md-12"
+                >
+                  <div
+                    class="form-group"
+                  >
+                    <label
+                      class="form-control-label"
+                      for="input-address"
+                    >
+                      Office Street
+                    </label>
+                    <input
+                      class="form-control"
+                      id="input-address"
+                      label="Office Street"
+                      type="text"
+                      value=""
+                    />
+                  </div>
+                </div>
+              </div>
+              <div
+                class="row"
+              >
+                <div
+                  class="col-lg-4"
+                >
+                  <div
+                    class="form-group"
+                  >
+                    <label
+                      class="form-control-label"
+                      for="input-city"
+                    >
+                      Office City
+                    </label>
+                    <input
+                      class="form-control"
+                      id="input-city"
+                      label="Office City"
+                      type="text"
+                      value=""
+                    />
+                  </div>
+                </div>
+                <div
+                  class="col-lg-4"
+                >
+                  <div
+                    class="form-group"
+                  >
+                    <label
+                      class="form-control-label"
+                      for="input-country"
+                    >
+                      Office Country
+                    </label>
+                    <input
+                      class="form-control"
+                      id="input-country"
+                      label="Office Country"
+                      type="text"
+                      value=""
+                    />
+                  </div>
+                </div>
+                <div
+                  class="col-lg-4"
+                >
+                  <div
+                    class="form-group"
+                  >
+                    <label
+                      class="form-control-label"
+                      for="input-postal-code"
+                    >
+                      Office Postal code
+                    </label>
+                    <input
+                      class="form-control"
+                      id="input-postal-code"
+                      label="Office Postal code"
+                      type="text"
+                      value=""
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <hr
+              class="my-4"
+            />
+            <h6
+              class="heading-small text-muted mb-4"
+            >
+              Company Data
+            </h6>
+            <div
+              class="pl-lg-4"
+            >
+              <div
+                class="row"
+              >
+                <div
+                  class="col-lg-4"
+                >
+                  <div
+                    class="form-group"
+                  >
+                    <label
+                      class="form-control-label"
+                      for="input-title"
+                    >
+                      Job Title
+                    </label>
+                    <input
+                      class="form-control"
+                      id="input-title"
+                      label="Job Title"
+                      type="text"
+                      value=""
+                    />
+                  </div>
+                </div>
+                <div
+                  class="col-lg-4"
+                >
+                  <div
+                    class="form-group"
+                  >
+                    <label
+                      class="form-control-label"
+                      for="input-company-phone"
+                    >
+                      Company Phone
+                    </label>
+                    <input
+                      class="form-control"
+                      id="input-company-phone"
+                      label="Company Phone"
+                      type="text"
+                      value=""
+                    />
+                  </div>
+                </div>
+                <div
+                  class="col-lg-4"
+                >
+                  <div
+                    class="form-group"
+                  >
+                    <label
+                      class="form-control-label"
+                      for="input-company-code"
+                    >
+                      Company Code
+                    </label>
+                    <input
+                      class="form-control"
+                      id="input-company-code"
+                      label="Company Code"
+                      type="text"
+                      value=""
+                    />
+                  </div>
+                </div>
+              </div>
+              <div
+                class="row"
+              >
+                <div
+                  class="col-lg-4"
+                >
+                  <div
+                    class="form-group"
+                  >
+                    <label
+                      class="form-control-label"
+                      for="input-business-unit"
+                    >
+                      Business Unit
+                    </label>
+                    <input
+                      class="form-control"
+                      id="input-business-unit"
+                      label="Business Unit"
+                      type="text"
+                      value=""
+                    />
+                  </div>
+                </div>
+                <div
+                  class="col-lg-4"
+                >
+                  <div
+                    class="form-group"
+                  >
+                    <label
+                      class="form-control-label"
+                      for="input-cost-center"
+                    >
+                      Cost Center
+                    </label>
+                    <input
+                      class="form-control"
+                      id="input-cost-center"
+                      label="Cost Center"
+                      type="text"
+                      value=""
+                    />
+                  </div>
+                </div>
+                <div
+                  class="col-lg-4"
+                >
+                  <div
+                    class="form-group"
+                  >
+                    <label
+                      class="form-control-label"
+                      for="input-management-group"
+                    >
+                      Management Group
+                    </label>
+                    <input
+                      class="form-control"
+                      id="input-management-group"
+                      label="Management Group"
+                      type="text"
+                      value=""
+                    />
+                  </div>
+                </div>
+              </div>
+              <div
+                class="align-items-center py-4 row"
+              >
+                <div
+                  class="text-right col-7 col-lg-12"
+                >
+                  <button
+                    class="btn btn-success"
+                    type="button"
+                  >
+                    Submit
+                  </button>
+                    
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

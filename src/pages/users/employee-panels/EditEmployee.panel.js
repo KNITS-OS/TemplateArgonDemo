@@ -73,6 +73,7 @@ export const EditEmployeePanel = ({
                     id="input-first-name"
                     label="First name"
                     value={firstName}
+                    placeHolder="First name"
                     type="text"
                     onChange={e =>
                       setEmployee({

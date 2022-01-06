@@ -187,6 +187,10 @@ const mockData = {
       return Promise.resolve(groupMockResponse);
     }
   }),
+  create: () => mockData,
+  defaults: {
+    adapter: {},
+  },
 };
 
 export default mockData;
