@@ -1,6 +1,8 @@
-import { SearchEmployeesPage } from "./search-employees";
-import { CreateEmployeePage } from "./create-employee";
-import { EmployeeDetailsPage } from "./employee-details";
+import {
+  CreateEmployeePage,
+  SearchEmployeesPage,
+  EmployeeDetailsPage,
+} from ".";
 
 export const userMenu = [
   {

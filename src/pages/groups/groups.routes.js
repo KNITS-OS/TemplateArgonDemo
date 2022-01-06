@@ -1,6 +1,4 @@
-import { CreateGroupPage } from "./create-group";
-import { SearchGroupsPage } from "./search-groups";
-import { GroupDetailsPage } from "./group-details";
+import { CreateGroupPage, SearchGroupsPage, GroupDetailsPage } from ".";
 
 export const groupMenu = [
   {
