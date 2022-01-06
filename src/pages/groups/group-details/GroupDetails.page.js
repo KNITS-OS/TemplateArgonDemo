@@ -35,6 +35,9 @@ export const GroupDetailsPage = () => {
   const history = useHistory();
 
   const currentGroup = useSelector(selectGroupById(id));
+  const currentGroupMembers = useSelector(
+    getGroupMembers(currentGroup.members),
+  );
 
   const [group, setGroup] = useState(currentGroup);
   const [currentMembersCollapse, setCurrentMembersCollapse] =
@@ -44,6 +47,10 @@ export const GroupDetailsPage = () => {
   if (!group) {
     throw new Error("Group not found");
   }
+  console.log(
+    "currentGroupMembers: currentGroupMembers",
+    currentGroup.members,
+  );
 
   const { name, description, active, members } = group;
 
@@ -246,7 +253,7 @@ export const GroupDetailsPage = () => {
                           </CardHeader>
 
                           <ToolkitProvider
-                            data={getGroupMembers(members)}
+                            data={currentGroupMembers}
                             keyField="firstName"
                             columns={[
                               {

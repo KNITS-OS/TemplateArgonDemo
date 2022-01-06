@@ -55,8 +55,8 @@ export const dotChartExample = {
     labels: ["May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
     datasets: [
       {
-        label: "Performance",
         data: [10, 18, 28, 23, 28, 40, 36, 46, 52],
+        label: "Performance",
         pointRadius: 10,
         pointHoverRadius: 15,
         showLine: false,

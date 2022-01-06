@@ -6,8 +6,8 @@ export const selectEmployees = createSelector(
 );
 
 export const selectEmployeeById = id =>
-  createSelector([selectEmployees], employeesdata =>
-    employeesdata.find(employee => employee.id === parseInt(id)),
+  createSelector([selectEmployees], employeesData =>
+    employeesData.find(employee => employee.id === parseInt(id)),
   );
 
 export const selectEmployeesAsList = createSelector(
@@ -23,8 +23,12 @@ export const selectEmployeesAsList = createSelector(
  * @param array employeeIds
  */
 export const getGroupMembers = employeeIds =>
-  createSelector([selectEmployees], employeesData =>
-    employeeIds.map(employeeId => {
+  createSelector([selectEmployees], employeesData => {
+    console.log("selectEmployees", selectEmployees);
+    console.log("employeesData", employeesData);
+    const groupMembers = employeeIds.map(employeeId => {
       return employeesData.find(employee => employee.id === employeeId);
-    }),
-  );
+    });
+    console.log("groupMembers", groupMembers);
+    return groupMembers;
+  });

@@ -321,8 +321,8 @@ export const EditEmployeePanel = ({
 };
 
 EditEmployeePanel.propTypes = {
-  employee: PropTypes.object,
-  setEmployee: PropTypes.func,
-  onSaveClick: PropTypes.func,
+  employee: PropTypes.object.isRequired,
+  setEmployee: PropTypes.func.isRequired,
+  onSaveClick: PropTypes.func.isRequired,
   onBackToSearchClick: PropTypes.func,
 };

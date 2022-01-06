@@ -14,9 +14,9 @@ import { EditEmployeePanel } from "..";
 export const EmployeeDetailsPage = () => {
   let { id } = useParams();
   const history = useHistory();
-  const reduxEmployee = useSelector(selectEmployeeById(id));
+  const currentEmployee = useSelector(selectEmployeeById(id));
 
-  const [employee, setEmployee] = useState(reduxEmployee);
+  const [employee, setEmployee] = useState(currentEmployee);
 
   const onSave = updatedEmployee => {
     console.log("updatedEmployee", updatedEmployee);

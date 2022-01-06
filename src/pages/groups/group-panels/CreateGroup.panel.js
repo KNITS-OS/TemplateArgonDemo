@@ -16,18 +16,13 @@ import { InputField } from "components/widgets";
 
 import { AddMemberPanel } from ".";
 
-export const EditGroupPanel = ({
+export const CreateGroupPanel = ({
   group,
   setGroup,
   onSave,
-  onBackToSearchClick,
   addMembersCollapse,
   setAddMembersCollapse,
 }) => {
-  if (!group) {
-    throw new Error("Group not found");
-  }
-
   const { name, description, active, members } = group;
 
   const onSaveClick = () => {
@@ -47,7 +42,7 @@ export const EditGroupPanel = ({
           <CardHeader>
             <Row className="align-items-center">
               <Col xs="8">
-                <h3 className="mb-0">Group Details</h3>
+                <h3 className="mb-0">Create Group</h3>
               </Col>
             </Row>
           </CardHeader>
@@ -121,14 +116,6 @@ export const EditGroupPanel = ({
                   <Button color="success" onClick={onSaveClick}>
                     Submit
                   </Button>
-
-                  {onBackToSearchClick ? (
-                    <Button color="info" onClick={onBackToSearchClick}>
-                      Back to Search
-                    </Button>
-                  ) : (
-                    <> &nbsp;</>
-                  )}
                 </Col>
               </Row>
             </Form>
@@ -139,11 +126,10 @@ export const EditGroupPanel = ({
   );
 };
 
-EditGroupPanel.propTypes = {
+CreateGroupPanel.propTypes = {
   group: PropTypes.object,
   setGroup: PropTypes.func,
   onSave: PropTypes.func,
-  onBackToSearchClick: PropTypes.func,
   addMembersCollapse: PropTypes.bool,
   setAddMembersCollapse: PropTypes.func,
 };

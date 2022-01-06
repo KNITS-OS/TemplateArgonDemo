@@ -62,7 +62,7 @@
     "minify:scss": "node-sass --importer node_modules/node-sass-package-importer/dist/cli.js src/assets/scss/argon-dashboard-react.scss src/assets/css/argon-dashboard-react.min.css --output-style compressed",
     "map:scss": "node-sass --importer node_modules/node-sass-package-importer/dist/cli.js src/assets/scss/argon-dashboard-react.scss src/assets/css/argon-dashboard-react.css --source-map true",
     "build:scss": "npm run compile:scss && npm run minify:scss && npm run map:scss",
-    "json-server": "json-server --watch ./json-server-mock-data/db.js --port 8999 --delay 2800"
+    "json-server": "json-server --watch ./json-server-mock-data/db.js --port 8999 --delay 0"
   },
   "eslintConfig": {
     "extends": [

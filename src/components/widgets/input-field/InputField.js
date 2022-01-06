@@ -1,4 +1,4 @@
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
 import { FormGroup, Input } from "reactstrap";
 
 export const InputField = props => {
@@ -14,10 +14,10 @@ export const InputField = props => {
   );
 };
 
-InputField.propTypes = {
-  id: PropTypes.string.isRequired,
-  label: PropTypes.string.isRequired,
-  type: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
-};
+// InputField.propTypes = {
+//   id: PropTypes.string.isRequired,
+//   label: PropTypes.string.isRequired,
+//   type: PropTypes.string.isRequired,
+//   value: PropTypes.string.isRequired,
+//   onChange: PropTypes.func.isRequired,
+// };

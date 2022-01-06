@@ -1,27 +1,22 @@
 import React, { useState } from "react";
-import { useHistory, useParams } from "react-router";
-import { useSelector } from "react-redux";
 
 import { Container } from "reactstrap";
 
-import { selectGroupById } from "redux/groups";
-
-import { EditGroupPanel } from "..";
+import { CreateGroupPanel } from "..";
 
 export const CreateGroupPage = () => {
-  let { id } = useParams();
-  const history = useHistory();
-  const reduxGroup = useSelector(selectGroupById(id));
-
-  const [group, setGroup] = useState(reduxGroup);
-  const [addMembersCollapse, setAddMembersCollapse] = useState(false);
-
-  const onSave = updatedGroup => {
-    console.log("updatedGroup", updatedGroup);
+  const initialState = {
+    name: "",
+    description: "",
+    members: [],
+    active: true,
   };
 
-  const onBackToSearch = () => {
-    history.push("/admin/search-groups");
+  const [group, setGroup] = useState(initialState);
+  const [addMembersCollapse, setAddMembersCollapse] = useState(false);
+
+  const onSave = createdGroup => {
+    console.log("createdGroup", createdGroup);
   };
 
   return (
@@ -38,10 +33,9 @@ export const CreateGroupPage = () => {
       </div>
 
       <Container className="mt--6" fluid>
-        <EditGroupPanel
+        <CreateGroupPanel
           group={group}
           setGroup={setGroup}
-          onBackSearchClick={onBackToSearch}
           onSave={onSave}
           addMembersCollapse={addMembersCollapse}
           setAddMembersCollapse={setAddMembersCollapse}
