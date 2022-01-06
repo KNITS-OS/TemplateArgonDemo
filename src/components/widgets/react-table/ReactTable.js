@@ -1,10 +1,12 @@
 import React, { useEffect } from "react";
+import PropTypes from "prop-types";
+
+import { Button } from "reactstrap";
+
 import BootstrapTable from "react-bootstrap-table-next";
 import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
-import { Button } from "reactstrap";
-import PropTypes from "prop-types";
-import { pagination } from "utils/tableUtils";
-import { selectRow } from "utils/tableUtils";
+
+import { pagination, selectRow } from "utils/tableUtils";
 
 const { SearchBar } = Search;
 

@@ -16,8 +16,8 @@
 */
 
 // react library for routing
-import { useLocation, Route, Switch, Redirect } from "react-router-dom";
 import { useEffect, useRef } from "react";
+import { useLocation, Route, Switch, Redirect } from "react-router-dom";
 
 import { routes } from "routes";
 import { AuthNavbar } from "components/Navbars";

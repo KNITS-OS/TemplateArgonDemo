@@ -1,7 +1,8 @@
+import PropTypes from "prop-types";
+
 import { Button, Card, CardBody, CardHeader, Col, Row } from "reactstrap";
 
 import { InputField } from "components/widgets";
-import PropTypes from "prop-types";
 
 export const EditEmployeePanel = ({
   employee,
@@ -321,6 +322,7 @@ export const EditEmployeePanel = ({
 
 EditEmployeePanel.propTypes = {
   employee: PropTypes.object,
+  setEmployee: PropTypes.func,
   onSaveClick: PropTypes.func,
   onBackToSearchClick: PropTypes.func,
 };

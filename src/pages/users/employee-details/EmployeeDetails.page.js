@@ -2,10 +2,13 @@ import { useState } from "react";
 import { useHistory } from "react-router";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
+
 import { Container } from "reactstrap";
 
-import { selectEmployeeById } from "redux/employees";
 import { GradientEmptyHeader } from "components/Headers";
+
+import { selectEmployeeById } from "redux/employees";
+
 import { EditEmployeePanel } from "..";
 
 export const EmployeeDetailsPage = () => {

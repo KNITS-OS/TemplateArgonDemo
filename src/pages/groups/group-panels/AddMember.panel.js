@@ -1,6 +1,5 @@
-// core components
-import Select from "react-select";
-// reactstrap components
+import PropTypes from "prop-types";
+
 import {
   Card,
   CardBody,
@@ -10,12 +9,18 @@ import {
   Row,
 } from "reactstrap";
 
-import PropTypes from "prop-types";
+import Select from "react-select";
+
 import { selectCountriesAsList } from "redux/countries";
 import { selectBusinessUnitsAsList } from "redux/business-units";
 import { selectEmployeesAsList } from "redux/employees";
 
-export const AddMemberPanel = props => {
+export const AddMemberPanel = (
+  onChangeRole,
+  onChangeCountry,
+  onChangeBusinessUnit,
+  onSelectCareMember,
+) => {
   const jobTitles = [
     { value: 1, label: "product manager" },
     { value: 2, label: "qa engineer" },
@@ -43,10 +48,7 @@ export const AddMemberPanel = props => {
                   <label className="form-control-label" htmlFor="members">
                     Job Title
                   </label>
-                  <Select
-                    onChange={props.onchangeRole}
-                    options={jobTitles}
-                  />
+                  <Select onChange={onChangeRole} options={jobTitles} />
                 </FormGroup>
               </Col>
               <Col xl="2">
@@ -55,7 +57,7 @@ export const AddMemberPanel = props => {
                     Country
                   </label>
                   <Select
-                    onChange={props.onchangeCountry}
+                    onChange={onChangeCountry}
                     options={selectCountriesAsList}
                   />
                 </FormGroup>
@@ -66,7 +68,7 @@ export const AddMemberPanel = props => {
                     Business Unit
                   </label>
                   <Select
-                    onChange={props.onchangeBunit}
+                    onChange={onChangeBusinessUnit}
                     options={selectBusinessUnitsAsList}
                   />
                 </FormGroup>
@@ -78,7 +80,7 @@ export const AddMemberPanel = props => {
                   </label>
                   <Select
                     isMulti
-                    onChange={props.onSelectCareMember}
+                    onChange={onSelectCareMember}
                     options={selectEmployeesAsList}
                   />
                 </FormGroup>
@@ -92,8 +94,8 @@ export const AddMemberPanel = props => {
 };
 
 AddMemberPanel.propTypes = {
-  onchangeRole: PropTypes.func.isRequired,
-  onchangeCountry: PropTypes.func.isRequired,
-  onchangeBunit: PropTypes.func.isRequired,
+  onChangeRole: PropTypes.func.isRequired,
+  onChangeCountry: PropTypes.func.isRequired,
+  onChangeBusinessUnit: PropTypes.func.isRequired,
   onSelectCareMember: PropTypes.func.isRequired,
 };

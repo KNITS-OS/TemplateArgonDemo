@@ -19,6 +19,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useLocation, Route, Switch, Redirect } from "react-router-dom";
 
 import { UncontrolledAlert, Spinner } from "reactstrap";
+
 import SweetAlert from "react-bootstrap-sweetalert";
 
 import { routes } from "routes";

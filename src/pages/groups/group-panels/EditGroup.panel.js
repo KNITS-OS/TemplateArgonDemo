@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 import {
   Button,
   ButtonGroup,
@@ -9,9 +11,9 @@ import {
   Form,
   Row,
 } from "reactstrap";
-import PropTypes from "prop-types";
 
 import { InputField } from "components/widgets";
+
 import { AddMemberPanel } from ".";
 
 export const EditGroupPanel = (
@@ -104,9 +106,9 @@ export const EditGroupPanel = (
                     {/* <MembersTableComps data={group.members} /> */}
                     <Collapse isOpen={addMembersCollapse}>
                       <AddMemberPanel
-                        onchangeRole={e => console.log(e)}
-                        onchangeCountry={e => console.log(e)}
-                        onchangeBunit={e => console.log(e)}
+                        onChangeRole={e => console.log(e)}
+                        onChangeCountry={e => console.log(e)}
+                        onChangeBusinessUnit={e => console.log(e)}
                         onSelectCareMember={e => console.log(e)}
                       />
                     </Collapse>

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import SweetAlert from "react-bootstrap-sweetalert";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
+
 import {
   Card,
   CardBody,
@@ -13,9 +13,13 @@ import {
   Spinner,
 } from "reactstrap";
 
+import SweetAlert from "react-bootstrap-sweetalert";
+
 import { GradientEmptyHeader } from "components/Headers";
 import { ReactTable } from "components/widgets";
+
 import { deleteGroup, searchGroups } from "redux/groups";
+
 import { groupsTableColumns } from ".";
 
 export const SearchGroupsPage = () => {

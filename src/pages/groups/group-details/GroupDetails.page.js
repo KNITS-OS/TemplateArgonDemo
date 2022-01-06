@@ -1,9 +1,8 @@
 import React, { useState } from "react";
-import BootstrapTable from "react-bootstrap-table-next";
-import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router";
 import { useParams } from "react-router-dom";
+
 import {
   Button,
   ButtonGroup,
@@ -17,12 +16,17 @@ import {
   Row,
 } from "reactstrap";
 
+import BootstrapTable from "react-bootstrap-table-next";
+import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
+
 import { GradientEmptyHeader } from "components/Headers";
-import { selectGroupById } from "redux/groups";
 import { InputField } from "components/widgets";
-import { AddMemberPanel } from "..";
 import { pagination } from "utils/tableUtils";
+
+import { selectGroupById } from "redux/groups";
 import { getGroupMembers } from "redux/employees";
+
+import { AddMemberPanel } from "..";
 
 const { SearchBar } = Search;
 
@@ -206,9 +210,9 @@ export const GroupDetailsPage = () => {
                       <Col lg="12">
                         <Collapse isOpen={addMembersCollapse}>
                           <AddMemberPanel
-                            onchangeRole={e => console.log(e)}
-                            onchangeCountry={e => console.log(e)}
-                            onchangeBunit={e => console.log(e)}
+                            onChangeRole={e => console.log(e)}
+                            onChangeCountry={e => console.log(e)}
+                            onChangeBusinessUnit={e => console.log(e)}
                             onSelectCareMember={e => console.log(e)}
                           />
                         </Collapse>

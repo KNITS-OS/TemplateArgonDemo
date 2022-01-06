@@ -1,5 +1,5 @@
-import PropTypes from "prop-types";
 import { forwardRef, useEffect, useRef, useState } from "react";
+import PropTypes from "prop-types";
 
 function uniq(arr) {
   let out = [];

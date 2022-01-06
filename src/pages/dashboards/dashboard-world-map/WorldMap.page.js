@@ -1,7 +1,8 @@
-import { VectorMap } from "@react-jvectormap/core";
 import { Card, CardBody, Col, Container, Row } from "reactstrap";
 
+import { VectorMap } from "@react-jvectormap/core";
 import worldMill from "@react-jvectormap/world/dist/worldMill.json";
+
 import { GradientEmptyHeader } from "components/Headers";
 
 const mapData = {

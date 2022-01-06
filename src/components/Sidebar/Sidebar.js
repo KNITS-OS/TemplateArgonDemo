@@ -15,18 +15,14 @@
 
 */
 
-// react library for routing
+import { useEffect, useState } from "react";
 import {
   useLocation,
   NavLink as NavLinkRRD,
   Link,
 } from "react-router-dom";
-// nodejs library that concatenates classes
-import classnames from "classnames";
-// nodejs library to set properties for components
 import { PropTypes } from "prop-types";
-// react library that creates nice scrollbar on windows devices
-import PerfectScrollbar from "react-perfect-scrollbar";
+
 // reactstrap components
 import {
   Collapse,
@@ -36,7 +32,11 @@ import {
   NavLink,
   Nav,
 } from "reactstrap";
-import { useEffect, useState } from "react";
+
+// nodejs library that concatenates classes
+import classnames from "classnames";
+// react library that creates nice scrollbar on windows devices
+import PerfectScrollbar from "react-perfect-scrollbar";
 
 export const Sidebar = ({
   toggleSidenav,
@@ -281,21 +281,34 @@ Sidebar.propTypes = {
   toggleSidenav: PropTypes.func,
   // prop to know if the sidenav is mini or normal
   sidenavOpen: PropTypes.bool,
-  // links that will be displayed inside the component
+  /**
+   * links that will be displayed inside the component
+   */
   routes: PropTypes.arrayOf(PropTypes.object),
   // logo
   logo: PropTypes.shape({
-    // innerLink is for links that will direct the user within the app
-    // it will be rendered as <Link to="...">...</Link> tag
+    /**
+     * innerLink is for links that will direct the user within the app
+     * it will be rendered as <Link to="...">...</Link> tag
+     */
     innerLink: PropTypes.string,
-    // outterLink is for links that will direct the user outside the app
-    // it will be rendered as simple <a href="...">...</a> tag
+    /**
+     * outerLink is for links that will direct the user outside the app
+     * it will be rendered as simple <a href="...">...</a> tag
+     */
     outterLink: PropTypes.string,
-    // the image src of the logo
+    /**
+     * the image src of the logo
+     */
     imgSrc: PropTypes.string.isRequired,
-    // the alt for the img
+    /**
+     * the alt for the img
+     */
     imgAlt: PropTypes.string.isRequired,
   }),
-  // rtl active, this will make the sidebar to stay on the right side
+  /**
+   * @default false
+   * rtl active, this will make the sidebar to stay on the right side
+   */
   rtlActive: PropTypes.bool,
 };

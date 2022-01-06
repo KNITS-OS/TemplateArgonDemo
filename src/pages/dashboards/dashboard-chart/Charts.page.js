@@ -8,6 +8,7 @@ import {
 } from "reactstrap";
 import { Line, Bar, Doughnut, Pie } from "react-chartjs-2";
 
+import { GradientEmptyHeader } from "components/Headers";
 import {
   barChartExample,
   lineChartExample,
@@ -16,8 +17,6 @@ import {
   pieChartExample,
   multiBarChartExample,
 } from "variables/charts";
-
-import { GradientEmptyHeader } from "components/Headers";
 
 export const ChartsPage = () => {
   return (

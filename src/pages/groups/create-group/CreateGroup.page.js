@@ -1,10 +1,12 @@
 import React, { useState } from "react";
-import { Container } from "reactstrap";
 import { useHistory, useParams } from "react-router";
 import { useSelector } from "react-redux";
 
-import { EditGroupPanel } from "..";
+import { Container } from "reactstrap";
+
 import { selectGroupById } from "redux/groups";
+
+import { EditGroupPanel } from "..";
 
 export const CreateGroupPage = () => {
   let { id } = useParams();

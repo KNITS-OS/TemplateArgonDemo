@@ -1,6 +1,7 @@
 import { Container } from "reactstrap";
 
 import { GradientEmptyHeader } from "components/Headers";
+
 import { EditEmployeePanel } from "..";
 
 export const CreateEmployeePage = () => {
