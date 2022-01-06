@@ -73,7 +73,7 @@ export const EditEmployeePanel = ({
                     id="input-first-name"
                     label="First name"
                     value={firstName}
-                    placeHolder="First name"
+                    placeholder="First name"
                     type="text"
                     onChange={e =>
                       setEmployee({
@@ -324,6 +324,6 @@ export const EditEmployeePanel = ({
 EditEmployeePanel.propTypes = {
   employee: PropTypes.object.isRequired,
   setEmployee: PropTypes.func.isRequired,
-  onSaveClick: PropTypes.func.isRequired,
+  onSave: PropTypes.func.isRequired,
   onBackToSearchClick: PropTypes.func,
 };
