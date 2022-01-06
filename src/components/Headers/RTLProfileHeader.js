@@ -18,7 +18,7 @@
 // reactstrap components
 import { Button, Container, Row, Col } from "reactstrap";
 
-export const ProfileHeader = () => {
+export const RTLProfileHeader = () => {
   return (
     <>
       <div

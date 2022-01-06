@@ -7,3 +7,4 @@ export * from "./IndexHeader";
 export * from "./ProfileHeader";
 export * from "./RTLProfileHeader";
 export * from "./SimpleHeader";
+export * from "./TableHeader";
