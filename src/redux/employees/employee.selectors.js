@@ -18,17 +18,17 @@ export const selectEmployeesAsList = createSelector(
     }),
 );
 
-/**
- * @description get all groupMembers of a group
- * @param array employeeIds
- */
-export const getGroupMembers = employeeIds =>
-  createSelector([selectEmployees], employeesData => {
-    console.log("selectEmployees", selectEmployees);
-    console.log("employeesData", employeesData);
-    const groupMembers = employeeIds.map(employeeId => {
-      return employeesData.find(employee => employee.id === employeeId);
-    });
-    console.log("groupMembers", groupMembers);
-    return groupMembers;
-  });
+// /**
+//  * @description get all groupMembers of a group
+//  * @param array employeeIds
+//  */
+// export const getGroupMembers = employeeIds =>
+//   createSelector([selectEmployees], employeesData => {
+//     console.log("selectEmployees", selectEmployees);
+//     console.log("employeesData", employeesData);
+//     const groupMembers = employeeIds.map(employeeId => {
+//       return employeesData.find(employee => employee.id === employeeId);
+//     });
+//     console.log("groupMembers", groupMembers);
+//     return groupMembers;
+//   });

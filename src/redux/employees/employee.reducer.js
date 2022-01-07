@@ -8,6 +8,9 @@ import {
   SEARCH_EMPLOYEES_LOADING,
   SEARCH_EMPLOYEES_ERROR,
   SEARCH_EMPLOYEES_COMPLETE,
+  SEARCH_EMPLOYEES_BY_IDS_LOADING,
+  SEARCH_EMPLOYEES_BY_IDS_ERROR,
+  SEARCH_EMPLOYEES_BY_IDS_COMPLETE,
   DELETE_EMPLOYEE_LOADING,
   DELETE_EMPLOYEE_ERROR,
   DELETE_EMPLOYEE_COMPLETE,
@@ -27,6 +30,7 @@ export const employeeReducer = (employeeState = initialState, action) => {
     case CREATE_EMPLOYEE_LOADING:
     case UPDATE_EMPLOYEE_LOADING:
     case SEARCH_EMPLOYEES_LOADING:
+    case SEARCH_EMPLOYEES_BY_IDS_LOADING:
     case DELETE_EMPLOYEE_LOADING:
       return {
         isLoading: true,
@@ -39,6 +43,7 @@ export const employeeReducer = (employeeState = initialState, action) => {
     case CREATE_EMPLOYEE_ERROR:
     case UPDATE_EMPLOYEE_ERROR:
     case SEARCH_EMPLOYEES_ERROR:
+    case SEARCH_EMPLOYEES_BY_IDS_ERROR:
     case DELETE_EMPLOYEE_ERROR:
       console.log(action);
       return {
@@ -59,6 +64,14 @@ export const employeeReducer = (employeeState = initialState, action) => {
       };
 
     case SEARCH_EMPLOYEES_COMPLETE:
+      return {
+        isLoading: false,
+        isError: false,
+        errorMessage: null,
+        entities: payload,
+        entity: null,
+      };
+    case SEARCH_EMPLOYEES_BY_IDS_COMPLETE:
       return {
         isLoading: false,
         isError: false,

@@ -8,6 +8,7 @@ export const selectRow = setSelectedRows => {
         setSelectedRows(oldRows => [...oldRows, row]);
         // select
         return true;
+        // if user unseleceted a row
       } else {
         // removes this selected row from the selectedRows array
         setSelectedRows(oldRows =>

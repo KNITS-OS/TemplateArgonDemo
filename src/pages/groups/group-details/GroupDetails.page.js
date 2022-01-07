@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
 import { useParams } from "react-router-dom";
 
@@ -23,7 +23,7 @@ import { GradientEmptyHeader } from "components/Headers";
 import { InputField, pagination } from "components/widgets";
 
 import { selectGroupById } from "redux/groups";
-import { getGroupMembers } from "redux/employees";
+import { searchEmployeesByIds } from "redux/employees";
 
 import { AddMemberPanel } from "..";
 
@@ -32,12 +32,10 @@ const { SearchBar } = Search;
 export const GroupDetailsPage = () => {
   let { id } = useParams();
   const history = useHistory();
+  const dispatch = useDispatch();
 
   const currentGroup = useSelector(selectGroupById(id));
-  const currentGroupMembers = useSelector(
-    getGroupMembers(currentGroup.members),
-  );
-
+  const groupMembers = useSelector(state => state.employee.entities);
   const [group, setGroup] = useState(currentGroup);
   const [currentMembersCollapse, setCurrentMembersCollapse] =
     useState(false);
@@ -46,12 +44,13 @@ export const GroupDetailsPage = () => {
   if (!group) {
     throw new Error("Group not found");
   }
-  console.log(
-    "currentGroupMembers: currentGroupMembers",
-    currentGroup.members,
-  );
 
   const { name, description, active, members } = group;
+
+  useEffect(() => {
+    dispatch(searchEmployeesByIds(currentGroup.members));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const onSave = updatedGroup => {
     console.log("updatedGroup", updatedGroup);
@@ -252,7 +251,7 @@ export const GroupDetailsPage = () => {
                           </CardHeader>
 
                           <ToolkitProvider
-                            data={currentGroupMembers}
+                            data={groupMembers}
                             keyField="firstName"
                             columns={[
                               {

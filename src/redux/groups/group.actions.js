@@ -13,7 +13,6 @@ import {
 import { groupService } from ".";
 
 export const createGroup = data => {
-  console.log(data);
   return { type: CREATE_GROUP_COMPLETE, payload: data };
 };
 
@@ -31,7 +30,6 @@ export const searchGroups = () => async dispatch => {
       payload: data,
     });
   } catch (err) {
-    console.log(err);
     dispatch({
       type: SEARCH_GROUPS_ERROR,
       payload: err.message,

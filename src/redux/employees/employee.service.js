@@ -5,6 +5,12 @@ const searchEmployees = queryParams => {
   return httpCommon.get(`/employees`);
 };
 
+const searchEmployeesByIds = employeeIds => {
+  const searchString = employeeIds.map(id => `id=${id}`).join("&");
+  return httpCommon.get(`/employees?${searchString}`);
+};
+
 export const employeeService = {
   searchEmployees,
+  searchEmployeesByIds,
 };

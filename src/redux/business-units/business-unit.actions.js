@@ -33,7 +33,6 @@ export const listBusinessUnits = () => async dispatch => {
 
     const { data } = await businessUnitService.listBusinessUnits();
 
-    console.log(data);
     dispatch(listBusinessUnitsComplete(data));
   } catch (err) {
     dispatch(listBusinessUnitsError(err));

@@ -4,7 +4,7 @@ import {
   LIST_COUNTRIES_ERROR,
 } from "redux/types.actions";
 
-import { countryService } from "./country.service";
+import { countryService } from ".";
 
 export const listCountriesLoading = () => {
   return {
@@ -33,7 +33,6 @@ export const listCountries = () => async dispatch => {
 
     const { data } = await countryService.listCountries();
 
-    console.log(data);
     dispatch(listCountriesComplete(data));
   } catch (err) {
     dispatch(listCountriesError(err));
