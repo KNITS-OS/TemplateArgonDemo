@@ -8,7 +8,7 @@ export const selectBusinessUnitsAsList = createSelector(
   state => state.businessUnit.entities,
   businessUnits => {
     return businessUnits.map(businessUnit => {
-      return { value: businessUnit.id, label: businessUnit.name };
+      return { value: businessUnit.name, label: businessUnit.name };
     });
   },
 );

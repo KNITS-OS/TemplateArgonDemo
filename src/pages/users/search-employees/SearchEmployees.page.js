@@ -58,15 +58,25 @@ export const SearchEmployeesPage = () => {
     }
   }, [employeesState.isError, employeesState.errorMessage]);
 
+  // https://stackoverflow.com/questions/286141/remove-blank-attributes-from-an-object-in-javascript
+  const removeEmptyAttributesFromObject = obj => {
+    // _ is not used but its value is the attribute name
+    return Object.fromEntries(
+      Object.entries(obj).filter(
+        ([_, value]) => value !== null && value !== "",
+      ),
+    );
+  };
+
   const findByAllParameters = () => {
     let filters = {
       lastName: searchLastName,
       businessUnit: searchBusinessUnit,
       country: searchCountry,
-      hiringDate: searchHiringDate,
+      onboardingDate: searchHiringDate,
     };
-    console.log("filters", filters);
-    // dispatch(searchEmployees(filters));
+    const cleanedFilters = removeEmptyAttributesFromObject(filters);
+    dispatch(searchEmployees(cleanedFilters));
   };
 
   const goToEmployeeDetails = e => {

@@ -1,8 +1,9 @@
 import { httpCommon } from "redux/http-common";
 
 const searchEmployees = queryParams => {
-  // return httpCommon.get(`/employees?${queryParams}`);
-  return httpCommon.get(`/employees`);
+  console.log(`/employees?${queryParams}`);
+  return httpCommon.get(`/employees?${queryParams}`);
+  // return httpCommon.get(`/employees`);
 };
 
 const searchEmployeesByIds = employeeIds => {
