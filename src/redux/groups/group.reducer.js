@@ -33,6 +33,8 @@ const initialState = {
 export const groupReducer = (groupState = initialState, action) => {
   const { type, payload } = action;
 
+  console.log("groupReducer", groupState, action);
+
   switch (type) {
     case CREATE_GROUP_LOADING:
     case UPDATE_GROUP_LOADING:
@@ -117,7 +119,7 @@ export const groupReducer = (groupState = initialState, action) => {
 
     case DEACTIVATE_GROUP_COMPLETE:
       const deactivatedGroups = groupState.entities.map(group => {
-        if (group.id === payload.id) {
+        if (group.id === payload) {
           return {
             ...group,
             active: !group.active,

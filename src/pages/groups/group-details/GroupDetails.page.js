@@ -22,7 +22,11 @@ import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
 import { GradientEmptyHeader } from "components/Headers";
 import { InputField, pagination } from "components/widgets";
 
-import { selectGroupById } from "redux/groups";
+import {
+  selectGroupById,
+  deactivateGroup,
+  updateGroup,
+} from "redux/groups";
 import { searchEmployeesByIds } from "redux/employees";
 
 import { AddMemberPanel } from "..";
@@ -39,7 +43,7 @@ export const GroupDetailsPage = () => {
   const [group, setGroup] = useState(currentGroup);
   const [currentMembersCollapse, setCurrentMembersCollapse] =
     useState(false);
-  const [addMembersCollapse, setAddMembersCollapse] = useState(false);
+  const [addMemberCollapse, setAddMemberCollapse] = useState(false);
 
   if (!group) {
     throw new Error("Group not found");
@@ -52,8 +56,8 @@ export const GroupDetailsPage = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const onSave = updatedGroup => {
-    console.log("updatedGroup", updatedGroup);
+  const onSave = () => {
+    dispatch(updateGroup(group));
   };
 
   const onBackToSearch = () => {
@@ -62,11 +66,11 @@ export const GroupDetailsPage = () => {
 
   const toggleCurrentMembers = () => {
     setCurrentMembersCollapse(!currentMembersCollapse);
-    setAddMembersCollapse(false);
+    setAddMemberCollapse(false);
   };
 
-  const toggleAddMembers = () => {
-    setAddMembersCollapse(!addMembersCollapse);
+  const toggleAddMember = () => {
+    setAddMemberCollapse(!addMemberCollapse);
     setCurrentMembersCollapse(false);
   };
 
@@ -109,9 +113,8 @@ export const GroupDetailsPage = () => {
     console.log(id);
   };
 
-  const deactivateGroup = e => {
-    // var { id } = e.target;
-    console.log("deactivateGroup");
+  const onToggleGroupActive = () => {
+    dispatch(deactivateGroup(parseInt(id)));
   };
 
   return (
@@ -133,7 +136,7 @@ export const GroupDetailsPage = () => {
                       <Button
                         type="button"
                         color="danger"
-                        onClick={deactivateGroup}
+                        onClick={onToggleGroupActive}
                       >
                         Deactivate Group
                       </Button>
@@ -141,7 +144,7 @@ export const GroupDetailsPage = () => {
                       <Button
                         type="button"
                         color="success"
-                        onClick={deactivateGroup}
+                        onClick={onToggleGroupActive}
                       >
                         Activate Group
                       </Button>
@@ -194,26 +197,9 @@ export const GroupDetailsPage = () => {
                       </Col>
                     </Row>
 
-                    <Row className="d-flex justify-content-between mx-2">
-                      <h6 className="heading-small text-muted mb-4">
-                        MEMBERS
-                      </h6>
-                      <ButtonGroup className="d-flex">
-                        <Button
-                          onClick={e =>
-                            setAddMembersCollapse(!addMembersCollapse)
-                          }
-                          color="success"
-                          type="button"
-                        >
-                          Add new Members
-                        </Button>
-                      </ButtonGroup>
-                    </Row>
-
                     <Row>
                       <Col lg="12">
-                        <Collapse isOpen={addMembersCollapse}>
+                        <Collapse isOpen={addMemberCollapse}>
                           <AddMemberPanel
                             onChangeRole={e => console.log(e)}
                             onChangeCountry={e => console.log(e)}
@@ -226,8 +212,8 @@ export const GroupDetailsPage = () => {
                   </div>
 
                   <ButtonGroup className="d-flex">
-                    <Button onClick={toggleAddMembers} color="success">
-                      Add new Members
+                    <Button onClick={toggleAddMember} color="success">
+                      Add new Member
                     </Button>
                     <Button
                       onClick={toggleCurrentMembers}

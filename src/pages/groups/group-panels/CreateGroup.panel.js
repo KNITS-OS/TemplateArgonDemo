@@ -23,17 +23,7 @@ export const CreateGroupPanel = ({
   addMembersCollapse,
   setAddMembersCollapse,
 }) => {
-  const { name, description, active, members } = group;
-
-  const onSaveClick = () => {
-    let updatedGroup = {
-      name,
-      description,
-      active,
-      members,
-    };
-    onSave(updatedGroup);
-  };
+  const { name, description } = group;
 
   return (
     <Row>
@@ -113,8 +103,8 @@ export const CreateGroupPanel = ({
               </div>
               <Row className="align-items-center py-4">
                 <Col lg="12" xs="7" className="text-right">
-                  <Button color="success" onClick={onSaveClick}>
-                    Submit
+                  <Button color="success" onClick={onSave}>
+                    Create
                   </Button>
                 </Col>
               </Row>

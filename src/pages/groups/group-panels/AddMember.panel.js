@@ -1,3 +1,4 @@
+import { useSelector } from "react-redux";
 import PropTypes from "prop-types";
 
 import {
@@ -21,6 +22,9 @@ export const AddMemberPanel = (
   onChangeBusinessUnit,
   onSelectCareMember,
 ) => {
+  const countriesList = useSelector(selectCountriesAsList);
+  const businessUnitsList = useSelector(selectBusinessUnitsAsList);
+
   const jobTitles = [
     { value: 1, label: "product manager" },
     { value: 2, label: "qa engineer" },
@@ -58,7 +62,7 @@ export const AddMemberPanel = (
                   </label>
                   <Select
                     onChange={onChangeCountry}
-                    options={selectCountriesAsList}
+                    options={countriesList}
                   />
                 </FormGroup>
               </Col>
@@ -69,7 +73,7 @@ export const AddMemberPanel = (
                   </label>
                   <Select
                     onChange={onChangeBusinessUnit}
-                    options={selectBusinessUnitsAsList}
+                    options={businessUnitsList}
                   />
                 </FormGroup>
               </Col>

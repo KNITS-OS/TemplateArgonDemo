@@ -1,6 +1,10 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useHistory } from "react-router";
 
 import { Container } from "reactstrap";
+
+import { createGroup } from "redux/groups";
 
 import { CreateGroupPanel } from "..";
 
@@ -11,12 +15,15 @@ export const CreateGroupPage = () => {
     members: [],
     active: true,
   };
+  const dispatch = useDispatch();
+  const history = useHistory();
 
   const [group, setGroup] = useState(initialState);
   const [addMembersCollapse, setAddMembersCollapse] = useState(false);
 
-  const onSave = createdGroup => {
-    console.log("createdGroup", createdGroup);
+  const onCreate = () => {
+    dispatch(createGroup(group));
+    history.push("/admin/search-groups");
   };
 
   return (
@@ -36,7 +43,7 @@ export const CreateGroupPage = () => {
         <CreateGroupPanel
           group={group}
           setGroup={setGroup}
-          onSave={onSave}
+          onSave={onCreate}
           addMembersCollapse={addMembersCollapse}
           setAddMembersCollapse={setAddMembersCollapse}
         />

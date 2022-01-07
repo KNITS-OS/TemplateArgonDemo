@@ -37,12 +37,12 @@ export const searchGroups = () => async dispatch => {
   }
 };
 
-export const updateGroup = (id, data) => {
-  return { type: UPDATE_GROUP_COMPLETE, payload: id, data };
+export const updateGroup = updatedGroup => {
+  return { type: UPDATE_GROUP_COMPLETE, payload: updatedGroup };
 };
 
 export const deleteGroup = id => {
-  return { type: DELETE_GROUP_COMPLETE, payload: { id } };
+  return { type: DELETE_GROUP_COMPLETE, payload: id };
 };
 
 export const deactivateGroup = id => {
