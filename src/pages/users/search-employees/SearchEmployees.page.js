@@ -219,8 +219,8 @@ export const SearchEmployeesPage = () => {
                   data={employeesState.entities}
                   keyField="id"
                   columns={employeesTableColumns}
-                  onViewDetails={goToEmployeeDetails}
-                  onDeleteItem={removeEmployee}
+                  onViewDetailsClick={goToEmployeeDetails}
+                  onDeleteItemClick={removeEmployee}
                   selectedRows={selectedEmployees}
                   setSelectedRows={setSelectedEmployees}
                 />

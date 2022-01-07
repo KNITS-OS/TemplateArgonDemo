@@ -14,13 +14,11 @@ import {
   Container,
   Form,
   Row,
+  Spinner,
 } from "reactstrap";
 
-import BootstrapTable from "react-bootstrap-table-next";
-import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
-
 import { GradientEmptyHeader } from "components/Headers";
-import { InputField, pagination } from "components/widgets";
+import { InputField } from "components/widgets";
 
 import {
   selectGroupById,
@@ -30,8 +28,8 @@ import {
 import { searchEmployeesByIds } from "redux/employees";
 
 import { AddMemberPanel } from "..";
-
-const { SearchBar } = Search;
+import { employeesTableColumns } from "pages/users";
+import { ReactTable } from "components/widgets";
 
 export const GroupDetailsPage = () => {
   let { id } = useParams();
@@ -39,8 +37,9 @@ export const GroupDetailsPage = () => {
   const dispatch = useDispatch();
 
   const currentGroup = useSelector(selectGroupById(id));
-  const groupMembers = useSelector(state => state.employee.entities);
+  const groupState = useSelector(state => state.employee);
   const [group, setGroup] = useState(currentGroup);
+  const [selectedEmployees, setSelectedEmployees] = useState([]);
   const [currentMembersCollapse, setCurrentMembersCollapse] =
     useState(false);
   const [addMemberCollapse, setAddMemberCollapse] = useState(false);
@@ -72,35 +71,6 @@ export const GroupDetailsPage = () => {
   const toggleAddMember = () => {
     setAddMemberCollapse(!addMemberCollapse);
     setCurrentMembersCollapse(false);
-  };
-
-  const formatActionButtonCell = (cell, row) => {
-    return (
-      <>
-        <Button
-          id={row.id}
-          className="btn-icon btn-2"
-          type="button"
-          color="info"
-          onClick={memberDetails}
-        >
-          <span id={row.id} className="btn-inner--icon">
-            <i id={row.id} className="ni ni-badge" />
-          </span>
-        </Button>
-        <Button
-          id={row.id}
-          className="btn-icon btn-2"
-          color="danger"
-          type="button"
-          onClick={memberRemove}
-        >
-          <span id={row.id} className="btn-inner--icon">
-            <i id={row.id} className="ni ni-fat-remove" />
-          </span>
-        </Button>
-      </>
-    );
   };
 
   const memberDetails = e => {
@@ -236,93 +206,25 @@ export const GroupDetailsPage = () => {
                             <p className="text-sm mb-0">Care Members</p>
                           </CardHeader>
 
-                          <ToolkitProvider
-                            data={groupMembers}
-                            keyField="firstName"
-                            columns={[
-                              {
-                                dataField: "firstName",
-                                text: "First Name",
-                                hidden: true,
-                              },
-                              {
-                                dataField: "lastName",
-                                text: "lastName",
-                                hidden: true,
-                              },
-                              {
-                                dataField: "internationalName",
-                                text: "int Name",
-                                sort: true,
-                              },
-                              {
-                                dataField: "title",
-                                text: "title",
-                                sort: true,
-                                style: { width: "50px" },
-                              },
-                              {
-                                dataField: "businessUnit",
-                                text: "bUnit",
-                                sort: true,
-                                style: { width: "50px" },
-                              },
-                              {
-                                dataField: "companyCode",
-                                text: "companyCode",
-                                sort: true,
-                                style: { width: "50px" },
-                              },
-                              {
-                                dataField: "costCenter",
-                                text: "costCenter",
-                                sort: true,
-                              },
-                              {
-                                dataField: "country",
-                                text: "country",
-                                sort: true,
-                              },
-                              {
-                                dataField: "hiringDate",
-                                text: "hiringDate",
-                                sort: true,
-                              },
-                              {
-                                dataField: "action",
-                                text: "",
-                                formatter: formatActionButtonCell,
-                              },
-                            ]}
-                            search
-                          >
-                            {props => (
-                              <>
-                                <div className="py-4 table-responsive">
-                                  <div
-                                    id="datatable-basic_filter"
-                                    className="dataTables_filter px-4 pb-1"
-                                  >
-                                    <label>
-                                      Search:
-                                      <SearchBar
-                                        className="form-control-sm"
-                                        placeholder="Filter results"
-                                        {...props.searchProps}
-                                      />
-                                    </label>
-                                  </div>
-
-                                  <BootstrapTable
-                                    {...props.baseProps}
-                                    bootstrap4={true}
-                                    pagination={pagination}
-                                    bordered={false}
-                                  />
-                                </div>
-                              </>
-                            )}
-                          </ToolkitProvider>
+                          {groupState.isLoading ? (
+                            <div
+                              style={{
+                                textAlign: "center",
+                              }}
+                            >
+                              <Spinner />
+                            </div>
+                          ) : (
+                            <ReactTable
+                              data={groupState.entities}
+                              keyField="id"
+                              columns={employeesTableColumns}
+                              onViewDetailsClick={memberDetails}
+                              onDeleteItemClick={memberRemove}
+                              selectedRows={selectedEmployees}
+                              setSelectedRows={setSelectedEmployees}
+                            />
+                          )}
                         </Card>
                       </Collapse>
                     </Col>

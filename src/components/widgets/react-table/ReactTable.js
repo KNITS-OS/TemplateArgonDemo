@@ -14,8 +14,8 @@ export const ReactTable = ({
   columns,
   keyField,
   data,
-  onViewDetails,
-  onDeleteItem,
+  onViewDetailsClick,
+  onDeleteItemClick,
   selectedRows,
   setSelectedRows,
 }) => {
@@ -27,7 +27,7 @@ export const ReactTable = ({
           className="btn-icon btn-2"
           type="button"
           color="info"
-          onClick={onViewDetails}
+          onClick={onViewDetailsClick}
         >
           <span id={row.id} className="btn-inner--icon">
             <i id={row.id} className="ni ni-badge" />
@@ -38,7 +38,7 @@ export const ReactTable = ({
           className="btn-icon btn-2"
           color="danger"
           type="button"
-          onClick={onDeleteItem}
+          onClick={onDeleteItemClick}
         >
           <span id={row.id} className="btn-inner--icon">
             <i id={row.id} className="ni ni-fat-remove" />
@@ -104,8 +104,8 @@ ReactTable.propTypes = {
   columns: PropTypes.array.isRequired,
   keyField: PropTypes.string.isRequired,
   data: PropTypes.array.isRequired,
-  onViewDetails: PropTypes.func.isRequired,
-  onDeleteItem: PropTypes.func.isRequired,
+  onViewDetailsClick: PropTypes.func.isRequired,
+  onDeleteItemClick: PropTypes.func.isRequired,
   selectedRows: PropTypes.array.isRequired,
   setSelectedRows: PropTypes.func.isRequired,
 };

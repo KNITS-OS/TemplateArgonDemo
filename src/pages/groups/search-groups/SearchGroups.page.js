@@ -110,8 +110,8 @@ export const SearchGroupsPage = () => {
                   data={groupsState.entities}
                   keyField="id"
                   columns={groupsTableColumns}
-                  onViewDetails={goToGroupDetails}
-                  onDeleteItem={removeGroup}
+                  onViewDetailsClick={goToGroupDetails}
+                  onDeleteItemClick={removeGroup}
                   selectedRows={selectedGroups}
                   setSelectedRows={setSelectedGroups}
                 />
