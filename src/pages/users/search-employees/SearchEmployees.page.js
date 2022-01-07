@@ -61,11 +61,12 @@ export const SearchEmployeesPage = () => {
   const findByAllParameters = () => {
     let filters = {
       lastName: searchLastName,
-      businessUnitId: searchBusinessUnit,
-      countryIsoCode3: searchCountry,
+      businessUnit: searchBusinessUnit,
+      country: searchCountry,
       hiringDate: searchHiringDate,
     };
-    dispatch(searchEmployees(filters));
+    console.log("filters", filters);
+    // dispatch(searchEmployees(filters));
   };
 
   const goToEmployeeDetails = e => {
@@ -159,7 +160,7 @@ export const SearchEmployeesPage = () => {
                         }}
                         onChange={dateAsMoment =>
                           setSearchHiringDate(
-                            dateAsMoment.format("D-MM-YYYY"),
+                            dateAsMoment.format("MM/DD/YYYY"),
                           )
                         }
                         timeFormat={false}
