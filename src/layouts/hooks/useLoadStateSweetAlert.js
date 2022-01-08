@@ -4,8 +4,11 @@ import { UncontrolledAlert } from "reactstrap";
 
 import SweetAlert from "react-bootstrap-sweetalert";
 
-export const useLoadStateSweetAlert = () => {
-  const cleanAlert = (setCategoryDataLoaded, setAlert) => {
+export const useLoadStateSweetAlert = (
+  setAlert,
+  setCategoryDataLoaded,
+) => {
+  const cleanAlert = () => {
     setCategoryDataLoaded(true); // remove spinner
     setAlert(
       <UncontrolledAlert color="danger" fade={false}>
@@ -20,11 +23,7 @@ export const useLoadStateSweetAlert = () => {
     );
   };
   return {
-    useLoadStateSweetAlertMutation: (
-      state,
-      setAlert,
-      setCategoryDataLoaded,
-    ) => {
+    useLoadStateSweetAlertMutation: state => {
       useEffect(() => {
         if (state.entities && state.entities.length > 0) {
           setCategoryDataLoaded(true);

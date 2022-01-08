@@ -28,6 +28,7 @@ import { AdminFooter } from "components/Footers";
 import { listCountries } from "redux/countries";
 import { listBusinessUnits } from "redux/business-units";
 import { listCharts } from "redux/charts";
+import { listWorldMap } from "redux/world-map";
 import { useLoadStateSweetAlert, getRoutes } from "./hooks";
 
 export const AdminLayout = () => {
@@ -36,6 +37,7 @@ export const AdminLayout = () => {
   const countriesState = useSelector(state => state.country);
   const businessUnitsState = useSelector(state => state.businessUnit);
   const chartsState = useSelector(state => state.chart);
+  const worldMapState = useSelector(state => state.worldMap);
 
   const [sidenavOpen, setSidenavOpen] = React.useState(true);
   const mainContentRef = React.useRef(null);
@@ -44,10 +46,14 @@ export const AdminLayout = () => {
   const [alert, setAlert] = useState(
     countriesState.isError ||
       businessUnitsState.isError ||
-      chartsState.isError,
+      chartsState.isError ||
+      worldMapState.isError,
   );
 
-  const { useLoadStateSweetAlertMutation } = useLoadStateSweetAlert();
+  const { useLoadStateSweetAlertMutation } = useLoadStateSweetAlert(
+    setAlert,
+    setCategoryDataLoaded,
+  );
 
   useEffect(() => {
     document.documentElement.scrollTop = 0;
@@ -59,23 +65,13 @@ export const AdminLayout = () => {
     dispatch(listCountries());
     dispatch(listBusinessUnits());
     dispatch(listCharts());
+    dispatch(listWorldMap());
   }, [dispatch]);
 
-  useLoadStateSweetAlertMutation(
-    countriesState,
-    setAlert,
-    setCategoryDataLoaded,
-  );
-  useLoadStateSweetAlertMutation(
-    businessUnitsState,
-    setAlert,
-    setCategoryDataLoaded,
-  );
-  useLoadStateSweetAlertMutation(
-    chartsState,
-    setAlert,
-    setCategoryDataLoaded,
-  );
+  useLoadStateSweetAlertMutation(countriesState);
+  useLoadStateSweetAlertMutation(businessUnitsState);
+  useLoadStateSweetAlertMutation(chartsState);
+  useLoadStateSweetAlertMutation(worldMapState);
 
   const getBrandText = path => {
     for (let i = 0; i < routes.length; i++) {
