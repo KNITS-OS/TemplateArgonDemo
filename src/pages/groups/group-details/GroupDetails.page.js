@@ -19,17 +19,19 @@ import {
 
 import { GradientEmptyHeader } from "components/Headers";
 import { InputField } from "components/widgets";
+import { ReactTable } from "components/widgets";
 
 import {
   selectGroupById,
   deactivateGroup,
+  deleteGroup,
   updateGroup,
 } from "redux/groups";
 import { searchEmployeesByIds } from "redux/employees";
 
-import { AddMemberPanel } from "..";
 import { employeesTableColumns } from "pages/users";
-import { ReactTable } from "components/widgets";
+
+import { AddMemberPanel } from "..";
 
 export const GroupDetailsPage = () => {
   let { id } = useParams();
@@ -85,6 +87,9 @@ export const GroupDetailsPage = () => {
 
   const onToggleGroupActive = () => {
     dispatch(deactivateGroup(parseInt(id)));
+  };
+  const onDelete = () => {
+    dispatch(deleteGroup(parseInt(id)));
   };
 
   return (
@@ -237,7 +242,7 @@ export const GroupDetailsPage = () => {
                       <Button color="primary" onClick={onSave}>
                         Save
                       </Button>
-                      <Button color="danger" onClick={onSave}>
+                      <Button color="danger" onClick={onDelete}>
                         Delete group
                       </Button>
                     </Row>
