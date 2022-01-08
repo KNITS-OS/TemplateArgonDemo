@@ -1,6 +1,6 @@
 import React, { useState } from "react";
+import SweetAlert from "react-bootstrap-sweetalert";
 import { useDispatch } from "react-redux";
-import { useHistory } from "react-router";
 
 import { Container } from "reactstrap";
 
@@ -16,14 +16,22 @@ export const CreateGroupPage = () => {
     active: true,
   };
   const dispatch = useDispatch();
-  const history = useHistory();
 
   const [group, setGroup] = useState(initialState);
   const [addMembersCollapse, setAddMembersCollapse] = useState(false);
+  const [alert, setAlert] = useState(false);
 
   const onCreate = () => {
     dispatch(createGroup(group));
-    history.push("/admin/search-groups");
+    setAlert(
+      <SweetAlert
+        success
+        title="Success"
+        onConfirm={() => setAlert(false)}
+      >
+        Group Created
+      </SweetAlert>,
+    );
   };
 
   return (
@@ -38,6 +46,7 @@ export const CreateGroupPage = () => {
       >
         <span className="mask bg-gradient-info opacity-8" />
       </div>
+      {alert}
 
       <Container className="mt--6" fluid>
         <CreateGroupPanel
