@@ -16,7 +16,7 @@
 */
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation, Route, Switch, Redirect } from "react-router-dom";
+import { useLocation, Switch, Redirect } from "react-router-dom";
 
 import { Spinner } from "reactstrap";
 
@@ -28,7 +28,7 @@ import { AdminFooter } from "components/Footers";
 import { listCountries } from "redux/countries";
 import { listBusinessUnits } from "redux/business-units";
 import { listCharts } from "redux/charts";
-import { useLoadStateSweetAlert } from "./hooks";
+import { useLoadStateSweetAlert, getRoutes } from "./hooks";
 
 export const AdminLayout = () => {
   const dispatch = useDispatch();
@@ -76,25 +76,6 @@ export const AdminLayout = () => {
     setAlert,
     setCategoryDataLoaded,
   );
-
-  const getRoutes = routes => {
-    return routes.map((prop, key) => {
-      if (prop.collapse) {
-        return getRoutes(prop.views);
-      }
-      if (prop.layout === "/admin") {
-        return (
-          <Route
-            path={prop.layout + prop.path}
-            component={prop.component}
-            key={key}
-          />
-        );
-      } else {
-        return null;
-      }
-    });
-  };
 
   const getBrandText = path => {
     for (let i = 0; i < routes.length; i++) {
@@ -148,7 +129,7 @@ export const AdminLayout = () => {
               brandText={getBrandText(location.pathname)}
             />
             <Switch>
-              {getRoutes(routes)}
+              {getRoutes(routes, "/admin")}
               <Redirect from="*" to="/admin/dashboard" />
             </Switch>
             <AdminFooter />

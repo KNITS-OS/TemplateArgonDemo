@@ -17,11 +17,13 @@
 
 // react library for routing
 import { useEffect, useRef } from "react";
-import { useLocation, Route, Switch, Redirect } from "react-router-dom";
+import { useLocation, Switch, Redirect } from "react-router-dom";
 
 import { routes } from "routes";
 import { AuthNavbar } from "components/Navbars";
 import { AuthFooter } from "components/Footers";
+
+import { getRoutes } from "./hooks";
 
 export const AuthLayout = () => {
   const location = useLocation();
@@ -41,31 +43,13 @@ export const AuthLayout = () => {
     document.scrollingElement.scrollTop = 0;
     mainContentRef.current.scrollTop = 0;
   }, [location]);
-  const getRoutes = routes => {
-    return routes.map((prop, key) => {
-      if (prop.collapse) {
-        return getRoutes(prop.views);
-      }
-      if (prop.layout === "/auth") {
-        return (
-          <Route
-            path={prop.layout + prop.path}
-            component={prop.component}
-            key={key}
-          />
-        );
-      } else {
-        return null;
-      }
-    });
-  };
 
   return (
     <>
       <div className="main-content" ref={mainContentRef}>
         <AuthNavbar />
         <Switch>
-          {getRoutes(routes)}
+          {getRoutes(routes, "/auth")}
           <Redirect from="*" to="/auth/login" />
         </Switch>
       </div>
