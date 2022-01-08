@@ -18,9 +18,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, Route, Switch, Redirect } from "react-router-dom";
 
-import { UncontrolledAlert, Spinner } from "reactstrap";
-
-import SweetAlert from "react-bootstrap-sweetalert";
+import { Spinner } from "reactstrap";
 
 import { routes } from "routes";
 import { Sidebar } from "components/Sidebar";
@@ -30,6 +28,7 @@ import { AdminFooter } from "components/Footers";
 import { listCountries } from "redux/countries";
 import { listBusinessUnits } from "redux/business-units";
 import { listCharts } from "redux/charts";
+import { useLoadStateSweetAlert } from "./hooks";
 
 export const AdminLayout = () => {
   const dispatch = useDispatch();
@@ -48,6 +47,8 @@ export const AdminLayout = () => {
       chartsState.isError,
   );
 
+  const { useLoadStateSweetAlertMutation } = useLoadStateSweetAlert();
+
   useEffect(() => {
     document.documentElement.scrollTop = 0;
     document.scrollingElement.scrollTop = 0;
@@ -60,71 +61,21 @@ export const AdminLayout = () => {
     dispatch(listCharts());
   }, [dispatch]);
 
-  useEffect(() => {
-    if (countriesState.entities && countriesState.entities.length > 0) {
-      setCategoryDataLoaded(true);
-    }
-  }, [countriesState.entities]);
-
-  useEffect(() => {
-    if (
-      businessUnitsState.entities &&
-      businessUnitsState.entities.length > 0
-    ) {
-      setCategoryDataLoaded(true);
-    }
-  }, [businessUnitsState.entities]);
-
-  useEffect(() => {
-    if (chartsState.entities && chartsState.entities.length > 0) {
-      setCategoryDataLoaded(true);
-    }
-  }, [chartsState.entities]);
-
-  useEffect(() => {
-    if (countriesState.isError) {
-      setAlert(
-        <SweetAlert danger title="Error" onConfirm={() => cleanAlert()}>
-          {`${countriesState.errorMessage} please contact administrator`}
-        </SweetAlert>,
-      );
-    }
-  }, [countriesState.isError, countriesState.errorMessage]);
-
-  useEffect(() => {
-    if (businessUnitsState.isError) {
-      setAlert(
-        <SweetAlert danger title="Error" onConfirm={() => cleanAlert()}>
-          {`${businessUnitsState.errorMessage} please contact administrator`}
-        </SweetAlert>,
-      );
-    }
-  }, [businessUnitsState.isError, businessUnitsState.errorMessage]);
-
-  useEffect(() => {
-    if (chartsState.isError) {
-      setAlert(
-        <SweetAlert danger title="Error" onConfirm={() => cleanAlert()}>
-          {`${chartsState.errorMessage} please contact administrator`}
-        </SweetAlert>,
-      );
-    }
-  }, [chartsState.isError, chartsState.errorMessage]);
-
-  const cleanAlert = () => {
-    setCategoryDataLoaded(true); // remove spinner
-    setAlert(
-      <UncontrolledAlert color="danger" fade={false}>
-        <span className="alert-inner--icon">
-          <i className="ni ni-like-2" />
-        </span>{" "}
-        <span className="alert-inner--text">
-          <strong>Attention!</strong> No data were loaded. Application will
-          not work as expected
-        </span>
-      </UncontrolledAlert>,
-    );
-  };
+  useLoadStateSweetAlertMutation(
+    countriesState,
+    setAlert,
+    setCategoryDataLoaded,
+  );
+  useLoadStateSweetAlertMutation(
+    businessUnitsState,
+    setAlert,
+    setCategoryDataLoaded,
+  );
+  useLoadStateSweetAlertMutation(
+    chartsState,
+    setAlert,
+    setCategoryDataLoaded,
+  );
 
   const getRoutes = routes => {
     return routes.map((prop, key) => {
