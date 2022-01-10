@@ -2,6 +2,7 @@ import { useSelector } from "react-redux";
 import PropTypes from "prop-types";
 
 import {
+  Button,
   Card,
   CardBody,
   CardHeader,
@@ -33,7 +34,7 @@ export const AddMemberPanel = (
     { value: 5, label: "sales representative" },
     { value: 6, label: "logistics consultant" },
   ];
-
+  // @todo make this find employees by filters
   return (
     <Card>
       <CardHeader>
@@ -45,9 +46,9 @@ export const AddMemberPanel = (
       </CardHeader>
       <CardBody>
         <Row>
-          <Col xl="12">
+          <Col md="12">
             <Row>
-              <Col xl="2">
+              <Col md="2">
                 <FormGroup>
                   <label className="form-control-label" htmlFor="members">
                     Job Title
@@ -55,7 +56,7 @@ export const AddMemberPanel = (
                   <Select onChange={onChangeRole} options={jobTitles} />
                 </FormGroup>
               </Col>
-              <Col xl="2">
+              <Col md="2">
                 <FormGroup>
                   <label className="form-control-label" htmlFor="members">
                     Country
@@ -66,7 +67,7 @@ export const AddMemberPanel = (
                   />
                 </FormGroup>
               </Col>
-              <Col xl="2">
+              <Col md="2">
                 <FormGroup>
                   <label className="form-control-label" htmlFor="members">
                     Business Unit
@@ -77,7 +78,7 @@ export const AddMemberPanel = (
                   />
                 </FormGroup>
               </Col>
-              <Col sm="6">
+              <Col md="4">
                 <FormGroup>
                   <label className="form-control-label" htmlFor="members">
                     Add members
@@ -87,6 +88,20 @@ export const AddMemberPanel = (
                     onChange={onSelectCareMember}
                     options={selectEmployeesAsList}
                   />
+                </FormGroup>
+              </Col>
+              <Col md="2">
+                <FormGroup>
+                  <Button
+                    style={{
+                      marginTop: "32px",
+                      marginLeft: "32px",
+                      height: "40px",
+                    }}
+                    color="success"
+                  >
+                    Add
+                  </Button>
                 </FormGroup>
               </Col>
             </Row>

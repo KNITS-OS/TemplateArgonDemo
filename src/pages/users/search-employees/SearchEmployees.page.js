@@ -5,6 +5,7 @@ import { useHistory } from "react-router";
 
 // reactstrap components
 import {
+  Button,
   Card,
   CardBody,
   CardHeader,
@@ -179,18 +180,17 @@ export const SearchEmployeesPage = () => {
                   </Col>
                   <Col md="2">
                     <FormGroup>
-                      <button
+                      <Button
                         style={{
                           marginTop: "32px",
                           marginLeft: "32px",
                           height: "40px",
                         }}
-                        className="btn btn-info"
-                        type="button"
+                        color="info"
                         onClick={findByAllParameters}
                       >
                         Search
-                      </button>
+                      </Button>
                     </FormGroup>
                   </Col>
                 </Row>

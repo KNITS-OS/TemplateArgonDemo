@@ -23,8 +23,9 @@ import {
 } from "redux/types.actions";
 
 const initialState = {
-  loading: false,
+  isLoading: false,
   isError: false,
+  isSuccess: false,
   errorMessage: null,
   entities: [],
   entity: null,
@@ -32,9 +33,10 @@ const initialState = {
 
 export const employeeReducer = (employeeState = initialState, action) => {
   const { type, payload } = action;
+
   switch (type) {
-    case SEARCH_EMPLOYEES_LOADING:
     case SEARCH_EMPLOYEE_LOADING:
+    case SEARCH_EMPLOYEES_LOADING:
     case SEARCH_EMPLOYEES_BY_IDS_LOADING:
     case CREATE_EMPLOYEE_LOADING:
     case PARTIAL_UPDATE_EMPLOYEE_LOADING:
@@ -43,13 +45,14 @@ export const employeeReducer = (employeeState = initialState, action) => {
       return {
         isLoading: true,
         isError: false,
+        isSuccess: false,
         errorMessage: null,
         entities: [],
         entity: null,
       };
 
-    case SEARCH_EMPLOYEES_ERROR:
     case SEARCH_EMPLOYEE_ERROR:
+    case SEARCH_EMPLOYEES_ERROR:
     case SEARCH_EMPLOYEES_BY_IDS_ERROR:
     case CREATE_EMPLOYEE_ERROR:
     case PARTIAL_UPDATE_EMPLOYEE_ERROR:
@@ -59,6 +62,7 @@ export const employeeReducer = (employeeState = initialState, action) => {
       return {
         isLoading: false,
         isError: true,
+        isSuccess: false,
         errorMessage: payload,
         entities: [],
         entity: null,
@@ -68,15 +72,17 @@ export const employeeReducer = (employeeState = initialState, action) => {
       return {
         isLoading: false,
         isError: false,
+        isSuccess: true,
         errorMessage: null,
         entities: [...employeeState.entities, payload],
-        entity: null,
+        entity: payload,
       };
 
     case SEARCH_EMPLOYEE_COMPLETE:
       return {
         isLoading: false,
         isError: false,
+        isSuccess: true,
         errorMessage: null,
         entities: null,
         entity: payload,
@@ -86,6 +92,7 @@ export const employeeReducer = (employeeState = initialState, action) => {
       return {
         isLoading: false,
         isError: false,
+        isSuccess: true,
         errorMessage: null,
         entities: payload,
         entity: null,
@@ -95,6 +102,7 @@ export const employeeReducer = (employeeState = initialState, action) => {
       return {
         isLoading: false,
         isError: false,
+        isSuccess: true,
         errorMessage: null,
         entities: payload,
         entity: null,
@@ -115,9 +123,10 @@ export const employeeReducer = (employeeState = initialState, action) => {
       return {
         isLoading: false,
         isError: false,
+        isSuccess: true,
         errorMessage: null,
         entities: updatedEmployees,
-        entity: null,
+        entity: payload.data,
       };
 
     case PARTIAL_UPDATE_EMPLOYEE_COMPLETE:
@@ -137,6 +146,7 @@ export const employeeReducer = (employeeState = initialState, action) => {
       return {
         isLoading: false,
         isError: false,
+        isSuccess: true,
         errorMessage: null,
         entities: partiallyUpdatedEmployees,
         entity: null,
@@ -150,6 +160,7 @@ export const employeeReducer = (employeeState = initialState, action) => {
       return {
         isLoading: false,
         isError: false,
+        isSuccess: true,
         errorMessage: null,
         entities: employeesToKeep,
         entity: null,

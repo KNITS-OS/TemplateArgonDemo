@@ -47,31 +47,37 @@ export const CreateEmployeePage = () => {
     }
   }, [employeesState.isError, employeesState.errorMessage]);
 
-  const onSave = async () => {
-    await dispatch(createEmployee(employee));
-    if (employeesState.entities && !employeesState.isError) {
+  const onSave = () => {
+    dispatch(createEmployee(employee));
+  };
+
+  useEffect(() => {
+    if (employeesState.entity) {
       setAlert(
         <SweetAlert
           success
           title="Success"
           onConfirm={() => setAlert(false)}
         >
-          User Created
+          Employee Created
         </SweetAlert>,
       );
     }
-  };
+  }, [employeesState.entity]);
 
   return (
     <>
       <GradientEmptyHeader />
       {alert}
       <Container className="mt--6" fluid>
-        <EditEmployeePanel
-          employee={employee}
-          setEmployee={setEmployee}
-          onSave={onSave}
-        />
+        {employee && (
+          <EditEmployeePanel
+            employee={employee}
+            setEmployee={setEmployee}
+            onSave={onSave}
+            employeesState={employeesState}
+          />
+        )}
       </Container>
     </>
   );

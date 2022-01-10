@@ -175,8 +175,7 @@ export const addCareMemberToGroup = (id, body) => async dispatch => {
 
     dispatch({
       type: ADD_CAREMEMBER_TO_GROUP_COMPLETE,
-      payload: id,
-      data,
+      payload: { id, data },
     });
   } catch (err) {
     dispatch({
@@ -197,8 +196,7 @@ export const removeCareMemberFromGroup = (id, body) => async dispatch => {
 
     dispatch({
       type: REMOVE_CAREMEMBER_FROM_GROUP_COMPLETE,
-      payload: id,
-      data,
+      payload: { id, data },
     });
   } catch (err) {
     dispatch({

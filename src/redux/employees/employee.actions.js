@@ -1,3 +1,6 @@
+import { SEARCH_EMPLOYEE_LOADING } from "redux/types.actions";
+import { SEARCH_EMPLOYEE_ERROR } from "redux/types.actions";
+import { SEARCH_EMPLOYEE_COMPLETE } from "redux/types.actions";
 import {
   CREATE_EMPLOYEE_COMPLETE,
   CREATE_EMPLOYEE_ERROR,
@@ -39,6 +42,27 @@ export const createEmployee = body => async dispatch => {
   }
 };
 
+export const searchEmployee = id => async dispatch => {
+  try {
+    dispatch({
+      type: SEARCH_EMPLOYEE_LOADING,
+      payload: SEARCH_EMPLOYEE_LOADING,
+    });
+
+    const { data } = await employeeService.getEmployeeById(id);
+    dispatch({
+      type: SEARCH_EMPLOYEE_COMPLETE,
+      payload: data,
+    });
+  } catch (err) {
+    console.log(err);
+    dispatch({
+      type: SEARCH_EMPLOYEE_ERROR,
+      payload: err.message,
+    });
+  }
+};
+
 export const searchEmployees = filters => async dispatch => {
   try {
     const queryParams = new URLSearchParams(filters);
@@ -67,7 +91,7 @@ export const searchEmployeesByIds = employeeIds => async dispatch => {
   try {
     dispatch({
       type: SEARCH_EMPLOYEES_BY_IDS_LOADING,
-      payload: "SEARCH_EMPLOYEES_BY_IDS_LOADING",
+      payload: SEARCH_EMPLOYEES_BY_IDS_LOADING,
     });
 
     const { data } = await employeeService.searchEmployeesByIds(
@@ -98,8 +122,7 @@ export const updateEmployee = (id, body) => async dispatch => {
 
     dispatch({
       type: UPDATE_EMPLOYEE_COMPLETE,
-      payload: id,
-      data,
+      payload: { id, data },
     });
   } catch (err) {
     dispatch({ type: UPDATE_EMPLOYEE_ERROR, payload: err.message });
@@ -117,8 +140,7 @@ export const partialUpdateEmployee = (id, body) => async dispatch => {
 
     dispatch({
       type: PARTIAL_UPDATE_EMPLOYEE_COMPLETE,
-      payload: id,
-      data,
+      payload: { id, data },
     });
   } catch (err) {
     dispatch({

@@ -29,8 +29,9 @@ import {
 } from "redux/types.actions";
 
 const initialState = {
-  loading: false,
+  isLoading: false,
   isError: false,
+  isSuccess: false,
   errorMessage: null,
   entities: [],
   entity: null,
@@ -52,6 +53,7 @@ export const groupReducer = (groupState = initialState, action) => {
       return {
         isLoading: true,
         isError: false,
+        isSuccess: false,
         errorMessage: null,
         entities: [],
         entity: null,
@@ -69,6 +71,7 @@ export const groupReducer = (groupState = initialState, action) => {
       return {
         isLoading: false,
         isError: true,
+        isSuccess: false,
         errorMessage: payload,
         entities: [],
         entity: null,
@@ -78,27 +81,30 @@ export const groupReducer = (groupState = initialState, action) => {
       return {
         isLoading: false,
         isError: false,
+        isSuccess: true,
         errorMessage: null,
         entities: [...groupState.entities, payload],
-        entity: null,
-      };
-
-    case SEARCH_GROUPS_COMPLETE:
-      return {
-        isLoading: false,
-        isError: false,
-        errorMessage: null,
-        entities: payload,
-        entity: null,
+        entity: payload,
       };
 
     case SEARCH_GROUP_COMPLETE:
       return {
         isLoading: false,
         isError: false,
+        isSuccess: true,
         errorMessage: null,
         entities: null,
         entity: payload,
+      };
+
+    case SEARCH_GROUPS_COMPLETE:
+      return {
+        isLoading: false,
+        isError: false,
+        isSuccess: true,
+        errorMessage: null,
+        entities: payload,
+        entity: null,
       };
 
     case UPDATE_GROUP_COMPLETE:
@@ -116,6 +122,7 @@ export const groupReducer = (groupState = initialState, action) => {
       return {
         isLoading: false,
         isError: false,
+        isSuccess: true,
         errorMessage: null,
         entities: updatedGroups,
         entity: null,
@@ -136,6 +143,7 @@ export const groupReducer = (groupState = initialState, action) => {
       return {
         isLoading: false,
         isError: false,
+        isSuccess: true,
         errorMessage: null,
         entities: partiallyUpdatedGroups,
         entity: null,
@@ -149,6 +157,7 @@ export const groupReducer = (groupState = initialState, action) => {
       return {
         isLoading: false,
         isError: false,
+        isSuccess: true,
         errorMessage: null,
         entities: groupsToKeep,
         entity: null,
@@ -168,6 +177,7 @@ export const groupReducer = (groupState = initialState, action) => {
       return {
         isLoading: false,
         isError: false,
+        isSuccess: true,
         errorMessage: null,
         entities: deactivatedGroups,
         entity: null,
@@ -188,6 +198,7 @@ export const groupReducer = (groupState = initialState, action) => {
       return {
         isLoading: false,
         isError: false,
+        isSuccess: true,
         errorMessage: null,
         entities: addedCarememberGroups,
         entity: null,
@@ -210,6 +221,7 @@ export const groupReducer = (groupState = initialState, action) => {
       return {
         isLoading: false,
         isError: false,
+        isSuccess: true,
         errorMessage: null,
         entities: removedCarememberGroups,
         entity: null,

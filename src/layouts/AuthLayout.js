@@ -23,7 +23,7 @@ import { routes } from "routes";
 import { AuthNavbar } from "components/Navbars";
 import { AuthFooter } from "components/Footers";
 
-import { getRoutes } from "./hooks";
+import { getRoutes } from "./utils";
 
 export const AuthLayout = () => {
   const location = useLocation();

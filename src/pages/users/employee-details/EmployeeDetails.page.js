@@ -1,41 +1,82 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useHistory } from "react-router";
 import { useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
-import { Container } from "reactstrap";
+import { Container, Spinner } from "reactstrap";
+
+import SweetAlert from "react-bootstrap-sweetalert";
 
 import { GradientEmptyHeader } from "components/Headers";
 
-import { selectEmployeeById } from "redux/employees";
+import { updateEmployee, searchEmployee } from "redux/employees";
 
 import { EditEmployeePanel } from "..";
 
 export const EmployeeDetailsPage = () => {
   let { id } = useParams();
   const history = useHistory();
-  const currentEmployee = useSelector(selectEmployeeById(id));
+  const dispatch = useDispatch();
 
-  const [employee, setEmployee] = useState(currentEmployee);
+  const employeesState = useSelector(state => state.employee);
+
+  const [alert, setAlert] = useState(employeesState.isError);
+  const [employee, setEmployee] = useState(employeesState.entity);
+
+  useEffect(() => {
+    dispatch(searchEmployee(id));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    setEmployee(employeesState.entity);
+  }, [employeesState.entity]);
+
+  useEffect(() => {
+    if (employeesState.isError) {
+      setAlert(
+        <SweetAlert danger title="Error" onConfirm={() => setAlert(false)}>
+          {employeesState.errorMessage}
+        </SweetAlert>,
+      );
+    }
+  }, [employeesState.isError, employeesState.errorMessage]);
 
   const onSave = updatedEmployee => {
-    console.log("updatedEmployee", updatedEmployee);
-  };
-
-  const onBackToSearch = () => {
-    history.push("/admin/search-employees");
+    dispatch(updateEmployee(id, updatedEmployee));
+    if (employeesState.isSuccess) {
+      setAlert(
+        <SweetAlert
+          success
+          title="Success"
+          onConfirm={() => setAlert(false)}
+        >
+          Employee Updated
+        </SweetAlert>,
+      );
+    }
   };
 
   return (
     <>
       <GradientEmptyHeader />
+      {alert}
       <Container className="mt--6" fluid>
-        <EditEmployeePanel
-          employee={employee}
-          setEmployee={setEmployee}
-          onBackToSearchClick={onBackToSearch}
-          onSave={onSave}
-        />
+        {employeesState.isLoading ? (
+          <Spinner />
+        ) : (
+          <>
+            {employee && (
+              <EditEmployeePanel
+                employee={employee}
+                setEmployee={setEmployee}
+                onSave={onSave}
+                employeesState={employeesState}
+                onBackToSearchClick={() => history.goBack()}
+              />
+            )}
+          </>
+        )}
       </Container>
     </>
   );

@@ -10,6 +10,7 @@ import {
   Collapse,
   Form,
   Row,
+  Spinner,
 } from "reactstrap";
 
 import { InputField } from "components/widgets";
@@ -20,25 +21,12 @@ export const EditGroupPanel = ({
   group,
   setGroup,
   onSave,
+  groupsState,
   onBackToSearchClick,
   addMembersCollapse,
   setAddMembersCollapse,
 }) => {
-  if (!group) {
-    throw new Error("Group not found");
-  }
-
-  const { name, description, active, members } = group;
-
-  const onSaveClick = () => {
-    let updatedGroup = {
-      name,
-      description,
-      active,
-      members,
-    };
-    onSave(updatedGroup);
-  };
+  const { name, description } = group;
 
   return (
     <Row>
@@ -118,8 +106,8 @@ export const EditGroupPanel = ({
               </div>
               <Row className="align-items-center py-4">
                 <Col lg="12" xs="7" className="text-right">
-                  <Button color="success" onClick={onSaveClick}>
-                    Submit
+                  <Button color="success" onClick={() => onSave(group)}>
+                    {groupsState.isLoading ? <Spinner /> : "Submit"}
                   </Button>
 
                   {onBackToSearchClick ? (
@@ -140,10 +128,11 @@ export const EditGroupPanel = ({
 };
 
 EditGroupPanel.propTypes = {
-  group: PropTypes.object,
-  setGroup: PropTypes.func,
-  onSave: PropTypes.func,
+  group: PropTypes.object.isRequired,
+  setGroup: PropTypes.func.isRequired,
+  onSave: PropTypes.func.isRequired,
+  groupsState: PropTypes.object.isRequired,
   onBackToSearchClick: PropTypes.func,
-  addMembersCollapse: PropTypes.bool,
-  setAddMembersCollapse: PropTypes.func,
+  addMembersCollapse: PropTypes.bool.isRequired,
+  setAddMembersCollapse: PropTypes.func.isRequired,
 };

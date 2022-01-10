@@ -1,5 +1,4 @@
 import PropTypes from "prop-types";
-import { useSelector } from "react-redux";
 
 import {
   Button,
@@ -18,13 +17,8 @@ export const EditEmployeePanel = ({
   setEmployee,
   onSave,
   onBackToSearchClick,
+  employeesState,
 }) => {
-  const employeesState = useSelector(state => state.employee);
-
-  if (!employee) {
-    throw new Error("Employee not found");
-  }
-
   const {
     firstName,
     lastName,
@@ -41,26 +35,6 @@ export const EditEmployeePanel = ({
     officeAddressStreet,
     officeAddressPostalCode,
   } = employee;
-
-  const onSaveClick = () => {
-    let updatedEmployee = {
-      firstName,
-      lastName,
-      internationalName,
-      title,
-      email,
-      businessUnit,
-      managementGroup,
-      companyCode,
-      costCenter,
-      companyPhone,
-      officeAddressCountry,
-      officeAddressCity,
-      officeAddressStreet,
-      officeAddressPostalCode,
-    };
-    onSave(updatedEmployee);
-  };
 
   return (
     <Row>
@@ -302,23 +276,13 @@ export const EditEmployeePanel = ({
 
               <Row className="align-items-center py-4">
                 <Col lg="12" xs="7" className="text-right">
-                  {employeesState.isLoading ? (
-                    <div
-                      style={{
-                        textAlign: "center",
-                      }}
-                    >
-                      <Spinner />
-                    </div>
-                  ) : (
-                    <Button
-                      type="button"
-                      color="success"
-                      onClick={onSaveClick}
-                    >
-                      Submit
-                    </Button>
-                  )}
+                  <Button
+                    type="button"
+                    color="success"
+                    onClick={() => onSave(employee)}
+                  >
+                    {employeesState.isLoading ? <Spinner /> : "Submit"}
+                  </Button>
 
                   {onBackToSearchClick ? (
                     <Button
@@ -329,7 +293,7 @@ export const EditEmployeePanel = ({
                       Back to Search
                     </Button>
                   ) : (
-                    <> &nbsp;</>
+                    <>&nbsp;</>
                   )}
                 </Col>
               </Row>
@@ -344,6 +308,7 @@ export const EditEmployeePanel = ({
 EditEmployeePanel.propTypes = {
   employee: PropTypes.object.isRequired,
   setEmployee: PropTypes.func.isRequired,
+  employeesState: PropTypes.object.isRequired,
   onSave: PropTypes.func.isRequired,
   onBackToSearchClick: PropTypes.func,
 };
