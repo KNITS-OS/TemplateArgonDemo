@@ -27,7 +27,7 @@ import { GradientEmptyHeader } from "components/Headers";
 import { ReactTable } from "components/widgets";
 
 // redux
-import { searchEmployees, deleteUser } from "redux/employees";
+import { searchEmployees, deleteEmployee } from "redux/employees";
 import { selectCountriesAsList } from "redux/countries";
 import { selectBusinessUnitsAsList } from "redux/business-units";
 
@@ -86,7 +86,7 @@ export const SearchEmployeesPage = () => {
 
   const removeEmployee = e => {
     var { id } = e.target;
-    dispatch(deleteUser(id));
+    dispatch(deleteEmployee(id));
   };
 
   return (

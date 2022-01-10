@@ -1,11 +1,11 @@
 import { httpCommon } from "redux/http-common";
 
-const searchGroups = () => {
+const getAllGroups = () => {
   return httpCommon.get(`/groups`);
 };
 
-const searchGroup = id => {
-  return httpCommon.get(`/groups?id=${id}`);
+const getGroupById = id => {
+  return httpCommon.get(`/groups/${id}`);
 };
 
 const createGroup = body => {
@@ -13,11 +13,11 @@ const createGroup = body => {
 };
 
 const updateGroup = (id, body) => {
-  return httpCommon.patch(`/groups/${id}`, body, {
-    headers: {
-      prefer: "resolution=merge-duplicates",
-    },
-  });
+  return httpCommon.put(`/groups/${id}`, body);
+};
+
+const partialUpdateGroup = (id, body) => {
+  return httpCommon.patch(`/groups/${id}`, body);
 };
 
 const deleteGroup = id => {
@@ -25,9 +25,10 @@ const deleteGroup = id => {
 };
 
 export const groupService = {
-  searchGroups,
-  searchGroup,
+  getAllGroups,
+  getGroupById,
   createGroup,
   updateGroup,
+  partialUpdateGroup,
   deleteGroup,
 };

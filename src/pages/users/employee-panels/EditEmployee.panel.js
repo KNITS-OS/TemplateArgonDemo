@@ -1,6 +1,15 @@
 import PropTypes from "prop-types";
+import { useSelector } from "react-redux";
 
-import { Button, Card, CardBody, CardHeader, Col, Row } from "reactstrap";
+import {
+  Button,
+  Card,
+  CardBody,
+  CardHeader,
+  Col,
+  Row,
+  Spinner,
+} from "reactstrap";
 
 import { InputField } from "components/widgets";
 
@@ -10,6 +19,8 @@ export const EditEmployeePanel = ({
   onSave,
   onBackToSearchClick,
 }) => {
+  const employeesState = useSelector(state => state.employee);
+
   if (!employee) {
     throw new Error("Employee not found");
   }
@@ -73,7 +84,6 @@ export const EditEmployeePanel = ({
                     id="input-first-name"
                     label="First name"
                     value={firstName}
-                    placeholder="First name"
                     type="text"
                     onChange={e =>
                       setEmployee({
@@ -292,13 +302,23 @@ export const EditEmployeePanel = ({
 
               <Row className="align-items-center py-4">
                 <Col lg="12" xs="7" className="text-right">
-                  <Button
-                    type="button"
-                    color="success"
-                    onClick={onSaveClick}
-                  >
-                    Submit
-                  </Button>
+                  {employeesState.isLoading ? (
+                    <div
+                      style={{
+                        textAlign: "center",
+                      }}
+                    >
+                      <Spinner />
+                    </div>
+                  ) : (
+                    <Button
+                      type="button"
+                      color="success"
+                      onClick={onSaveClick}
+                    >
+                      Submit
+                    </Button>
+                  )}
 
                   {onBackToSearchClick ? (
                     <Button

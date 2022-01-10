@@ -1,10 +1,15 @@
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+
 import { Container } from "reactstrap";
+
+import SweetAlert from "react-bootstrap-sweetalert";
 
 import { GradientEmptyHeader } from "components/Headers";
 
+import { createEmployee } from "redux/employees";
+
 import { EditEmployeePanel } from "..";
-import { useState } from "react";
-import SweetAlert from "react-bootstrap-sweetalert";
 
 export const CreateEmployeePage = () => {
   let initialState = {
@@ -28,19 +33,33 @@ export const CreateEmployeePage = () => {
     officeAddressStreet: "",
   };
   const [employee, setEmployee] = useState(initialState);
-  const [alert, setAlert] = useState(false);
+  const dispatch = useDispatch();
+  const employeesState = useSelector(state => state.employee);
+  const [alert, setAlert] = useState(employeesState.isError);
 
-  const onSave = createdEmployee => {
-    console.log("createdEmployee", createdEmployee);
-    setAlert(
-      <SweetAlert
-        success
-        title="Success"
-        onConfirm={() => setAlert(false)}
-      >
-        User Created
-      </SweetAlert>,
-    );
+  useEffect(() => {
+    if (employeesState.isError) {
+      setAlert(
+        <SweetAlert danger title="Error" onConfirm={() => setAlert(false)}>
+          {employeesState.errorMessage}
+        </SweetAlert>,
+      );
+    }
+  }, [employeesState.isError, employeesState.errorMessage]);
+
+  const onSave = async () => {
+    await dispatch(createEmployee(employee));
+    if (employeesState.entities && !employeesState.isError) {
+      setAlert(
+        <SweetAlert
+          success
+          title="Success"
+          onConfirm={() => setAlert(false)}
+        >
+          User Created
+        </SweetAlert>,
+      );
+    }
   };
 
   return (

@@ -9,7 +9,7 @@ export const InputField = props => {
       <label className="form-control-label" htmlFor={id}>
         {label}
       </label>
-      <Input {...props} />
+      <Input {...props} placeholder={label} />
     </FormGroup>
   );
 };

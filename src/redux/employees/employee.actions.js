@@ -1,6 +1,13 @@
 import {
   CREATE_EMPLOYEE_COMPLETE,
+  CREATE_EMPLOYEE_ERROR,
+  CREATE_EMPLOYEE_LOADING,
   DELETE_EMPLOYEE_COMPLETE,
+  DELETE_EMPLOYEE_ERROR,
+  DELETE_EMPLOYEE_LOADING,
+  PARTIAL_UPDATE_EMPLOYEE_COMPLETE,
+  PARTIAL_UPDATE_EMPLOYEE_ERROR,
+  PARTIAL_UPDATE_EMPLOYEE_LOADING,
   SEARCH_EMPLOYEES_BY_IDS_COMPLETE,
   SEARCH_EMPLOYEES_BY_IDS_ERROR,
   SEARCH_EMPLOYEES_BY_IDS_LOADING,
@@ -8,13 +15,28 @@ import {
   SEARCH_EMPLOYEES_ERROR,
   SEARCH_EMPLOYEES_LOADING,
   UPDATE_EMPLOYEE_COMPLETE,
+  UPDATE_EMPLOYEE_ERROR,
+  UPDATE_EMPLOYEE_LOADING,
 } from "redux/types.actions";
 
 import { employeeService } from ".";
 
-export const createUser = data => {
-  console.log(data);
-  return { type: CREATE_EMPLOYEE_COMPLETE, payload: data };
+export const createEmployee = body => async dispatch => {
+  try {
+    dispatch({
+      type: CREATE_EMPLOYEE_LOADING,
+      payload: CREATE_EMPLOYEE_LOADING,
+    });
+
+    const { data } = await employeeService.createEmployee(body);
+
+    dispatch({
+      type: CREATE_EMPLOYEE_COMPLETE,
+      payload: data,
+    });
+  } catch (err) {
+    dispatch({ type: CREATE_EMPLOYEE_ERROR, payload: err.message });
+  }
 };
 
 export const searchEmployees = filters => async dispatch => {
@@ -23,7 +45,7 @@ export const searchEmployees = filters => async dispatch => {
 
     dispatch({
       type: SEARCH_EMPLOYEES_LOADING,
-      payload: "SEARCH_EMPLOYEES_LOADING",
+      payload: SEARCH_EMPLOYEES_LOADING,
     });
 
     const { data } = await employeeService.searchEmployees(queryParams);
@@ -65,10 +87,61 @@ export const searchEmployeesByIds = employeeIds => async dispatch => {
   }
 };
 
-export const updateUser = (id, data) => {
-  return { type: UPDATE_EMPLOYEE_COMPLETE, payload: id, data };
+export const updateEmployee = (id, body) => async dispatch => {
+  try {
+    dispatch({
+      type: UPDATE_EMPLOYEE_LOADING,
+      payload: UPDATE_EMPLOYEE_LOADING,
+    });
+
+    const { data } = await employeeService.updateEmployee(id, body);
+
+    dispatch({
+      type: UPDATE_EMPLOYEE_COMPLETE,
+      payload: id,
+      data,
+    });
+  } catch (err) {
+    dispatch({ type: UPDATE_EMPLOYEE_ERROR, payload: err.message });
+  }
 };
 
-export const deleteUser = id => {
-  return { type: DELETE_EMPLOYEE_COMPLETE, payload: { id } };
+export const partialUpdateEmployee = (id, body) => async dispatch => {
+  try {
+    dispatch({
+      type: PARTIAL_UPDATE_EMPLOYEE_LOADING,
+      payload: PARTIAL_UPDATE_EMPLOYEE_LOADING,
+    });
+
+    const { data } = await employeeService.partialUpdateEmployee(id, body);
+
+    dispatch({
+      type: PARTIAL_UPDATE_EMPLOYEE_COMPLETE,
+      payload: id,
+      data,
+    });
+  } catch (err) {
+    dispatch({
+      type: PARTIAL_UPDATE_EMPLOYEE_ERROR,
+      payload: err.message,
+    });
+  }
+};
+
+export const deleteEmployee = id => async dispatch => {
+  try {
+    dispatch({
+      type: DELETE_EMPLOYEE_LOADING,
+      payload: DELETE_EMPLOYEE_LOADING,
+    });
+
+    await employeeService.deleteEmployee(id);
+
+    dispatch({
+      type: DELETE_EMPLOYEE_COMPLETE,
+      payload: { id },
+    });
+  } catch (err) {
+    dispatch({ type: DELETE_EMPLOYEE_ERROR, payload: err.message });
+  }
 };
