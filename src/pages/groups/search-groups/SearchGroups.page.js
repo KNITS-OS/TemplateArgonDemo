@@ -22,7 +22,7 @@ import { deleteGroup, searchGroups } from "redux/groups";
 
 import { groupsTableColumns } from ".";
 
-export const SearchGroupsPage = () => {
+export function SearchGroupsPage() {
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -35,18 +35,18 @@ export const SearchGroupsPage = () => {
       setAlert(
         <SweetAlert danger title="Error" onConfirm={() => setAlert(false)}>
           {groupsState.errorMessage}
-        </SweetAlert>,
+        </SweetAlert>
       );
     }
   }, [groupsState.isError, groupsState.errorMessage]);
 
   const goToGroupDetails = e => {
-    var { id } = e.target;
+    const { id } = e.target;
     history.push(`/admin/groups/group-details/${id}`);
   };
 
   const removeGroup = e => {
-    var { id } = e.target;
+    const { id } = e.target;
     dispatch(deleteGroup(id));
   };
 
@@ -122,4 +122,4 @@ export const SearchGroupsPage = () => {
       </Container>
     </>
   );
-};
+}

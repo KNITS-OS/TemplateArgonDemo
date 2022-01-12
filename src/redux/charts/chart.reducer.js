@@ -12,7 +12,7 @@ const initialState = {
   entity: null,
 };
 
-export const chartReducer = (chartState = initialState, action) => {
+export const chartReducer = (chartState = initialState, action = {}) => {
   const { type, payload } = action;
   switch (type) {
     case LIST_CHARTS_LOADING:

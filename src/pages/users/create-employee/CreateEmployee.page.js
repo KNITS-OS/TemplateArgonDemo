@@ -11,8 +11,8 @@ import { createEmployee } from "redux/employees";
 
 import { EditEmployeePanel } from "..";
 
-export const CreateEmployeePage = () => {
-  let initialState = {
+export function CreateEmployeePage() {
+  const initialState = {
     firstName: "",
     lastName: "",
     internationalName: "",
@@ -42,7 +42,7 @@ export const CreateEmployeePage = () => {
       setAlert(
         <SweetAlert danger title="Error" onConfirm={() => setAlert(false)}>
           {employeesState.errorMessage}
-        </SweetAlert>,
+        </SweetAlert>
       );
     }
   }, [employeesState.isError, employeesState.errorMessage]);
@@ -60,7 +60,7 @@ export const CreateEmployeePage = () => {
           onConfirm={() => setAlert(false)}
         >
           Employee Created
-        </SweetAlert>,
+        </SweetAlert>
       );
     }
   }, [employeesState.entity]);
@@ -81,4 +81,4 @@ export const CreateEmployeePage = () => {
       </Container>
     </>
   );
-};
+}

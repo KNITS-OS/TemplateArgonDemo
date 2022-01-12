@@ -186,6 +186,7 @@ const mockData = {
     if (url.includes("/groups")) {
       return Promise.resolve(groupMockResponse);
     }
+    return null;
   }),
   create: () => mockData,
   defaults: {

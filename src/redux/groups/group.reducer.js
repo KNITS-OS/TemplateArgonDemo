@@ -37,7 +37,7 @@ const initialState = {
   entity: null,
 };
 
-export const groupReducer = (groupState = initialState, action) => {
+export const groupReducer = (groupState = initialState, action = {}) => {
   const { type, payload } = action;
 
   switch (type) {
@@ -108,15 +108,14 @@ export const groupReducer = (groupState = initialState, action) => {
       };
 
     case UPDATE_GROUP_COMPLETE:
-      let updatedGroups = groupState.entities.map(group => {
+      const updatedGroups = groupState.entities.map(group => {
         if (group.id === payload.id) {
           return {
             ...group,
             ...payload,
           };
-        } else {
-          return group;
         }
+        return group;
       });
 
       return {
@@ -129,15 +128,14 @@ export const groupReducer = (groupState = initialState, action) => {
       };
 
     case PARTIAL_UPDATE_GROUP_COMPLETE:
-      let partiallyUpdatedGroups = groupState.entities.map(group => {
+      const partiallyUpdatedGroups = groupState.entities.map(group => {
         if (group.id === payload.id) {
           return {
             ...group,
             ...payload,
           };
-        } else {
-          return group;
         }
+        return group;
       });
 
       return {
@@ -150,8 +148,8 @@ export const groupReducer = (groupState = initialState, action) => {
       };
 
     case DELETE_GROUP_COMPLETE:
-      let groupsToKeep = groupState.entities.filter(
-        ({ id }) => id !== payload.id,
+      const groupsToKeep = groupState.entities.filter(
+        ({ id }) => id !== payload.id
       );
 
       return {
@@ -170,9 +168,8 @@ export const groupReducer = (groupState = initialState, action) => {
             ...group,
             active: !group.active,
           };
-        } else {
-          return group;
         }
+        return group;
       });
       return {
         isLoading: false,
@@ -190,9 +187,8 @@ export const groupReducer = (groupState = initialState, action) => {
             ...group,
             members: { ...payload.members },
           };
-        } else {
-          return group;
         }
+        return group;
       });
 
       return {
@@ -210,12 +206,11 @@ export const groupReducer = (groupState = initialState, action) => {
           return {
             ...group,
             members: group.members.filter(
-              ({ id }) => !payload.members.includes(id),
+              ({ id }) => !payload.members.includes(id)
             ),
           };
-        } else {
-          return group;
         }
+        return group;
       });
 
       return {

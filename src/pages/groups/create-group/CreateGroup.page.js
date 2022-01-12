@@ -11,7 +11,7 @@ import { createGroup } from "redux/groups";
 
 import { EditGroupPanel } from "..";
 
-export const CreateGroupPage = () => {
+export function CreateGroupPage() {
   const initialState = {
     name: "",
     description: "",
@@ -30,7 +30,7 @@ export const CreateGroupPage = () => {
       setAlert(
         <SweetAlert danger title="Error" onConfirm={() => setAlert(false)}>
           {groupsState.errorMessage}
-        </SweetAlert>,
+        </SweetAlert>
       );
     }
   }, [groupsState.isError, groupsState.errorMessage]);
@@ -48,7 +48,7 @@ export const CreateGroupPage = () => {
           onConfirm={() => setAlert(false)}
         >
           Group Created
-        </SweetAlert>,
+        </SweetAlert>
       );
     }
   }, [groupsState.entity]);
@@ -71,4 +71,4 @@ export const CreateGroupPage = () => {
       </Container>
     </>
   );
-};
+}

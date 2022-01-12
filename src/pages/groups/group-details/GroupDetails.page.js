@@ -20,8 +20,7 @@ import {
 import SweetAlert from "react-bootstrap-sweetalert";
 
 import { GradientEmptyHeader } from "components/Headers";
-import { InputField } from "components/widgets";
-import { ReactTable } from "components/widgets";
+import { InputField, ReactTable } from "components/widgets";
 
 import { employeesTableColumns } from "pages/users";
 
@@ -35,8 +34,8 @@ import {
 
 import { AddMemberPanel } from "..";
 
-export const GroupDetailsPage = () => {
-  let { id } = useParams();
+export function GroupDetailsPage() {
+  const { id } = useParams();
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -69,7 +68,7 @@ export const GroupDetailsPage = () => {
       setAlert(
         <SweetAlert danger title="Error" onConfirm={() => setAlert(false)}>
           {groupsState.errorMessage}
-        </SweetAlert>,
+        </SweetAlert>
       );
     }
   }, [groupsState.isError, groupsState.errorMessage]);
@@ -79,7 +78,7 @@ export const GroupDetailsPage = () => {
       setAlert(
         <SweetAlert danger title="Error" onConfirm={() => setAlert(false)}>
           {employeesState.errorMessage}
-        </SweetAlert>,
+        </SweetAlert>
       );
     }
   }, [employeesState.isError, employeesState.errorMessage]);
@@ -94,7 +93,7 @@ export const GroupDetailsPage = () => {
           onConfirm={() => setAlert(false)}
         >
           Group Updated
-        </SweetAlert>,
+        </SweetAlert>
       );
     }
   };
@@ -110,12 +109,12 @@ export const GroupDetailsPage = () => {
   };
 
   const memberDetails = e => {
-    var { id } = e.target;
-    history.push("/admin/users/employee-details/" + id);
+    const { id } = e.target;
+    history.push(`/admin/users/employee-details/${id}`);
   };
 
   const memberRemove = e => {
-    var { id } = e.target;
+    const { id } = e.target;
     console.log(id);
   };
 
@@ -310,4 +309,4 @@ export const GroupDetailsPage = () => {
       </Container>
     </>
   );
-};
+}

@@ -9,9 +9,8 @@ const getLayout = (route, layout, key) => {
         key={key}
       />
     );
-  } else {
-    return null;
   }
+  return null;
 };
 
 const getRouteViews = (routes, layout) => {

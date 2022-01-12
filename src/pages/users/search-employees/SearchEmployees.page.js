@@ -23,7 +23,7 @@ import Select from "react-select";
 import makeAnimated from "react-select/animated";
 import SweetAlert from "react-bootstrap-sweetalert";
 
-//template core components
+// template core components
 import { GradientEmptyHeader } from "components/Headers";
 import { ReactTable } from "components/widgets";
 
@@ -32,10 +32,10 @@ import { searchEmployees, deleteEmployee } from "redux/employees";
 import { selectCountriesAsList } from "redux/countries";
 import { selectBusinessUnitsAsList } from "redux/business-units";
 
-//local components
+// local components
 import { employeesTableColumns } from ".";
 
-export const SearchEmployeesPage = () => {
+export function SearchEmployeesPage() {
   const history = useHistory();
   const dispatch = useDispatch();
   const employeesState = useSelector(state => state.employee);
@@ -54,7 +54,7 @@ export const SearchEmployeesPage = () => {
       setAlert(
         <SweetAlert danger title="Error" onConfirm={() => setAlert(false)}>
           {employeesState.errorMessage}
-        </SweetAlert>,
+        </SweetAlert>
       );
     }
   }, [employeesState.isError, employeesState.errorMessage]);
@@ -64,13 +64,14 @@ export const SearchEmployeesPage = () => {
     // _ is not used but its value is the attribute name
     return Object.fromEntries(
       Object.entries(obj).filter(
-        ([_, value]) => value !== null && value !== "",
-      ),
+        // eslint-disable-next-line no-unused-vars
+        ([_, value]) => value !== null && value !== ""
+      )
     );
   };
 
   const findByAllParameters = () => {
-    let filters = {
+    const filters = {
       lastName: searchLastName,
       businessUnit: searchBusinessUnit,
       country: searchCountry,
@@ -81,12 +82,12 @@ export const SearchEmployeesPage = () => {
   };
 
   const goToEmployeeDetails = e => {
-    var { id } = e.target;
+    const { id } = e.target;
     history.push(`/admin/users/employee-details/${id}`);
   };
 
   const removeEmployee = e => {
-    var { id } = e.target;
+    const { id } = e.target;
     dispatch(deleteEmployee(id));
   };
 
@@ -171,7 +172,7 @@ export const SearchEmployeesPage = () => {
                         }}
                         onChange={dateAsMoment =>
                           setSearchHiringDate(
-                            dateAsMoment.format("MM/DD/YYYY"),
+                            dateAsMoment.format("MM/DD/YYYY")
                           )
                         }
                         timeFormat={false}
@@ -231,4 +232,4 @@ export const SearchEmployeesPage = () => {
       </Container>
     </>
   );
-};
+}

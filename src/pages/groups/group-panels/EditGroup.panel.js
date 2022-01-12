@@ -17,7 +17,7 @@ import { InputField } from "components/widgets";
 
 import { AddMemberPanel } from ".";
 
-export const EditGroupPanel = ({
+export function EditGroupPanel({
   group,
   setGroup,
   onSave,
@@ -25,7 +25,7 @@ export const EditGroupPanel = ({
   onBackToSearchClick,
   addMembersCollapse,
   setAddMembersCollapse,
-}) => {
+}) {
   const { name, description } = group;
 
   return (
@@ -125,7 +125,7 @@ export const EditGroupPanel = ({
       </Col>
     </Row>
   );
-};
+}
 
 EditGroupPanel.propTypes = {
   group: PropTypes.object.isRequired,

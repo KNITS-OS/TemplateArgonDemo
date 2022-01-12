@@ -9,5 +9,5 @@ export const selectCountriesAsList = createSelector(
     return countries.map(country => {
       return { value: country.name, label: country.name };
     });
-  },
+  }
 );

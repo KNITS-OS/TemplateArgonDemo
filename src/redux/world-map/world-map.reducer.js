@@ -12,7 +12,10 @@ const initialState = {
   entity: null,
 };
 
-export const worldMapReducer = (worldMapState = initialState, action) => {
+export const worldMapReducer = (
+  worldMapState = initialState,
+  action = {}
+) => {
   const { type, payload } = action;
   switch (type) {
     case LIST_WORLD_MAP_LOADING:

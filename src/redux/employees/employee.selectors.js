@@ -2,12 +2,12 @@ import { createSelector } from "reselect";
 
 export const selectEmployees = createSelector(
   [state => state.employee.entities],
-  data => data,
+  data => data
 );
 
 export const selectEmployeeById = id =>
   createSelector([selectEmployees], employeesData =>
-    employeesData.find(employee => employee.id === parseInt(id)),
+    employeesData.find(employee => employee.id === parseInt(id))
   );
 
 export const selectEmployeesAsList = createSelector(
@@ -15,5 +15,5 @@ export const selectEmployeesAsList = createSelector(
   employeesData =>
     employeesData.map(employee => {
       return { value: employee.id, label: employee.internationalName };
-    }),
+    })
 );

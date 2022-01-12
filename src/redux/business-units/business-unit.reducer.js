@@ -14,7 +14,7 @@ const initialState = {
 
 export const businessUnitReducer = (
   businessUnitState = initialState,
-  action,
+  action = {}
 ) => {
   const { type, payload } = action;
   switch (type) {

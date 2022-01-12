@@ -15,19 +15,17 @@
 
 */
 
-export const GradientEmptyHeader = () => {
+export function GradientEmptyHeader() {
   return (
-    <>
-      <div
-        className="header pb-6 d-flex align-items-center"
-        style={{
-          minHeight: "150px",
-          backgroundSize: "cover",
-          backgroundPosition: "center top",
-        }}
-      >
-        <span className="mask bg-gradient-info opacity-8" />
-      </div>
-    </>
+    <div
+      className="header pb-6 d-flex align-items-center"
+      style={{
+        minHeight: "150px",
+        backgroundSize: "cover",
+        backgroundPosition: "center top",
+      }}
+    >
+      <span className="mask bg-gradient-info opacity-8" />
+    </div>
   );
-};
+}

@@ -18,10 +18,6 @@
 // reactstrap components
 import { Container } from "reactstrap";
 
-export const AdminFooter = () => {
-  return (
-    <>
-      <Container fluid></Container>
-    </>
-  );
-};
+export function AdminFooter() {
+  return <Container fluid />;
+}

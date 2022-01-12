@@ -6,7 +6,7 @@ import worldMill from "@react-jvectormap/world/dist/worldMill.json";
 import { GradientEmptyHeader } from "components/Headers";
 import { useSelector } from "react-redux";
 
-export const WorldMapPage = () => {
+export function WorldMapPage() {
   const worldMapState = useSelector(state => state.worldMap);
 
   return (
@@ -73,4 +73,4 @@ export const WorldMapPage = () => {
       </Container>
     </>
   );
-};
+}

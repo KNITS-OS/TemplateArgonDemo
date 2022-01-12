@@ -14,22 +14,20 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
+import careTeamImg from "../../assets/img/care/team.jpg";
 
-export const GroupHeader = () => {
+export function GroupHeader() {
   return (
-    <>
-      <div
-        className="header pb-6 d-flex align-items-center"
-        style={{
-          minHeight: "400px",
-          backgroundImage:
-            'url("' + require("assets/img/care/team.jpg").default + '")',
-          backgroundSize: "cover",
-          backgroundPosition: "center top",
-        }}
-      >
-        <span className="mask bg-gradient-info opacity-8" />
-      </div>
-    </>
+    <div
+      className="header pb-6 d-flex align-items-center"
+      style={{
+        minHeight: "400px",
+        backgroundImage: `url("${careTeamImg}")`,
+        backgroundSize: "cover",
+        backgroundPosition: "center top",
+      }}
+    >
+      <span className="mask bg-gradient-info opacity-8" />
+    </div>
   );
-};
+}

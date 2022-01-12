@@ -13,8 +13,8 @@ import { updateEmployee, searchEmployee } from "redux/employees";
 
 import { EditEmployeePanel } from "..";
 
-export const EmployeeDetailsPage = () => {
-  let { id } = useParams();
+export function EmployeeDetailsPage() {
+  const { id } = useParams();
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -37,7 +37,7 @@ export const EmployeeDetailsPage = () => {
       setAlert(
         <SweetAlert danger title="Error" onConfirm={() => setAlert(false)}>
           {employeesState.errorMessage}
-        </SweetAlert>,
+        </SweetAlert>
       );
     }
   }, [employeesState.isError, employeesState.errorMessage]);
@@ -52,7 +52,7 @@ export const EmployeeDetailsPage = () => {
           onConfirm={() => setAlert(false)}
         >
           Employee Updated
-        </SweetAlert>,
+        </SweetAlert>
       );
     }
   };
@@ -80,4 +80,4 @@ export const EmployeeDetailsPage = () => {
       </Container>
     </>
   );
-};
+}

@@ -34,7 +34,7 @@ import { listWorldMap } from "redux/world-map";
 
 import { getRoutes } from "./utils";
 
-export const AdminLayout = () => {
+export function AdminLayout() {
   const dispatch = useDispatch();
   const location = useLocation();
   const countriesState = useSelector(state => state.country);
@@ -50,7 +50,7 @@ export const AdminLayout = () => {
     countriesState.isError ||
       businessUnitsState.isError ||
       chartsState.isError ||
-      worldMapState.isError,
+      worldMapState.isError
   );
 
   useEffect(() => {
@@ -81,7 +81,7 @@ export const AdminLayout = () => {
           onConfirm={() => cleanAlert(setCategoryDataLoaded, setAlert)}
         >
           {`${countriesState.errorMessage} please contact administrator`}
-        </SweetAlert>,
+        </SweetAlert>
       );
     }
   }, [countriesState.isError, countriesState.errorMessage]);
@@ -104,7 +104,7 @@ export const AdminLayout = () => {
           onConfirm={() => cleanAlert(setCategoryDataLoaded, setAlert)}
         >
           {`${businessUnitsState.errorMessage} please contact administrator`}
-        </SweetAlert>,
+        </SweetAlert>
       );
     }
   }, [businessUnitsState.isError, businessUnitsState.errorMessage]);
@@ -124,7 +124,7 @@ export const AdminLayout = () => {
           onConfirm={() => cleanAlert(setCategoryDataLoaded, setAlert)}
         >
           {`${chartsState.errorMessage} please contact administrator`}
-        </SweetAlert>,
+        </SweetAlert>
       );
     }
   }, [chartsState.isError, chartsState.errorMessage]);
@@ -144,7 +144,7 @@ export const AdminLayout = () => {
           onConfirm={() => cleanAlert(setCategoryDataLoaded, setAlert)}
         >
           {`${worldMapState.errorMessage} please contact administrator`}
-        </SweetAlert>,
+        </SweetAlert>
       );
     }
   }, [worldMapState.isError, worldMapState.errorMessage]);
@@ -160,7 +160,7 @@ export const AdminLayout = () => {
           <strong>Attention!</strong> No data were loaded. Application will
           not work as expected
         </span>
-      </UncontrolledAlert>,
+      </UncontrolledAlert>
     );
   };
 
@@ -222,11 +222,9 @@ export const AdminLayout = () => {
             <AdminFooter />
           </>
         ) : (
-          <>
-            <div style={{ textAlign: "center" }}>
-              <Spinner />
-            </div>
-          </>
+          <div style={{ textAlign: "center" }}>
+            <Spinner />
+          </div>
         )}
       </div>
       {sidenavOpen ? (
@@ -234,4 +232,4 @@ export const AdminLayout = () => {
       ) : null}
     </>
   );
-};
+}

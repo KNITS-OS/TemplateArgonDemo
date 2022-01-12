@@ -12,13 +12,13 @@ import {
 
 import { InputField } from "components/widgets";
 
-export const EditEmployeePanel = ({
+export function EditEmployeePanel({
   employee,
   setEmployee,
   onSave,
   onBackToSearchClick,
   employeesState,
-}) => {
+}) {
   const {
     firstName,
     lastName,
@@ -303,7 +303,7 @@ export const EditEmployeePanel = ({
       </Col>
     </Row>
   );
-};
+}
 
 EditEmployeePanel.propTypes = {
   employee: PropTypes.object.isRequired,

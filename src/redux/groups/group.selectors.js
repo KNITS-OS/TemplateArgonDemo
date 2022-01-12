@@ -2,10 +2,10 @@ import { createSelector } from "reselect";
 
 export const selectGroups = createSelector(
   [state => state.group.entities],
-  data => data,
+  data => data
 );
 
 export const selectGroupById = id =>
   createSelector([selectGroups], groupsdata =>
-    groupsdata.find(group => group.id === parseInt(id)),
+    groupsdata.find(group => group.id === parseInt(id))
   );

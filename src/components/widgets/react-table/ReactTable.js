@@ -10,7 +10,7 @@ import { pagination, selectRow } from ".";
 
 const { SearchBar } = Search;
 
-export const ReactTable = ({
+export function ReactTable({
   columns,
   keyField,
   data,
@@ -18,7 +18,7 @@ export const ReactTable = ({
   onDeleteItemClick,
   selectedRows,
   setSelectedRows,
-}) => {
+}) {
   const formatActionButtonCell = (cell, row) => {
     return (
       <>
@@ -50,7 +50,7 @@ export const ReactTable = ({
 
   useEffect(() => {
     const formatterColumn = columns.find(
-      element => element.formatter !== undefined,
+      element => element.formatter !== undefined
     );
     formatterColumn.formatter = formatActionButtonCell;
   });
@@ -98,7 +98,7 @@ export const ReactTable = ({
       )}
     </ToolkitProvider>
   );
-};
+}
 
 ReactTable.propTypes = {
   columns: PropTypes.array.isRequired,

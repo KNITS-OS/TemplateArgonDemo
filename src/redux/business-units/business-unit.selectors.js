@@ -10,5 +10,5 @@ export const selectBusinessUnitsAsList = createSelector(
     return businessUnits.map(businessUnit => {
       return { value: businessUnit.name, label: businessUnit.name };
     });
-  },
+  }
 );

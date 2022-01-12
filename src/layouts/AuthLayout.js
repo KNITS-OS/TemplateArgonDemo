@@ -25,7 +25,7 @@ import { AuthFooter } from "components/Footers";
 
 import { getRoutes } from "./utils";
 
-export const AuthLayout = () => {
+export function AuthLayout() {
   const location = useLocation();
   const mainContentRef = useRef(null);
   useEffect(() => {
@@ -56,4 +56,4 @@ export const AuthLayout = () => {
       <AuthFooter />
     </>
   );
-};
+}

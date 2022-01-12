@@ -38,13 +38,13 @@ import classnames from "classnames";
 // react library that creates nice scrollbar on windows devices
 import PerfectScrollbar from "react-perfect-scrollbar";
 
-export const Sidebar = ({
+export function Sidebar({
   toggleSidenav,
   sidenavOpen,
   routes,
   logo,
   rtlActive,
-}) => {
+}) {
   const [state, setState] = useState({});
   const location = useLocation();
   useEffect(() => {
@@ -90,7 +90,8 @@ export const Sidebar = ({
     for (let i = 0; i < routes.length; i++) {
       if (routes[i].collapse && getCollapseInitialState(routes[i].views)) {
         return true;
-      } else if (location.pathname.indexOf(routes[i].path) !== -1) {
+      }
+      if (location.pathname.indexOf(routes[i].path) !== -1) {
         return true;
       }
     }
@@ -110,8 +111,8 @@ export const Sidebar = ({
         return null;
       }
       if (prop.collapse) {
-        var st = {};
-        st[prop["state"]] = !state[prop.state];
+        const st = {};
+        st[prop.state] = !state[prop.state];
         return (
           <NavItem key={key}>
             <NavLink
@@ -222,7 +223,7 @@ export const Sidebar = ({
         </div>
       </div>
       <div className="navbar-inner">
-        <Collapse navbar isOpen={true}>
+        <Collapse navbar isOpen>
           <Nav navbar>{createLinks(routes)}</Nav>
 
           <hr className="my-3" />
@@ -253,10 +254,9 @@ export const Sidebar = ({
   );
   return (
     <Navbar
-      className={
-        "sidenav navbar-vertical navbar-expand-xs navbar-light bg-white " +
-        (rtlActive ? "" : "fixed-left")
-      }
+      className={`sidenav navbar-vertical navbar-expand-xs navbar-light bg-white ${
+        rtlActive ? "" : "fixed-left"
+      }`}
       onMouseEnter={onMouseEnterSidenav}
       onMouseLeave={onMouseLeaveSidenav}
     >
@@ -267,7 +267,7 @@ export const Sidebar = ({
       )}
     </Navbar>
   );
-};
+}
 
 Sidebar.defaultProps = {
   routes: [{}],

@@ -7,13 +7,13 @@ import { store } from "store";
 
 import { SearchEmployeesPage } from "..";
 
-const MockEmployeesPage = () => {
+function MockEmployeesPage() {
   return (
     <Provider store={store}>
       <SearchEmployeesPage />
     </Provider>
   );
-};
+}
 
 describe("Employees Page", () => {
   describe("Filters", () => {

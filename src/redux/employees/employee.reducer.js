@@ -31,7 +31,10 @@ const initialState = {
   entity: null,
 };
 
-export const employeeReducer = (employeeState = initialState, action) => {
+export const employeeReducer = (
+  employeeState = initialState,
+  action = {}
+) => {
   const { type, payload } = action;
 
   switch (type) {
@@ -109,15 +112,14 @@ export const employeeReducer = (employeeState = initialState, action) => {
       };
 
     case UPDATE_EMPLOYEE_COMPLETE:
-      let updatedEmployees = employeeState.entities.map(employee => {
+      const updatedEmployees = employeeState.entities.map(employee => {
         if (employee.id === payload.id) {
           return {
             ...employee,
             ...payload,
           };
-        } else {
-          return employee;
         }
+        return employee;
       });
 
       return {
@@ -130,17 +132,16 @@ export const employeeReducer = (employeeState = initialState, action) => {
       };
 
     case PARTIAL_UPDATE_EMPLOYEE_COMPLETE:
-      let partiallyUpdatedEmployees = employeeState.entities.map(
+      const partiallyUpdatedEmployees = employeeState.entities.map(
         employee => {
           if (employee.id === payload.id) {
             return {
               ...employee,
               ...payload,
             };
-          } else {
-            return employee;
           }
-        },
+          return employee;
+        }
       );
 
       return {
@@ -153,8 +154,8 @@ export const employeeReducer = (employeeState = initialState, action) => {
       };
 
     case DELETE_EMPLOYEE_COMPLETE:
-      let employeesToKeep = employeeState.entities.filter(
-        ({ id }) => id !== payload.id,
+      const employeesToKeep = employeeState.entities.filter(
+        ({ id }) => id !== payload.id
       );
 
       return {

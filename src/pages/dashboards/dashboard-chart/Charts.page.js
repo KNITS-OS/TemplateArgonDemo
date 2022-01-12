@@ -19,7 +19,7 @@ import {
 } from "variables/charts";
 import { useSelector } from "react-redux";
 
-export const ChartsPage = () => {
+export function ChartsPage() {
   const chartsState = useSelector(state => state.chart);
 
   const lineChart = lineChartExample(chartsState.entities[0]);
@@ -150,4 +150,4 @@ export const ChartsPage = () => {
       </Container>
     </>
   );
-};
+}

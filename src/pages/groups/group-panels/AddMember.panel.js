@@ -17,12 +17,12 @@ import { selectCountriesAsList } from "redux/countries";
 import { selectBusinessUnitsAsList } from "redux/business-units";
 import { selectEmployeesAsList } from "redux/employees";
 
-export const AddMemberPanel = (
+export function AddMemberPanel(
   onChangeRole,
   onChangeCountry,
   onChangeBusinessUnit,
-  onSelectCareMember,
-) => {
+  onSelectCareMember
+) {
   const countriesList = useSelector(selectCountriesAsList);
   const businessUnitsList = useSelector(selectBusinessUnitsAsList);
 
@@ -110,7 +110,7 @@ export const AddMemberPanel = (
       </CardBody>
     </Card>
   );
-};
+}
 
 AddMemberPanel.propTypes = {
   onChangeRole: PropTypes.func.isRequired,

@@ -32,7 +32,7 @@ export const barChartExample = chart => {
       datasets: [
         {
           label: "Performance",
-          backgroundColor: colors.theme["danger"],
+          backgroundColor: colors.theme.danger,
           data: chart.map(item => item.value),
           maxBarThickness: 10,
         },
@@ -75,11 +75,11 @@ export const doughnutChartExample = chart => {
         {
           data: chart.map(item => item.value),
           backgroundColor: [
-            colors.theme["danger"],
-            colors.theme["warning"],
-            colors.theme["success"],
-            colors.theme["primary"],
-            colors.theme["info"],
+            colors.theme.danger,
+            colors.theme.warning,
+            colors.theme.success,
+            colors.theme.primary,
+            colors.theme.info,
           ],
           label: "Dataset 1",
         },
@@ -108,11 +108,11 @@ export const pieChartExample = chart => {
           label: "Dataset 1",
           data: chart.map(item => item.value),
           backgroundColor: [
-            colors.theme["danger"],
-            colors.theme["warning"],
-            colors.theme["success"],
-            colors.theme["primary"],
-            colors.theme["info"],
+            colors.theme.danger,
+            colors.theme.warning,
+            colors.theme.success,
+            colors.theme.primary,
+            colors.theme.info,
           ],
         },
       ],
@@ -137,19 +137,19 @@ export const multiBarChartExample = chart => {
       datasets: [
         {
           label: "Dataset 1",
-          backgroundColor: colors.theme["danger"],
+          backgroundColor: colors.theme.danger,
           data: chart.map(item => item.values[0]),
           maxBarThickness: 10,
         },
         {
           label: "Dataset 2",
-          backgroundColor: colors.theme["primary"],
+          backgroundColor: colors.theme.primary,
           data: chart.map(item => item.values[1]),
           maxBarThickness: 10,
         },
         {
           label: "Dataset 3",
-          backgroundColor: colors.theme["success"],
+          backgroundColor: colors.theme.success,
           data: chart.map(item => item.values[2]),
           maxBarThickness: 10,
         },
