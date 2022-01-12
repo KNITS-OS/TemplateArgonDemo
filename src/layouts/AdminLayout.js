@@ -32,6 +32,7 @@ import { listBusinessUnits } from "redux/business-units";
 import { listCharts } from "redux/charts";
 import { listWorldMap } from "redux/world-map";
 
+import brandLogoImg from "assets/img/brand/Logo.png";
 import { getRoutes } from "./utils";
 
 export function AdminLayout() {
@@ -71,6 +72,21 @@ export function AdminLayout() {
       setCategoryDataLoaded(true);
     }
   }, [countriesState.entities]);
+
+  const cleanAlert = () => {
+    setCategoryDataLoaded(true); // remove spinner
+    setAlert(
+      <UncontrolledAlert color="danger" fade={false}>
+        <span className="alert-inner--icon">
+          <i className="ni ni-like-2" />
+        </span>{" "}
+        <span className="alert-inner--text">
+          <strong>Attention!</strong> No data were loaded. Application will
+          not work as expected
+        </span>
+      </UncontrolledAlert>
+    );
+  };
 
   useEffect(() => {
     if (countriesState.isError) {
@@ -149,22 +165,7 @@ export function AdminLayout() {
     }
   }, [worldMapState.isError, worldMapState.errorMessage]);
 
-  const cleanAlert = () => {
-    setCategoryDataLoaded(true); // remove spinner
-    setAlert(
-      <UncontrolledAlert color="danger" fade={false}>
-        <span className="alert-inner--icon">
-          <i className="ni ni-like-2" />
-        </span>{" "}
-        <span className="alert-inner--text">
-          <strong>Attention!</strong> No data were loaded. Application will
-          not work as expected
-        </span>
-      </UncontrolledAlert>
-    );
-  };
-
-  const getBrandText = path => {
+  const getBrandText = () => {
     for (let i = 0; i < routes.length; i++) {
       if (
         location.pathname.indexOf(routes[i].layout + routes[i].path) !== -1
@@ -176,7 +177,7 @@ export function AdminLayout() {
   };
 
   // toggles collapse between mini sidenav and normal
-  const toggleSidenav = e => {
+  const toggleSidenav = () => {
     if (document.body.classList.contains("g-sidenav-pinned")) {
       document.body.classList.remove("g-sidenav-pinned");
       document.body.classList.add("g-sidenav-hidden");
@@ -201,7 +202,7 @@ export function AdminLayout() {
         sidenavOpen={sidenavOpen}
         logo={{
           innerLink: "/",
-          imgSrc: require("assets/img/brand/Logo.png").default,
+          imgSrc: brandLogoImg,
           imgAlt: "...",
         }}
       />
@@ -228,7 +229,13 @@ export function AdminLayout() {
         )}
       </div>
       {sidenavOpen ? (
-        <div className="backdrop d-xl-none" onClick={toggleSidenav} />
+        // eslint-disable-next-line jsx-a11y/click-events-have-key-events
+        <div
+          className="backdrop d-xl-none"
+          role="button"
+          tabIndex={0}
+          onClick={toggleSidenav}
+        />
       ) : null}
     </>
   );

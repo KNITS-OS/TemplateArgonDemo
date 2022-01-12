@@ -72,6 +72,6 @@ export function TimelineHeader({ name, parentName }) {
 }
 
 TimelineHeader.propTypes = {
-  name: PropTypes.string,
-  parentName: PropTypes.string,
+  name: PropTypes.string.isRequired,
+  parentName: PropTypes.string.isRequired,
 };

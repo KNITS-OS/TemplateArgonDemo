@@ -81,6 +81,7 @@ export function ReactTable({
 
             <Button
               className="btn btn-success"
+              // eslint-disable-next-line no-console
               onClick={() => console.log("selectedRows", selectedRows)}
             >
               Workflow

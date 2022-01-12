@@ -79,7 +79,7 @@ export function EditGroupPanel({
                   </h6>
                   <ButtonGroup className="d-flex">
                     <Button
-                      onClick={e =>
+                      onClick={() =>
                         setAddMembersCollapse(!addMembersCollapse)
                       }
                       color="success"
@@ -95,9 +95,13 @@ export function EditGroupPanel({
                     {/* <MembersTableComps data={group.members} /> */}
                     <Collapse isOpen={addMembersCollapse}>
                       <AddMemberPanel
+                        // eslint-disable-next-line no-console
                         onChangeRole={e => console.log(e)}
+                        // eslint-disable-next-line no-console
                         onChangeCountry={e => console.log(e)}
+                        // eslint-disable-next-line no-console
                         onChangeBusinessUnit={e => console.log(e)}
+                        // eslint-disable-next-line no-console
                         onSelectCareMember={e => console.log(e)}
                       />
                     </Collapse>
@@ -132,7 +136,7 @@ EditGroupPanel.propTypes = {
   setGroup: PropTypes.func.isRequired,
   onSave: PropTypes.func.isRequired,
   groupsState: PropTypes.object.isRequired,
-  onBackToSearchClick: PropTypes.func,
+  onBackToSearchClick: PropTypes.func.isRequired,
   addMembersCollapse: PropTypes.bool.isRequired,
   setAddMembersCollapse: PropTypes.func.isRequired,
 };

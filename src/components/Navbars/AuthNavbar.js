@@ -32,6 +32,9 @@ import {
   Button,
 } from "reactstrap";
 
+import argonReactWhiteImg from "assets/img/brand/argon-react-white.png";
+import blueBrandBlueImg from "assets/img/brand/blue.png";
+
 export function AuthNavbar() {
   return (
     <Navbar
@@ -41,10 +44,7 @@ export function AuthNavbar() {
     >
       <Container>
         <NavbarBrand to="/" tag={Link}>
-          <img
-            alt="..."
-            src={require("assets/img/brand/argon-react-white.png").default}
-          />
+          <img alt="..." src={argonReactWhiteImg} />
         </NavbarBrand>
         <button
           aria-controls="navbar-collapse"
@@ -67,10 +67,7 @@ export function AuthNavbar() {
             <Row>
               <Col className="collapse-brand" xs="6">
                 <Link to="/admin/dashboard">
-                  <img
-                    alt="..."
-                    src={require("assets/img/brand/blue.png").default}
-                  />
+                  <img alt="..." src={blueBrandBlueImg} />
                 </Link>
               </Col>
               <Col className="collapse-close" xs="6">

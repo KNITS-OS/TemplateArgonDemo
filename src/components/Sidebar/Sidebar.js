@@ -47,6 +47,39 @@ export function Sidebar({
 }) {
   const [state, setState] = useState({});
   const location = useLocation();
+
+  // this verifies if any of the collapses should be default opened on a rerender of this component
+  // for example, on the refresh of the page,
+  // while on the src/views/forms/RegularForms.js - route /admin/regular-forms
+  const getCollapseInitialState = routes => {
+    for (let i = 0; i < routes.length; i++) {
+      if (routes[i].collapse && getCollapseInitialState(routes[i].views)) {
+        return true;
+      }
+      if (location.pathname.indexOf(routes[i].path) !== -1) {
+        return true;
+      }
+    }
+    return false;
+  };
+
+  // this creates the intial state of this component based on the collapse routes
+  // that it gets through routes
+  const getCollapseStates = routes => {
+    let initialState = {};
+    routes.map(prop => {
+      if (prop.collapse) {
+        initialState = {
+          [prop.state]: getCollapseInitialState(prop.views),
+          ...getCollapseStates(prop.views),
+          ...initialState,
+        };
+      }
+      return null;
+    });
+    return initialState;
+  };
+
   useEffect(() => {
     setState(getCollapseStates(routes));
     // eslint-disable-next-line
@@ -67,36 +100,7 @@ export function Sidebar({
       document.body.classList.remove("g-sidenav-show");
     }
   };
-  // this creates the intial state of this component based on the collapse routes
-  // that it gets through routes
-  const getCollapseStates = routes => {
-    let initialState = {};
-    routes.map((prop, key) => {
-      if (prop.collapse) {
-        initialState = {
-          [prop.state]: getCollapseInitialState(prop.views),
-          ...getCollapseStates(prop.views),
-          ...initialState,
-        };
-      }
-      return null;
-    });
-    return initialState;
-  };
-  // this verifies if any of the collapses should be default opened on a rerender of this component
-  // for example, on the refresh of the page,
-  // while on the src/views/forms/RegularForms.js - route /admin/regular-forms
-  const getCollapseInitialState = routes => {
-    for (let i = 0; i < routes.length; i++) {
-      if (routes[i].collapse && getCollapseInitialState(routes[i].views)) {
-        return true;
-      }
-      if (location.pathname.indexOf(routes[i].path) !== -1) {
-        return true;
-      }
-    }
-    return false;
-  };
+
   // this is used on mobile devices, when a user navigates
   // the sidebar will autoclose
   const closeSidenav = () => {
@@ -208,10 +212,13 @@ export function Sidebar({
           </NavbarBrand>
         ) : null}
         <div className="ml-auto">
+          {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events */}
           <div
             className={classnames("sidenav-toggler d-none d-xl-block", {
               active: sidenavOpen,
             })}
+            role="button"
+            tabIndex={0}
             onClick={toggleSidenav}
           >
             <div className="sidenav-toggler-inner">
@@ -286,17 +293,18 @@ Sidebar.propTypes = {
    */
   routes: PropTypes.arrayOf(PropTypes.object),
   // logo
+  // eslint-disable-next-line react/require-default-props
   logo: PropTypes.shape({
     /**
      * innerLink is for links that will direct the user within the app
      * it will be rendered as <Link to="...">...</Link> tag
      */
-    innerLink: PropTypes.string,
+    innerLink: PropTypes.string.isRequired,
     /**
      * outerLink is for links that will direct the user outside the app
      * it will be rendered as simple <a href="...">...</a> tag
      */
-    outterLink: PropTypes.string,
+    outterLink: PropTypes.string.isRequired,
     /**
      * the image src of the logo
      */

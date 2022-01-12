@@ -310,5 +310,5 @@ EditEmployeePanel.propTypes = {
   setEmployee: PropTypes.func.isRequired,
   employeesState: PropTypes.object.isRequired,
   onSave: PropTypes.func.isRequired,
-  onBackToSearchClick: PropTypes.func,
+  onBackToSearchClick: PropTypes.func.isRequired,
 };

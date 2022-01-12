@@ -61,7 +61,6 @@ export const employeeReducer = (
     case PARTIAL_UPDATE_EMPLOYEE_ERROR:
     case UPDATE_EMPLOYEE_ERROR:
     case DELETE_EMPLOYEE_ERROR:
-      console.log(action);
       return {
         isLoading: false,
         isError: true,

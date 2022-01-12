@@ -33,8 +33,9 @@ import {
 } from "reactstrap";
 
 import Logo from "assets/img/brand/Logo.png";
+import blueBrandImg from "assets/img/brand/blue.png";
 
-export function AdminNavbar() {
+export function IndexNavbar() {
   return (
     <Navbar
       className="navbar-horizontal navbar-main navbar-dark bg-info"
@@ -66,10 +67,7 @@ export function AdminNavbar() {
             <Row>
               <Col className="collapse-brand" xs="6">
                 <Link to="/admin/dashboard">
-                  <img
-                    alt="..."
-                    src={require("assets/img/brand/blue.png").default}
-                  />
+                  <img alt="..." src={blueBrandImg} />
                 </Link>
               </Col>
               <Col className="collapse-close" xs="6">

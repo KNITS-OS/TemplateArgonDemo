@@ -113,10 +113,7 @@ export function GroupDetailsPage() {
     history.push(`/admin/users/employee-details/${id}`);
   };
 
-  const memberRemove = e => {
-    const { id } = e.target;
-    console.log(id);
-  };
+  const memberRemove = () => {};
 
   const onToggleGroupActive = () => {
     dispatch(deactivateGroup(id));
@@ -220,11 +217,15 @@ export function GroupDetailsPage() {
                             <Col lg="12">
                               <Collapse isOpen={addMemberCollapse}>
                                 <AddMemberPanel
+                                  // eslint-disable-next-line no-console
                                   onChangeRole={e => console.log(e)}
+                                  // eslint-disable-next-line no-console
                                   onChangeCountry={e => console.log(e)}
                                   onChangeBusinessUnit={e =>
+                                    // eslint-disable-next-line no-console
                                     console.log(e)
                                   }
+                                  // eslint-disable-next-line no-console
                                   onSelectCareMember={e => console.log(e)}
                                 />
                               </Collapse>
