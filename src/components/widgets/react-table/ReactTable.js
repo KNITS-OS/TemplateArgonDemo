@@ -18,6 +18,8 @@ export const ReactTable = ({
   onDeleteItemClick,
   selectedRows,
   setSelectedRows,
+  searchBarPlaceholder,
+  selectButtonText="Workflow" 
 }) => {
   const formatActionButtonCell = (cell, row) => {
     return (
@@ -74,7 +76,7 @@ export const ReactTable = ({
               Search:
               <SearchBar
                 className="form-control-sm mr-3"
-                placeholder=""
+                placeholder={searchBarPlaceholder}
                 {...props.searchProps}
               />
             </label>
@@ -83,7 +85,7 @@ export const ReactTable = ({
               className="btn btn-success"
               onClick={() => console.log("selectedRows", selectedRows)}
             >
-              Workflow
+              {selectButtonText}
             </Button>
           </div>
           <BootstrapTable
