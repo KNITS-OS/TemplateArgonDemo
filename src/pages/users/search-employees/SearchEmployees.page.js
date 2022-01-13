@@ -23,7 +23,6 @@ import ReactDatetime from "react-datetime";
 import Select from "react-select";
 import makeAnimated from "react-select/animated";
 
-// redux
 import { GradientEmptyHeader } from "components/Headers";
 import { ReactTable } from "components/widgets";
 

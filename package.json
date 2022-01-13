@@ -82,6 +82,14 @@
     ],
     "resetMocks": false
   },
+  "lint-staged": {
+      "*.js": "eslint --cache --fix"
+    },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged && pretty-quick --staged"
+    }
+  },
   "browserslist": {
     "production": [
       ">0.2%",
@@ -109,10 +117,13 @@
     "eslint-plugin-testing-library": "^5.0.3",
     "gulp": "4.0.2",
     "gulp-append-prepend": "1.0.8",
+    "husky": "^7.0.4",
     "json-server": "^0.17.0",
+    "lint-staged": "^12.1.7",
     "prettier": "^2.5.1",
     "prettier-eslint": "^13.0.0",
     "prettier-eslint-cli": "^5.0.1",
+    "pretty-quick": "^3.1.3",
     "typescript": "4.1.3"
   }
 }
