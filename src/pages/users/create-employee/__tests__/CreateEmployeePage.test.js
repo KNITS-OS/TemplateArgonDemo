@@ -1,11 +1,23 @@
+import { Provider } from "react-redux";
+
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
+import { store } from "store";
+
 import { CreateEmployeePage } from "..";
+
+const MockCreateGroupsPage = () => {
+  return (
+    <Provider store={store}>
+      <CreateEmployeePage />
+    </Provider>
+  );
+};
 
 describe("Create Employees Page", () => {
   test("should write into input, see that this text was written and is on the screen", () => {
-    render(<CreateEmployeePage />);
+    render(<MockCreateGroupsPage />);
 
     // example with testid
     // const inputElement = screen.getByTestId(/firstName/i);
@@ -23,7 +35,7 @@ describe("Create Employees Page", () => {
   });
   describe("Snapshot tests", () => {
     test("should render correctly", () => {
-      const { asFragment } = render(<CreateEmployeePage />);
+      const { asFragment } = render(<MockCreateGroupsPage />);
 
       expect(asFragment()).toMatchSnapshot();
     });

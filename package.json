@@ -40,7 +40,7 @@
     "react-redux": "^7.2.6",
     "react-router": "5.2.0",
     "react-router-dom": "5.2.0",
-    "react-scripts": "4.0.3",
+    "react-scripts": "^5.0.0",
     "react-select": "^4.3.1",
     "react-select2-wrapper": "1.0.4-beta6",
     "react-to-print": "2.12.2",
@@ -68,7 +68,8 @@
     "lint": "eslint --fix --ext .js,.ts,.tsx ./src --ignore-path .gitignore",
     "prettier": "prettier --ignore-path .gitignore --write \"**/*.+(js|json|ts|tsx)\"",
     "check-format": "npm run prettier -- --list-different",
-    "fix-code": "prettier-eslint --write 'src/**/*.{js,jsx}'"
+    "fix-code": "prettier-eslint --write 'src/**/*.{js,jsx}'",
+    "prepare": "husky install"
   },
   "eslintConfig": {
     "extends": [
@@ -81,14 +82,6 @@
       "src/**/*.{js,jsx,ts,tsx}"
     ],
     "resetMocks": false
-  },
-  "lint-staged": {
-      "*.js": "eslint --cache --fix"
-    },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged && pretty-quick --staged"
-    }
   },
   "browserslist": {
     "production": [
@@ -117,7 +110,7 @@
     "eslint-plugin-testing-library": "^5.0.3",
     "gulp": "4.0.2",
     "gulp-append-prepend": "1.0.8",
-    "husky": "^7.0.4",
+    "husky": "^7.0.0",
     "json-server": "^0.17.0",
     "lint-staged": "^12.1.7",
     "prettier": "^2.5.1",

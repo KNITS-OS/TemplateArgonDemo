@@ -421,7 +421,7 @@ exports[`Employees Page Snapshot tests should render correctly 1`] = `
                                 5
                               </td>
                               <td
-                                class="rdtDay rdtToday"
+                                class="rdtDay"
                                 data-month="0"
                                 data-value="6"
                                 data-year="2022"
@@ -479,7 +479,7 @@ exports[`Employees Page Snapshot tests should render correctly 1`] = `
                                 12
                               </td>
                               <td
-                                class="rdtDay"
+                                class="rdtDay rdtToday"
                                 data-month="0"
                                 data-value="13"
                                 data-year="2022"

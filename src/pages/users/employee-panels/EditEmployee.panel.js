@@ -8,8 +8,8 @@ export const EditEmployeePanel = ({
   employee,
   setEmployee,
   onSave,
-  onBackToSearchClick,
   employeesState,
+  onBackToSearchClick,
 }) => {
   const {
     firstName,
@@ -296,5 +296,6 @@ EditEmployeePanel.propTypes = {
   setEmployee: PropTypes.func.isRequired,
   employeesState: PropTypes.object.isRequired,
   onSave: PropTypes.func.isRequired,
-  onBackToSearchClick: PropTypes.func.isRequired,
+  // eslint-disable-next-line react/require-default-props
+  onBackToSearchClick: PropTypes.func,
 };
