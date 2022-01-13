@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+
 import { useDispatch, useSelector } from "react-redux";
 
 import { Container } from "reactstrap";
@@ -30,7 +31,7 @@ export const CreateGroupPage = () => {
       setAlert(
         <SweetAlert danger title="Error" onConfirm={() => setAlert(false)}>
           {groupsState.errorMessage}
-        </SweetAlert>,
+        </SweetAlert>
       );
     }
   }, [groupsState.isError, groupsState.errorMessage]);
@@ -42,13 +43,9 @@ export const CreateGroupPage = () => {
   useEffect(() => {
     if (groupsState.entity) {
       setAlert(
-        <SweetAlert
-          success
-          title="Success"
-          onConfirm={() => setAlert(false)}
-        >
+        <SweetAlert success title="Success" onConfirm={() => setAlert(false)}>
           Group Created
-        </SweetAlert>,
+        </SweetAlert>
       );
     }
   }, [groupsState.entity]);

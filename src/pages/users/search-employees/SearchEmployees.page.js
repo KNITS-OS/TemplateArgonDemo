@@ -1,9 +1,10 @@
 // core react libraries
 import React, { useState, useEffect } from "react";
+
 import { useDispatch, useSelector } from "react-redux";
+
 import { useHistory } from "react-router";
 
-// reactstrap components
 import {
   Button,
   Card,
@@ -17,22 +18,18 @@ import {
   Spinner,
 } from "reactstrap";
 
-// 3rd part react libraries
+import SweetAlert from "react-bootstrap-sweetalert";
 import ReactDatetime from "react-datetime";
 import Select from "react-select";
 import makeAnimated from "react-select/animated";
-import SweetAlert from "react-bootstrap-sweetalert";
 
-//template core components
 import { GradientEmptyHeader } from "components/Headers";
 import { ReactTable } from "components/widgets";
 
-// redux
-import { searchEmployees, deleteEmployee } from "redux/employees";
-import { selectCountriesAsList } from "redux/countries";
 import { selectBusinessUnitsAsList } from "redux/business-units";
+import { selectCountriesAsList } from "redux/countries";
+import { searchEmployees, deleteEmployee } from "redux/employees";
 
-//local components
 import { employeesTableColumns } from ".";
 
 export const SearchEmployeesPage = () => {
@@ -54,7 +51,7 @@ export const SearchEmployeesPage = () => {
       setAlert(
         <SweetAlert danger title="Error" onConfirm={() => setAlert(false)}>
           {employeesState.errorMessage}
-        </SweetAlert>,
+        </SweetAlert>
       );
     }
   }, [employeesState.isError, employeesState.errorMessage]);
@@ -64,13 +61,14 @@ export const SearchEmployeesPage = () => {
     // _ is not used but its value is the attribute name
     return Object.fromEntries(
       Object.entries(obj).filter(
-        ([_, value]) => value !== null && value !== "",
-      ),
+        // eslint-disable-next-line no-unused-vars
+        ([_, value]) => value !== null && value !== ""
+      )
     );
   };
 
   const findByAllParameters = () => {
-    let filters = {
+    const filters = {
       lastName: searchLastName,
       businessUnit: searchBusinessUnit,
       country: searchCountry,
@@ -81,12 +79,12 @@ export const SearchEmployeesPage = () => {
   };
 
   const goToEmployeeDetails = e => {
-    var { id } = e.target;
+    const { id } = e.target;
     history.push(`/admin/users/employee-details/${id}`);
   };
 
   const removeEmployee = e => {
-    var { id } = e.target;
+    const { id } = e.target;
     dispatch(deleteEmployee(id));
   };
 
@@ -106,10 +104,7 @@ export const SearchEmployeesPage = () => {
                 <Row>
                   <Col md="3">
                     <FormGroup>
-                      <label
-                        className="form-control-label"
-                        htmlFor="lastName"
-                      >
+                      <label className="form-control-label" htmlFor="lastName">
                         Last name
                       </label>
                       <Input
@@ -125,28 +120,20 @@ export const SearchEmployeesPage = () => {
                   </Col>
                   <Col md="3">
                     <FormGroup>
-                      <label
-                        className="form-control-label"
-                        htmlFor="businessUnits"
-                      >
+                      <label className="form-control-label" htmlFor="businessUnits">
                         Business Units
                       </label>
                       <Select
                         id="businessUnits"
                         components={makeAnimated()}
                         options={businessUnitsList}
-                        onChange={item =>
-                          setSearchBusinessUnit(item.value)
-                        }
+                        onChange={item => setSearchBusinessUnit(item.value)}
                       />
                     </FormGroup>
                   </Col>
                   <Col md="2">
                     <FormGroup>
-                      <label
-                        className="form-control-label"
-                        htmlFor="country"
-                      >
+                      <label className="form-control-label" htmlFor="country">
                         Countries
                       </label>
                       <Select
@@ -159,10 +146,7 @@ export const SearchEmployeesPage = () => {
                   </Col>
                   <Col md="2">
                     <FormGroup>
-                      <label
-                        className="form-control-label"
-                        htmlFor="example3cols2Input"
-                      >
+                      <label className="form-control-label" htmlFor="example3cols2Input">
                         Hire Date From
                       </label>
                       <ReactDatetime
@@ -170,9 +154,7 @@ export const SearchEmployeesPage = () => {
                           placeholder: "Hire date",
                         }}
                         onChange={dateAsMoment =>
-                          setSearchHiringDate(
-                            dateAsMoment.format("MM/DD/YYYY"),
-                          )
+                          setSearchHiringDate(dateAsMoment.format("MM/DD/YYYY"))
                         }
                         timeFormat={false}
                       />

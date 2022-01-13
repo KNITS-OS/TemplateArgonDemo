@@ -16,37 +16,55 @@
 */
 
 import { useEffect, useState } from "react";
-import {
-  useLocation,
-  NavLink as NavLinkRRD,
-  Link,
-} from "react-router-dom";
+
+import { Collapse, NavbarBrand, Navbar, NavItem, NavLink, Nav } from "reactstrap";
+
+import classnames from "classnames";
 import { PropTypes } from "prop-types";
+import PerfectScrollbar from "react-perfect-scrollbar";
+import { useLocation, NavLink as NavLinkRRD, Link } from "react-router-dom";
 
 // reactstrap components
-import {
-  Collapse,
-  NavbarBrand,
-  Navbar,
-  NavItem,
-  NavLink,
-  Nav,
-} from "reactstrap";
-
 // nodejs library that concatenates classes
-import classnames from "classnames";
 // react library that creates nice scrollbar on windows devices
-import PerfectScrollbar from "react-perfect-scrollbar";
 
-export const Sidebar = ({
-  toggleSidenav,
-  sidenavOpen,
-  routes,
-  logo,
-  rtlActive,
-}) => {
+export const Sidebar = ({ toggleSidenav, sidenavOpen, routes, logo, rtlActive }) => {
   const [state, setState] = useState({});
   const location = useLocation();
+
+  // this verifies if any of the collapses should be default opened on a rerender of this component
+  // for example, on the refresh of the page,
+  // while on the src/views/forms/RegularForms.js - route /admin/regular-forms
+  const getCollapseInitialState = routes => {
+    for (let i = 0; i < routes.length; i++) {
+      if (routes[i].collapse && getCollapseInitialState(routes[i].views)) {
+        return true;
+      }
+      if (location.pathname.indexOf(routes[i].path) !== -1) {
+        return true;
+      }
+    }
+    return false;
+  };
+
+  // this creates the intial state of this component based on the collapse routes
+  // that it gets through routes
+  const getCollapseStates = routes => {
+    let initialState = {};
+    routes.map(prop => {
+      if (prop.collapse) {
+        initialState = {
+          [prop.state]: getCollapseInitialState(prop.views),
+          ...getCollapseStates(prop.views),
+          ...initialState,
+        };
+      }
+      return null;
+    });
+
+    return initialState;
+  };
+
   useEffect(() => {
     setState(getCollapseStates(routes));
     // eslint-disable-next-line
@@ -67,35 +85,7 @@ export const Sidebar = ({
       document.body.classList.remove("g-sidenav-show");
     }
   };
-  // this creates the intial state of this component based on the collapse routes
-  // that it gets through routes
-  const getCollapseStates = routes => {
-    let initialState = {};
-    routes.map((prop, key) => {
-      if (prop.collapse) {
-        initialState = {
-          [prop.state]: getCollapseInitialState(prop.views),
-          ...getCollapseStates(prop.views),
-          ...initialState,
-        };
-      }
-      return null;
-    });
-    return initialState;
-  };
-  // this verifies if any of the collapses should be default opened on a rerender of this component
-  // for example, on the refresh of the page,
-  // while on the src/views/forms/RegularForms.js - route /admin/regular-forms
-  const getCollapseInitialState = routes => {
-    for (let i = 0; i < routes.length; i++) {
-      if (routes[i].collapse && getCollapseInitialState(routes[i].views)) {
-        return true;
-      } else if (location.pathname.indexOf(routes[i].path) !== -1) {
-        return true;
-      }
-    }
-    return false;
-  };
+
   // this is used on mobile devices, when a user navigates
   // the sidebar will autoclose
   const closeSidenav = () => {
@@ -110,8 +100,8 @@ export const Sidebar = ({
         return null;
       }
       if (prop.collapse) {
-        var st = {};
-        st[prop["state"]] = !state[prop.state];
+        const st = {};
+        st[prop.state] = !state[prop.state];
         return (
           <NavItem key={key}>
             <NavLink
@@ -133,27 +123,19 @@ export const Sidebar = ({
                 </>
               ) : prop.miniName ? (
                 <>
-                  <span className="sidenav-mini-icon">
-                    {" "}
-                    {prop.miniName}{" "}
-                  </span>
+                  <span className="sidenav-mini-icon"> {prop.miniName} </span>
                   <span className="sidenav-normal"> {prop.name} </span>
                 </>
               ) : null}
             </NavLink>
             <Collapse isOpen={state[prop.state]}>
-              <Nav className="nav-sm flex-column">
-                {createLinks(prop.views)}
-              </Nav>
+              <Nav className="nav-sm flex-column">{createLinks(prop.views)}</Nav>
             </Collapse>
           </NavItem>
         );
       }
       return (
-        <NavItem
-          className={activeRoute(prop.layout + prop.path)}
-          key={key}
-        >
+        <NavItem className={activeRoute(prop.layout + prop.path)} key={key}>
           <NavLink
             to={prop.layout + prop.path}
             activeClassName=""
@@ -167,10 +149,7 @@ export const Sidebar = ({
               </>
             ) : prop.miniName !== undefined ? (
               <>
-                <span className="sidenav-mini-icon">
-                  {" "}
-                  {prop.miniName}{" "}
-                </span>
+                <span className="sidenav-mini-icon"> {prop.miniName} </span>
                 <span className="sidenav-normal"> {prop.name} </span>
               </>
             ) : (
@@ -199,18 +178,17 @@ export const Sidebar = ({
       <div className="sidenav-header d-flex align-items-center">
         {logo ? (
           <NavbarBrand {...navbarBrandProps}>
-            <img
-              alt={logo.imgAlt}
-              className="navbar-brand-img"
-              src={logo.imgSrc}
-            />
+            <img alt={logo.imgAlt} className="navbar-brand-img" src={logo.imgSrc} />
           </NavbarBrand>
         ) : null}
         <div className="ml-auto">
+          {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events */}
           <div
             className={classnames("sidenav-toggler d-none d-xl-block", {
               active: sidenavOpen,
             })}
+            role="button"
+            tabIndex={0}
             onClick={toggleSidenav}
           >
             <div className="sidenav-toggler-inner">
@@ -222,7 +200,7 @@ export const Sidebar = ({
         </div>
       </div>
       <div className="navbar-inner">
-        <Collapse navbar isOpen={true}>
+        <Collapse navbar isOpen>
           <Nav navbar>{createLinks(routes)}</Nav>
 
           <hr className="my-3" />
@@ -253,10 +231,9 @@ export const Sidebar = ({
   );
   return (
     <Navbar
-      className={
-        "sidenav navbar-vertical navbar-expand-xs navbar-light bg-white " +
-        (rtlActive ? "" : "fixed-left")
-      }
+      className={`sidenav navbar-vertical navbar-expand-xs navbar-light bg-white ${
+        rtlActive ? "" : "fixed-left"
+      }`}
       onMouseEnter={onMouseEnterSidenav}
       onMouseLeave={onMouseLeaveSidenav}
     >
@@ -286,17 +263,18 @@ Sidebar.propTypes = {
    */
   routes: PropTypes.arrayOf(PropTypes.object),
   // logo
+  // eslint-disable-next-line react/require-default-props
   logo: PropTypes.shape({
     /**
      * innerLink is for links that will direct the user within the app
      * it will be rendered as <Link to="...">...</Link> tag
      */
-    innerLink: PropTypes.string,
+    innerLink: PropTypes.string.isRequired,
     /**
      * outerLink is for links that will direct the user outside the app
      * it will be rendered as simple <a href="...">...</a> tag
      */
-    outterLink: PropTypes.string,
+    outterLink: PropTypes.string.isRequired,
     /**
      * the image src of the logo
      */

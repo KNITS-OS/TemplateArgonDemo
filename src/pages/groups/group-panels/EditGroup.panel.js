@@ -1,5 +1,3 @@
-import PropTypes from "prop-types";
-
 import {
   Button,
   ButtonGroup,
@@ -12,6 +10,8 @@ import {
   Row,
   Spinner,
 } from "reactstrap";
+
+import PropTypes from "prop-types";
 
 import { InputField } from "components/widgets";
 
@@ -41,9 +41,7 @@ export const EditGroupPanel = ({
           </CardHeader>
           <CardBody>
             <Form>
-              <h6 className="heading-small text-muted mb-4">
-                Group information
-              </h6>
+              <h6 className="heading-small text-muted mb-4">Group information</h6>
               <div className="pl-lg-4">
                 <Row>
                   <Col lg="10">
@@ -53,7 +51,10 @@ export const EditGroupPanel = ({
                       value={name}
                       type="text"
                       onChange={e =>
-                        setGroup({ ...group, name: e.target.value })
+                        setGroup({
+                          ...group,
+                          name: e.target.value,
+                        })
                       }
                     />
                   </Col>
@@ -67,21 +68,20 @@ export const EditGroupPanel = ({
                       value={description}
                       type="text"
                       onChange={e =>
-                        setGroup({ ...group, description: e.target.value })
+                        setGroup({
+                          ...group,
+                          description: e.target.value,
+                        })
                       }
                     />
                   </Col>
                 </Row>
 
                 <Row className="d-flex justify-content-between mx-2">
-                  <h6 className="heading-small text-muted mb-4">
-                    MEMBERS
-                  </h6>
+                  <h6 className="heading-small text-muted mb-4">MEMBERS</h6>
                   <ButtonGroup className="d-flex">
                     <Button
-                      onClick={e =>
-                        setAddMembersCollapse(!addMembersCollapse)
-                      }
+                      onClick={() => setAddMembersCollapse(!addMembersCollapse)}
                       color="success"
                       type="button"
                     >
@@ -95,9 +95,13 @@ export const EditGroupPanel = ({
                     {/* <MembersTableComps data={group.members} /> */}
                     <Collapse isOpen={addMembersCollapse}>
                       <AddMemberPanel
+                        // eslint-disable-next-line no-console
                         onChangeRole={e => console.log(e)}
+                        // eslint-disable-next-line no-console
                         onChangeCountry={e => console.log(e)}
+                        // eslint-disable-next-line no-console
                         onChangeBusinessUnit={e => console.log(e)}
+                        // eslint-disable-next-line no-console
                         onSelectCareMember={e => console.log(e)}
                       />
                     </Collapse>
@@ -132,7 +136,7 @@ EditGroupPanel.propTypes = {
   setGroup: PropTypes.func.isRequired,
   onSave: PropTypes.func.isRequired,
   groupsState: PropTypes.object.isRequired,
-  onBackToSearchClick: PropTypes.func,
+  onBackToSearchClick: PropTypes.func.isRequired,
   addMembersCollapse: PropTypes.bool.isRequired,
   setAddMembersCollapse: PropTypes.func.isRequired,
 };

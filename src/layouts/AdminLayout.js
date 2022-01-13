@@ -15,21 +15,24 @@
 
 */
 import React, { useEffect, useState } from "react";
+
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation, Switch, Redirect } from "react-router-dom";
 
 import { Spinner, UncontrolledAlert } from "reactstrap";
 
 import SweetAlert from "react-bootstrap-sweetalert";
+import { useLocation, Switch, Redirect } from "react-router-dom";
 
-import { routes } from "routes";
-import { Sidebar } from "components/Sidebar";
-import { AdminNavbar } from "components/Navbars";
 import { AdminFooter } from "components/Footers";
+import { AdminNavbar } from "components/Navbars";
+import { Sidebar } from "components/Sidebar";
 
-import { listCountries } from "redux/countries";
+import brandLogoImg from "assets/img/brand/Logo.png";
+import { routes } from "routes";
+
 import { listBusinessUnits } from "redux/business-units";
 import { listCharts } from "redux/charts";
+import { listCountries } from "redux/countries";
 import { listWorldMap } from "redux/world-map";
 
 import { getRoutes } from "./utils";
@@ -50,7 +53,7 @@ export const AdminLayout = () => {
     countriesState.isError ||
       businessUnitsState.isError ||
       chartsState.isError ||
-      worldMapState.isError,
+      worldMapState.isError
   );
 
   useEffect(() => {
@@ -72,6 +75,20 @@ export const AdminLayout = () => {
     }
   }, [countriesState.entities]);
 
+  const cleanAlert = () => {
+    setCategoryDataLoaded(true); // remove spinner
+    setAlert(
+      <UncontrolledAlert color="danger" fade={false}>
+        <span className="alert-inner--icon">
+          <i className="ni ni-like-2" />
+        </span>{" "}
+        <span className="alert-inner--text">
+          <strong>Attention!</strong> No data were loaded. Application will not work as expected
+        </span>
+      </UncontrolledAlert>
+    );
+  };
+
   useEffect(() => {
     if (countriesState.isError) {
       setAlert(
@@ -81,16 +98,13 @@ export const AdminLayout = () => {
           onConfirm={() => cleanAlert(setCategoryDataLoaded, setAlert)}
         >
           {`${countriesState.errorMessage} please contact administrator`}
-        </SweetAlert>,
+        </SweetAlert>
       );
     }
   }, [countriesState.isError, countriesState.errorMessage]);
 
   useEffect(() => {
-    if (
-      businessUnitsState.entities &&
-      businessUnitsState.entities.length > 0
-    ) {
+    if (businessUnitsState.entities && businessUnitsState.entities.length > 0) {
       setCategoryDataLoaded(true);
     }
   }, [businessUnitsState.entities]);
@@ -104,7 +118,7 @@ export const AdminLayout = () => {
           onConfirm={() => cleanAlert(setCategoryDataLoaded, setAlert)}
         >
           {`${businessUnitsState.errorMessage} please contact administrator`}
-        </SweetAlert>,
+        </SweetAlert>
       );
     }
   }, [businessUnitsState.isError, businessUnitsState.errorMessage]);
@@ -124,7 +138,7 @@ export const AdminLayout = () => {
           onConfirm={() => cleanAlert(setCategoryDataLoaded, setAlert)}
         >
           {`${chartsState.errorMessage} please contact administrator`}
-        </SweetAlert>,
+        </SweetAlert>
       );
     }
   }, [chartsState.isError, chartsState.errorMessage]);
@@ -144,31 +158,14 @@ export const AdminLayout = () => {
           onConfirm={() => cleanAlert(setCategoryDataLoaded, setAlert)}
         >
           {`${worldMapState.errorMessage} please contact administrator`}
-        </SweetAlert>,
+        </SweetAlert>
       );
     }
   }, [worldMapState.isError, worldMapState.errorMessage]);
 
-  const cleanAlert = () => {
-    setCategoryDataLoaded(true); // remove spinner
-    setAlert(
-      <UncontrolledAlert color="danger" fade={false}>
-        <span className="alert-inner--icon">
-          <i className="ni ni-like-2" />
-        </span>{" "}
-        <span className="alert-inner--text">
-          <strong>Attention!</strong> No data were loaded. Application will
-          not work as expected
-        </span>
-      </UncontrolledAlert>,
-    );
-  };
-
-  const getBrandText = path => {
+  const getBrandText = () => {
     for (let i = 0; i < routes.length; i++) {
-      if (
-        location.pathname.indexOf(routes[i].layout + routes[i].path) !== -1
-      ) {
+      if (location.pathname.indexOf(routes[i].layout + routes[i].path) !== -1) {
         return routes[i].name;
       }
     }
@@ -176,7 +173,7 @@ export const AdminLayout = () => {
   };
 
   // toggles collapse between mini sidenav and normal
-  const toggleSidenav = e => {
+  const toggleSidenav = () => {
     if (document.body.classList.contains("g-sidenav-pinned")) {
       document.body.classList.remove("g-sidenav-pinned");
       document.body.classList.add("g-sidenav-hidden");
@@ -188,9 +185,7 @@ export const AdminLayout = () => {
   };
 
   const getNavbarTheme = () => {
-    return location.pathname.indexOf("admin/alternative-dashboard") === -1
-      ? "dark"
-      : "light";
+    return location.pathname.indexOf("admin/alternative-dashboard") === -1 ? "dark" : "light";
   };
 
   return (
@@ -201,7 +196,7 @@ export const AdminLayout = () => {
         sidenavOpen={sidenavOpen}
         logo={{
           innerLink: "/",
-          imgSrc: require("assets/img/brand/Logo.png").default,
+          imgSrc: brandLogoImg,
           imgAlt: "...",
         }}
       />
@@ -222,15 +217,14 @@ export const AdminLayout = () => {
             <AdminFooter />
           </>
         ) : (
-          <>
-            <div style={{ textAlign: "center" }}>
-              <Spinner />
-            </div>
-          </>
+          <div style={{ textAlign: "center" }}>
+            <Spinner />
+          </div>
         )}
       </div>
       {sidenavOpen ? (
-        <div className="backdrop d-xl-none" onClick={toggleSidenav} />
+        // eslint-disable-next-line jsx-a11y/click-events-have-key-events
+        <div className="backdrop d-xl-none" role="button" tabIndex={0} onClick={toggleSidenav} />
       ) : null}
     </>
   );

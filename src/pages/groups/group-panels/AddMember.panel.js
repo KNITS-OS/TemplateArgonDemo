@@ -1,27 +1,19 @@
 import { useSelector } from "react-redux";
+
+import { Button, Card, CardBody, CardHeader, Col, FormGroup, Row } from "reactstrap";
+
 import PropTypes from "prop-types";
-
-import {
-  Button,
-  Card,
-  CardBody,
-  CardHeader,
-  Col,
-  FormGroup,
-  Row,
-} from "reactstrap";
-
 import Select from "react-select";
 
-import { selectCountriesAsList } from "redux/countries";
 import { selectBusinessUnitsAsList } from "redux/business-units";
+import { selectCountriesAsList } from "redux/countries";
 import { selectEmployeesAsList } from "redux/employees";
 
 export const AddMemberPanel = (
   onChangeRole,
   onChangeCountry,
   onChangeBusinessUnit,
-  onSelectCareMember,
+  onSelectCareMember
 ) => {
   const countriesList = useSelector(selectCountriesAsList);
   const businessUnitsList = useSelector(selectBusinessUnitsAsList);
@@ -61,10 +53,7 @@ export const AddMemberPanel = (
                   <label className="form-control-label" htmlFor="members">
                     Country
                   </label>
-                  <Select
-                    onChange={onChangeCountry}
-                    options={countriesList}
-                  />
+                  <Select onChange={onChangeCountry} options={countriesList} />
                 </FormGroup>
               </Col>
               <Col md="2">
@@ -72,10 +61,7 @@ export const AddMemberPanel = (
                   <label className="form-control-label" htmlFor="members">
                     Business Unit
                   </label>
-                  <Select
-                    onChange={onChangeBusinessUnit}
-                    options={businessUnitsList}
-                  />
+                  <Select onChange={onChangeBusinessUnit} options={businessUnitsList} />
                 </FormGroup>
               </Col>
               <Col md="4">
@@ -83,11 +69,7 @@ export const AddMemberPanel = (
                   <label className="form-control-label" htmlFor="members">
                     Add members
                   </label>
-                  <Select
-                    isMulti
-                    onChange={onSelectCareMember}
-                    options={selectEmployeesAsList}
-                  />
+                  <Select isMulti onChange={onSelectCareMember} options={selectEmployeesAsList} />
                 </FormGroup>
               </Col>
               <Col md="2">

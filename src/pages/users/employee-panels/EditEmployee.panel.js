@@ -1,14 +1,6 @@
-import PropTypes from "prop-types";
+import { Button, Card, CardBody, CardHeader, Col, Row, Spinner } from "reactstrap";
 
-import {
-  Button,
-  Card,
-  CardBody,
-  CardHeader,
-  Col,
-  Row,
-  Spinner,
-} from "reactstrap";
+import PropTypes from "prop-types";
 
 import { InputField } from "components/widgets";
 
@@ -16,8 +8,8 @@ export const EditEmployeePanel = ({
   employee,
   setEmployee,
   onSave,
-  onBackToSearchClick,
   employeesState,
+  onBackToSearchClick,
 }) => {
   const {
     firstName,
@@ -48,9 +40,7 @@ export const EditEmployeePanel = ({
             </Row>
           </CardHeader>
           <CardBody>
-            <h6 className="heading-small text-muted mb-4">
-              User information
-            </h6>
+            <h6 className="heading-small text-muted mb-4">User information</h6>
             <div className="pl-lg-4">
               <Row>
                 <Col lg="6">
@@ -106,7 +96,10 @@ export const EditEmployeePanel = ({
                     value={email}
                     type="text"
                     onChange={e =>
-                      setEmployee({ ...employee, email: e.target.value })
+                      setEmployee({
+                        ...employee,
+                        email: e.target.value,
+                      })
                     }
                   />
                 </Col>
@@ -115,9 +108,7 @@ export const EditEmployeePanel = ({
 
             <hr className="my-4" />
 
-            <h6 className="heading-small text-muted mb-4">
-              Contact information
-            </h6>
+            <h6 className="heading-small text-muted mb-4">Contact information</h6>
             <div className="pl-lg-4">
               <Row>
                 <Col md="12">
@@ -193,7 +184,10 @@ export const EditEmployeePanel = ({
                     value={title}
                     type="text"
                     onChange={e =>
-                      setEmployee({ ...employee, title: e.target.value })
+                      setEmployee({
+                        ...employee,
+                        title: e.target.value,
+                      })
                     }
                   />
                 </Col>
@@ -276,20 +270,12 @@ export const EditEmployeePanel = ({
 
               <Row className="align-items-center py-4">
                 <Col lg="12" xs="7" className="text-right">
-                  <Button
-                    type="button"
-                    color="success"
-                    onClick={() => onSave(employee)}
-                  >
+                  <Button type="button" color="success" onClick={() => onSave(employee)}>
                     {employeesState.isLoading ? <Spinner /> : "Submit"}
                   </Button>
 
                   {onBackToSearchClick ? (
-                    <Button
-                      type="button"
-                      color="info"
-                      onClick={onBackToSearchClick}
-                    >
+                    <Button type="button" color="info" onClick={onBackToSearchClick}>
                       Back to Search
                     </Button>
                   ) : (
@@ -310,5 +296,6 @@ EditEmployeePanel.propTypes = {
   setEmployee: PropTypes.func.isRequired,
   employeesState: PropTypes.object.isRequired,
   onSave: PropTypes.func.isRequired,
+  // eslint-disable-next-line react/require-default-props
   onBackToSearchClick: PropTypes.func,
 };

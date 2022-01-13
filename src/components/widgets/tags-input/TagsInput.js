@@ -1,8 +1,9 @@
+/* eslint-disable */
 import { forwardRef, useEffect, useRef, useState } from "react";
 import PropTypes from "prop-types";
 
 function uniq(arr) {
-  let out = [];
+  const out = [];
 
   for (let i = 0; i < arr.length; i++) {
     if (out.indexOf(arr[i]) === -1) {
@@ -27,21 +28,11 @@ function getClipboardData(e) {
 }
 
 function defaultRenderTag(props) {
-  let {
-    tag,
-    key,
-    disabled,
-    onRemove,
-    classNameRemove,
-    getTagDisplayValue,
-    ...other
-  } = props;
+  const { tag, key, disabled, onRemove, classNameRemove, getTagDisplayValue, ...other } = props;
   return (
     <span key={key} {...other}>
       {getTagDisplayValue(tag)}
-      {!disabled && (
-        <a className={classNameRemove} onClick={e => onRemove(key)} />
-      )}
+      {!disabled && <a className={classNameRemove} onClick={e => onRemove(key)} />}
     </span>
   );
 }
@@ -55,10 +46,8 @@ defaultRenderTag.propTypes = {
 };
 
 function defaultRenderInput({ addTag, ...props }) {
-  let { onChange, value, ...other } = props;
-  return (
-    <input type="text" onChange={onChange} value={value} {...other} />
-  );
+  const { onChange, value, ...other } = props;
+  return <input type="text" onChange={onChange} value={value} {...other} />;
 }
 
 defaultRenderInput.propTypes = {
@@ -142,9 +131,9 @@ export const TagsInput = forwardRef((props, ref) => {
   };
 
   const _removeTagHook = indexInner => {
-    let valueInner = value.concat([]);
+    const valueInner = value.concat([]);
     if (indexInner > -1 && indexInner < valueInner.length) {
-      let changed = valueInner.splice(indexInner, 1);
+      const changed = valueInner.splice(indexInner, 1);
       onChange(valueInner, changed, [indexInner]);
     }
   };
@@ -166,36 +155,29 @@ export const TagsInput = forwardRef((props, ref) => {
   };
 
   const _addTagsHook = tagsInner => {
-    let { onValidationReject } = props;
+    const { onValidationReject } = props;
 
     if (onlyUnique) {
       tagsInner = uniq(tagsInner);
       tagsInner = tagsInner.filter(tag =>
         value.every(
-          currentTag =>
-            _getTagDisplayValueHook(currentTag) !==
-            _getTagDisplayValueHook(tag),
-        ),
+          currentTag => _getTagDisplayValueHook(currentTag) !== _getTagDisplayValueHook(tag)
+        )
       );
     }
 
-    const rejectedTags = tagsInner.filter(
-      tag => !_validateHook(_getTagDisplayValueHook(tag)),
-    );
-    tagsInner = tagsInner.filter(tag =>
-      _validateHook(_getTagDisplayValueHook(tag)),
-    );
+    const rejectedTags = tagsInner.filter(tag => !_validateHook(_getTagDisplayValueHook(tag)));
+    tagsInner = tagsInner.filter(tag => _validateHook(_getTagDisplayValueHook(tag)));
     tagsInner = tagsInner.filter(tag => {
-      let tagDisplayValueInner = _getTagDisplayValueHook(tag);
+      const tagDisplayValueInner = _getTagDisplayValueHook(tag);
       if (typeof tagDisplayValueInner.trim === "function") {
         return tagDisplayValueInner.trim().length > 0;
-      } else {
-        return tagDisplayValueInner;
       }
+      return tagDisplayValueInner;
     });
 
     if (maxTags >= 0) {
-      let remainingLimitInner = Math.max(maxTags - value.length, 0);
+      const remainingLimitInner = Math.max(maxTags - value.length, 0);
       tagsInner = tagsInner.slice(0, remainingLimitInner);
     }
 
@@ -204,8 +186,8 @@ export const TagsInput = forwardRef((props, ref) => {
     }
 
     if (tagsInner.length > 0) {
-      let newValueInner = value.concat(tagsInner);
-      let indexesInner = [];
+      const newValueInner = value.concat(tagsInner);
+      const indexesInner = [];
       for (let i = 0; i < tagsInner.length; i++) {
         indexesInner.push(value.length + i);
       }
@@ -226,11 +208,7 @@ export const TagsInput = forwardRef((props, ref) => {
     return validate(tagInner) && validationRegex.test(tagInner);
   };
 
-  const _shouldPreventDefaultEventOnAddHook = (
-    addedInner,
-    emptyInner,
-    keyCodeInner,
-  ) => {
+  const _shouldPreventDefaultEventOnAddHook = (addedInner, emptyInner, keyCodeInner) => {
     if (addedInner) {
       return true;
     }
@@ -243,10 +221,7 @@ export const TagsInput = forwardRef((props, ref) => {
   };
 
   const focusHook = () => {
-    if (
-      inputElementRef.current &&
-      typeof inputElementRef.current.focus === "function"
-    ) {
+    if (inputElementRef.current && typeof inputElementRef.current.focus === "function") {
       inputElementRef.current.focus();
     }
 
@@ -254,10 +229,7 @@ export const TagsInput = forwardRef((props, ref) => {
   };
 
   const blurHook = () => {
-    if (
-      inputElementRef.current &&
-      typeof inputElementRef.current.blur === "function"
-    ) {
+    if (inputElementRef.current && typeof inputElementRef.current.blur === "function") {
       inputElementRef.current.blur();
     }
 
@@ -290,10 +262,8 @@ export const TagsInput = forwardRef((props, ref) => {
 
     e.preventDefault();
 
-    let dataInner = getClipboardData(e);
-    let tagsInner = pasteSplit(dataInner).map(tagInner =>
-      _makeTagHook(tagInner),
-    );
+    const dataInner = getClipboardData(e);
+    const tagsInner = pasteSplit(dataInner).map(tagInner => _makeTagHook(tagInner));
 
     _addTagsHook(tagsInner);
   };
@@ -304,25 +274,16 @@ export const TagsInput = forwardRef((props, ref) => {
     }
 
     const tagInner = _tagHook();
-    let emptyInner = tagInner === "";
-    let keyCodeInner = e.keyCode;
-    let keyInner = e.key;
-    let addInner =
-      addKeys.indexOf(keyCodeInner) !== -1 ||
-      addKeys.indexOf(keyInner) !== -1;
-    let removeInner =
-      removeKeys.indexOf(keyCodeInner) !== -1 ||
-      removeKeys.indexOf(keyInner) !== -1;
+    const emptyInner = tagInner === "";
+    const keyCodeInner = e.keyCode;
+    const keyInner = e.key;
+    const addInner = addKeys.indexOf(keyCodeInner) !== -1 || addKeys.indexOf(keyInner) !== -1;
+    const removeInner =
+      removeKeys.indexOf(keyCodeInner) !== -1 || removeKeys.indexOf(keyInner) !== -1;
 
     if (addInner) {
-      let addedInner = acceptHook();
-      if (
-        _shouldPreventDefaultEventOnAddHook(
-          addedInner,
-          emptyInner,
-          keyCodeInner,
-        )
-      ) {
+      const addedInner = acceptHook();
+      if (_shouldPreventDefaultEventOnAddHook(addedInner, emptyInner, keyCodeInner)) {
         e.preventDefault();
       }
     }
@@ -340,8 +301,8 @@ export const TagsInput = forwardRef((props, ref) => {
   };
 
   const handleChangeHook = e => {
-    let { onChange } = props.inputProps;
-    let tagInner = e.target.value;
+    const { onChange } = props.inputProps;
+    const tagInner = e.target.value;
 
     if (onChange) {
       onChange(e);
@@ -355,7 +316,7 @@ export const TagsInput = forwardRef((props, ref) => {
   };
 
   const handleOnFocusHook = e => {
-    let { onFocus } = props.inputProps;
+    const { onFocus } = props.inputProps;
 
     if (onFocus) {
       onFocus(e);
@@ -365,7 +326,7 @@ export const TagsInput = forwardRef((props, ref) => {
   };
 
   const handleOnBlurHook = e => {
-    let { onBlur } = props.inputProps;
+    const { onBlur } = props.inputProps;
 
     setIsFocusedState(false);
 
@@ -389,10 +350,9 @@ export const TagsInput = forwardRef((props, ref) => {
 
   const inputPropsHook = () => {
     // eslint-disable-next-line
-    let { onChange, onFocus, onBlur, ...otherInputProps } =
-      props.inputProps;
+    let { onChange, onFocus, onBlur, ...otherInputProps } = props.inputProps;
 
-    let propsInner = {
+    const propsInner = {
       ...defaultInputProps,
       ...otherInputProps,
     };
@@ -409,17 +369,15 @@ export const TagsInput = forwardRef((props, ref) => {
   };
 
   const hasControlledInputHook = () => {
-    return (
-      typeof onChangeInput === "function" && typeof inputValue === "string"
-    );
+    return typeof onChangeInput === "function" && typeof inputValue === "string";
   };
 
   let divClassName = className;
   if (isFocusedState) {
-    divClassName = className + " " + focusedClassName;
+    divClassName = `${className} ${focusedClassName}`;
   }
 
-  let tagComponents = value.map((tag, index) => {
+  const tagComponents = value.map((tag, index) => {
     return renderTag({
       key: index,
       tag,
@@ -430,7 +388,7 @@ export const TagsInput = forwardRef((props, ref) => {
     });
   });
 
-  let inputComponent = renderInput({
+  const inputComponent = renderInput({
     ref: inputElementRef,
     value: _tagHook(),
     onPaste: handlePasteHook,
@@ -548,11 +506,7 @@ export const TagsInput = forwardRef((props, ref) => {
   //   },
   // }));
   return (
-    <div
-      ref={divElementRef}
-      onClick={handleClickHook}
-      className={divClassName}
-    >
+    <div ref={divElementRef} onClick={handleClickHook} className={divClassName}>
       {renderLayout(tagComponents, inputComponent)}
     </div>
   );
@@ -585,9 +539,7 @@ TagsInput.defaultProps = {
 
 TagsInput.propTypes = {
   focusedClassName: PropTypes.string,
-  addKeys: PropTypes.arrayOf(
-    PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  ),
+  addKeys: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string])),
   addOnBlur: PropTypes.bool,
   addOnPaste: PropTypes.bool,
   currentValue: PropTypes.string,
@@ -595,9 +547,7 @@ TagsInput.propTypes = {
   inputProps: PropTypes.object,
   onChange: PropTypes.func.isRequired,
   onChangeInput: PropTypes.func,
-  removeKeys: PropTypes.arrayOf(
-    PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  ),
+  removeKeys: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string])),
   renderInput: PropTypes.func,
   renderTag: PropTypes.func,
   renderLayout: PropTypes.func,

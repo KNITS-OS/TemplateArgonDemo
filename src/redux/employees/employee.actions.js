@@ -1,7 +1,7 @@
-import { SEARCH_EMPLOYEE_LOADING } from "redux/types.actions";
-import { SEARCH_EMPLOYEE_ERROR } from "redux/types.actions";
-import { SEARCH_EMPLOYEE_COMPLETE } from "redux/types.actions";
 import {
+  SEARCH_EMPLOYEE_LOADING,
+  SEARCH_EMPLOYEE_ERROR,
+  SEARCH_EMPLOYEE_COMPLETE,
   CREATE_EMPLOYEE_COMPLETE,
   CREATE_EMPLOYEE_ERROR,
   CREATE_EMPLOYEE_LOADING,
@@ -55,7 +55,6 @@ export const searchEmployee = id => async dispatch => {
       payload: data,
     });
   } catch (err) {
-    console.log(err);
     dispatch({
       type: SEARCH_EMPLOYEE_ERROR,
       payload: err.message,
@@ -79,7 +78,6 @@ export const searchEmployees = filters => async dispatch => {
       payload: data,
     });
   } catch (err) {
-    console.log(err);
     dispatch({
       type: SEARCH_EMPLOYEES_ERROR,
       payload: err.message,
@@ -94,16 +92,13 @@ export const searchEmployeesByIds = employeeIds => async dispatch => {
       payload: SEARCH_EMPLOYEES_BY_IDS_LOADING,
     });
 
-    const { data } = await employeeService.searchEmployeesByIds(
-      employeeIds,
-    );
+    const { data } = await employeeService.searchEmployeesByIds(employeeIds);
 
     dispatch({
       type: SEARCH_EMPLOYEES_BY_IDS_COMPLETE,
       payload: data,
     });
   } catch (err) {
-    console.log(err);
     dispatch({
       type: SEARCH_EMPLOYEES_BY_IDS_ERROR,
       payload: err.message,

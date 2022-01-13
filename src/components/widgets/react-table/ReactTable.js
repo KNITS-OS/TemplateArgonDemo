@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
-import PropTypes from "prop-types";
 
 import { Button } from "reactstrap";
 
+import PropTypes from "prop-types";
 import BootstrapTable from "react-bootstrap-table-next";
 import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
 
@@ -18,8 +18,6 @@ export const ReactTable = ({
   onDeleteItemClick,
   selectedRows,
   setSelectedRows,
-  searchBarPlaceholder,
-  selectButtonText="Workflow" 
 }) => {
   const formatActionButtonCell = (cell, row) => {
     return (
@@ -51,20 +49,12 @@ export const ReactTable = ({
   };
 
   useEffect(() => {
-    const formatterColumn = columns.find(
-      element => element.formatter !== undefined,
-    );
+    const formatterColumn = columns.find(element => element.formatter !== undefined);
     formatterColumn.formatter = formatActionButtonCell;
   });
 
   return (
-    <ToolkitProvider
-      data={data}
-      keyField={keyField}
-      columns={columns}
-      bootstrap4
-      search
-    >
+    <ToolkitProvider data={data} keyField={keyField} columns={columns} bootstrap4 search>
       {props => (
         <div className="py-4 table-responsive">
           <div
@@ -74,18 +64,15 @@ export const ReactTable = ({
           >
             <label>
               Search:
-              <SearchBar
-                className="form-control-sm mr-3"
-                placeholder={searchBarPlaceholder}
-                {...props.searchProps}
-              />
+              <SearchBar className="form-control-sm mr-3" placeholder="" {...props.searchProps} />
             </label>
 
             <Button
               className="btn btn-success"
+              // eslint-disable-next-line no-console
               onClick={() => console.log("selectedRows", selectedRows)}
             >
-              {selectButtonText}
+              Workflow
             </Button>
           </div>
           <BootstrapTable

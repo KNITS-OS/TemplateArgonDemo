@@ -1,8 +1,4 @@
-import {
-  CreateEmployeePage,
-  SearchEmployeesPage,
-  EmployeeDetailsPage,
-} from ".";
+import { CreateEmployeePage, SearchEmployeesPage, EmployeeDetailsPage } from ".";
 
 export const userMenu = [
   {

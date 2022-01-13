@@ -6,26 +6,20 @@ import {
 
 import { worldMapService } from "./world-map.service";
 
-export const listWorldMapLoading = () => {
-  return {
-    type: LIST_WORLD_MAP_LOADING,
-    payload: "LIST_WORLD_MAP_LOADING",
-  };
-};
+export const listWorldMapLoading = () => ({
+  type: LIST_WORLD_MAP_LOADING,
+  payload: "LIST_WORLD_MAP_LOADING",
+});
 
-export const listWorldMapError = err => {
-  return {
-    type: LIST_WORLD_MAP_ERROR,
-    payload: err.message,
-  };
-};
+export const listWorldMapError = err => ({
+  type: LIST_WORLD_MAP_ERROR,
+  payload: err.message,
+});
 
-export const listWorldMapComplete = data => {
-  return {
-    type: LIST_WORLD_MAP_COMPLETE,
-    payload: data,
-  };
-};
+export const listWorldMapComplete = data => ({
+  type: LIST_WORLD_MAP_COMPLETE,
+  payload: data,
+});
 
 export const listWorldMap = () => async dispatch => {
   try {

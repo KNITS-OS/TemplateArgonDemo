@@ -1,8 +1,4 @@
-import {
-  LIST_CHARTS_COMPLETE,
-  LIST_CHARTS_LOADING,
-  LIST_CHARTS_ERROR,
-} from "redux/types.actions";
+import { LIST_CHARTS_COMPLETE, LIST_CHARTS_LOADING, LIST_CHARTS_ERROR } from "redux/types.actions";
 
 const initialState = {
   loading: false,
@@ -12,7 +8,7 @@ const initialState = {
   entity: null,
 };
 
-export const chartReducer = (chartState = initialState, action) => {
+export const chartReducer = (chartState = initialState, action = {}) => {
   const { type, payload } = action;
   switch (type) {
     case LIST_CHARTS_LOADING:

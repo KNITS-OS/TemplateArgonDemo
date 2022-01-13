@@ -2,7 +2,7 @@
 import { FormGroup, Input } from "reactstrap";
 
 export const InputField = props => {
-  let { id, label } = props;
+  const { id, label } = props;
 
   return (
     <FormGroup>

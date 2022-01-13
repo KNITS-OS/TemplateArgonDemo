@@ -1,6 +1,8 @@
 import React, { StrictMode } from "react";
-import ReactDOM from "react-dom";
+
 import { Provider } from "react-redux";
+
+import ReactDOM from "react-dom";
 // react library for routing
 import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
 
@@ -14,15 +16,14 @@ import "react-perfect-scrollbar/dist/css/styles.css";
 import "select2/dist/css/select2.min.css";
 import "sweetalert2/dist/sweetalert2.min.css";
 // plugins styles downloaded
-import "./assets/vendor/nucleo/css/nucleo.css";
+import "assets/vendor/nucleo/css/nucleo.css";
 // core styles
-import "./assets/scss/argon-dashboard-react.scss?v1.2.0";
+import "assets/scss/argon-dashboard-react.scss";
 
-import "./variables/chartDefaults";
+import "variables/chartDefaults";
 
 import { AdminLayout } from "layouts/AdminLayout";
 import { AuthLayout } from "layouts/AuthLayout";
-
 import { store } from "store";
 
 ReactDOM.render(
@@ -38,5 +39,5 @@ ReactDOM.render(
       </StrictMode>
     </BrowserRouter>
   </Provider>,
-  document.getElementById("root"),
+  document.getElementById("root")
 );

@@ -27,23 +27,22 @@ defaults.scale.grid.color = colors.gray[200];
 
 // point
 defaults.elements.point.radius = 0;
-defaults.elements.point.backgroundColor = colors.theme["primary"];
+defaults.elements.point.backgroundColor = colors.theme.primary;
 
 // line
 defaults.elements.line.tension = 0.4;
 defaults.elements.line.borderWidth = 4;
-defaults.elements.line.borderColor = colors.theme["primary"];
+defaults.elements.line.borderColor = colors.theme.primary;
 defaults.elements.line.backgroundColor = colors.transparent;
 defaults.elements.line.borderCapStyle = "round";
 
 // bar (v2. rectangle)
-defaults.elements.bar.backgroundColor = colors.theme["warning"];
+defaults.elements.bar.backgroundColor = colors.theme.warning;
 defaults.elements.bar.borderRadius = 10;
 
 // arc (pie and doughnut)
-defaults.elements.arc.backgroundColor = colors.theme["primary"];
-defaults.elements.arc.borderColor =
-  mode === "dark" ? colors.gray[800] : colors.white;
+defaults.elements.arc.backgroundColor = colors.theme.primary;
+defaults.elements.arc.borderColor = mode === "dark" ? colors.gray[800] : colors.white;
 // defaults.elements.arc.borderWidth = 4;
 defaults.elements.arc.hoverOffset = 6;
 
@@ -56,33 +55,32 @@ defaults.scale.grid.drawBorder = false;
 defaults.scale.grid.drawTicks = false;
 
 // scale linear(Y Axis)
-defaults.scales["linear"].ticks.padding = 10;
-defaults.scales["linear"].beginAtZero = true;
+defaults.scales.linear.ticks.padding = 10;
+defaults.scales.linear.beginAtZero = true;
 // this removes all tick labels that are not at a 10th of a unit
-defaults.scales["linear"].ticks.callback = value => {
-  let numberValue = parseInt(value.toString());
+defaults.scales.linear.ticks.callback = value => {
+  const numberValue = parseInt(value.toString());
   if (!(numberValue % 10)) {
     return numberValue;
-  } else {
-    return null;
   }
+  return null;
 };
-defaults.scales["linear"] = {
-  ...defaults.scales["linear"],
+defaults.scales.linear = {
+  ...defaults.scales.linear,
   grid: {
-    ...defaults.scales["linear"].grid,
+    ...defaults.scales.linear.grid,
     borderDash: [2],
     borderDashOffset: 2,
   },
 };
 
 // scale category(X Axis)
-defaults.scales["category"].ticks.padding = 20;
+defaults.scales.category.ticks.padding = 20;
 // takes away horizontal lines
-defaults.scales["category"] = {
-  ...defaults.scales["category"],
+defaults.scales.category = {
+  ...defaults.scales.category,
   grid: {
-    ...defaults.scales["category"].grid,
+    ...defaults.scales.category.grid,
     drawOnChartArea: false,
   },
 };

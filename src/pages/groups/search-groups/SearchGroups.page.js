@@ -1,17 +1,10 @@
 import React, { useEffect, useState } from "react";
+
 import { useDispatch, useSelector } from "react-redux";
+
 import { useHistory } from "react-router";
 
-import {
-  Card,
-  CardBody,
-  CardHeader,
-  Col,
-  Container,
-  FormGroup,
-  Row,
-  Spinner,
-} from "reactstrap";
+import { Card, CardBody, CardHeader, Col, Container, FormGroup, Row, Spinner } from "reactstrap";
 
 import SweetAlert from "react-bootstrap-sweetalert";
 
@@ -35,18 +28,18 @@ export const SearchGroupsPage = () => {
       setAlert(
         <SweetAlert danger title="Error" onConfirm={() => setAlert(false)}>
           {groupsState.errorMessage}
-        </SweetAlert>,
+        </SweetAlert>
       );
     }
   }, [groupsState.isError, groupsState.errorMessage]);
 
   const goToGroupDetails = e => {
-    var { id } = e.target;
+    const { id } = e.target;
     history.push(`/admin/groups/group-details/${id}`);
   };
 
   const removeGroup = e => {
-    var { id } = e.target;
+    const { id } = e.target;
     dispatch(deleteGroup(id));
   };
 

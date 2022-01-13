@@ -18,10 +18,10 @@
 // // // data for populating the calendar in Calendar view
 // #############################
 
-var today = new Date();
-var y = today.getFullYear();
-var m = today.getMonth();
-var d = today.getDate();
+const today = new Date();
+const y = today.getFullYear();
+const m = today.getMonth();
+const d = today.getDate();
 
 const events = [
   {
@@ -132,8 +132,8 @@ const events = [
 const widgetEvents = [
   {
     title: "Lunch meeting",
-    start: new Date().getFullYear() + "-11-21",
-    end: new Date().getFullYear() + "-11-22",
+    start: `${new Date().getFullYear()}-11-21`,
+    end: `${new Date().getFullYear()}-11-22`,
     className: "bg-orange",
   },
   {

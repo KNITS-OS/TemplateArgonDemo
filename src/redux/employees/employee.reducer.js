@@ -31,8 +31,12 @@ const initialState = {
   entity: null,
 };
 
-export const employeeReducer = (employeeState = initialState, action) => {
+export const employeeReducer = (employeeState = initialState, action = {}) => {
   const { type, payload } = action;
+
+  let updatedEmployees = [];
+  let partiallyUpdatedEmployees = [];
+  let employeesToKeep = [];
 
   switch (type) {
     case SEARCH_EMPLOYEE_LOADING:
@@ -58,7 +62,6 @@ export const employeeReducer = (employeeState = initialState, action) => {
     case PARTIAL_UPDATE_EMPLOYEE_ERROR:
     case UPDATE_EMPLOYEE_ERROR:
     case DELETE_EMPLOYEE_ERROR:
-      console.log(action);
       return {
         isLoading: false,
         isError: true,
@@ -109,15 +112,14 @@ export const employeeReducer = (employeeState = initialState, action) => {
       };
 
     case UPDATE_EMPLOYEE_COMPLETE:
-      let updatedEmployees = employeeState.entities.map(employee => {
+      updatedEmployees = employeeState.entities.map(employee => {
         if (employee.id === payload.id) {
           return {
             ...employee,
             ...payload,
           };
-        } else {
-          return employee;
         }
+        return employee;
       });
 
       return {
@@ -130,18 +132,15 @@ export const employeeReducer = (employeeState = initialState, action) => {
       };
 
     case PARTIAL_UPDATE_EMPLOYEE_COMPLETE:
-      let partiallyUpdatedEmployees = employeeState.entities.map(
-        employee => {
-          if (employee.id === payload.id) {
-            return {
-              ...employee,
-              ...payload,
-            };
-          } else {
-            return employee;
-          }
-        },
-      );
+      partiallyUpdatedEmployees = employeeState.entities.map(employee => {
+        if (employee.id === payload.id) {
+          return {
+            ...employee,
+            ...payload,
+          };
+        }
+        return employee;
+      });
 
       return {
         isLoading: false,
@@ -153,9 +152,7 @@ export const employeeReducer = (employeeState = initialState, action) => {
       };
 
     case DELETE_EMPLOYEE_COMPLETE:
-      let employeesToKeep = employeeState.entities.filter(
-        ({ id }) => id !== payload.id,
-      );
+      employeesToKeep = employeeState.entities.filter(({ id }) => id !== payload.id);
 
       return {
         isLoading: false,

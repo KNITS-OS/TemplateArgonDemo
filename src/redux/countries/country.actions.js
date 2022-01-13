@@ -6,26 +6,20 @@ import {
 
 import { countryService } from ".";
 
-export const listCountriesLoading = () => {
-  return {
-    type: LIST_COUNTRIES_LOADING,
-    payload: "LIST_COUNTRIES_LOADING",
-  };
-};
+export const listCountriesLoading = () => ({
+  type: LIST_COUNTRIES_LOADING,
+  payload: "LIST_COUNTRIES_LOADING",
+});
 
-export const listCountriesError = err => {
-  return {
-    type: LIST_COUNTRIES_ERROR,
-    payload: err.message,
-  };
-};
+export const listCountriesError = err => ({
+  type: LIST_COUNTRIES_ERROR,
+  payload: err.message,
+});
 
-export const listCountriesComplete = data => {
-  return {
-    type: LIST_COUNTRIES_COMPLETE,
-    payload: data,
-  };
-};
+export const listCountriesComplete = data => ({
+  type: LIST_COUNTRIES_COMPLETE,
+  payload: data,
+});
 
 export const listCountries = () => async dispatch => {
   try {

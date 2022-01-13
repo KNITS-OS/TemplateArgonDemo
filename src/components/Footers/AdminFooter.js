@@ -19,9 +19,5 @@
 import { Container } from "reactstrap";
 
 export const AdminFooter = () => {
-  return (
-    <>
-      <Container fluid></Container>
-    </>
-  );
+  return <Container fluid />;
 };
