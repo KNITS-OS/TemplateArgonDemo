@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
+
 import { useDispatch, useSelector } from "react-redux";
+
 import { useHistory } from "react-router";
-import { useParams } from "react-router-dom";
 
 import {
   Button,
@@ -18,6 +19,7 @@ import {
 } from "reactstrap";
 
 import SweetAlert from "react-bootstrap-sweetalert";
+import { useParams } from "react-router-dom";
 
 import { GradientEmptyHeader } from "components/Headers";
 import { InputField, ReactTable } from "components/widgets";
@@ -25,16 +27,11 @@ import { InputField, ReactTable } from "components/widgets";
 import { employeesTableColumns } from "pages/users";
 
 import { searchEmployeesByIds } from "redux/employees";
-import {
-  searchGroup,
-  deactivateGroup,
-  updateGroup,
-  deleteGroup,
-} from "redux/groups";
+import { searchGroup, deactivateGroup, updateGroup, deleteGroup } from "redux/groups";
 
 import { AddMemberPanel } from "..";
 
-export function GroupDetailsPage() {
+export const GroupDetailsPage = () => {
   const { id } = useParams();
   const history = useHistory();
   const dispatch = useDispatch();
@@ -46,8 +43,7 @@ export function GroupDetailsPage() {
   const [group, setGroup] = useState(groupsState.entity);
 
   const [selectedEmployees, setSelectedEmployees] = useState([]);
-  const [currentMembersCollapse, setCurrentMembersCollapse] =
-    useState(false);
+  const [currentMembersCollapse, setCurrentMembersCollapse] = useState(false);
   const [addMemberCollapse, setAddMemberCollapse] = useState(false);
 
   useEffect(() => {
@@ -87,11 +83,7 @@ export function GroupDetailsPage() {
     dispatch(updateGroup(id, group));
     if (groupsState.isSuccess) {
       setAlert(
-        <SweetAlert
-          success
-          title="Success"
-          onConfirm={() => setAlert(false)}
-        >
+        <SweetAlert success title="Success" onConfirm={() => setAlert(false)}>
           Group Updated
         </SweetAlert>
       );
@@ -146,27 +138,15 @@ export function GroupDetailsPage() {
                       <Row className="align-items-center py-4">
                         <Col lg="12" xs="7" className="text-right">
                           {group && group.active ? (
-                            <Button
-                              type="button"
-                              color="danger"
-                              onClick={onToggleGroupActive}
-                            >
+                            <Button type="button" color="danger" onClick={onToggleGroupActive}>
                               Deactivate Group
                             </Button>
                           ) : (
-                            <Button
-                              type="button"
-                              color="success"
-                              onClick={onToggleGroupActive}
-                            >
+                            <Button type="button" color="success" onClick={onToggleGroupActive}>
                               Activate Group
                             </Button>
                           )}
-                          <Button
-                            type="button"
-                            color="info"
-                            onClick={() => history.goBack()}
-                          >
+                          <Button type="button" color="info" onClick={() => history.goBack()}>
                             Back to Search
                           </Button>
                         </Col>
@@ -175,9 +155,7 @@ export function GroupDetailsPage() {
 
                     <CardBody>
                       <Form>
-                        <h6 className="heading-small text-muted mb-4">
-                          Group Details
-                        </h6>
+                        <h6 className="heading-small text-muted mb-4">Group Details</h6>
                         <div className="pl-lg-4">
                           <Row>
                             <Col lg="10">
@@ -234,10 +212,7 @@ export function GroupDetailsPage() {
                         </div>
 
                         <ButtonGroup className="d-flex">
-                          <Button
-                            onClick={toggleAddMember}
-                            color="success"
-                          >
+                          <Button onClick={toggleAddMember} color="success">
                             Add new Member
                           </Button>
                           <Button
@@ -245,10 +220,8 @@ export function GroupDetailsPage() {
                             disabled={group.members.length === 0}
                             color="info"
                           >
-                            {currentMembersCollapse
-                              ? "Hide members"
-                              : "Show members"}{" "}
-                            ({group.members.length} members)
+                            {currentMembersCollapse ? "Hide members" : "Show members"} (
+                            {group.members.length} members)
                           </Button>
                         </ButtonGroup>
 
@@ -258,9 +231,7 @@ export function GroupDetailsPage() {
                               <Card>
                                 <CardHeader>
                                   <h3 className="mb-0">Group members</h3>
-                                  <p className="text-sm mb-0">
-                                    Care Members
-                                  </p>
+                                  <p className="text-sm mb-0">Care Members</p>
                                 </CardHeader>
 
                                 {employeesState.isLoading ? (
@@ -310,4 +281,4 @@ export function GroupDetailsPage() {
       </Container>
     </>
   );
-}
+};

@@ -15,7 +15,7 @@
 
 */
 
-export function GradientEmptyHeader() {
+export const GradientEmptyHeader = () => {
   return (
     <div
       className="header pb-6 d-flex align-items-center"
@@ -28,4 +28,4 @@ export function GradientEmptyHeader() {
       <span className="mask bg-gradient-info opacity-8" />
     </div>
   );
-}
+};

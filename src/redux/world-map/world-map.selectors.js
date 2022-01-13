@@ -1,6 +1,3 @@
 import { createSelector } from "reselect";
 
-export const selectWorldMap = createSelector(
-  [state => state.worldMap.entities],
-  data => data
-);
+export const selectWorldMap = createSelector([state => state.worldMap.entities], data => data);

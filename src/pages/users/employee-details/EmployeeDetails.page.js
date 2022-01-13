@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
-import { useHistory } from "react-router";
-import { useParams } from "react-router-dom";
+
 import { useDispatch, useSelector } from "react-redux";
+
+import { useHistory } from "react-router";
 
 import { Container, Spinner } from "reactstrap";
 
 import SweetAlert from "react-bootstrap-sweetalert";
+import { useParams } from "react-router-dom";
 
 import { GradientEmptyHeader } from "components/Headers";
 
@@ -13,7 +15,7 @@ import { updateEmployee, searchEmployee } from "redux/employees";
 
 import { EditEmployeePanel } from "..";
 
-export function EmployeeDetailsPage() {
+export const EmployeeDetailsPage = () => {
   const { id } = useParams();
   const history = useHistory();
   const dispatch = useDispatch();
@@ -46,11 +48,7 @@ export function EmployeeDetailsPage() {
     dispatch(updateEmployee(id, updatedEmployee));
     if (employeesState.isSuccess) {
       setAlert(
-        <SweetAlert
-          success
-          title="Success"
-          onConfirm={() => setAlert(false)}
-        >
+        <SweetAlert success title="Success" onConfirm={() => setAlert(false)}>
           Employee Updated
         </SweetAlert>
       );
@@ -80,4 +78,4 @@ export function EmployeeDetailsPage() {
       </Container>
     </>
   );
-}
+};

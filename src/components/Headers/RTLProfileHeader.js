@@ -17,9 +17,10 @@
 
 // reactstrap components
 import { Button, Container, Row, Col } from "reactstrap";
+
 import profileCoverImg from "assets/img/theme/profile-cover.jpg";
 
-export function RTLProfileHeader() {
+export const RTLProfileHeader = () => {
   return (
     <div
       className="header pb-6 d-flex align-items-center"
@@ -37,8 +38,8 @@ export function RTLProfileHeader() {
           <Col lg="7" md="10">
             <h1 className="display-2 text-white">مرحبا جيسي</h1>
             <p className="text-white mt-0 mb-5">
-              هذه هي صفحة ملفك الشخصي. يمكنك رؤية التقدم الذي أحرزته في
-              عملك وإدارة مشاريعك أو المهام المعينة
+              هذه هي صفحة ملفك الشخصي. يمكنك رؤية التقدم الذي أحرزته في عملك وإدارة مشاريعك أو
+              المهام المعينة
             </p>
             <Button
               className="btn-neutral"
@@ -53,4 +54,4 @@ export function RTLProfileHeader() {
       </Container>
     </div>
   );
-}
+};

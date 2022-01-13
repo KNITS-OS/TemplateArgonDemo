@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+
 import { useDispatch, useSelector } from "react-redux";
 
 import { Container } from "reactstrap";
@@ -11,7 +12,7 @@ import { createEmployee } from "redux/employees";
 
 import { EditEmployeePanel } from "..";
 
-export function CreateEmployeePage() {
+export const CreateEmployeePage = () => {
   const initialState = {
     firstName: "",
     lastName: "",
@@ -54,11 +55,7 @@ export function CreateEmployeePage() {
   useEffect(() => {
     if (employeesState.entity) {
       setAlert(
-        <SweetAlert
-          success
-          title="Success"
-          onConfirm={() => setAlert(false)}
-        >
+        <SweetAlert success title="Success" onConfirm={() => setAlert(false)}>
           Employee Created
         </SweetAlert>
       );
@@ -81,4 +78,4 @@ export function CreateEmployeePage() {
       </Container>
     </>
   );
-}
+};

@@ -1,5 +1,3 @@
-import PropTypes from "prop-types";
-
 import {
   Button,
   ButtonGroup,
@@ -13,11 +11,13 @@ import {
   Spinner,
 } from "reactstrap";
 
+import PropTypes from "prop-types";
+
 import { InputField } from "components/widgets";
 
 import { AddMemberPanel } from ".";
 
-export function EditGroupPanel({
+export const EditGroupPanel = ({
   group,
   setGroup,
   onSave,
@@ -25,7 +25,7 @@ export function EditGroupPanel({
   onBackToSearchClick,
   addMembersCollapse,
   setAddMembersCollapse,
-}) {
+}) => {
   const { name, description } = group;
 
   return (
@@ -41,9 +41,7 @@ export function EditGroupPanel({
           </CardHeader>
           <CardBody>
             <Form>
-              <h6 className="heading-small text-muted mb-4">
-                Group information
-              </h6>
+              <h6 className="heading-small text-muted mb-4">Group information</h6>
               <div className="pl-lg-4">
                 <Row>
                   <Col lg="10">
@@ -53,7 +51,10 @@ export function EditGroupPanel({
                       value={name}
                       type="text"
                       onChange={e =>
-                        setGroup({ ...group, name: e.target.value })
+                        setGroup({
+                          ...group,
+                          name: e.target.value,
+                        })
                       }
                     />
                   </Col>
@@ -67,21 +68,20 @@ export function EditGroupPanel({
                       value={description}
                       type="text"
                       onChange={e =>
-                        setGroup({ ...group, description: e.target.value })
+                        setGroup({
+                          ...group,
+                          description: e.target.value,
+                        })
                       }
                     />
                   </Col>
                 </Row>
 
                 <Row className="d-flex justify-content-between mx-2">
-                  <h6 className="heading-small text-muted mb-4">
-                    MEMBERS
-                  </h6>
+                  <h6 className="heading-small text-muted mb-4">MEMBERS</h6>
                   <ButtonGroup className="d-flex">
                     <Button
-                      onClick={() =>
-                        setAddMembersCollapse(!addMembersCollapse)
-                      }
+                      onClick={() => setAddMembersCollapse(!addMembersCollapse)}
                       color="success"
                       type="button"
                     >
@@ -129,7 +129,7 @@ export function EditGroupPanel({
       </Col>
     </Row>
   );
-}
+};
 
 EditGroupPanel.propTypes = {
   group: PropTypes.object.isRequired,

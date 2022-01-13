@@ -15,16 +15,9 @@
 
 */
 // reactstrap components
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  Button,
-  Container,
-  Row,
-  Col,
-} from "reactstrap";
+import { Breadcrumb, BreadcrumbItem, Button, Container, Row, Col } from "reactstrap";
 
-export function AlternativeHeader() {
+export const AlternativeHeader = () => {
   return (
     <div className="header pb-6">
       <Container fluid>
@@ -76,4 +69,4 @@ export function AlternativeHeader() {
       </Container>
     </div>
   );
-}
+};

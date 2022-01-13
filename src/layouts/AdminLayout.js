@@ -15,27 +15,29 @@
 
 */
 import React, { useEffect, useState } from "react";
+
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation, Switch, Redirect } from "react-router-dom";
 
 import { Spinner, UncontrolledAlert } from "reactstrap";
 
 import SweetAlert from "react-bootstrap-sweetalert";
+import { useLocation, Switch, Redirect } from "react-router-dom";
 
-import { routes } from "routes";
-import { Sidebar } from "components/Sidebar";
-import { AdminNavbar } from "components/Navbars";
 import { AdminFooter } from "components/Footers";
-
-import { listCountries } from "redux/countries";
-import { listBusinessUnits } from "redux/business-units";
-import { listCharts } from "redux/charts";
-import { listWorldMap } from "redux/world-map";
+import { AdminNavbar } from "components/Navbars";
+import { Sidebar } from "components/Sidebar";
 
 import brandLogoImg from "assets/img/brand/Logo.png";
+import { routes } from "routes";
+
+import { listBusinessUnits } from "redux/business-units";
+import { listCharts } from "redux/charts";
+import { listCountries } from "redux/countries";
+import { listWorldMap } from "redux/world-map";
+
 import { getRoutes } from "./utils";
 
-export function AdminLayout() {
+export const AdminLayout = () => {
   const dispatch = useDispatch();
   const location = useLocation();
   const countriesState = useSelector(state => state.country);
@@ -81,8 +83,7 @@ export function AdminLayout() {
           <i className="ni ni-like-2" />
         </span>{" "}
         <span className="alert-inner--text">
-          <strong>Attention!</strong> No data were loaded. Application will
-          not work as expected
+          <strong>Attention!</strong> No data were loaded. Application will not work as expected
         </span>
       </UncontrolledAlert>
     );
@@ -103,10 +104,7 @@ export function AdminLayout() {
   }, [countriesState.isError, countriesState.errorMessage]);
 
   useEffect(() => {
-    if (
-      businessUnitsState.entities &&
-      businessUnitsState.entities.length > 0
-    ) {
+    if (businessUnitsState.entities && businessUnitsState.entities.length > 0) {
       setCategoryDataLoaded(true);
     }
   }, [businessUnitsState.entities]);
@@ -167,9 +165,7 @@ export function AdminLayout() {
 
   const getBrandText = () => {
     for (let i = 0; i < routes.length; i++) {
-      if (
-        location.pathname.indexOf(routes[i].layout + routes[i].path) !== -1
-      ) {
+      if (location.pathname.indexOf(routes[i].layout + routes[i].path) !== -1) {
         return routes[i].name;
       }
     }
@@ -189,9 +185,7 @@ export function AdminLayout() {
   };
 
   const getNavbarTheme = () => {
-    return location.pathname.indexOf("admin/alternative-dashboard") === -1
-      ? "dark"
-      : "light";
+    return location.pathname.indexOf("admin/alternative-dashboard") === -1 ? "dark" : "light";
   };
 
   return (
@@ -230,13 +224,8 @@ export function AdminLayout() {
       </div>
       {sidenavOpen ? (
         // eslint-disable-next-line jsx-a11y/click-events-have-key-events
-        <div
-          className="backdrop d-xl-none"
-          role="button"
-          tabIndex={0}
-          onClick={toggleSidenav}
-        />
+        <div className="backdrop d-xl-none" role="button" tabIndex={0} onClick={toggleSidenav} />
       ) : null}
     </>
   );
-}
+};

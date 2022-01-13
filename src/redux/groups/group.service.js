@@ -1,28 +1,16 @@
 import { httpCommon } from "redux/http-common";
 
-const getAllGroups = () => {
-  return httpCommon.get(`/groups`);
-};
+const getAllGroups = () => httpCommon.get(`/groups`);
 
-const getGroupById = id => {
-  return httpCommon.get(`/groups/${id}`);
-};
+const getGroupById = id => httpCommon.get(`/groups/${id}`);
 
-const createGroup = body => {
-  return httpCommon.post(`/groups`, body);
-};
+const createGroup = body => httpCommon.post(`/groups`, body);
 
-const updateGroup = (id, body) => {
-  return httpCommon.put(`/groups/${id}`, body);
-};
+const updateGroup = (id, body) => httpCommon.put(`/groups/${id}`, body);
 
-const partialUpdateGroup = (id, body) => {
-  return httpCommon.patch(`/groups/${id}`, body);
-};
+const partialUpdateGroup = (id, body) => httpCommon.patch(`/groups/${id}`, body);
 
-const deleteGroup = id => {
-  return httpCommon.delete(`/groups/${id}`);
-};
+const deleteGroup = id => httpCommon.delete(`/groups/${id}`);
 
 export const groupService = {
   getAllGroups,

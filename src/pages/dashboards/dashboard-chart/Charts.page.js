@@ -1,14 +1,11 @@
-import {
-  Card,
-  CardHeader,
-  CardBody,
-  Container,
-  Row,
-  Col,
-} from "reactstrap";
+import { useSelector } from "react-redux";
+
+import { Card, CardHeader, CardBody, Container, Row, Col } from "reactstrap";
+
 import { Line, Bar, Doughnut, Pie } from "react-chartjs-2";
 
 import { GradientEmptyHeader } from "components/Headers";
+
 import {
   barChartExample,
   lineChartExample,
@@ -17,9 +14,8 @@ import {
   pieChartExample,
   multiBarChartExample,
 } from "variables/charts";
-import { useSelector } from "react-redux";
 
-export function ChartsPage() {
+export const ChartsPage = () => {
   const chartsState = useSelector(state => state.chart);
 
   const lineChart = lineChartExample(chartsState.entities[0]);
@@ -150,4 +146,4 @@ export function ChartsPage() {
       </Container>
     </>
   );
-}
+};

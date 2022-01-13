@@ -1,6 +1,8 @@
 import React, { StrictMode } from "react";
-import ReactDOM from "react-dom";
+
 import { Provider } from "react-redux";
+
+import ReactDOM from "react-dom";
 // react library for routing
 import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
 
@@ -22,7 +24,6 @@ import "variables/chartDefaults";
 
 import { AdminLayout } from "layouts/AdminLayout";
 import { AuthLayout } from "layouts/AuthLayout";
-
 import { store } from "store";
 
 ReactDOM.render(

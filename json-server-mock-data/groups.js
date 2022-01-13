@@ -52,16 +52,14 @@ module.exports = [
   {
     id: 8,
     name: "Code Polluters",
-    description:
-      "Refactoring, design patterns, solid, clean code are blasphemy here",
+    description: "Refactoring, design patterns, solid, clean code are blasphemy here",
     active: true,
     members: [71, 72, 73, 74, 75],
   },
   {
     id: 9,
     name: "Viral Voodoo",
-    description:
-      "They have a magic spell to infect all potential customers with product mindset",
+    description: "They have a magic spell to infect all potential customers with product mindset",
     active: true,
     members: [81, 82, 83],
   },
@@ -77,8 +75,6 @@ module.exports = [
     name: "Copy $ Kaos",
     description: "It works, but I don't know why nor how",
     active: true,
-    members: [
-      31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 61, 62, 63, 64, 65, 66, 67,
-    ],
+    members: [31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 61, 62, 63, 64, 65, 66, 67],
   },
 ];

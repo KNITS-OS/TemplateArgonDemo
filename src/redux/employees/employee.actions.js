@@ -92,9 +92,7 @@ export const searchEmployeesByIds = employeeIds => async dispatch => {
       payload: SEARCH_EMPLOYEES_BY_IDS_LOADING,
     });
 
-    const { data } = await employeeService.searchEmployeesByIds(
-      employeeIds
-    );
+    const { data } = await employeeService.searchEmployeesByIds(employeeIds);
 
     dispatch({
       type: SEARCH_EMPLOYEES_BY_IDS_COMPLETE,

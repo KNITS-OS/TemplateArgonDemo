@@ -15,8 +15,6 @@
 
 */
 // nodejs library to set properties for components
-import PropTypes from "prop-types";
-// reactstrap components
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -29,7 +27,10 @@ import {
   Col,
 } from "reactstrap";
 
-export function CardsHeader({ name, parentName }) {
+import PropTypes from "prop-types";
+// reactstrap components
+
+export const CardsHeader = ({ name, parentName }) => {
   return (
     <div className="header bg-info pb-6">
       <Container fluid>
@@ -84,15 +85,10 @@ export function CardsHeader({ name, parentName }) {
                 <CardBody>
                   <Row>
                     <div className="col">
-                      <CardTitle
-                        tag="h5"
-                        className="text-uppercase text-muted mb-0"
-                      >
+                      <CardTitle tag="h5" className="text-uppercase text-muted mb-0">
                         Total traffic
                       </CardTitle>
-                      <span className="h2 font-weight-bold mb-0">
-                        350,897
-                      </span>
+                      <span className="h2 font-weight-bold mb-0">350,897</span>
                     </div>
                     <Col className="col-auto">
                       <div className="icon icon-shape bg-gradient-red text-white rounded-circle shadow">
@@ -114,15 +110,10 @@ export function CardsHeader({ name, parentName }) {
                 <CardBody>
                   <Row>
                     <div className="col">
-                      <CardTitle
-                        tag="h5"
-                        className="text-uppercase text-muted mb-0"
-                      >
+                      <CardTitle tag="h5" className="text-uppercase text-muted mb-0">
                         New users
                       </CardTitle>
-                      <span className="h2 font-weight-bold mb-0">
-                        2,356
-                      </span>
+                      <span className="h2 font-weight-bold mb-0">2,356</span>
                     </div>
                     <Col className="col-auto">
                       <div className="icon icon-shape bg-gradient-orange text-white rounded-circle shadow">
@@ -144,10 +135,7 @@ export function CardsHeader({ name, parentName }) {
                 <CardBody>
                   <Row>
                     <div className="col">
-                      <CardTitle
-                        tag="h5"
-                        className="text-uppercase text-muted mb-0"
-                      >
+                      <CardTitle tag="h5" className="text-uppercase text-muted mb-0">
                         Sales
                       </CardTitle>
                       <span className="h2 font-weight-bold mb-0">924</span>
@@ -172,15 +160,10 @@ export function CardsHeader({ name, parentName }) {
                 <CardBody>
                   <Row>
                     <div className="col">
-                      <CardTitle
-                        tag="h5"
-                        className="text-uppercase text-muted mb-0"
-                      >
+                      <CardTitle tag="h5" className="text-uppercase text-muted mb-0">
                         Performance
                       </CardTitle>
-                      <span className="h2 font-weight-bold mb-0">
-                        49,65%
-                      </span>
+                      <span className="h2 font-weight-bold mb-0">49,65%</span>
                     </div>
                     <Col className="col-auto">
                       <div className="icon icon-shape bg-gradient-primary text-white rounded-circle shadow">
@@ -202,7 +185,7 @@ export function CardsHeader({ name, parentName }) {
       </Container>
     </div>
   );
-}
+};
 
 CardsHeader.propTypes = {
   name: PropTypes.string.isRequired,

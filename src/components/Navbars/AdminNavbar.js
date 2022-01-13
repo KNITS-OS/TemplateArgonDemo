@@ -30,7 +30,7 @@ import {
 
 import team4Img from "../../assets/img/theme/team-4.jpg";
 
-export function AdminNavbar() {
+export const AdminNavbar = () => {
   return (
     <Navbar className="navbar-top navbar-expand border-bottom navbar-dark bg-info navbar">
       <Container fluid>
@@ -47,9 +47,7 @@ export function AdminNavbar() {
                     <img alt="..." src={team4Img} />
                   </span>
                   <Media className="ml-2 d-none d-lg-block">
-                    <span className="mb-0 text-sm font-weight-bold">
-                      John Snow
-                    </span>
+                    <span className="mb-0 text-sm font-weight-bold">John Snow</span>
                   </Media>
                 </Media>
               </DropdownToggle>
@@ -58,39 +56,24 @@ export function AdminNavbar() {
                 <DropdownItem className="noti-title" header tag="div">
                   <h6 className="text-overflow m-0">Welcome!</h6>
                 </DropdownItem>
-                <DropdownItem
-                  href="#pablo"
-                  onClick={e => e.preventDefault()}
-                >
+                <DropdownItem href="#pablo" onClick={e => e.preventDefault()}>
                   <i className="ni ni-single-02" />
                   <span>My profile</span>
                 </DropdownItem>
-                <DropdownItem
-                  href="#pablo"
-                  onClick={e => e.preventDefault()}
-                >
+                <DropdownItem href="#pablo" onClick={e => e.preventDefault()}>
                   <i className="ni ni-settings-gear-65" />
                   <span>Settings</span>
                 </DropdownItem>
-                <DropdownItem
-                  href="#pablo"
-                  onClick={e => e.preventDefault()}
-                >
+                <DropdownItem href="#pablo" onClick={e => e.preventDefault()}>
                   <i className="ni ni-calendar-grid-58" />
                   <span>Activity</span>
                 </DropdownItem>
-                <DropdownItem
-                  href="#pablo"
-                  onClick={e => e.preventDefault()}
-                >
+                <DropdownItem href="#pablo" onClick={e => e.preventDefault()}>
                   <i className="ni ni-support-16" />
                   <span>Support</span>
                 </DropdownItem>
                 <DropdownItem divider />
-                <DropdownItem
-                  href="#pablo"
-                  onClick={e => e.preventDefault()}
-                >
+                <DropdownItem href="#pablo" onClick={e => e.preventDefault()}>
                   <i className="ni ni-user-run" />
                   <span>Logout</span>
                 </DropdownItem>
@@ -101,4 +84,4 @@ export function AdminNavbar() {
       </Container>
     </Navbar>
   );
-}
+};

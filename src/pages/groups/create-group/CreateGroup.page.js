@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+
 import { useDispatch, useSelector } from "react-redux";
 
 import { Container } from "reactstrap";
@@ -11,7 +12,7 @@ import { createGroup } from "redux/groups";
 
 import { EditGroupPanel } from "..";
 
-export function CreateGroupPage() {
+export const CreateGroupPage = () => {
   const initialState = {
     name: "",
     description: "",
@@ -42,11 +43,7 @@ export function CreateGroupPage() {
   useEffect(() => {
     if (groupsState.entity) {
       setAlert(
-        <SweetAlert
-          success
-          title="Success"
-          onConfirm={() => setAlert(false)}
-        >
+        <SweetAlert success title="Success" onConfirm={() => setAlert(false)}>
           Group Created
         </SweetAlert>
       );
@@ -71,4 +68,4 @@ export function CreateGroupPage() {
       </Container>
     </>
   );
-}
+};

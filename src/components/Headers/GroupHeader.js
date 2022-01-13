@@ -16,7 +16,7 @@
 */
 import careTeamImg from "../../assets/img/care/team.jpg";
 
-export function GroupHeader() {
+export const GroupHeader = () => {
   return (
     <div
       className="header pb-6 d-flex align-items-center"
@@ -30,4 +30,4 @@ export function GroupHeader() {
       <span className="mask bg-gradient-info opacity-8" />
     </div>
   );
-}
+};

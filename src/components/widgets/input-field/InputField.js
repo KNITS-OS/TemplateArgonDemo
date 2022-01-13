@@ -1,7 +1,7 @@
 // import PropTypes from "prop-types";
 import { FormGroup, Input } from "reactstrap";
 
-export function InputField(props) {
+export const InputField = props => {
   const { id, label } = props;
 
   return (
@@ -12,7 +12,7 @@ export function InputField(props) {
       <Input {...props} placeholder={label} />
     </FormGroup>
   );
-}
+};
 
 // InputField.propTypes = {
 //   id: PropTypes.string.isRequired,

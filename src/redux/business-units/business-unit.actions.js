@@ -6,26 +6,20 @@ import {
 
 import { businessUnitService } from ".";
 
-export const listBusinessUnitsLoading = () => {
-  return {
-    type: LIST_BUSINESS_UNITS_LOADING,
-    payload: "LIST_BUSINESS_UNITS_LOADING",
-  };
-};
+export const listBusinessUnitsLoading = () => ({
+  type: LIST_BUSINESS_UNITS_LOADING,
+  payload: "LIST_BUSINESS_UNITS_LOADING",
+});
 
-export const listBusinessUnitsError = err => {
-  return {
-    type: LIST_BUSINESS_UNITS_ERROR,
-    payload: err.message,
-  };
-};
+export const listBusinessUnitsError = err => ({
+  type: LIST_BUSINESS_UNITS_ERROR,
+  payload: err.message,
+});
 
-export const listBusinessUnitsComplete = data => {
-  return {
-    type: LIST_BUSINESS_UNITS_COMPLETE,
-    payload: data,
-  };
-};
+export const listBusinessUnitsComplete = data => ({
+  type: LIST_BUSINESS_UNITS_COMPLETE,
+  payload: data,
+});
 
 export const listBusinessUnits = () => async dispatch => {
   try {

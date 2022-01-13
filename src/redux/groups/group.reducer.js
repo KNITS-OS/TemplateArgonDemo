@@ -40,6 +40,13 @@ const initialState = {
 export const groupReducer = (groupState = initialState, action = {}) => {
   const { type, payload } = action;
 
+  let updatedGroups = [];
+  let partiallyUpdatedGroups = [];
+  let groupsToKeep = [];
+  let deactivatedGroups = [];
+  let addedCarememberGroups = [];
+  let removedCarememberGroups = [];
+
   switch (type) {
     case SEARCH_GROUP_LOADING:
     case SEARCH_GROUPS_LOADING:
@@ -108,7 +115,7 @@ export const groupReducer = (groupState = initialState, action = {}) => {
       };
 
     case UPDATE_GROUP_COMPLETE:
-      const updatedGroups = groupState.entities.map(group => {
+      updatedGroups = groupState.entities.map(group => {
         if (group.id === payload.id) {
           return {
             ...group,
@@ -128,7 +135,7 @@ export const groupReducer = (groupState = initialState, action = {}) => {
       };
 
     case PARTIAL_UPDATE_GROUP_COMPLETE:
-      const partiallyUpdatedGroups = groupState.entities.map(group => {
+      partiallyUpdatedGroups = groupState.entities.map(group => {
         if (group.id === payload.id) {
           return {
             ...group,
@@ -148,9 +155,7 @@ export const groupReducer = (groupState = initialState, action = {}) => {
       };
 
     case DELETE_GROUP_COMPLETE:
-      const groupsToKeep = groupState.entities.filter(
-        ({ id }) => id !== payload.id
-      );
+      groupsToKeep = groupState.entities.filter(({ id }) => id !== payload.id);
 
       return {
         isLoading: false,
@@ -162,7 +167,7 @@ export const groupReducer = (groupState = initialState, action = {}) => {
       };
 
     case DEACTIVATE_GROUP_COMPLETE:
-      const deactivatedGroups = groupState.entities.map(group => {
+      deactivatedGroups = groupState.entities.map(group => {
         if (group.id === payload) {
           return {
             ...group,
@@ -181,7 +186,7 @@ export const groupReducer = (groupState = initialState, action = {}) => {
       };
 
     case ADD_CAREMEMBER_TO_GROUP_COMPLETE:
-      const addedCarememberGroups = groupState.entities.map(group => {
+      addedCarememberGroups = groupState.entities.map(group => {
         if (group.id === payload.id) {
           return {
             ...group,
@@ -201,13 +206,11 @@ export const groupReducer = (groupState = initialState, action = {}) => {
       };
 
     case REMOVE_CAREMEMBER_FROM_GROUP_COMPLETE:
-      const removedCarememberGroups = groupState.entities.map(group => {
+      removedCarememberGroups = groupState.entities.map(group => {
         if (group.id === payload.id) {
           return {
             ...group,
-            members: group.members.filter(
-              ({ id }) => !payload.members.includes(id)
-            ),
+            members: group.members.filter(({ id }) => !payload.members.includes(id)),
           };
         }
         return group;

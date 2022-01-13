@@ -16,35 +16,19 @@
 */
 
 import { useEffect, useState } from "react";
-import {
-  useLocation,
-  NavLink as NavLinkRRD,
-  Link,
-} from "react-router-dom";
+
+import { Collapse, NavbarBrand, Navbar, NavItem, NavLink, Nav } from "reactstrap";
+
+import classnames from "classnames";
 import { PropTypes } from "prop-types";
+import PerfectScrollbar from "react-perfect-scrollbar";
+import { useLocation, NavLink as NavLinkRRD, Link } from "react-router-dom";
 
 // reactstrap components
-import {
-  Collapse,
-  NavbarBrand,
-  Navbar,
-  NavItem,
-  NavLink,
-  Nav,
-} from "reactstrap";
-
 // nodejs library that concatenates classes
-import classnames from "classnames";
 // react library that creates nice scrollbar on windows devices
-import PerfectScrollbar from "react-perfect-scrollbar";
 
-export function Sidebar({
-  toggleSidenav,
-  sidenavOpen,
-  routes,
-  logo,
-  rtlActive,
-}) {
+export const Sidebar = ({ toggleSidenav, sidenavOpen, routes, logo, rtlActive }) => {
   const [state, setState] = useState({});
   const location = useLocation();
 
@@ -77,6 +61,7 @@ export function Sidebar({
       }
       return null;
     });
+
     return initialState;
   };
 
@@ -138,27 +123,19 @@ export function Sidebar({
                 </>
               ) : prop.miniName ? (
                 <>
-                  <span className="sidenav-mini-icon">
-                    {" "}
-                    {prop.miniName}{" "}
-                  </span>
+                  <span className="sidenav-mini-icon"> {prop.miniName} </span>
                   <span className="sidenav-normal"> {prop.name} </span>
                 </>
               ) : null}
             </NavLink>
             <Collapse isOpen={state[prop.state]}>
-              <Nav className="nav-sm flex-column">
-                {createLinks(prop.views)}
-              </Nav>
+              <Nav className="nav-sm flex-column">{createLinks(prop.views)}</Nav>
             </Collapse>
           </NavItem>
         );
       }
       return (
-        <NavItem
-          className={activeRoute(prop.layout + prop.path)}
-          key={key}
-        >
+        <NavItem className={activeRoute(prop.layout + prop.path)} key={key}>
           <NavLink
             to={prop.layout + prop.path}
             activeClassName=""
@@ -172,10 +149,7 @@ export function Sidebar({
               </>
             ) : prop.miniName !== undefined ? (
               <>
-                <span className="sidenav-mini-icon">
-                  {" "}
-                  {prop.miniName}{" "}
-                </span>
+                <span className="sidenav-mini-icon"> {prop.miniName} </span>
                 <span className="sidenav-normal"> {prop.name} </span>
               </>
             ) : (
@@ -204,11 +178,7 @@ export function Sidebar({
       <div className="sidenav-header d-flex align-items-center">
         {logo ? (
           <NavbarBrand {...navbarBrandProps}>
-            <img
-              alt={logo.imgAlt}
-              className="navbar-brand-img"
-              src={logo.imgSrc}
-            />
+            <img alt={logo.imgAlt} className="navbar-brand-img" src={logo.imgSrc} />
           </NavbarBrand>
         ) : null}
         <div className="ml-auto">
@@ -274,7 +244,7 @@ export function Sidebar({
       )}
     </Navbar>
   );
-}
+};
 
 Sidebar.defaultProps = {
   routes: [{}],

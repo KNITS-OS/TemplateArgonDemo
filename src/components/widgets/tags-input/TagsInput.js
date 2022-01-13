@@ -28,21 +28,11 @@ function getClipboardData(e) {
 }
 
 function defaultRenderTag(props) {
-  const {
-    tag,
-    key,
-    disabled,
-    onRemove,
-    classNameRemove,
-    getTagDisplayValue,
-    ...other
-  } = props;
+  const { tag, key, disabled, onRemove, classNameRemove, getTagDisplayValue, ...other } = props;
   return (
     <span key={key} {...other}>
       {getTagDisplayValue(tag)}
-      {!disabled && (
-        <a className={classNameRemove} onClick={e => onRemove(key)} />
-      )}
+      {!disabled && <a className={classNameRemove} onClick={e => onRemove(key)} />}
     </span>
   );
 }
@@ -57,9 +47,7 @@ defaultRenderTag.propTypes = {
 
 function defaultRenderInput({ addTag, ...props }) {
   const { onChange, value, ...other } = props;
-  return (
-    <input type="text" onChange={onChange} value={value} {...other} />
-  );
+  return <input type="text" onChange={onChange} value={value} {...other} />;
 }
 
 defaultRenderInput.propTypes = {
@@ -173,19 +161,13 @@ export const TagsInput = forwardRef((props, ref) => {
       tagsInner = uniq(tagsInner);
       tagsInner = tagsInner.filter(tag =>
         value.every(
-          currentTag =>
-            _getTagDisplayValueHook(currentTag) !==
-            _getTagDisplayValueHook(tag)
+          currentTag => _getTagDisplayValueHook(currentTag) !== _getTagDisplayValueHook(tag)
         )
       );
     }
 
-    const rejectedTags = tagsInner.filter(
-      tag => !_validateHook(_getTagDisplayValueHook(tag))
-    );
-    tagsInner = tagsInner.filter(tag =>
-      _validateHook(_getTagDisplayValueHook(tag))
-    );
+    const rejectedTags = tagsInner.filter(tag => !_validateHook(_getTagDisplayValueHook(tag)));
+    tagsInner = tagsInner.filter(tag => _validateHook(_getTagDisplayValueHook(tag)));
     tagsInner = tagsInner.filter(tag => {
       const tagDisplayValueInner = _getTagDisplayValueHook(tag);
       if (typeof tagDisplayValueInner.trim === "function") {
@@ -226,11 +208,7 @@ export const TagsInput = forwardRef((props, ref) => {
     return validate(tagInner) && validationRegex.test(tagInner);
   };
 
-  const _shouldPreventDefaultEventOnAddHook = (
-    addedInner,
-    emptyInner,
-    keyCodeInner
-  ) => {
+  const _shouldPreventDefaultEventOnAddHook = (addedInner, emptyInner, keyCodeInner) => {
     if (addedInner) {
       return true;
     }
@@ -243,10 +221,7 @@ export const TagsInput = forwardRef((props, ref) => {
   };
 
   const focusHook = () => {
-    if (
-      inputElementRef.current &&
-      typeof inputElementRef.current.focus === "function"
-    ) {
+    if (inputElementRef.current && typeof inputElementRef.current.focus === "function") {
       inputElementRef.current.focus();
     }
 
@@ -254,10 +229,7 @@ export const TagsInput = forwardRef((props, ref) => {
   };
 
   const blurHook = () => {
-    if (
-      inputElementRef.current &&
-      typeof inputElementRef.current.blur === "function"
-    ) {
+    if (inputElementRef.current && typeof inputElementRef.current.blur === "function") {
       inputElementRef.current.blur();
     }
 
@@ -291,9 +263,7 @@ export const TagsInput = forwardRef((props, ref) => {
     e.preventDefault();
 
     const dataInner = getClipboardData(e);
-    const tagsInner = pasteSplit(dataInner).map(tagInner =>
-      _makeTagHook(tagInner)
-    );
+    const tagsInner = pasteSplit(dataInner).map(tagInner => _makeTagHook(tagInner));
 
     _addTagsHook(tagsInner);
   };
@@ -307,22 +277,13 @@ export const TagsInput = forwardRef((props, ref) => {
     const emptyInner = tagInner === "";
     const keyCodeInner = e.keyCode;
     const keyInner = e.key;
-    const addInner =
-      addKeys.indexOf(keyCodeInner) !== -1 ||
-      addKeys.indexOf(keyInner) !== -1;
+    const addInner = addKeys.indexOf(keyCodeInner) !== -1 || addKeys.indexOf(keyInner) !== -1;
     const removeInner =
-      removeKeys.indexOf(keyCodeInner) !== -1 ||
-      removeKeys.indexOf(keyInner) !== -1;
+      removeKeys.indexOf(keyCodeInner) !== -1 || removeKeys.indexOf(keyInner) !== -1;
 
     if (addInner) {
       const addedInner = acceptHook();
-      if (
-        _shouldPreventDefaultEventOnAddHook(
-          addedInner,
-          emptyInner,
-          keyCodeInner
-        )
-      ) {
+      if (_shouldPreventDefaultEventOnAddHook(addedInner, emptyInner, keyCodeInner)) {
         e.preventDefault();
       }
     }
@@ -389,8 +350,7 @@ export const TagsInput = forwardRef((props, ref) => {
 
   const inputPropsHook = () => {
     // eslint-disable-next-line
-    let { onChange, onFocus, onBlur, ...otherInputProps } =
-      props.inputProps;
+    let { onChange, onFocus, onBlur, ...otherInputProps } = props.inputProps;
 
     const propsInner = {
       ...defaultInputProps,
@@ -409,9 +369,7 @@ export const TagsInput = forwardRef((props, ref) => {
   };
 
   const hasControlledInputHook = () => {
-    return (
-      typeof onChangeInput === "function" && typeof inputValue === "string"
-    );
+    return typeof onChangeInput === "function" && typeof inputValue === "string";
   };
 
   let divClassName = className;
@@ -548,11 +506,7 @@ export const TagsInput = forwardRef((props, ref) => {
   //   },
   // }));
   return (
-    <div
-      ref={divElementRef}
-      onClick={handleClickHook}
-      className={divClassName}
-    >
+    <div ref={divElementRef} onClick={handleClickHook} className={divClassName}>
       {renderLayout(tagComponents, inputComponent)}
     </div>
   );
@@ -585,9 +539,7 @@ TagsInput.defaultProps = {
 
 TagsInput.propTypes = {
   focusedClassName: PropTypes.string,
-  addKeys: PropTypes.arrayOf(
-    PropTypes.oneOfType([PropTypes.number, PropTypes.string])
-  ),
+  addKeys: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string])),
   addOnBlur: PropTypes.bool,
   addOnPaste: PropTypes.bool,
   currentValue: PropTypes.string,
@@ -595,9 +547,7 @@ TagsInput.propTypes = {
   inputProps: PropTypes.object,
   onChange: PropTypes.func.isRequired,
   onChangeInput: PropTypes.func,
-  removeKeys: PropTypes.arrayOf(
-    PropTypes.oneOfType([PropTypes.number, PropTypes.string])
-  ),
+  removeKeys: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string])),
   renderInput: PropTypes.func,
   renderTag: PropTypes.func,
   renderLayout: PropTypes.func,

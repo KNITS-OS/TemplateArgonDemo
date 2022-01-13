@@ -1,31 +1,21 @@
-import {
-  LIST_CHARTS_COMPLETE,
-  LIST_CHARTS_LOADING,
-  LIST_CHARTS_ERROR,
-} from "redux/types.actions";
+import { LIST_CHARTS_COMPLETE, LIST_CHARTS_LOADING, LIST_CHARTS_ERROR } from "redux/types.actions";
 
 import { chartService } from "./chart.service";
 
-export const listChartsLoading = () => {
-  return {
-    type: LIST_CHARTS_LOADING,
-    payload: "LIST_CHARTS_LOADING",
-  };
-};
+export const listChartsLoading = () => ({
+  type: LIST_CHARTS_LOADING,
+  payload: "LIST_CHARTS_LOADING",
+});
 
-export const listChartsError = err => {
-  return {
-    type: LIST_CHARTS_ERROR,
-    payload: err.message,
-  };
-};
+export const listChartsError = err => ({
+  type: LIST_CHARTS_ERROR,
+  payload: err.message,
+});
 
-export const listChartsComplete = data => {
-  return {
-    type: LIST_CHARTS_COMPLETE,
-    payload: data,
-  };
-};
+export const listChartsComplete = data => ({
+  type: LIST_CHARTS_COMPLETE,
+  payload: data,
+});
 
 export const listCharts = () => async dispatch => {
   try {

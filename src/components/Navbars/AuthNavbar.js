@@ -16,8 +16,6 @@
 */
 
 // react library for routing
-import { Link } from "react-router-dom";
-// reactstrap components
 import {
   UncontrolledCollapse,
   NavbarBrand,
@@ -32,10 +30,13 @@ import {
   Button,
 } from "reactstrap";
 
+import { Link } from "react-router-dom";
+// reactstrap components
+
 import argonReactWhiteImg from "assets/img/brand/argon-react-white.png";
 import blueBrandBlueImg from "assets/img/brand/blue.png";
 
-export function AuthNavbar() {
+export const AuthNavbar = () => {
   return (
     <Navbar
       className="navbar-horizontal navbar-main navbar-dark navbar-transparent"
@@ -58,11 +59,7 @@ export function AuthNavbar() {
         >
           <span className="navbar-toggler-icon" />
         </button>
-        <UncontrolledCollapse
-          className="navbar-custom-collapse"
-          navbar
-          toggler="#navbar-collapse"
-        >
+        <UncontrolledCollapse className="navbar-custom-collapse" navbar toggler="#navbar-collapse">
           <div className="navbar-collapse-header">
             <Row>
               <Col className="collapse-brand" xs="6">
@@ -124,9 +121,7 @@ export function AuthNavbar() {
                 target="_blank"
               >
                 <i className="fab fa-facebook-square" />
-                <span className="nav-link-inner--text d-lg-none">
-                  Facebook
-                </span>
+                <span className="nav-link-inner--text d-lg-none">Facebook</span>
               </NavLink>
               <UncontrolledTooltip delay={0} target="tooltip601201423">
                 Like us on Facebook
@@ -140,9 +135,7 @@ export function AuthNavbar() {
                 target="_blank"
               >
                 <i className="fab fa-instagram" />
-                <span className="nav-link-inner--text d-lg-none">
-                  Instagram
-                </span>
+                <span className="nav-link-inner--text d-lg-none">Instagram</span>
               </NavLink>
               <UncontrolledTooltip delay={0} target="tooltip871243015">
                 Follow us on Instagram
@@ -156,9 +149,7 @@ export function AuthNavbar() {
                 target="_blank"
               >
                 <i className="fab fa-twitter-square" />
-                <span className="nav-link-inner--text d-lg-none">
-                  Twitter
-                </span>
+                <span className="nav-link-inner--text d-lg-none">Twitter</span>
               </NavLink>
               <UncontrolledTooltip delay={0} target="tooltip366258619">
                 Follow us on Twitter
@@ -172,9 +163,7 @@ export function AuthNavbar() {
                 target="_blank"
               >
                 <i className="fab fa-github" />
-                <span className="nav-link-inner--text d-lg-none">
-                  Github
-                </span>
+                <span className="nav-link-inner--text d-lg-none">Github</span>
               </NavLink>
               <UncontrolledTooltip delay={0} target="tooltip931502898">
                 Star us on Github
@@ -198,4 +187,4 @@ export function AuthNavbar() {
       </Container>
     </Navbar>
   );
-}
+};

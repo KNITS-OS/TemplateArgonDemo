@@ -1,17 +1,10 @@
 import React, { useEffect, useState } from "react";
+
 import { useDispatch, useSelector } from "react-redux";
+
 import { useHistory } from "react-router";
 
-import {
-  Card,
-  CardBody,
-  CardHeader,
-  Col,
-  Container,
-  FormGroup,
-  Row,
-  Spinner,
-} from "reactstrap";
+import { Card, CardBody, CardHeader, Col, Container, FormGroup, Row, Spinner } from "reactstrap";
 
 import SweetAlert from "react-bootstrap-sweetalert";
 
@@ -22,7 +15,7 @@ import { deleteGroup, searchGroups } from "redux/groups";
 
 import { groupsTableColumns } from ".";
 
-export function SearchGroupsPage() {
+export const SearchGroupsPage = () => {
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -122,4 +115,4 @@ export function SearchGroupsPage() {
       </Container>
     </>
   );
-}
+};
