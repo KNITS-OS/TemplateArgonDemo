@@ -36,20 +36,25 @@ module.exports = {
   ],
   rules: {
     "react/react-in-jsx-scope": "off",
+
     "import/prefer-default-export": "off",
+
     "react/jsx-filename-extension": "off",
+
     "react/function-component-definition": [
       "error",
       { namedComponents: "arrow-function", unnamedComponents: "arrow-function" },
     ],
-    "linebreak-style": ["error", "unix"],
+
     "react/prop-types": "off",
+    "linebreak-style": ["error", "unix"],
+
     "import/default": "off",
     "import/no-named-as-default-member": "off",
     "import/no-named-as-default": "off",
-    "import/named": "off",
 
     "jsx-a11y/anchor-is-valid": "off",
+
     "import/order": [
       "error",
       {
@@ -91,6 +96,8 @@ module.exports = {
         alphabetize: { order: "asc", caseInsensitive: true },
       },
     ],
+    // uses .prettierrc.js file config
+    // https://github.com/prettier/eslint-plugin-prettier#options
     "prettier/prettier": ["error", {}, { usePrettierrc: true }],
   },
 };
