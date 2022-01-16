@@ -62,11 +62,11 @@ export const ReactTable = ({
             className="dataTables_filter px-4 pb-1"
             style={{ display: "flex" }}
           >
+            {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
             <label>
               Search:
               <SearchBar className="form-control-sm mr-3" placeholder="" {...props.searchProps} />
             </label>
-
             <Button
               className="btn btn-success"
               // eslint-disable-next-line no-console
