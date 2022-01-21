@@ -65,10 +65,8 @@
     "map:scss": "node-sass --importer node_modules/node-sass-package-importer/dist/cli.js src/assets/scss/argon-dashboard-react.scss src/assets/css/argon-dashboard-react.css --source-map true",
     "build:scss": "npm run compile:scss && npm run minify:scss && npm run map:scss",
     "json-server": "json-server --watch ./json-server-mock-data/db.js --port 8999 --delay 1000",
-    "lint": "eslint --fix --ext .js,.ts,.tsx ./src --ignore-path .gitignore",
-    "prettier": "prettier --ignore-path .gitignore --write \"**/*.+(js|json|ts|tsx)\"",
-    "fix-code": "prettier-eslint --write 'src/**/*.{js,jsx}'",
-    "prepare": "husky install"
+    "lint:fix": "eslint --fix --ext .js,.ts,.tsx ./src --ignore-path .gitignore",
+    "prettier": "prettier --ignore-path .gitignore --write \"**/*.+(js|json|ts|tsx)\""
   },
   "eslintConfig": {
     "extends": [

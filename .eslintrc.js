@@ -47,7 +47,7 @@ module.exports = {
     ],
 
     "react/prop-types": "off",
-    "linebreak-style": ["error", "unix"],
+    "linebreak-style": ["error", process.platform === "win32" ? "windows" : "unix"],
 
     "import/default": "off",
     "import/no-named-as-default-member": "off",
