@@ -40,7 +40,7 @@
     "react-redux": "^7.2.6",
     "react-router": "5.2.0",
     "react-router-dom": "5.2.0",
-    "react-scripts": "^5.0.0",
+    "react-scripts": "^4.0.3",
     "react-select": "^4.3.1",
     "react-select2-wrapper": "1.0.4-beta6",
     "react-to-print": "2.12.2",
@@ -95,7 +95,6 @@
   "devDependencies": {
     "@babel/eslint-parser": "^7.16.5",
     "@babel/plugin-syntax-jsx": "^7.16.7",
-    "eslint": "^8.6.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-flowtype": "5.2.0",
     "eslint-plugin-import": "^2.25.4",

@@ -6,7 +6,12 @@ import ReactDOM from "react-dom";
 // react library for routing
 import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
 
-// plugins styles from node_modules
+import { AdminLayout } from "layouts/AdminLayout";
+import { AuthLayout } from "layouts/AuthLayout";
+import { store } from "store";
+
+import "variables/chartDefaults";
+
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import "@fullcalendar/common/main.min.css";
 import "@fullcalendar/daygrid/main.min.css";
@@ -15,16 +20,8 @@ import "react-notification-alert/dist/animate.css";
 import "react-perfect-scrollbar/dist/css/styles.css";
 import "select2/dist/css/select2.min.css";
 import "sweetalert2/dist/sweetalert2.min.css";
-// plugins styles downloaded
 import "assets/vendor/nucleo/css/nucleo.css";
-// core styles
 import "assets/scss/argon-dashboard-react.scss";
-
-import "variables/chartDefaults";
-
-import { AdminLayout } from "layouts/AdminLayout";
-import { AuthLayout } from "layouts/AuthLayout";
-import { store } from "store";
 
 ReactDOM.render(
   <Provider store={store}>
