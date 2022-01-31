@@ -8,7 +8,7 @@ import { Card, CardBody, CardHeader, Col, Container, FormGroup, Row, Spinner } f
 
 import SweetAlert from "react-bootstrap-sweetalert";
 
-import { GradientEmptyHeader } from "components/Headers";
+import { GradientEmptyHeader } from "components/headers";
 import { ReactTable } from "components/widgets";
 
 import { deleteGroup, searchGroups } from "redux/groups";

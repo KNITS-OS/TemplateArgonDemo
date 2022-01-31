@@ -20,8 +20,8 @@ import { useEffect, useRef } from "react";
 
 import { useLocation, Switch, Redirect } from "react-router-dom";
 
-import { AuthFooter } from "components/Footers";
-import { AuthNavbar } from "components/Navbars";
+import { AuthFooter } from "components/footers";
+import { AuthNavbar } from "components/navbars";
 
 import { routes } from "routes";
 

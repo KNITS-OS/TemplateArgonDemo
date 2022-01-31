@@ -2,10 +2,10 @@ import { useSelector } from "react-redux";
 
 import { Card, CardBody, Col, Container, Row } from "reactstrap";
 
-import { VectorMap } from "@react-jvectormap/core";
-import worldMill from "@react-jvectormap/world/dist/worldMill.json";
+// import worldMill from "@react-jvectormap/world/dist/worldMill.json";
+import { VectorMap } from "react-jvectormap";
 
-import { GradientEmptyHeader } from "components/Headers";
+import { GradientEmptyHeader } from "components/headers";
 
 export const WorldMapPage = () => {
   const worldMapState = useSelector(state => state.worldMap);
@@ -24,7 +24,7 @@ export const WorldMapPage = () => {
                   style={{
                     height: "600px",
                   }}
-                  map={worldMill}
+                  map={"world_mill"}
                   zoomOnScroll={false}
                   backgroundColor="transparent"
                   regionStyle={{

@@ -23,9 +23,9 @@ import { Spinner, UncontrolledAlert } from "reactstrap";
 import SweetAlert from "react-bootstrap-sweetalert";
 import { useLocation, Switch, Redirect } from "react-router-dom";
 
-import { AdminFooter } from "components/Footers";
-import { AdminNavbar } from "components/Navbars";
-import { Sidebar } from "components/Sidebar";
+import { AdminFooter } from "components/footers";
+import { AdminNavbar } from "components/navbars";
+import { Sidebar } from "components/sidebar";
 
 import brandLogoImg from "assets/img/brand/Logo.png";
 import { routes } from "routes";

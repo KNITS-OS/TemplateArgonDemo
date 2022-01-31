@@ -6,7 +6,7 @@ import { Container } from "reactstrap";
 
 import SweetAlert from "react-bootstrap-sweetalert";
 
-import { GradientEmptyHeader } from "components/Headers";
+import { GradientEmptyHeader } from "components/headers";
 
 import { createEmployee } from "redux/employees";
 

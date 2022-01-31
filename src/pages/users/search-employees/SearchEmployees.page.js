@@ -23,7 +23,7 @@ import ReactDatetime from "react-datetime";
 import Select from "react-select";
 import makeAnimated from "react-select/animated";
 
-import { GradientEmptyHeader } from "components/Headers";
+import { GradientEmptyHeader } from "components/headers";
 import { ReactTable } from "components/widgets";
 
 import { selectBusinessUnitsAsList } from "redux/business-units";

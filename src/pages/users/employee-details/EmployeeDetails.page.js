@@ -9,7 +9,7 @@ import { Container, Spinner } from "reactstrap";
 import SweetAlert from "react-bootstrap-sweetalert";
 import { useParams } from "react-router-dom";
 
-import { GradientEmptyHeader } from "components/Headers";
+import { GradientEmptyHeader } from "components/headers";
 
 import { updateEmployee, searchEmployee } from "redux/employees";
 
