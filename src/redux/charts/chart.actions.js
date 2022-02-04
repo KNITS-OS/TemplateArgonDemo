@@ -1,6 +1,6 @@
-import { LIST_CHARTS_COMPLETE, LIST_CHARTS_LOADING, LIST_CHARTS_ERROR } from "redux/types.actions";
+import { LIST_CHARTS_COMPLETE, LIST_CHARTS_LOADING, LIST_CHARTS_ERROR } from "redux/utils";
 
-import { chartService } from "./chart.service";
+import { chartService } from ".";
 
 export const listChartsLoading = () => ({
   type: LIST_CHARTS_LOADING,

@@ -26,7 +26,7 @@ import {
   PARTIAL_UPDATE_GROUP_COMPLETE,
   PARTIAL_UPDATE_GROUP_ERROR,
   PARTIAL_UPDATE_GROUP_LOADING,
-} from "redux/types.actions";
+} from "redux/utils";
 
 const initialState = {
   isLoading: false,

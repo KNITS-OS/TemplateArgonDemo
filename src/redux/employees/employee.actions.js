@@ -20,7 +20,7 @@ import {
   UPDATE_EMPLOYEE_COMPLETE,
   UPDATE_EMPLOYEE_ERROR,
   UPDATE_EMPLOYEE_LOADING,
-} from "redux/types.actions";
+} from "redux/utils";
 
 import { employeeService } from ".";
 

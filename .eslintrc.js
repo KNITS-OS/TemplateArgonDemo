@@ -72,6 +72,16 @@ module.exports = {
             position: "after",
           },
           {
+            pattern: "assets/**",
+            group: "internal",
+            position: "before",
+          },
+          {
+            pattern: "routes",
+            group: "internal",
+            position: "before",
+          },
+          {
             pattern: "types/**",
             group: "internal",
             position: "before",

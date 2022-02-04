@@ -2,7 +2,6 @@ import React, { StrictMode } from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
-// react library for routing
 
 import { AdminLayout } from "layouts/AdminLayout";
 import { AuthLayout } from "layouts/AuthLayout";

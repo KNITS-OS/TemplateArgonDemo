@@ -2,7 +2,7 @@ import {
   LIST_BUSINESS_UNITS_COMPLETE,
   LIST_BUSINESS_UNITS_LOADING,
   LIST_BUSINESS_UNITS_ERROR,
-} from "redux/types.actions";
+} from "redux/utils";
 
 const initialState = {
   loading: false,

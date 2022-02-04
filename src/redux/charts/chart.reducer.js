@@ -1,4 +1,4 @@
-import { LIST_CHARTS_COMPLETE, LIST_CHARTS_LOADING, LIST_CHARTS_ERROR } from "redux/types.actions";
+import { LIST_CHARTS_COMPLETE, LIST_CHARTS_LOADING, LIST_CHARTS_ERROR } from "redux/utils";
 
 const initialState = {
   loading: false,

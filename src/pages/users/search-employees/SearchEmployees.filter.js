@@ -4,6 +4,8 @@ import makeAnimated from "react-select/animated";
 
 import { Button, Card, CardBody, CardHeader, Col, FormGroup, Input, Row } from "reactstrap";
 
+import { removeEmptyAttributesFromObject } from "redux/utils";
+
 import { SelectField, DateField } from "components/widgets";
 
 export const SearchEmployeesFilterPanel = ({
@@ -17,17 +19,6 @@ export const SearchEmployeesFilterPanel = ({
   const [searchBusinessUnit, setSearchBusinessUnit] = useState();
   const [searchHiringDate, setSearchHiringDate] = useState();
   const [searchJobTitle, setSearchJobTitle] = useState();
-
-  // https://stackoverflow.com/questions/286141/remove-blank-attributes-from-an-object-in-javascript
-  const removeEmptyAttributesFromObject = obj => {
-    // _ is not used but its value is the attribute name
-    return Object.fromEntries(
-      Object.entries(obj).filter(
-        // eslint-disable-next-line no-unused-vars
-        ([_, value]) => value !== null && value !== "" && value !== undefined
-      )
-    );
-  };
 
   const findByAllParameters = () => {
     const filters = {

@@ -15,14 +15,13 @@
 
 */
 
-// react library for routing
 import { useEffect, useRef } from "react";
 import { useLocation, Switch, Redirect } from "react-router-dom";
 
+import { routes } from "routes";
+
 import { AuthFooter } from "components/footers";
 import { AuthNavbar } from "components/navbars";
-
-import { routes } from "routes";
 
 import { getRoutes } from "./utils";
 

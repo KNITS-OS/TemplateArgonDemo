@@ -1,8 +1,8 @@
-const employees = require("./employees");
 const businessUnits = require("./business-units");
-const countries = require("./countries");
-const groups = require("./groups");
 const charts = require("./charts");
+const countries = require("./countries");
+const employees = require("./employees");
+const groups = require("./groups");
 const worldMap = require("./world-map");
 
 module.exports = () => ({

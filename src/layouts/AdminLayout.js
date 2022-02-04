@@ -14,14 +14,18 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import SweetAlert from "react-bootstrap-sweetalert";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, Switch, Redirect } from "react-router-dom";
 
 import { Spinner, UncontrolledAlert } from "reactstrap";
 
-import { listBusinessUnits } from "redux/business-units";
+import brandLogoImg from "assets/img/brand/Logo.png";
+
+import { routes } from "routes";
+
+import { listBusinessUnits } from "redux/business-unit";
 import { listCharts } from "redux/charts";
 import { listCountries } from "redux/countries";
 import { listWorldMap } from "redux/world-map";
@@ -29,9 +33,6 @@ import { listWorldMap } from "redux/world-map";
 import { AdminFooter } from "components/footers";
 import { AdminNavbar } from "components/navbars";
 import { Sidebar } from "components/sidebar";
-
-import brandLogoImg from "assets/img/brand/Logo.png";
-import { routes } from "routes";
 
 import { getRoutes } from "./utils";
 
@@ -43,8 +44,8 @@ export const AdminLayout = () => {
   const chartsState = useSelector(state => state.chart);
   const worldMapState = useSelector(state => state.worldMap);
 
-  const [sidenavOpen, setSidenavOpen] = React.useState(true);
-  const mainContentRef = React.useRef(null);
+  const [sidenavOpen, setSidenavOpen] = useState(true);
+  const mainContentRef = useRef(null);
 
   const [categoryDataLoaded, setCategoryDataLoaded] = useState(false);
   const [alert, setAlert] = useState(
@@ -62,8 +63,8 @@ export const AdminLayout = () => {
 
   useEffect(() => {
     dispatch(listCountries());
-    dispatch(listBusinessUnits());
     dispatch(listCharts());
+    dispatch(listBusinessUnits());
     dispatch(listWorldMap());
   }, [dispatch]);
 

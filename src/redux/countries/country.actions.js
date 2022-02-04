@@ -1,8 +1,4 @@
-import {
-  LIST_COUNTRIES_COMPLETE,
-  LIST_COUNTRIES_LOADING,
-  LIST_COUNTRIES_ERROR,
-} from "redux/types.actions";
+import { LIST_COUNTRIES_COMPLETE, LIST_COUNTRIES_LOADING, LIST_COUNTRIES_ERROR } from "redux/utils";
 
 import { countryService } from ".";
 

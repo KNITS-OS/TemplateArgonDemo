@@ -3,7 +3,7 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import logger from "redux-logger";
 import thunk from "redux-thunk";
 
-import { rootReducer } from "redux/root.reducer";
+import { rootReducer } from "redux/utils";
 
 const middleware = [thunk];
 

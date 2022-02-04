@@ -6,7 +6,7 @@ import { useHistory } from "react-router";
 
 import { Card, CardHeader, Container, Row, Spinner } from "reactstrap";
 
-import { selectBusinessUnitsAsList } from "redux/business-units";
+import { selectBusinessUnitsAsList } from "redux/business-unit";
 import { selectCountriesAsList } from "redux/countries";
 import { deleteEmployee, searchEmployees, selectEmployeesState } from "redux/employees";
 

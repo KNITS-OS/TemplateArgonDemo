@@ -1,8 +1,4 @@
-import {
-  LIST_WORLD_MAP_COMPLETE,
-  LIST_WORLD_MAP_LOADING,
-  LIST_WORLD_MAP_ERROR,
-} from "redux/types.actions";
+import { LIST_WORLD_MAP_COMPLETE, LIST_WORLD_MAP_LOADING, LIST_WORLD_MAP_ERROR } from "redux/utils";
 
 const initialState = {
   loading: false,

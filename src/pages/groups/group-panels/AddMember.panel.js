@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { Button, FormGroup } from "reactstrap";
 
-import { selectBusinessUnitsAsList } from "redux/business-units";
+import { selectBusinessUnitsAsList } from "redux/business-unit";
 import { selectCountriesAsList } from "redux/countries";
 import { searchEmployees } from "redux/employees";
 

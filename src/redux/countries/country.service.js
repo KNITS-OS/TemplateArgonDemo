@@ -1,4 +1,4 @@
-import { httpCommon } from "redux/http-common";
+import { httpCommon } from "redux/utils";
 
 const listCountries = () => httpCommon.get(`/countries`);
 

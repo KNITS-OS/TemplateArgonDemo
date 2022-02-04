@@ -1,4 +1,4 @@
-import { httpCommon } from "redux/http-common";
+import { httpCommon } from "redux/utils";
 
 const searchEmployees = queryParams => httpCommon.get(`/employees?${queryParams}`);
 
