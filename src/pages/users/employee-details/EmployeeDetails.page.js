@@ -4,10 +4,11 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { useHistory } from "react-router";
 
+import { useParams } from "react-router-dom";
+
 import { Container, Spinner } from "reactstrap";
 
 import SweetAlert from "react-bootstrap-sweetalert";
-import { useParams } from "react-router-dom";
 
 import { GradientEmptyHeader } from "components/headers";
 

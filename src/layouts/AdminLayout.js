@@ -18,10 +18,11 @@ import React, { useEffect, useState } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 
+import { useLocation, Switch, Redirect } from "react-router-dom";
+
 import { Spinner, UncontrolledAlert } from "reactstrap";
 
 import SweetAlert from "react-bootstrap-sweetalert";
-import { useLocation, Switch, Redirect } from "react-router-dom";
 
 import { AdminFooter } from "components/footers";
 import { AdminNavbar } from "components/navbars";

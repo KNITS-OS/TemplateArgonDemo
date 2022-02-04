@@ -1,19 +1,21 @@
-import { FormGroup, Input } from "reactstrap";
+import { FormGroup } from "reactstrap";
 
 import PropTypes from "prop-types";
+import Select from "react-select";
+import makeAnimated from "react-select/animated";
 
-export const InputField = ({ id, label, ...props }) => {
+export const SelectField = ({ id, label, ...props }) => {
   return (
     <FormGroup>
       <label className="form-control-label" htmlFor={id}>
         {label}
       </label>
-      <Input {...props} placeholder={label} />
+      <Select {...props} components={makeAnimated()} />
     </FormGroup>
   );
 };
 
-InputField.propTypes = {
+SelectField.propTypes = {
   id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   props: PropTypes.any,

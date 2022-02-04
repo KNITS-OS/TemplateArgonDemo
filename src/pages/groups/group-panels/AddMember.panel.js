@@ -3,7 +3,8 @@ import { useSelector } from "react-redux";
 import { Button, Card, CardBody, CardHeader, Col, FormGroup, Row } from "reactstrap";
 
 import PropTypes from "prop-types";
-import Select from "react-select";
+
+import { SelectField } from "components/widgets";
 
 import { selectBusinessUnitsAsList } from "redux/business-units";
 import { selectCountriesAsList } from "redux/countries";
@@ -41,35 +42,41 @@ export const AddMemberPanel = (
           <Col md="12">
             <Row>
               <Col md="2">
-                <FormGroup>
-                  <label className="form-control-label" htmlFor="members">
-                    Job Title
-                  </label>
-                  <Select onChange={onChangeRole} options={jobTitles} />
-                </FormGroup>
+                <SelectField
+                  id="jobTitle"
+                  label="Job Title"
+                  onChange={onChangeRole}
+                  options={jobTitles}
+                />
               </Col>
               <Col md="2">
-                <FormGroup>
-                  <label className="form-control-label" htmlFor="members">
-                    Country
-                  </label>
-                  <Select onChange={onChangeCountry} options={countriesList} />
-                </FormGroup>
+                <SelectField
+                  id="country"
+                  label="Country"
+                  onChange={onChangeCountry}
+                  options={countriesList}
+                />
               </Col>
               <Col md="2">
-                <FormGroup>
-                  <label className="form-control-label" htmlFor="members">
-                    Business Unit
-                  </label>
-                  <Select onChange={onChangeBusinessUnit} options={businessUnitsList} />
-                </FormGroup>
+                <SelectField
+                  id="BusinessUnit"
+                  label="Business Unit"
+                  onChange={onChangeBusinessUnit}
+                  options={businessUnitsList}
+                />
               </Col>
               <Col md="4">
                 <FormGroup>
                   <label className="form-control-label" htmlFor="members">
                     Add members
                   </label>
-                  <Select isMulti onChange={onSelectCareMember} options={selectEmployeesAsList} />
+                  <SelectField
+                    isMulti
+                    id="AddMembers"
+                    label="Add members"
+                    onChange={onSelectCareMember}
+                    options={selectEmployeesAsList}
+                  />
                 </FormGroup>
               </Col>
               <Col md="2">

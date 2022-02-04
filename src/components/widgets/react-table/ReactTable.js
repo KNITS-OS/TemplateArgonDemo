@@ -19,7 +19,7 @@ export const ReactTable = ({
   selectedRows,
   setSelectedRows,
 }) => {
-  const formatActionButtonCell = (cell, row) => {
+  const formatActionButtonCell = (_, row) => {
     return (
       <>
         <Button
@@ -69,7 +69,6 @@ export const ReactTable = ({
             </label>
             <Button
               className="btn btn-success"
-              // eslint-disable-next-line no-console
               onClick={() => console.log("selectedRows", selectedRows)}
             >
               Workflow

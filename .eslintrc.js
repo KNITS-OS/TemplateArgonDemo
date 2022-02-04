@@ -67,12 +67,22 @@ module.exports = {
             position: "before",
           },
           {
+            pattern: ".css",
+            group: "external",
+            position: "before",
+          },
+          {
             pattern: "react-redux",
             group: "external",
             position: "before",
           },
           {
             pattern: "react-router",
+            group: "external",
+            position: "before",
+          },
+          {
+            pattern: "react-router-dom",
             group: "external",
             position: "before",
           },

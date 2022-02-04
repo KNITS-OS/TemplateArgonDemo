@@ -17,16 +17,13 @@
 
 import { useEffect, useState } from "react";
 
+import { useLocation, NavLink as NavLinkRRD, Link } from "react-router-dom";
+
 import { Collapse, NavbarBrand, Navbar, NavItem, NavLink, Nav } from "reactstrap";
 
 import classnames from "classnames";
 import { PropTypes } from "prop-types";
 import PerfectScrollbar from "react-perfect-scrollbar";
-import { useLocation, NavLink as NavLinkRRD, Link } from "react-router-dom";
-
-// reactstrap components
-// nodejs library that concatenates classes
-// react library that creates nice scrollbar on windows devices
 
 export const Sidebar = ({ toggleSidenav, sidenavOpen, routes, logo, rtlActive }) => {
   const [state, setState] = useState({});

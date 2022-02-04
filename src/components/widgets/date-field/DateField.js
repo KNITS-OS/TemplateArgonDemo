@@ -1,19 +1,20 @@
-import { FormGroup, Input } from "reactstrap";
+import { FormGroup } from "reactstrap";
 
 import PropTypes from "prop-types";
+import ReactDatetime from "react-datetime";
 
-export const InputField = ({ id, label, ...props }) => {
+export const DateField = ({ id, label, ...props }) => {
   return (
     <FormGroup>
       <label className="form-control-label" htmlFor={id}>
         {label}
       </label>
-      <Input {...props} placeholder={label} />
+      <ReactDatetime {...props} />
     </FormGroup>
   );
 };
 
-InputField.propTypes = {
+DateField.propTypes = {
   id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   props: PropTypes.any,

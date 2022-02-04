@@ -21,6 +21,7 @@ export const selectRow = setSelectedRows => ({
       // adds this selected row to the selectedRows array
       setSelectedRows(oldRows => [...oldRows, ...rows]);
       // select
+      return;
     } else {
       // removes this selected row from the selectedRows array
       setSelectedRows(oldRows =>
@@ -28,6 +29,7 @@ export const selectRow = setSelectedRows => ({
         oldRows.filter(oldRow => !rows.includes(oldRow))
       );
       // unselect
+      return;
     }
   },
 });

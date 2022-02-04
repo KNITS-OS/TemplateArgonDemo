@@ -19,12 +19,10 @@ import {
 } from "reactstrap";
 
 import SweetAlert from "react-bootstrap-sweetalert";
-import ReactDatetime from "react-datetime";
-import Select from "react-select";
 import makeAnimated from "react-select/animated";
 
 import { GradientEmptyHeader } from "components/headers";
-import { ReactTable } from "components/widgets";
+import { ReactTable, DateField, SelectField } from "components/widgets";
 
 import { selectBusinessUnitsAsList } from "redux/business-units";
 import { selectCountriesAsList } from "redux/countries";
@@ -119,46 +117,36 @@ export const SearchEmployeesPage = () => {
                     </FormGroup>
                   </Col>
                   <Col md="3">
-                    <FormGroup>
-                      <label className="form-control-label" htmlFor="businessUnits">
-                        Business Units
-                      </label>
-                      <Select
-                        id="businessUnits"
-                        components={makeAnimated()}
-                        options={businessUnitsList}
-                        onChange={item => setSearchBusinessUnit(item.value)}
-                      />
-                    </FormGroup>
+                    <SelectField
+                      id="businessUnits"
+                      label="Business Units"
+                      components={makeAnimated()}
+                      options={businessUnitsList}
+                      onChange={item => setSearchBusinessUnit(item.value)}
+                    />
                   </Col>
                   <Col md="2">
-                    <FormGroup>
-                      <label className="form-control-label" htmlFor="country">
-                        Countries
-                      </label>
-                      <Select
-                        id="country"
-                        components={makeAnimated()}
-                        options={countriesList}
-                        onChange={item => setSearchCountry(item.value)}
-                      />
-                    </FormGroup>
+                    <SelectField
+                      id="country"
+                      label="Countries"
+                      components={makeAnimated()}
+                      options={countriesList}
+                      onChange={item => setSearchCountry(item.value)}
+                    />
                   </Col>
                   <Col md="2">
-                    <FormGroup>
-                      <label className="form-control-label" htmlFor="example3cols2Input">
-                        Hire Date From
-                      </label>
-                      <ReactDatetime
-                        inputProps={{
-                          placeholder: "Hire date",
-                        }}
-                        onChange={dateAsMoment =>
-                          setSearchHiringDate(dateAsMoment.format("MM/DD/YYYY"))
-                        }
-                        timeFormat={false}
-                      />
-                    </FormGroup>
+                    <DateField
+                      id="date-hire-from"
+                      label="Hire Date From"
+                      onChange={dateAsMoment =>
+                        setSearchHiringDate(
+                          typeof dateAsMoment === "string"
+                            ? dateAsMoment
+                            : dateAsMoment.format("YYYY-MM-DD")
+                        )
+                      }
+                      timeFormat={false}
+                    />
                   </Col>
                   <Col md="2">
                     <FormGroup>

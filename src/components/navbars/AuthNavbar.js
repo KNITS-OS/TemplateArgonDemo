@@ -16,6 +16,8 @@
 */
 
 // react library for routing
+import { Link } from "react-router-dom";
+
 import {
   UncontrolledCollapse,
   NavbarBrand,
@@ -30,7 +32,6 @@ import {
   Button,
 } from "reactstrap";
 
-import { Link } from "react-router-dom";
 // reactstrap components
 
 import argonReactWhiteImg from "assets/img/brand/argon-react-white.png";
