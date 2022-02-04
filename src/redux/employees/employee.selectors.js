@@ -20,7 +20,6 @@ export const selectEmployeesByIds = ids => {
   return createSelector([selectAllEmployeesData], employees => {
     const groupMembers = [];
 
-    // @ts-ignore
     ids.forEach(id => groupMembers.push(employees.find(employee => employee.id === id)));
     return groupMembers;
   });

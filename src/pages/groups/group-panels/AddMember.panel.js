@@ -23,19 +23,17 @@ export const AddMemberPanel = ({ group, setGroup, selectedRows, setSelectedRows,
     { value: 5, label: "sales representative" },
     { value: 6, label: "logistics consultant" },
   ];
-  console.log("selectedRows", selectedRows);
+
   const onEmployeeAdd = selectedEmployees => {
     const employeeIds = selectedEmployees.map(employee => employee.id);
     setGroup({ ...group, members: [...group.members, ...employeeIds] });
     setSelectedRows([]);
-    // @ts-ignore
     tableRef.current.selectionContext.selected = [];
   };
 
   const onClickSearchEmployees = filters => {
     dispatch(searchEmployees(filters));
   };
-  // @todo make this find employees by filters
   return (
     <>
       <SearchEmployeesFilterPanel
