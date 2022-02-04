@@ -11,6 +11,8 @@ import { deleteGroup, searchGroups } from "redux/groups";
 import { GradientEmptyHeader } from "components/headers";
 import { ReactTable } from "components/widgets";
 
+import { GROUP_DETAILS } from "..";
+
 import { groupsTableColumns } from ".";
 
 export const SearchGroupsPage = () => {
@@ -20,6 +22,8 @@ export const SearchGroupsPage = () => {
   const groupsState = useSelector(state => state.group);
   const [selectedGroups, setSelectedGroups] = useState([]);
   const [alert, setAlert] = useState(groupsState.isError);
+
+  const currentRole = "admin"; //TO GET FROM SELECTORS
 
   useEffect(() => {
     if (groupsState.isError) {
@@ -33,7 +37,7 @@ export const SearchGroupsPage = () => {
 
   const goToGroupDetails = e => {
     const { id } = e.target;
-    history.push(`/admin/groups/group-details/${id}`);
+    history.push(`/${currentRole}${GROUP_DETAILS}/${id}`);
   };
 
   const removeGroup = e => {

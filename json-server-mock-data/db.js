@@ -6,10 +6,10 @@ const groups = require("./groups");
 const worldMap = require("./world-map");
 
 module.exports = () => ({
-  employees,
-  businessUnits,
-  countries,
-  groups,
-  charts,
-  worldMap,
+  employee: employees,
+  "business-unit": businessUnits,
+  country: countries,
+  group: groups,
+  chart: charts,
+  "world-map": worldMap,
 });

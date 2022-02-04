@@ -1,4 +1,11 @@
-import { CreateGroupPage, SearchGroupsPage, GroupDetailsPage } from ".";
+import {
+  CreateGroupPage,
+  SearchGroupsPage,
+  GroupDetailsPage,
+  GROUP_SEARCH,
+  GROUP_CREATE,
+  GROUP_DETAILS,
+} from ".";
 
 export const groupMenu = [
   {
@@ -8,14 +15,14 @@ export const groupMenu = [
     state: "groupCollapse",
     views: [
       {
-        path: "/create-group",
+        path: GROUP_CREATE,
         name: "Create Group",
         miniName: "CG",
         component: CreateGroupPage,
         layout: "/admin",
       },
       {
-        path: "/search-groups",
+        path: GROUP_SEARCH,
         name: "Search Group",
         miniName: "SG",
         component: SearchGroupsPage,
@@ -26,7 +33,7 @@ export const groupMenu = [
   {
     collapse: false,
     global: true,
-    path: "/groups/group-details/:id",
+    path: `${GROUP_DETAILS}/:id`,
     component: GroupDetailsPage,
     layout: "/admin",
   },

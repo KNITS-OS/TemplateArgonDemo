@@ -1,21 +1,22 @@
+import { EMPLOYEE_ROUTE } from "redux/common";
 import { httpCommon } from "redux/utils";
 
-const searchEmployees = queryParams => httpCommon.get(`/employees?${queryParams}`);
+const searchEmployees = queryParams => httpCommon.get(`${EMPLOYEE_ROUTE}?${queryParams}`);
 
-const getEmployeeById = id => httpCommon.get(`/employees/${id}`);
+const getEmployeeById = id => httpCommon.get(`${EMPLOYEE_ROUTE}/${id}`);
 
 const searchEmployeesByIds = employeeIds => {
   const searchString = employeeIds.map(id => `id=${id}`).join("&");
-  return httpCommon.get(`/employees?${searchString}`);
+  return httpCommon.get(`${EMPLOYEE_ROUTE}?${searchString}`);
 };
 
-const createEmployee = body => httpCommon.post(`/employees`, body);
+const createEmployee = body => httpCommon.post(`${EMPLOYEE_ROUTE}`, body);
 
-const updateEmployee = (id, body) => httpCommon.put(`/employees/${id}`, body);
+const updateEmployee = (id, body) => httpCommon.put(`${EMPLOYEE_ROUTE}/${id}`, body);
 
-const partialUpdateEmployee = (id, body) => httpCommon.patch(`/employees/${id}`, body);
+const partialUpdateEmployee = (id, body) => httpCommon.patch(`${EMPLOYEE_ROUTE}/${id}`, body);
 
-const deleteEmployee = id => httpCommon.delete(`/employees/${id}`);
+const deleteEmployee = id => httpCommon.delete(`${EMPLOYEE_ROUTE}/${id}`);
 
 export const employeeService = {
   searchEmployees,

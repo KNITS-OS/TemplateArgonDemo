@@ -1,16 +1,17 @@
+import { GROUP_ROUTE } from "redux/common";
 import { httpCommon } from "redux/utils";
 
-const getAllGroups = () => httpCommon.get(`/groups`);
+const getAllGroups = () => httpCommon.get(`${GROUP_ROUTE}`);
 
-const getGroupById = id => httpCommon.get(`/groups/${id}`);
+const getGroupById = id => httpCommon.get(`${GROUP_ROUTE}/${id}`);
 
-const createGroup = body => httpCommon.post(`/groups`, body);
+const createGroup = body => httpCommon.post(`${GROUP_ROUTE}`, body);
 
-const updateGroup = (id, body) => httpCommon.put(`/groups/${id}`, body);
+const updateGroup = (id, body) => httpCommon.put(`${GROUP_ROUTE}/${id}`, body);
 
-const partialUpdateGroup = (id, body) => httpCommon.patch(`/groups/${id}`, body);
+const partialUpdateGroup = (id, body) => httpCommon.patch(`${GROUP_ROUTE}/${id}`, body);
 
-const deleteGroup = id => httpCommon.delete(`/groups/${id}`);
+const deleteGroup = id => httpCommon.delete(`${GROUP_ROUTE}/${id}`);
 
 export const groupService = {
   getAllGroups,
