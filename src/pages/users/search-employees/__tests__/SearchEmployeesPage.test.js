@@ -1,11 +1,10 @@
-import { Provider } from "react-redux";
-
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-
-import { store } from "store";
+import { Provider } from "react-redux";
 
 import { employeeService } from "redux/employees";
+
+import { store } from "store";
 
 import { SearchEmployeesPage } from "..";
 

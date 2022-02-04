@@ -1,14 +1,13 @@
+import PropTypes from "prop-types";
 import { useDispatch, useSelector } from "react-redux";
 
 import { Button, FormGroup } from "reactstrap";
 
-import PropTypes from "prop-types";
-
-import { SearchEmployeesFilterPanel } from "pages/users";
-
 import { selectBusinessUnitsAsList } from "redux/business-units";
 import { selectCountriesAsList } from "redux/countries";
 import { searchEmployees } from "redux/employees";
+
+import { SearchEmployeesFilterPanel } from "pages/users";
 
 export const AddMemberPanel = ({ group, setGroup, selectedRows, setSelectedRows, tableRef }) => {
   const dispatch = useDispatch();

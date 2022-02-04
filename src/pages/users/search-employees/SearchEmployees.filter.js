@@ -1,9 +1,8 @@
+import PropTypes from "prop-types";
 import { useState } from "react";
+import makeAnimated from "react-select/animated";
 
 import { Button, Card, CardBody, CardHeader, Col, FormGroup, Input, Row } from "reactstrap";
-
-import PropTypes from "prop-types";
-import makeAnimated from "react-select/animated";
 
 import { SelectField, DateField } from "components/widgets";
 

@@ -1,14 +1,12 @@
 import { useEffect, useState } from "react";
-
+import SweetAlert from "react-bootstrap-sweetalert";
 import { useDispatch, useSelector } from "react-redux";
 
 import { Container } from "reactstrap";
 
-import SweetAlert from "react-bootstrap-sweetalert";
+import { createEmployee } from "redux/employees";
 
 import { GradientEmptyHeader } from "components/headers";
-
-import { createEmployee } from "redux/employees";
 
 import { EditEmployeePanel } from "..";
 

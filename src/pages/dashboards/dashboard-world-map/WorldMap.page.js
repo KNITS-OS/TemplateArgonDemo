@@ -1,9 +1,9 @@
+import { VectorMap } from "react-jvectormap";
 import { useSelector } from "react-redux";
 
 import { Card, CardBody, Col, Container, Row } from "reactstrap";
 
 // import worldMill from "@react-jvectormap/world/dist/worldMill.json";
-import { VectorMap } from "react-jvectormap";
 
 import { GradientEmptyHeader } from "components/headers";
 

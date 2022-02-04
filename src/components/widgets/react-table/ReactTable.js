@@ -1,10 +1,9 @@
-import React, { useEffect } from "react";
-
-import { Button } from "reactstrap";
-
 import PropTypes from "prop-types";
+import React, { useEffect } from "react";
 import BootstrapTable from "react-bootstrap-table-next";
 import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
+
+import { Button } from "reactstrap";
 
 import { pagination, selectRow } from ".";
 

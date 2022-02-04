@@ -15,15 +15,13 @@
 
 */
 
+import classnames from "classnames";
+import { PropTypes } from "prop-types";
 import { useEffect, useState } from "react";
-
+import PerfectScrollbar from "react-perfect-scrollbar";
 import { useLocation, NavLink as NavLinkRRD, Link } from "react-router-dom";
 
 import { Collapse, NavbarBrand, Navbar, NavItem, NavLink, Nav } from "reactstrap";
-
-import classnames from "classnames";
-import { PropTypes } from "prop-types";
-import PerfectScrollbar from "react-perfect-scrollbar";
 
 export const Sidebar = ({ toggleSidenav, sidenavOpen, routes, logo, rtlActive }) => {
   const [state, setState] = useState({});

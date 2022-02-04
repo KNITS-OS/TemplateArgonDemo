@@ -1,8 +1,7 @@
+import { Line, Bar, Doughnut, Pie } from "react-chartjs-2";
 import { useSelector } from "react-redux";
 
 import { Card, CardHeader, CardBody, Container, Row, Col } from "reactstrap";
-
-import { Line, Bar, Doughnut, Pie } from "react-chartjs-2";
 
 import { GradientEmptyHeader } from "components/headers";
 

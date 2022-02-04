@@ -17,7 +17,6 @@
 
 // react library for routing
 import { useEffect, useRef } from "react";
-
 import { useLocation, Switch, Redirect } from "react-router-dom";
 
 import { AuthFooter } from "components/footers";

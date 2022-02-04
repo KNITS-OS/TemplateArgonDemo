@@ -1,20 +1,16 @@
 import React, { useEffect, useState } from "react";
-
+import SweetAlert from "react-bootstrap-sweetalert";
 import { useDispatch, useSelector } from "react-redux";
-
 import { useHistory } from "react-router";
-
 import { useParams } from "react-router-dom";
 
 import { Button, Card, CardBody, CardHeader, Col, Container, Form, Row } from "reactstrap";
 
-import SweetAlert from "react-bootstrap-sweetalert";
+import { searchEmployeesByIds } from "redux/employees";
+import { deactivateGroup, deleteGroup, searchGroup, updateGroup } from "redux/groups";
 
 import { GradientEmptyHeader } from "components/headers";
 import { InputField } from "components/widgets";
-
-import { searchEmployeesByIds } from "redux/employees";
-import { deactivateGroup, deleteGroup, searchGroup, updateGroup } from "redux/groups";
 
 import { MembersPanel } from "..";
 

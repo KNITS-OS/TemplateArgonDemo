@@ -1,6 +1,6 @@
-import { Breadcrumb, Button, Container, Row, Col } from "reactstrap";
-
 import PropTypes from "prop-types";
+
+import { Breadcrumb, Button, Container, Row, Col } from "reactstrap";
 
 export const MapsHeader = ({
   name,

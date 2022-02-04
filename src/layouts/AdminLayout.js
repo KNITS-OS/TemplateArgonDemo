@@ -15,14 +15,16 @@
 
 */
 import React, { useEffect, useState } from "react";
-
+import SweetAlert from "react-bootstrap-sweetalert";
 import { useDispatch, useSelector } from "react-redux";
-
 import { useLocation, Switch, Redirect } from "react-router-dom";
 
 import { Spinner, UncontrolledAlert } from "reactstrap";
 
-import SweetAlert from "react-bootstrap-sweetalert";
+import { listBusinessUnits } from "redux/business-units";
+import { listCharts } from "redux/charts";
+import { listCountries } from "redux/countries";
+import { listWorldMap } from "redux/world-map";
 
 import { AdminFooter } from "components/footers";
 import { AdminNavbar } from "components/navbars";
@@ -30,11 +32,6 @@ import { Sidebar } from "components/sidebar";
 
 import brandLogoImg from "assets/img/brand/Logo.png";
 import { routes } from "routes";
-
-import { listBusinessUnits } from "redux/business-units";
-import { listCharts } from "redux/charts";
-import { listCountries } from "redux/countries";
-import { listWorldMap } from "redux/world-map";
 
 import { getRoutes } from "./utils";
 

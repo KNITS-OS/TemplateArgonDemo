@@ -15,6 +15,8 @@
 
 */
 // nodejs library to set properties for components
+import PropTypes from "prop-types";
+
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -27,7 +29,6 @@ import {
   Col,
 } from "reactstrap";
 
-import PropTypes from "prop-types";
 // reactstrap components
 
 export const CardsHeader = ({ name, parentName }) => {

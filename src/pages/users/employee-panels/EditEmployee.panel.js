@@ -1,6 +1,6 @@
-import { Button, Card, CardBody, CardHeader, Col, Row, Spinner } from "reactstrap";
-
 import PropTypes from "prop-types";
+
+import { Button, Card, CardBody, CardHeader, Col, Row, Spinner } from "reactstrap";
 
 import { InputField } from "components/widgets";
 

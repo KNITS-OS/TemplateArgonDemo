@@ -1,18 +1,14 @@
 import { useEffect, useState } from "react";
-
+import SweetAlert from "react-bootstrap-sweetalert";
 import { useDispatch, useSelector } from "react-redux";
-
 import { useHistory } from "react-router";
-
 import { useParams } from "react-router-dom";
 
 import { Container, Spinner } from "reactstrap";
 
-import SweetAlert from "react-bootstrap-sweetalert";
+import { updateEmployee, searchEmployee } from "redux/employees";
 
 import { GradientEmptyHeader } from "components/headers";
-
-import { updateEmployee, searchEmployee } from "redux/employees";
 
 import { EditEmployeePanel } from "..";
 

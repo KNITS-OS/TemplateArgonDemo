@@ -1,20 +1,17 @@
 // core react libraries
 import React, { useEffect, useState } from "react";
-
+import SweetAlert from "react-bootstrap-sweetalert";
 import { useDispatch, useSelector } from "react-redux";
-
 import { useHistory } from "react-router";
 
 import { Card, CardHeader, Container, Row, Spinner } from "reactstrap";
 
-import SweetAlert from "react-bootstrap-sweetalert";
-
-import { GradientEmptyHeader } from "components/headers";
-import { ReactTable } from "components/widgets";
-
 import { selectBusinessUnitsAsList } from "redux/business-units";
 import { selectCountriesAsList } from "redux/countries";
 import { deleteEmployee, searchEmployees, selectEmployeesState } from "redux/employees";
+
+import { GradientEmptyHeader } from "components/headers";
+import { ReactTable } from "components/widgets";
 
 import { EMPLOYEE_DETAILS } from "..";
 

@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from "react";
-
+import SweetAlert from "react-bootstrap-sweetalert";
 import { useDispatch, useSelector } from "react-redux";
 
 import { Container } from "reactstrap";
 
-import SweetAlert from "react-bootstrap-sweetalert";
+import { createGroup } from "redux/groups";
 
 import { GradientEmptyHeader } from "components/headers";
-
-import { createGroup } from "redux/groups";
 
 import { EditGroupPanel } from "..";
 

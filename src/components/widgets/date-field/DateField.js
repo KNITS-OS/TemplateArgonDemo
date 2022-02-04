@@ -1,7 +1,7 @@
-import { FormGroup } from "reactstrap";
-
 import PropTypes from "prop-types";
 import ReactDatetime from "react-datetime";
+
+import { FormGroup } from "reactstrap";
 
 export const DateField = ({ id, label, ...props }) => {
   return (

@@ -62,33 +62,23 @@ module.exports = {
         "newlines-between": "always",
         pathGroups: [
           {
-            pattern: "react",
-            group: "external",
-            position: "before",
-          },
-          {
             pattern: ".css",
-            group: "external",
-            position: "before",
-          },
-          {
-            pattern: "react-redux",
-            group: "external",
-            position: "before",
-          },
-          {
-            pattern: "react-router",
-            group: "external",
-            position: "before",
-          },
-          {
-            pattern: "react-router-dom",
             group: "external",
             position: "before",
           },
           {
             pattern: "reactstrap",
             group: "external",
+            position: "after",
+          },
+          {
+            pattern: "types/**",
+            group: "internal",
+            position: "before",
+          },
+          {
+            pattern: "redux/**",
+            group: "internal",
             position: "before",
           },
           {
@@ -97,9 +87,9 @@ module.exports = {
             position: "before",
           },
           {
-            pattern: "redux/**",
+            pattern: "pages/**",
             group: "internal",
-            position: "after",
+            position: "before",
           },
         ],
         pathGroupsExcludedImportTypes: ["react"],

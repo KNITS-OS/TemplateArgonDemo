@@ -1,18 +1,15 @@
+import PropTypes from "prop-types";
 import { useRef, useState } from "react";
-
 import { useSelector } from "react-redux";
-
 import { useHistory } from "react-router";
 
 import { Row, Col, Collapse, Spinner, Card, CardHeader, ButtonGroup, Button } from "reactstrap";
 
-import PropTypes from "prop-types";
+import { selectEmployeesState, selectEmployeesByIds } from "redux/employees";
 
 import { ReactTable } from "components/widgets";
 
 import { employeesTableColumns, EMPLOYEE_DETAILS } from "pages/users";
-
-import { selectEmployeesState, selectEmployeesByIds } from "redux/employees";
 
 import { AddMemberPanel } from ".";
 
