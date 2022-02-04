@@ -1,4 +1,4 @@
-import { ChartsPage, WorldMapPage, STATISTICS, WORLD_MAP } from ".";
+import { ChartsPage, WorldOverviewPage, STATISTICS, WORLD_OVERVIEW } from ".";
 
 export const dashboardMenu = [
   {
@@ -15,10 +15,10 @@ export const dashboardMenu = [
         layout: "/admin",
       },
       {
-        path: WORLD_MAP,
-        name: "World Map",
-        miniName: "WM",
-        component: WorldMapPage,
+        path: WORLD_OVERVIEW,
+        name: "World Overview",
+        miniName: "WO",
+        component: WorldOverviewPage,
         layout: "/admin",
       },
     ],

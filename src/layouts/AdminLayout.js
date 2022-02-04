@@ -28,7 +28,7 @@ import { routes } from "routes";
 import { listBusinessUnits } from "redux/business-unit";
 import { listCharts } from "redux/charts";
 import { listCountries } from "redux/countries";
-import { listWorldMap } from "redux/world-map";
+import { listWorldOverview } from "redux/world-overview";
 
 import { AdminFooter } from "components/footers";
 import { AdminNavbar } from "components/navbars";
@@ -42,7 +42,7 @@ export const AdminLayout = () => {
   const countriesState = useSelector(state => state.country);
   const businessUnitsState = useSelector(state => state.businessUnit);
   const chartsState = useSelector(state => state.chart);
-  const worldMapState = useSelector(state => state.worldMap);
+  const worldOverviewState = useSelector(state => state.worldOverview);
 
   const [sidenavOpen, setSidenavOpen] = useState(true);
   const mainContentRef = useRef(null);
@@ -52,7 +52,7 @@ export const AdminLayout = () => {
     countriesState.isError ||
       businessUnitsState.isError ||
       chartsState.isError ||
-      worldMapState.isError
+      worldOverviewState.isError
   );
 
   useEffect(() => {
@@ -65,7 +65,7 @@ export const AdminLayout = () => {
     dispatch(listCountries());
     dispatch(listCharts());
     dispatch(listBusinessUnits());
-    dispatch(listWorldMap());
+    dispatch(listWorldOverview());
   }, [dispatch]);
 
   useEffect(() => {
@@ -143,24 +143,24 @@ export const AdminLayout = () => {
   }, [chartsState.isError, chartsState.errorMessage]);
 
   useEffect(() => {
-    if (worldMapState.entities && worldMapState.entities.length > 0) {
+    if (worldOverviewState.entities && worldOverviewState.entities.length > 0) {
       setCategoryDataLoaded(true);
     }
-  }, [worldMapState.entities]);
+  }, [worldOverviewState.entities]);
 
   useEffect(() => {
-    if (worldMapState.isError) {
+    if (worldOverviewState.isError) {
       setAlert(
         <SweetAlert
           danger
           title="Error"
           onConfirm={() => cleanAlert(setCategoryDataLoaded, setAlert)}
         >
-          {`${worldMapState.errorMessage} please contact administrator`}
+          {`${worldOverviewState.errorMessage} please contact administrator`}
         </SweetAlert>
       );
     }
-  }, [worldMapState.isError, worldMapState.errorMessage]);
+  }, [worldOverviewState.isError, worldOverviewState.errorMessage]);
 
   const getBrandText = () => {
     for (let i = 0; i < routes.length; i++) {

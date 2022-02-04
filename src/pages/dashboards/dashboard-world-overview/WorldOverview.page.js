@@ -7,8 +7,8 @@ import { Card, CardBody, Col, Container, Row } from "reactstrap";
 
 import { GradientEmptyHeader } from "components/headers";
 
-export const WorldMapPage = () => {
-  const worldMapState = useSelector(state => state.worldMap);
+export const WorldOverviewPage = () => {
+  const worldOverviewState = useSelector(state => state.worldOverview);
 
   return (
     <>
@@ -55,11 +55,11 @@ export const WorldMapPage = () => {
                       border: 0,
                     },
                   }}
-                  markers={worldMapState.entities[1]}
+                  markers={worldOverviewState.entities[1]}
                   series={{
                     regions: [
                       {
-                        values: worldMapState.entities[0],
+                        values: worldOverviewState.entities[0],
                         scale: ["#ced4da", "#adb5bd"],
                         normalizeFunction: "polynomial",
                         attribute: "fill",

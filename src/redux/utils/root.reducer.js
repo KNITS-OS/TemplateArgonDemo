@@ -5,7 +5,7 @@ import { chartReducer } from "../charts";
 import { countryReducer } from "../countries";
 import { employeeReducer } from "../employees";
 import { groupReducer } from "../groups/group.reducer";
-import { worldMapReducer } from "../world-map";
+import { worldOverviewReducer } from "../world-overview";
 
 export const rootReducer = combineReducers({
   businessUnit: businessUnitReducer,
@@ -13,5 +13,5 @@ export const rootReducer = combineReducers({
   group: groupReducer,
   country: countryReducer,
   employee: employeeReducer,
-  worldMap: worldMapReducer,
+  worldOverview: worldOverviewReducer,
 });

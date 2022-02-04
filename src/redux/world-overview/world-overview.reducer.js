@@ -8,7 +8,7 @@ const initialState = {
   entity: null,
 };
 
-export const worldMapReducer = (worldMapState = initialState, action = {}) => {
+export const worldOverviewReducer = (worldOverviewState = initialState, action = {}) => {
   const { type, payload } = action;
   switch (type) {
     case LIST_WORLD_MAP_LOADING:
@@ -39,6 +39,6 @@ export const worldMapReducer = (worldMapState = initialState, action = {}) => {
       };
 
     default:
-      return worldMapState;
+      return worldOverviewState;
   }
 };

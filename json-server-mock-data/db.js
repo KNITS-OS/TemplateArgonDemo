@@ -3,7 +3,7 @@ const charts = require("./charts");
 const countries = require("./countries");
 const employees = require("./employees");
 const groups = require("./groups");
-const worldMap = require("./world-map");
+const worldOverview = require("./world-map");
 
 module.exports = () => ({
   employee: employees,
@@ -11,5 +11,5 @@ module.exports = () => ({
   country: countries,
   group: groups,
   chart: charts,
-  "world-map": worldMap,
+  "world-map": worldOverview,
 });

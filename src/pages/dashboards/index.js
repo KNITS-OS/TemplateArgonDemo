@@ -1,5 +1,5 @@
 export * from "./dashboard-chart";
-export * from "./dashboard-world-map";
+export * from "./dashboard-world-overview";
 
 // has to be the last export
 export * from "./dashboards.routes.const";
