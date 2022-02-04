@@ -1,31 +1,12 @@
-import {
-  Button,
-  ButtonGroup,
-  Card,
-  CardBody,
-  CardHeader,
-  Col,
-  Collapse,
-  Form,
-  Row,
-  Spinner,
-} from "reactstrap";
+import { Button, Card, CardBody, CardHeader, Col, Form, Row, Spinner } from "reactstrap";
 
 import PropTypes from "prop-types";
 
 import { InputField } from "components/widgets";
 
-import { AddMemberPanel } from ".";
+import { MembersPanel } from ".";
 
-export const EditGroupPanel = ({
-  group,
-  setGroup,
-  onSave,
-  groupsState,
-  onBackToSearchClick,
-  addMembersCollapse,
-  setAddMembersCollapse,
-}) => {
+export const EditGroupPanel = ({ group, setGroup, onSave, groupsState, onBackToSearchClick }) => {
   const { name, description } = group;
 
   return (
@@ -76,38 +57,10 @@ export const EditGroupPanel = ({
                     />
                   </Col>
                 </Row>
-
-                <Row className="d-flex justify-content-between mx-2">
-                  <h6 className="heading-small text-muted mb-4">MEMBERS</h6>
-                  <ButtonGroup className="d-flex">
-                    <Button
-                      onClick={() => setAddMembersCollapse(!addMembersCollapse)}
-                      color="success"
-                      type="button"
-                    >
-                      Add new Members
-                    </Button>
-                  </ButtonGroup>
-                </Row>
-
-                <Row>
-                  <Col lg="12">
-                    {/* <MembersTableComps data={group.members} /> */}
-                    <Collapse isOpen={addMembersCollapse}>
-                      <AddMemberPanel
-                        // eslint-disable-next-line no-console
-                        onChangeRole={e => console.log(e)}
-                        // eslint-disable-next-line no-console
-                        onChangeCountry={e => console.log(e)}
-                        // eslint-disable-next-line no-console
-                        onChangeBusinessUnit={e => console.log(e)}
-                        // eslint-disable-next-line no-console
-                        onSelectCareMember={e => console.log(e)}
-                      />
-                    </Collapse>
-                  </Col>
-                </Row>
               </div>
+
+              <MembersPanel group={group} setGroup={setGroup} />
+
               <Row className="align-items-center py-4">
                 <Col lg="12" xs="7" className="text-right">
                   <Button color="success" onClick={() => onSave(group)}>
@@ -136,7 +89,7 @@ EditGroupPanel.propTypes = {
   setGroup: PropTypes.func.isRequired,
   onSave: PropTypes.func.isRequired,
   groupsState: PropTypes.object.isRequired,
-  onBackToSearchClick: PropTypes.func.isRequired,
+  onBackToSearchClick: PropTypes.func,
   addMembersCollapse: PropTypes.bool.isRequired,
   setAddMembersCollapse: PropTypes.func.isRequired,
 };

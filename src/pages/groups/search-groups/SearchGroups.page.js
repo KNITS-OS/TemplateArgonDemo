@@ -11,6 +11,7 @@ import SweetAlert from "react-bootstrap-sweetalert";
 import { GradientEmptyHeader } from "components/headers";
 import { ReactTable } from "components/widgets";
 
+import { searchEmployees } from "redux/employees";
 import { deleteGroup, searchGroups } from "redux/groups";
 
 import { groupsTableColumns } from ".";
@@ -45,6 +46,10 @@ export const SearchGroupsPage = () => {
 
   const findByAllParameters = () => {
     dispatch(searchGroups());
+
+    // @todo find a fix to get rid of this
+    // this gets all the employees so group members would'nt be empty
+    dispatch(searchEmployees({}));
   };
 
   return (

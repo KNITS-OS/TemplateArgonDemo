@@ -1,23 +1,20 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
-import { Button, Card, CardBody, CardHeader, Col, FormGroup, Row } from "reactstrap";
+import { Button, FormGroup } from "reactstrap";
 
 import PropTypes from "prop-types";
 
-import { SelectField } from "components/widgets";
+import { SearchEmployeesFilterPanel } from "pages/users";
 
 import { selectBusinessUnitsAsList } from "redux/business-units";
 import { selectCountriesAsList } from "redux/countries";
-import { selectEmployeesAsList } from "redux/employees";
+import { searchEmployees } from "redux/employees";
 
-export const AddMemberPanel = (
-  onChangeRole,
-  onChangeCountry,
-  onChangeBusinessUnit,
-  onSelectCareMember
-) => {
-  const countriesList = useSelector(selectCountriesAsList);
-  const businessUnitsList = useSelector(selectBusinessUnitsAsList);
+export const AddMemberPanel = ({ group, setGroup, selectedRows, setSelectedRows, tableRef }) => {
+  const dispatch = useDispatch();
+
+  const countries = useSelector(selectCountriesAsList);
+  const businessUnits = useSelector(selectBusinessUnitsAsList);
 
   const jobTitles = [
     { value: 1, label: "product manager" },
@@ -27,83 +24,40 @@ export const AddMemberPanel = (
     { value: 5, label: "sales representative" },
     { value: 6, label: "logistics consultant" },
   ];
+  console.log("selectedRows", selectedRows);
+  const onEmployeeAdd = selectedEmployees => {
+    const employeeIds = selectedEmployees.map(employee => employee.id);
+    setGroup({ ...group, members: [...group.members, ...employeeIds] });
+    setSelectedRows([]);
+    // @ts-ignore
+    tableRef.current.selectionContext.selected = [];
+  };
+
+  const onClickSearchEmployees = filters => {
+    dispatch(searchEmployees(filters));
+  };
   // @todo make this find employees by filters
   return (
-    <Card>
-      <CardHeader>
-        <Row className="align-items-center">
-          <Col xs="8">
-            <h3 className="mb-0">Add Members</h3>
-          </Col>
-        </Row>
-      </CardHeader>
-      <CardBody>
-        <Row>
-          <Col md="12">
-            <Row>
-              <Col md="2">
-                <SelectField
-                  id="jobTitle"
-                  label="Job Title"
-                  onChange={onChangeRole}
-                  options={jobTitles}
-                />
-              </Col>
-              <Col md="2">
-                <SelectField
-                  id="country"
-                  label="Country"
-                  onChange={onChangeCountry}
-                  options={countriesList}
-                />
-              </Col>
-              <Col md="2">
-                <SelectField
-                  id="BusinessUnit"
-                  label="Business Unit"
-                  onChange={onChangeBusinessUnit}
-                  options={businessUnitsList}
-                />
-              </Col>
-              <Col md="4">
-                <FormGroup>
-                  <label className="form-control-label" htmlFor="members">
-                    Add members
-                  </label>
-                  <SelectField
-                    isMulti
-                    id="AddMembers"
-                    label="Add members"
-                    onChange={onSelectCareMember}
-                    options={selectEmployeesAsList}
-                  />
-                </FormGroup>
-              </Col>
-              <Col md="2">
-                <FormGroup>
-                  <Button
-                    style={{
-                      marginTop: "32px",
-                      marginLeft: "32px",
-                      height: "40px",
-                    }}
-                    color="success"
-                  >
-                    Add
-                  </Button>
-                </FormGroup>
-              </Col>
-            </Row>
-          </Col>
-        </Row>
-      </CardBody>
-    </Card>
+    <>
+      <SearchEmployeesFilterPanel
+        onSearchEmployees={onClickSearchEmployees}
+        jobTitle={jobTitles}
+        countries={countries}
+        businessUnits={businessUnits}
+      />
+      <FormGroup>
+        <Button color="success" onClick={() => onEmployeeAdd(selectedRows)}>
+          Add Member To Group
+        </Button>
+      </FormGroup>
+    </>
   );
 };
 
 AddMemberPanel.propTypes = {
-  onChangeRole: PropTypes.func.isRequired,
-  onChangeCountry: PropTypes.func.isRequired,
-  onChangeBusinessUnit: PropTypes.func.isRequired,
-  onSelectCareMember: PropTypes.func.isRequired,
+  group: PropTypes.object,
+  setGroup: PropTypes.func,
+  selectedRows: PropTypes.array,
+  setSelectedRows: PropTypes.func,
+  tableRef: PropTypes.object,
 };

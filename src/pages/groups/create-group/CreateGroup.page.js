@@ -14,6 +14,7 @@ import { EditGroupPanel } from "..";
 
 export const CreateGroupPage = () => {
   const initialState = {
+    id: -1,
     name: "",
     description: "",
     members: [],
@@ -36,7 +37,7 @@ export const CreateGroupPage = () => {
     }
   }, [groupsState.isError, groupsState.errorMessage]);
 
-  const onSave = () => {
+  const onCreate = () => {
     dispatch(createGroup(group));
   };
 
@@ -59,7 +60,7 @@ export const CreateGroupPage = () => {
           <EditGroupPanel
             group={group}
             setGroup={setGroup}
-            onSave={onSave}
+            onSave={onCreate}
             groupsState={groupsState}
             addMembersCollapse={addMembersCollapse}
             setAddMembersCollapse={setAddMembersCollapse}

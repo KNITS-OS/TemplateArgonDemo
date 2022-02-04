@@ -14,7 +14,7 @@ import { ReactTable } from "components/widgets";
 
 import { selectBusinessUnitsAsList } from "redux/business-units";
 import { selectCountriesAsList } from "redux/countries";
-import { deleteEmployee, searchEmployees } from "redux/employees";
+import { deleteEmployee, searchEmployees, selectEmployeesState } from "redux/employees";
 
 import { EMPLOYEE_DETAILS } from "..";
 
@@ -23,7 +23,7 @@ import { employeesTableColumns, SearchEmployeesFilterPanel } from ".";
 export const SearchEmployeesPage = () => {
   const history = useHistory();
   const dispatch = useDispatch();
-  const employeesState = useSelector(state => state.employee);
+  const employeesState = useSelector(selectEmployeesState);
   const countries = useSelector(selectCountriesAsList);
   const businessUnits = useSelector(selectBusinessUnitsAsList);
   const currentRole = "admin"; //TO GET FROM SELECTORS

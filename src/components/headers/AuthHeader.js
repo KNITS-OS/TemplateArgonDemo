@@ -14,11 +14,9 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-// nodejs library to set properties for components
 import { Container, Row, Col } from "reactstrap";
 
 import PropTypes from "prop-types";
-// reactstrap components
 
 export const AuthHeader = ({ title, lead }) => {
   return (
