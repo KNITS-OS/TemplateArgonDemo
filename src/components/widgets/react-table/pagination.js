@@ -6,7 +6,7 @@ export const pagination = paginationFactory({
   showTotal: true,
   withFirstAndLast: false,
   sizePerPageRenderer: ({ onSizePerPageChange }) => (
-    <div className="dataTables_length" id="datatable-basic_length">
+    <div id="datatable-basic_length" className="dataTables_length">
       <label>
         Show{" "}
         {

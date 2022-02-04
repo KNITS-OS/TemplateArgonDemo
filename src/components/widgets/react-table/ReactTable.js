@@ -61,25 +61,30 @@ export const ReactTable = ({
         <div className="py-4 table-responsive">
           <div
             id="datatable-basic_filter"
-            className="dataTables_filter px-4 pb-1"
-            style={{ display: "flex" }}
+            className="px-4 pb-1"
+            style={{ display: "flex", justifyContent: "space-between" }}
           >
-            {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-            <label>
-              Search:
-              <SearchBar
-                className="form-control-sm mr-3"
-                placeholder={searchBarPlaceholder}
-                {...props.searchProps}
-              />
-            </label>
-            <Button
-              className="btn btn-success"
-              onClick={() => console.log("selectedRows", selectedRows)}
-            >
-              Workflow
-            </Button>
+            <div>
+              {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+              <label>
+                Search:
+                <SearchBar
+                  className="form-control-sm mr-3 ml-3"
+                  placeholder={searchBarPlaceholder}
+                  {...props.searchProps}
+                />
+              </label>
+            </div>
+            <div>
+              <Button
+                className="btn btn-success"
+                onClick={() => console.log("selectedRows", selectedRows)}
+              >
+                Workflow
+              </Button>
+            </div>
           </div>
+
           <BootstrapTable
             {...props.baseProps}
             ref={tableRef}
