@@ -15,12 +15,3 @@ export const selectEmployeeById = id =>
 export const selectEmployeesAsList = createSelector([selectAllEmployeesData], employeesData =>
   employeesData.map(employee => ({ value: employee.id, label: employee.internationalName }))
 );
-
-export const selectEmployeesByIds = ids => {
-  return createSelector([selectAllEmployeesData], employees => {
-    const groupMembers = [];
-
-    ids.forEach(id => groupMembers.push(employees.find(employee => employee.id === id)));
-    return groupMembers;
-  });
-};

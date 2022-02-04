@@ -3,9 +3,9 @@ import { useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router";
 
-import { Row, Col, Collapse, Spinner, Card, CardHeader, ButtonGroup, Button } from "reactstrap";
+import { Button, ButtonGroup, Card, CardHeader, Col, Collapse, Row, Spinner } from "reactstrap";
 
-import { selectEmployeesState, selectEmployeesByIds } from "redux/employees";
+import { selectEmployeesState } from "redux/employees";
 
 import { ReactTable } from "components/widgets";
 
@@ -18,8 +18,6 @@ export const MembersPanel = ({ group, setGroup }) => {
 
   const groupsState = useSelector(state => state.group);
   const employeesState = useSelector(selectEmployeesState);
-  const groupMembers = useSelector(selectEmployeesByIds(group.members));
-
   const currentRole = "admin"; //TO GET FROM SELECTORS
 
   const [selectedEmployees, setSelectedEmployees] = useState([]);
@@ -94,8 +92,7 @@ export const MembersPanel = ({ group, setGroup }) => {
                 <h3 className="mb-0">Group members</h3>
                 <p className="text-sm mb-0">Care Members</p>
               </CardHeader>
-
-              {employeesState.isLoading && !groupMembers ? (
+              {employeesState.isLoading ? (
                 <div
                   style={{
                     textAlign: "center",
@@ -105,7 +102,7 @@ export const MembersPanel = ({ group, setGroup }) => {
                 </div>
               ) : (
                 <ReactTable
-                  data={groupMembers}
+                  data={employeesState.entities}
                   keyField="id"
                   columns={employeesTableColumns}
                   onViewDetailsClick={memberDetails}
