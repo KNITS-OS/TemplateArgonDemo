@@ -1,4 +1,11 @@
-import { CreateEmployeePage, SearchEmployeesPage, EmployeeDetailsPage } from ".";
+import {
+  CreateEmployeePage,
+  SearchEmployeesPage,
+  EmployeeDetailsPage,
+  EMPLOYEE_SEARCH,
+  EMPLOYEE_CREATE,
+  EMPLOYEE_DETAILS,
+} from ".";
 
 export const userMenu = [
   {
@@ -8,14 +15,14 @@ export const userMenu = [
     state: "userCollapse",
     views: [
       {
-        path: "/create-employee",
+        path: EMPLOYEE_CREATE,
         name: "Create Employee",
         miniName: "CE",
         component: CreateEmployeePage,
         layout: "/admin",
       },
       {
-        path: "/search-employees",
+        path: EMPLOYEE_SEARCH,
         name: "Search Employee",
         miniName: "SE",
         component: SearchEmployeesPage,
@@ -26,7 +33,7 @@ export const userMenu = [
   {
     collapse: false,
     global: true,
-    path: "/users/employee-details/:id",
+    path: `${EMPLOYEE_DETAILS}/:id`,
     component: EmployeeDetailsPage,
     layout: "/admin",
   },

@@ -18,6 +18,7 @@ export const ReactTable = ({
   onDeleteItemClick,
   selectedRows,
   setSelectedRows,
+  searchBarPlaceholder,
 }) => {
   const formatActionButtonCell = (_, row) => {
     return (
@@ -65,7 +66,11 @@ export const ReactTable = ({
             {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
             <label>
               Search:
-              <SearchBar className="form-control-sm mr-3" placeholder="" {...props.searchProps} />
+              <SearchBar
+                className="form-control-sm mr-3"
+                placeholder={searchBarPlaceholder}
+                {...props.searchProps}
+              />
             </label>
             <Button
               className="btn btn-success"
@@ -96,4 +101,5 @@ ReactTable.propTypes = {
   onDeleteItemClick: PropTypes.func.isRequired,
   selectedRows: PropTypes.array.isRequired,
   setSelectedRows: PropTypes.func.isRequired,
+  searchBarPlaceholder: PropTypes.string.isRequired,
 };

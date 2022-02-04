@@ -107,6 +107,7 @@ export const SearchGroupsPage = () => {
                   onDeleteItemClick={removeGroup}
                   selectedRows={selectedGroups}
                   setSelectedRows={setSelectedGroups}
+                  searchBarPlaceholder="Filter results"
                 />
               )}
             </Card>

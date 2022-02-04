@@ -252,6 +252,7 @@ export const GroupDetailsPage = () => {
                                     onDeleteItemClick={memberRemove}
                                     selectedRows={selectedEmployees}
                                     setSelectedRows={setSelectedEmployees}
+                                    searchBarPlaceholder="Filter results"
                                   />
                                 )}
                               </Card>
