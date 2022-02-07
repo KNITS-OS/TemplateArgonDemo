@@ -1,0 +1,19 @@
+import { dashboardService } from "redux/dashboards";
+
+import { ChartPanel } from "../chart-panels";
+import { useChart } from "../useChart";
+
+import { renderChart } from "./Turnover.renderer";
+
+export const TurnoverChartPanel = () => {
+  const { isLoading, chart, alert } = useChart(dashboardService.getTurnoverReport, renderChart);
+  return (
+    <ChartPanel
+      alert={alert}
+      chart={chart}
+      isLoading={isLoading}
+      title="Care Members"
+      subTitle="Onboarded/Offboarded"
+    />
+  );
+};

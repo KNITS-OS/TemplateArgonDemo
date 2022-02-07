@@ -1,145 +1,98 @@
-import { Line, Bar, Doughnut, Pie } from "react-chartjs-2";
-import { useSelector } from "react-redux";
+/*!
 
-import { Card, CardHeader, CardBody, Container, Row, Col } from "reactstrap";
+=========================================================
+* Argon Dashboard PRO React - v1.2.0
+=========================================================
+
+* Product Page: https://www.creative-tim.com/product/argon-dashboard-pro-react
+* Copyright 2021 Creative Tim (https://www.creative-tim.com)
+
+* Coded by Creative Tim
+
+=========================================================
+
+* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+*/
+
+import { Col, Container, Row } from "reactstrap";
 
 import { GradientEmptyHeader } from "components/headers";
 
 import {
-  barChartExample,
-  lineChartExample,
-  dotChartExample,
-  doughnutChartExample,
-  pieChartExample,
-  multiBarChartExample,
-} from "variables/charts";
+  LineChartPanel,
+  StatisticsPanel,
+  TurnoverChartPanel,
+  WorkforceChartPanel,
+  GenderChartPanel,
+  AgeChartPanel,
+  BusinessUnitChartPanel,
+  RoleChartPanel,
+  SeniorityChartPanel,
+  BarChartPanel,
+  DotChartPanel,
+  PieChartPanel,
+  DoughnutChartPanel,
+  MultiBarChartPanel,
+} from ".";
 
 export const ChartsPage = () => {
-  const chartsState = useSelector(state => state.chart);
-
-  const lineChart = lineChartExample(chartsState.entities[0]);
-  const barChart = barChartExample(chartsState.entities[1]);
-  const dotChart = dotChartExample(chartsState.entities[2]);
-  const doughnutChart = doughnutChartExample(chartsState.entities[3]);
-  const pieChart = pieChartExample(chartsState.entities[4]);
-  const multiBarChart = multiBarChartExample(chartsState.entities[5]);
-
   return (
     <>
       <GradientEmptyHeader />
       <Container className="mt--6" fluid>
+        <StatisticsPanel />
+
         <Row>
           <Col xl="6">
-            <Card>
-              <CardHeader>
-                <h6 className="surtitle">Overview</h6>
-                <h5 className="h3 mb-0">Total sales</h5>
-              </CardHeader>
-              <CardBody>
-                <div className="chart">
-                  <Line
-                    data={lineChart.data}
-                    options={lineChart.options}
-                    className="chart-canvas"
-                    id="chart-sales"
-                  />
-                </div>
-              </CardBody>
-            </Card>
+            <TurnoverChartPanel />
           </Col>
           <Col xl="6">
-            <Card>
-              <CardHeader>
-                <h6 className="surtitle">Performance</h6>
-                <h5 className="h3 mb-0">Total orders</h5>
-              </CardHeader>
-              <CardBody>
-                <div className="chart">
-                  <Bar
-                    data={barChart.data}
-                    options={barChart.options}
-                    className="chart-canvas"
-                    id="chart-bars"
-                  />
-                </div>
-              </CardBody>
-            </Card>
+            <WorkforceChartPanel />
+          </Col>
+        </Row>
+
+        <Row>
+          <Col xl="4">
+            <GenderChartPanel />
+          </Col>
+          <Col xl="4">
+            <RoleChartPanel />
+          </Col>
+          <Col xl="4">
+            <BusinessUnitChartPanel />
           </Col>
         </Row>
         <Row>
           <Col xl="6">
-            <Card>
-              <CardHeader>
-                <h6 className="surtitle">Growth</h6>
-                <h5 className="h3 mb-0">Sales value</h5>
-              </CardHeader>
-              <CardBody>
-                <div className="chart">
-                  <Line
-                    data={dotChart.data}
-                    options={dotChart.options}
-                    id="chart-points"
-                    className="chart-canvas"
-                  />
-                </div>
-              </CardBody>
-            </Card>
+            <AgeChartPanel />
           </Col>
           <Col xl="6">
-            <Card>
-              <CardHeader>
-                <h6 className="surtitle">Users</h6>
-                <h5 className="h3 mb-0">Audience overview</h5>
-              </CardHeader>
-              <CardBody>
-                <div className="chart">
-                  <Doughnut
-                    data={doughnutChart.data}
-                    options={doughnutChart.options}
-                    className="chart-canvas"
-                    id="chart-doughnut"
-                  />
-                </div>
-              </CardBody>
-            </Card>
+            <SeniorityChartPanel />
           </Col>
         </Row>
         <Row>
           <Col xl="6">
-            <Card>
-              <CardHeader>
-                <h6 className="surtitle">Partners</h6>
-                <h5 className="h3 mb-0">Affiliate traffic</h5>
-              </CardHeader>
-              <CardBody>
-                <div className="chart">
-                  <Pie
-                    data={pieChart.data}
-                    options={pieChart.options}
-                    className="chart-canvas"
-                    id="chart-pie"
-                  />
-                </div>
-              </CardBody>
-            </Card>
+            <LineChartPanel />
           </Col>
           <Col xl="6">
-            <Card>
-              <CardHeader>
-                <h6 className="surtitle">Overview</h6>
-                <h5 className="h3 mb-0">Product comparison</h5>
-              </CardHeader>
-              <CardBody>
-                <div className="chart">
-                  <Bar
-                    data={multiBarChart.data}
-                    options={multiBarChart.options}
-                    className="chart-canvas"
-                    id="chart-bar-stacked"
-                  />
-                </div>
-              </CardBody>
-            </Card>
+            <BarChartPanel />
+          </Col>
+        </Row>
+        <Row>
+          <Col xl="6">
+            <DotChartPanel />
+          </Col>
+          <Col xl="6">
+            <PieChartPanel />
+          </Col>
+        </Row>
+        <Row>
+          <Col xl="6">
+            <DoughnutChartPanel />
+          </Col>
+          <Col xl="6">
+            <MultiBarChartPanel />
           </Col>
         </Row>
       </Container>
