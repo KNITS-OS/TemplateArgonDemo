@@ -269,7 +269,7 @@ Sidebar.propTypes = {
      * outerLink is for links that will direct the user outside the app
      * it will be rendered as simple <a href="...">...</a> tag
      */
-    outterLink: PropTypes.string.isRequired,
+    outterLink: PropTypes.string,
     /**
      * the image src of the logo
      */

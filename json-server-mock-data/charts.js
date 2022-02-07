@@ -55,7 +55,7 @@ const multiBarChartData = [
   { label: "Aug", values: [11, 90, 32] },
 ];
 
-export const memberTurnoverReport = [
+const memberTurnoverReport = [
   { month: "January", onboarded: 46, offboarded: 15 },
   { month: "February", onboarded: 28, offboarded: 12 },
   { month: "March", onboarded: 38, offboarded: 10 },
@@ -65,7 +65,7 @@ export const memberTurnoverReport = [
   { month: "July", onboarded: 33, offboarded: 15 },
 ];
 
-export const workforceReport = [
+const workforceReport = [
   { label: "January", value: 199 },
   { label: "February", value: 202 },
   { label: "March", value: 185 },
@@ -75,12 +75,12 @@ export const workforceReport = [
   { label: "July", value: 234 },
 ];
 
-export const distributionByGenderReport = [
+const distributionByGenderReport = [
   { label: "Male", value: 320 },
   { label: "Female", value: 306 },
 ];
 
-export const distributionByRoleReport = [
+const distributionByRoleReport = [
   { label: "Regional Transformation Manager", value: 17 },
   { label: "Country Transformation Manager", value: 28 },
   { label: "Advocate", value: 60 },
@@ -88,7 +88,7 @@ export const distributionByRoleReport = [
   { label: "Sponsor", value: 45 },
 ];
 
-export const distributionByBusinessUnitReport = [
+const distributionByBusinessUnitReport = [
   { label: "Road Logistics", value: 44 },
   { label: "Air Logistics", value: 26 },
   { label: "Sea Logistics", value: 47 },
@@ -104,7 +104,7 @@ export const distributionByBusinessUnitReport = [
   { label: "National Management", value: 14 },
 ];
 
-export const distributionBySeniorityReport = [
+const distributionBySeniorityReport = [
   { label: "Up to 1", value: 45 },
   { label: "1-2", value: 58 },
   { label: "2-3", value: 33 },
@@ -112,7 +112,7 @@ export const distributionBySeniorityReport = [
   { label: "5+", value: 28 },
 ];
 
-export const distributionByAgeReport = [
+const distributionByAgeReport = [
   { label: "Up to 20", value: 26 },
   { label: "21-25", value: 89 },
   { label: "26-30", value: 56 },
@@ -128,4 +128,11 @@ module.exports = [
   doughnutChartData,
   pieChartData,
   multiBarChartData,
+  memberTurnoverReport,
+  workforceReport,
+  distributionByGenderReport,
+  distributionByRoleReport,
+  distributionByBusinessUnitReport,
+  distributionBySeniorityReport,
+  distributionByAgeReport,
 ];
