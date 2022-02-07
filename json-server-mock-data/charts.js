@@ -1,4 +1,4 @@
-const lineChartData = [
+const lineChartReport = [
   { label: "Jan", value: 25 },
   { label: "Feb", value: 14 },
   { label: "Mar", value: 29 },
@@ -7,18 +7,17 @@ const lineChartData = [
   { label: "Jun", value: 5 },
 ];
 
-const barChartData = [
-  { label: "May", value: 1 },
-  { label: "Jun", value: 20 },
-  { label: "Jul", value: 10 },
-  { label: "Aug", value: 30 },
-  { label: "Sep", value: 15 },
-  { label: "Oct", value: 5 },
-  { label: "Nov", value: 40 },
-  { label: "Dec", value: 60 },
+const barChartReport = [
+  { month: "January", new: 46, old: 15 },
+  { month: "February", new: 28, old: 12 },
+  { month: "March", new: 38, old: 10 },
+  { month: "April", new: 25, old: 11 },
+  { month: "May", new: 26, old: 17 },
+  { month: "June", new: 36, old: 12 },
+  { month: "July", new: 33, old: 15 },
 ];
 
-const dotChartData = [
+const dotChartReport = [
   { label: "May", value: 10 },
   { label: "Jun", value: 18 },
   { label: "Jul", value: 28 },
@@ -29,7 +28,7 @@ const dotChartData = [
   { label: "Dec", value: 12 },
 ];
 
-const doughnutChartData = [
+const doughnutChartReport = [
   { label: "Feb", value: 10 },
   { label: "Mar", value: 20 },
   { label: "Apr", value: 30 },
@@ -37,7 +36,7 @@ const doughnutChartData = [
   { label: "Jun", value: 50 },
 ];
 
-const pieChartData = [
+const pieChartReport = [
   { label: "Feb", value: 50 },
   { label: "Mar", value: 40 },
   { label: "Apr", value: 30 },
@@ -45,14 +44,14 @@ const pieChartData = [
   { label: "Jun", value: 10 },
 ];
 
-const multiBarChartData = [
-  { label: "Feb", values: [54, 3, 12] },
-  { label: "Mar", values: [55, 2, 7] },
-  { label: "Apr", values: [19, 99, 67] },
-  { label: "May", values: [44, 23, 48] },
-  { label: "Jun", values: [34, 49, 87] },
-  { label: "Jul", values: [10, 20, 0] },
-  { label: "Aug", values: [11, 90, 32] },
+const multiBarChartReport = [
+  { month: "January", new: 46, old: 15, recent: 10 },
+  { month: "February", new: 28, old: 12, recent: 8 },
+  { month: "March", new: 38, old: 10, recent: 12 },
+  { month: "April", new: 25, old: 11, recent: 15 },
+  { month: "May", new: 26, old: 17, recent: 20 },
+  { month: "June", new: 36, old: 12, recent: 25 },
+  { month: "July", new: 33, old: 15, recent: 30 },
 ];
 
 const memberTurnoverReport = [
@@ -121,13 +120,13 @@ const distributionByAgeReport = [
   { label: "41+", value: 5 },
 ];
 
-module.exports = [
-  lineChartData,
-  barChartData,
-  dotChartData,
-  doughnutChartData,
-  pieChartData,
-  multiBarChartData,
+module.exports = {
+  lineChartReport,
+  barChartReport,
+  dotChartReport,
+  doughnutChartReport,
+  pieChartReport,
+  multiBarChartReport,
   memberTurnoverReport,
   workforceReport,
   distributionByGenderReport,
@@ -135,4 +134,4 @@ module.exports = [
   distributionByBusinessUnitReport,
   distributionBySeniorityReport,
   distributionByAgeReport,
-];
+};
