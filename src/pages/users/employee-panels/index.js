@@ -1,1 +1,1 @@
-export * from "./EditEmployee.panel";
+export * from "./Employee.panel";

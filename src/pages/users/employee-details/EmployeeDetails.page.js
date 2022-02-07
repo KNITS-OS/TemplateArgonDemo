@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import SweetAlert from "react-bootstrap-sweetalert";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
 import { useParams } from "react-router-dom";
@@ -8,9 +7,10 @@ import { Container, Spinner } from "reactstrap";
 
 import { updateEmployee, searchEmployee } from "redux/employees";
 
+import { ErrorAlert, SuccessAlert } from "components/alerts";
 import { GradientEmptyHeader } from "components/headers";
 
-import { EditEmployeePanel } from "..";
+import { EmployeePanel } from "..";
 
 export const EmployeeDetailsPage = () => {
   const { id } = useParams();
@@ -19,8 +19,10 @@ export const EmployeeDetailsPage = () => {
 
   const employeesState = useSelector(state => state.employee);
 
-  const [alert, setAlert] = useState(employeesState.isError);
   const [employee, setEmployee] = useState(employeesState.entity);
+
+  const [alert, setAlert] = useState(null);
+  const [saveSent, setSaveSent] = useState(false);
 
   useEffect(() => {
     dispatch(searchEmployee(id));
@@ -28,28 +30,25 @@ export const EmployeeDetailsPage = () => {
   }, []);
 
   useEffect(() => {
-    setEmployee(employeesState.entity);
+    if (employeesState.entity) {
+      setEmployee(employeesState.entity);
+      if (saveSent) {
+        setAlert(<SuccessAlert>Employee Updated</SuccessAlert>);
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [employeesState.entity]);
 
   useEffect(() => {
-    if (employeesState.isError) {
-      setAlert(
-        <SweetAlert danger title="Error" onConfirm={() => setAlert(false)}>
-          {employeesState.errorMessage}
-        </SweetAlert>
-      );
+    if (employeesState.isError && saveSent) {
+      setAlert(<ErrorAlert>{employeesState.errorMessage}</ErrorAlert>);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [employeesState.isError, employeesState.errorMessage]);
 
   const onSave = updatedEmployee => {
     dispatch(updateEmployee(id, updatedEmployee));
-    if (employeesState.isSuccess) {
-      setAlert(
-        <SweetAlert success title="Success" onConfirm={() => setAlert(false)}>
-          Employee Updated
-        </SweetAlert>
-      );
-    }
+    setSaveSent(true);
   };
 
   return (
@@ -62,7 +61,7 @@ export const EmployeeDetailsPage = () => {
         ) : (
           <>
             {employee && (
-              <EditEmployeePanel
+              <EmployeePanel
                 employee={employee}
                 setEmployee={setEmployee}
                 onSave={onSave}

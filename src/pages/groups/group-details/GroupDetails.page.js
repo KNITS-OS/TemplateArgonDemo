@@ -1,28 +1,29 @@
 import React, { useEffect, useState } from "react";
-import SweetAlert from "react-bootstrap-sweetalert";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
 import { useParams } from "react-router-dom";
 
-import { Button, Card, CardBody, CardHeader, Col, Container, Form, Row } from "reactstrap";
+import { Container } from "reactstrap";
 
 import { searchEmployeesByIds } from "redux/employees";
 import { deactivateGroup, deleteGroup, searchGroup, updateGroup } from "redux/groups";
 
+import { ErrorAlert, SuccessAlert } from "components/alerts";
 import { GradientEmptyHeader } from "components/headers";
-import { InputField } from "components/widgets";
 
-import { MembersPanel } from "..";
+import { GroupPanel } from "..";
 
 export const GroupDetailsPage = () => {
   const { id } = useParams();
-  const history = useHistory();
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const groupsState = useSelector(state => state.group);
   const employeesState = useSelector(state => state.employee);
 
-  const [alert, setAlert] = useState(groupsState.isError);
+  const [alert, setAlert] = useState(null);
+  const [saveSent, setSaveSent] = useState(false);
+  const [employeesSent, setEmployeesSent] = useState(false);
   const [group, setGroup] = useState(groupsState.entity);
 
   useEffect(() => {
@@ -34,139 +35,61 @@ export const GroupDetailsPage = () => {
     if (groupsState.entity) {
       setGroup(groupsState.entity);
       dispatch(searchEmployeesByIds(groupsState.entity.members));
+      setEmployeesSent(true);
+      if (saveSent) {
+        setAlert(<SuccessAlert setAlert={setAlert}>Group Saved</SuccessAlert>);
+      }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [groupsState.entity]);
 
   useEffect(() => {
-    if (groupsState.isError) {
-      setAlert(
-        <SweetAlert danger title="Error" onConfirm={() => setAlert(false)}>
-          {groupsState.errorMessage}
-        </SweetAlert>
-      );
+    if (groupsState.isError && saveSent) {
+      setAlert(<ErrorAlert setAlert={setAlert}>{groupsState.errorMessage}</ErrorAlert>);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [groupsState.isError, groupsState.errorMessage]);
 
   useEffect(() => {
-    if (employeesState.isError) {
-      setAlert(
-        <SweetAlert danger title="Error" onConfirm={() => setAlert(false)}>
-          {employeesState.errorMessage}
-        </SweetAlert>
-      );
+    if (employeesState.isError && employeesSent) {
+      setAlert(<ErrorAlert setAlert={setAlert}>{employeesState.errorMessage}</ErrorAlert>);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [employeesState.isError, employeesState.errorMessage]);
 
   const onSave = () => {
     dispatch(updateGroup(id, group));
-    if (groupsState.isSuccess) {
-      setAlert(
-        <SweetAlert success title="Success" onConfirm={() => setAlert(false)}>
-          Group Updated
-        </SweetAlert>
-      );
-    }
+    setSaveSent(true);
   };
 
   const onToggleGroupActive = () => {
     dispatch(deactivateGroup(id));
   };
+
   const onDelete = () => {
     dispatch(deleteGroup(id));
+  };
+
+  const onBackToSearchClick = () => {
+    history.goBack();
   };
 
   return (
     <>
       <GradientEmptyHeader />
       {alert}
+
       <Container className="mt--6" fluid>
         {group && (
-          <Row>
-            <Col className="order-xl-1" xl="12">
-              <Card>
-                <CardHeader>
-                  <Row className="align-items-center">
-                    <Col xs="8">
-                      <h3 className="mb-0">Group Details</h3>
-                    </Col>
-                  </Row>
-                  <Row className="align-items-center">
-                    <Col lg="12" xs="7" className="text-right">
-                      {group && group.active ? (
-                        <Button type="button" color="danger" onClick={onToggleGroupActive}>
-                          Deactivate Group
-                        </Button>
-                      ) : (
-                        <Button type="button" color="success" onClick={onToggleGroupActive}>
-                          Activate Group
-                        </Button>
-                      )}
-                      <Button type="button" color="info" onClick={() => history.goBack()}>
-                        Back to Search
-                      </Button>
-                    </Col>
-                  </Row>
-                </CardHeader>
-
-                <CardBody>
-                  <Form>
-                    <h6 className="heading-small text-muted mb-4">Group Details</h6>
-                    <div className="pl-lg-4">
-                      <Row>
-                        <Col lg="10">
-                          <InputField
-                            id="input-group-name"
-                            label="Group Name"
-                            value={group.name}
-                            type="text"
-                            onChange={e =>
-                              setGroup({
-                                ...group,
-                                name: e.target.value,
-                              })
-                            }
-                          />
-                        </Col>
-                      </Row>
-
-                      <Row>
-                        <Col lg="10">
-                          <InputField
-                            id="input-group-description"
-                            label="Group Description"
-                            value={group.description}
-                            type="text"
-                            onChange={e =>
-                              setGroup({
-                                ...group,
-                                description: e.target.value,
-                              })
-                            }
-                          />
-                        </Col>
-                      </Row>
-                    </div>
-
-                    <MembersPanel group={group} setGroup={setGroup} />
-
-                    <hr className="my-4" />
-
-                    <div className="pl-lg-4">
-                      <Row>
-                        <Button color="primary" onClick={onSave}>
-                          Save
-                        </Button>
-                        <Button color="danger" onClick={onDelete}>
-                          Delete group
-                        </Button>
-                      </Row>
-                    </div>
-                  </Form>
-                </CardBody>
-              </Card>
-            </Col>
-          </Row>
+          <GroupPanel
+            group={group}
+            setGroup={setGroup}
+            onSave={onSave}
+            onDeleteGroup={onDelete}
+            onToggleGroupActive={onToggleGroupActive}
+            groupsState={groupsState}
+            onBackToSearchClick={onBackToSearchClick}
+          />
         )}
       </Container>
     </>

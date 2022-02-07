@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
-import SweetAlert from "react-bootstrap-sweetalert";
 import { useDispatch, useSelector } from "react-redux";
 
 import { Container } from "reactstrap";
 
 import { createEmployee } from "redux/employees";
 
+import { ErrorAlert, SuccessAlert } from "components/alerts";
 import { GradientEmptyHeader } from "components/headers";
 
-import { EditEmployeePanel } from "..";
+import { EmployeePanel } from "..";
 
 export const CreateEmployeePage = () => {
   const initialState = {
@@ -34,31 +34,27 @@ export const CreateEmployeePage = () => {
   const [employee, setEmployee] = useState(initialState);
   const dispatch = useDispatch();
   const employeesState = useSelector(state => state.employee);
-  const [alert, setAlert] = useState(employeesState.isError);
+  const [alert, setAlert] = useState(null);
+  const [saveSent, setSaveSent] = useState(false);
 
   useEffect(() => {
-    if (employeesState.isError) {
-      setAlert(
-        <SweetAlert danger title="Error" onConfirm={() => setAlert(false)}>
-          {employeesState.errorMessage}
-        </SweetAlert>
-      );
+    if (employeesState.isError && saveSent) {
+      setAlert(<ErrorAlert>{employeesState.errorMessage}</ErrorAlert>);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [employeesState.isError, employeesState.errorMessage]);
+
+  useEffect(() => {
+    if (employeesState.entity && saveSent) {
+      setAlert(<SuccessAlert>Employee Created</SuccessAlert>);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [employeesState.entity]);
 
   const onSave = () => {
     dispatch(createEmployee(employee));
+    setSaveSent(true);
   };
-
-  useEffect(() => {
-    if (employeesState.entity) {
-      setAlert(
-        <SweetAlert success title="Success" onConfirm={() => setAlert(false)}>
-          Employee Created
-        </SweetAlert>
-      );
-    }
-  }, [employeesState.entity]);
 
   return (
     <>
@@ -66,7 +62,7 @@ export const CreateEmployeePage = () => {
       {alert}
       <Container className="mt--6" fluid>
         {employee && (
-          <EditEmployeePanel
+          <EmployeePanel
             employee={employee}
             setEmployee={setEmployee}
             onSave={onSave}

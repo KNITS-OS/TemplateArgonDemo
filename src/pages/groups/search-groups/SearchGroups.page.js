@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import SweetAlert from "react-bootstrap-sweetalert";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
 
@@ -8,6 +7,7 @@ import { Card, CardBody, CardHeader, Col, Container, FormGroup, Row, Spinner } f
 import { searchEmployees } from "redux/employees";
 import { deleteGroup, searchGroups } from "redux/groups";
 
+import { ErrorAlert } from "components/alerts";
 import { GradientEmptyHeader } from "components/headers";
 import { ReactTable } from "components/widgets";
 
@@ -21,18 +21,16 @@ export const SearchGroupsPage = () => {
 
   const groupsState = useSelector(state => state.group);
   const [selectedGroups, setSelectedGroups] = useState([]);
-  const [alert, setAlert] = useState(groupsState.isError);
+  const [alert, setAlert] = useState(null);
+  const [saveSent, setSaveSent] = useState(false);
 
   const currentRole = "admin"; //TO GET FROM SELECTORS
 
   useEffect(() => {
-    if (groupsState.isError) {
-      setAlert(
-        <SweetAlert danger title="Error" onConfirm={() => setAlert(false)}>
-          {groupsState.errorMessage}
-        </SweetAlert>
-      );
+    if (groupsState.isError && saveSent) {
+      setAlert(<ErrorAlert setAlert={setAlert}>{groupsState.errorMessage}</ErrorAlert>);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [groupsState.isError, groupsState.errorMessage]);
 
   const goToGroupDetails = e => {
@@ -43,10 +41,12 @@ export const SearchGroupsPage = () => {
   const removeGroup = e => {
     const { id } = e.target;
     dispatch(deleteGroup(id));
+    setSaveSent(true);
   };
 
   const findByAllParameters = () => {
     dispatch(searchGroups());
+    setSaveSent(true);
 
     // @todo find a fix to get rid of this
     // this gets all the employees so group members would'nt be empty

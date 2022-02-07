@@ -1,6 +1,5 @@
 // core react libraries
 import React, { useEffect, useState } from "react";
-import SweetAlert from "react-bootstrap-sweetalert";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
 
@@ -10,6 +9,7 @@ import { selectBusinessUnitsAsList } from "redux/business-unit";
 import { selectCountriesAsList } from "redux/countries";
 import { deleteEmployee, searchEmployees, selectEmployeesState } from "redux/employees";
 
+import { ErrorAlert } from "components/alerts";
 import { GradientEmptyHeader } from "components/headers";
 import { ReactTable } from "components/widgets";
 
@@ -25,21 +25,20 @@ export const SearchEmployeesPage = () => {
   const businessUnits = useSelector(selectBusinessUnitsAsList);
   const currentRole = "admin"; //TO GET FROM SELECTORS
 
-  const [alert, setAlert] = useState(employeesState.isError);
+  const [alert, setAlert] = useState(null);
+  const [saveSent, setSaveSent] = useState(false);
   const [selectedEmployees, setSelectedEmployees] = useState([]);
 
   useEffect(() => {
-    if (employeesState.isError) {
-      setAlert(
-        <SweetAlert danger title="Error" onConfirm={() => setAlert(false)}>
-          {employeesState.errorMessage}
-        </SweetAlert>
-      );
+    if (employeesState.isError && saveSent) {
+      setAlert(<ErrorAlert>{employeesState.errorMessage}</ErrorAlert>);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [employeesState.isError, employeesState.errorMessage]);
 
   const onClickSearchEmployees = filters => {
     dispatch(searchEmployees(filters));
+    setSaveSent(true);
   };
   // @todo find a bettter place for this
   const jobTitles = [
@@ -60,6 +59,7 @@ export const SearchEmployeesPage = () => {
   const removeEmployee = e => {
     const { id } = e.target;
     dispatch(deleteEmployee(id));
+    setSaveSent(true);
   };
 
   return (

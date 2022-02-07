@@ -6,9 +6,16 @@ import { InputField } from "components/widgets";
 
 import { MembersPanel } from ".";
 
-export const EditGroupPanel = ({ group, setGroup, onSave, groupsState, onBackToSearchClick }) => {
+export const GroupPanel = ({
+  group,
+  onDelete,
+  setGroup,
+  onSave,
+  groupsState,
+  onBackToSearchClick,
+  onToggleGroupActive,
+}) => {
   const { name, description } = group;
-
   return (
     <Row>
       <Col className="order-xl-1" xl="12">
@@ -19,7 +26,31 @@ export const EditGroupPanel = ({ group, setGroup, onSave, groupsState, onBackToS
                 <h3 className="mb-0">Group Details</h3>
               </Col>
             </Row>
+            <Row className="align-items-center">
+              <Col lg="12" xs="7" className="text-right">
+                {onToggleGroupActive && (
+                  <>
+                    {group && group.active ? (
+                      <Button type="button" color="danger" onClick={onToggleGroupActive}>
+                        Deactivate Group
+                      </Button>
+                    ) : (
+                      <Button type="button" color="success" onClick={onToggleGroupActive}>
+                        Activate Group
+                      </Button>
+                    )}
+                  </>
+                )}
+
+                {onBackToSearchClick && (
+                  <Button color="info" onClick={onBackToSearchClick}>
+                    Back to Search
+                  </Button>
+                )}
+              </Col>
+            </Row>
           </CardHeader>
+
           <CardBody>
             <Form>
               <h6 className="heading-small text-muted mb-4">Group information</h6>
@@ -61,18 +92,17 @@ export const EditGroupPanel = ({ group, setGroup, onSave, groupsState, onBackToS
 
               <MembersPanel group={group} setGroup={setGroup} />
 
+              <hr className="my-4" />
+
               <Row className="align-items-center py-4">
                 <Col lg="12" xs="7" className="text-right">
                   <Button color="success" onClick={() => onSave(group)}>
                     {groupsState.isLoading ? <Spinner /> : "Submit"}
                   </Button>
-
-                  {onBackToSearchClick ? (
-                    <Button color="info" onClick={onBackToSearchClick}>
-                      Back to Search
+                  {onDelete && (
+                    <Button color="danger" onClick={onDelete}>
+                      Delete group
                     </Button>
-                  ) : (
-                    <> &nbsp;</>
                   )}
                 </Col>
               </Row>
@@ -84,12 +114,12 @@ export const EditGroupPanel = ({ group, setGroup, onSave, groupsState, onBackToS
   );
 };
 
-EditGroupPanel.propTypes = {
+GroupPanel.propTypes = {
   group: PropTypes.object.isRequired,
   setGroup: PropTypes.func.isRequired,
   onSave: PropTypes.func.isRequired,
   groupsState: PropTypes.object.isRequired,
   onBackToSearchClick: PropTypes.func,
-  addMembersCollapse: PropTypes.bool.isRequired,
-  setAddMembersCollapse: PropTypes.func.isRequired,
+  onDelete: PropTypes.func,
+  onToggleGroupActive: PropTypes.func,
 };

@@ -4,7 +4,7 @@ import { Button, Card, CardBody, CardHeader, Col, Row, Spinner } from "reactstra
 
 import { InputField } from "components/widgets";
 
-export const EditEmployeePanel = ({
+export const EmployeePanel = ({
   employee,
   setEmployee,
   onSave,
@@ -291,11 +291,10 @@ export const EditEmployeePanel = ({
   );
 };
 
-EditEmployeePanel.propTypes = {
+EmployeePanel.propTypes = {
   employee: PropTypes.object.isRequired,
   setEmployee: PropTypes.func.isRequired,
   employeesState: PropTypes.object.isRequired,
   onSave: PropTypes.func.isRequired,
-  // eslint-disable-next-line react/require-default-props
   onBackToSearchClick: PropTypes.func,
 };

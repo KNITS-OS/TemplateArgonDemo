@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
-import SweetAlert from "react-bootstrap-sweetalert";
 import { useDispatch, useSelector } from "react-redux";
 
 import { Container } from "reactstrap";
 
 import { createGroup } from "redux/groups";
 
+import { ErrorAlert, SuccessAlert } from "components/alerts";
 import { GradientEmptyHeader } from "components/headers";
 
-import { EditGroupPanel } from "..";
+import { GroupPanel } from "..";
 
 export const CreateGroupPage = () => {
   const initialState = {
@@ -22,32 +22,27 @@ export const CreateGroupPage = () => {
   const groupsState = useSelector(state => state.group);
 
   const [group, setGroup] = useState(initialState);
-  const [addMembersCollapse, setAddMembersCollapse] = useState(false);
-  const [alert, setAlert] = useState(groupsState.isError);
+  const [alert, setAlert] = useState(null);
+  const [saveSent, setSaveSent] = useState(false);
 
   useEffect(() => {
-    if (groupsState.isError) {
-      setAlert(
-        <SweetAlert danger title="Error" onConfirm={() => setAlert(false)}>
-          {groupsState.errorMessage}
-        </SweetAlert>
-      );
+    if (groupsState.isError && saveSent) {
+      setAlert(<ErrorAlert setAlert={setAlert}>{groupsState.errorMessage}</ErrorAlert>);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [groupsState.isError, groupsState.errorMessage]);
+
+  useEffect(() => {
+    if (groupsState.entity && saveSent) {
+      setAlert(<SuccessAlert setAlert={setAlert}>Group Created</SuccessAlert>);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [groupsState.entity]);
 
   const onCreate = () => {
     dispatch(createGroup(group));
+    setSaveSent(true);
   };
-
-  useEffect(() => {
-    if (groupsState.entity) {
-      setAlert(
-        <SweetAlert success title="Success" onConfirm={() => setAlert(false)}>
-          Group Created
-        </SweetAlert>
-      );
-    }
-  }, [groupsState.entity]);
   return (
     <>
       <GradientEmptyHeader />
@@ -55,13 +50,11 @@ export const CreateGroupPage = () => {
 
       <Container className="mt--6" fluid>
         {group && (
-          <EditGroupPanel
+          <GroupPanel
             group={group}
             setGroup={setGroup}
             onSave={onCreate}
             groupsState={groupsState}
-            addMembersCollapse={addMembersCollapse}
-            setAddMembersCollapse={setAddMembersCollapse}
           />
         )}
       </Container>

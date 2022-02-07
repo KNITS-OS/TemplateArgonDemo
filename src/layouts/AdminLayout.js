@@ -15,11 +15,10 @@
 
 */
 import React, { useEffect, useRef, useState } from "react";
-import SweetAlert from "react-bootstrap-sweetalert";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, Switch, Redirect } from "react-router-dom";
 
-import { Spinner, UncontrolledAlert } from "reactstrap";
+import { Spinner } from "reactstrap";
 
 import brandLogoImg from "assets/img/brand/Logo.png";
 
@@ -30,6 +29,7 @@ import { listCharts } from "redux/charts";
 import { listCountries } from "redux/countries";
 import { listWorldOverview } from "redux/world-overview";
 
+import { AdminAlert } from "components/alerts";
 import { AdminFooter } from "components/footers";
 import { AdminNavbar } from "components/navbars";
 import { Sidebar } from "components/sidebar";
@@ -74,30 +74,14 @@ export const AdminLayout = () => {
     }
   }, [countriesState.entities]);
 
-  const cleanAlert = () => {
-    setCategoryDataLoaded(true); // remove spinner
-    setAlert(
-      <UncontrolledAlert color="danger" fade={false}>
-        <span className="alert-inner--icon">
-          <i className="ni ni-like-2" />
-        </span>{" "}
-        <span className="alert-inner--text">
-          <strong>Attention!</strong> No data were loaded. Application will not work as expected
-        </span>
-      </UncontrolledAlert>
-    );
-  };
-
   useEffect(() => {
     if (countriesState.isError) {
       setAlert(
-        <SweetAlert
-          danger
-          title="Error"
-          onConfirm={() => cleanAlert(setCategoryDataLoaded, setAlert)}
-        >
-          {`${countriesState.errorMessage} please contact administrator`}
-        </SweetAlert>
+        <AdminAlert
+          setAlert={setAlert}
+          setCategoryDataLoaded={setCategoryDataLoaded}
+          errorMessage={countriesState.errorMessage}
+        />
       );
     }
   }, [countriesState.isError, countriesState.errorMessage]);
@@ -111,13 +95,11 @@ export const AdminLayout = () => {
   useEffect(() => {
     if (businessUnitsState.isError) {
       setAlert(
-        <SweetAlert
-          danger
-          title="Error"
-          onConfirm={() => cleanAlert(setCategoryDataLoaded, setAlert)}
-        >
-          {`${businessUnitsState.errorMessage} please contact administrator`}
-        </SweetAlert>
+        <AdminAlert
+          setAlert={setAlert}
+          setCategoryDataLoaded={setCategoryDataLoaded}
+          errorMessage={businessUnitsState.errorMessage}
+        />
       );
     }
   }, [businessUnitsState.isError, businessUnitsState.errorMessage]);
@@ -131,13 +113,11 @@ export const AdminLayout = () => {
   useEffect(() => {
     if (chartsState.isError) {
       setAlert(
-        <SweetAlert
-          danger
-          title="Error"
-          onConfirm={() => cleanAlert(setCategoryDataLoaded, setAlert)}
-        >
-          {`${chartsState.errorMessage} please contact administrator`}
-        </SweetAlert>
+        <AdminAlert
+          setAlert={setAlert}
+          setCategoryDataLoaded={setCategoryDataLoaded}
+          errorMessage={chartsState.errorMessage}
+        />
       );
     }
   }, [chartsState.isError, chartsState.errorMessage]);
@@ -151,13 +131,11 @@ export const AdminLayout = () => {
   useEffect(() => {
     if (worldOverviewState.isError) {
       setAlert(
-        <SweetAlert
-          danger
-          title="Error"
-          onConfirm={() => cleanAlert(setCategoryDataLoaded, setAlert)}
-        >
-          {`${worldOverviewState.errorMessage} please contact administrator`}
-        </SweetAlert>
+        <AdminAlert
+          setAlert={setAlert}
+          setCategoryDataLoaded={setCategoryDataLoaded}
+          errorMessage={worldOverviewState.errorMessage}
+        />
       );
     }
   }, [worldOverviewState.isError, worldOverviewState.errorMessage]);
