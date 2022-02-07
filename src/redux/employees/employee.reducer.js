@@ -87,7 +87,7 @@ export const employeeReducer = (employeeState = initialState, action = {}) => {
         isError: false,
         isSuccess: true,
         errorMessage: null,
-        entities: null,
+        entities: [],
         entity: payload,
       };
 
