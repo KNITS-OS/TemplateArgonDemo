@@ -91,7 +91,7 @@ export const GroupDetailsPage = () => {
                       <h3 className="mb-0">Group Details</h3>
                     </Col>
                   </Row>
-                  <Row className="align-items-center py-4">
+                  <Row className="align-items-center">
                     <Col lg="12" xs="7" className="text-right">
                       {group && group.active ? (
                         <Button type="button" color="danger" onClick={onToggleGroupActive}>
