@@ -1,6 +1,6 @@
 import { Line } from "react-chartjs-2";
 
-import { lineDataTemplate, lineOptionsTemplate } from "../../templates";
+import { lineDataTemplate, lineOptionsTemplate } from "../..";
 
 const toLineChartUI = apiResponse => {
   const template = lineDataTemplate({ label: "Line" });

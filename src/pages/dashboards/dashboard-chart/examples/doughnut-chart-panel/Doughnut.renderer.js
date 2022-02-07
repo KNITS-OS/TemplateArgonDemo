@@ -2,7 +2,7 @@ import { Doughnut } from "react-chartjs-2";
 
 import { colors } from "variables/theme";
 
-import { doughnutDataTemplate, doughnutOptionsTemplate } from "../../templates";
+import { doughnutDataTemplate, doughnutOptionsTemplate } from "../..";
 
 const toDoughnutChartUI = apiResponse => {
   const template = doughnutDataTemplate({

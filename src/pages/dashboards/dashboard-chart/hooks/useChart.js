@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import { renderAlert } from "./Chart.renderers";
+import { renderAlert } from "../Chart.renderers";
 
 export const useChart = (asyncFunction, renderChart) => {
   const [isLoading, setIsLoading] = useState(true);

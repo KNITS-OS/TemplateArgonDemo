@@ -1,6 +1,6 @@
 import { Line } from "react-chartjs-2";
 
-import { dotDataTemplate, dotOptionsTemplate } from "../../templates";
+import { dotDataTemplate, dotOptionsTemplate } from "../..";
 
 const toDotChartUI = apiResponse => {
   const template = dotDataTemplate({ label: "Dot" });

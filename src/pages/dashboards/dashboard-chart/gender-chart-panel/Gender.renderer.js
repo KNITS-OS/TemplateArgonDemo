@@ -2,7 +2,7 @@ import { Pie } from "react-chartjs-2";
 
 import { colors } from "variables/theme";
 
-import { pieDataTemplate, pieOptionsTemplate } from "../templates";
+import { pieDataTemplate, pieOptionsTemplate } from "..";
 
 const toPieChartUI = apiResponse => {
   const genderTemplate = pieDataTemplate({

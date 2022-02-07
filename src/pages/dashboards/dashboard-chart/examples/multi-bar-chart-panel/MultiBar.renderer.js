@@ -2,7 +2,7 @@ import { Bar } from "react-chartjs-2";
 
 import { colors } from "variables/theme";
 
-import { barDataTemplate, multiBarOptionsTemplate } from "../../templates";
+import { barDataTemplate, multiBarOptionsTemplate } from "../..";
 
 export const toMultiBarChartUI = apiResponse => {
   const template = barDataTemplate({
