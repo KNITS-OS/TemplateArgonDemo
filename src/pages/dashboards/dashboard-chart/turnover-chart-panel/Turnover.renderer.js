@@ -2,7 +2,7 @@ import { Bar } from "react-chartjs-2";
 
 import { colors } from "variables/theme";
 
-import { barDataTemplate, barOptionsTemplate } from "../templates";
+import { barDataTemplate, barOptionsTemplate } from "..";
 
 export const toTurnoverBarChartUI = apiResponse => {
   const template = barDataTemplate({

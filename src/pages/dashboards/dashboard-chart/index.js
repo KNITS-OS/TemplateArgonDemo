@@ -9,3 +9,4 @@ export * from "./business-unit-chart-panel";
 export * from "./role-chart-panel";
 export * from "./seniority-chart-panel";
 export * from "./examples";
+export * from "./templates";
